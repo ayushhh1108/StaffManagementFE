@@ -1,5 +1,9 @@
 .App {
   text-align: center;
+  font-family: "Josefin Sans", sans-serif !important;
+}
+.MuiOutlinedInput-input::placeholder {
+  font-family: "Inter", sans-serif !important;
 }
 
 .App-logo {
