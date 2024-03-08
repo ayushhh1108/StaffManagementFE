@@ -1,6 +1,7 @@
 .sidebarlist {
+  font-size: 15px;
   font-family: "Inter", sans-serif !important;
-  margin-left: 12px !important;
+  margin-left: 10px !important;
   font-weight: 600;
   display: flex;
   align-items: center;
@@ -9,7 +10,7 @@
 }
 .sub-sidebarlist{
   font-family: "Inter", sans-serif !important;
-  margin-left: 12px !important;
+  margin-left: 12px !important; 
   font-weight: 600;
   display: flex;
   font-size: 14px;
@@ -20,15 +21,25 @@
 .side-baar-icon {
   width: 18px !important;
   height: 18px !important;
-  color: #687693;
+  color: #000000;
 }
 .active .side-baar-icon {
   color: black !important;
 }
+.sidebar-label{
+  font-size: 13px !important;
+  color: #687693 !important;
+  font-weight: 400;
+  font-family: "Inter", sans-serif !important;
+  margin: 10px 0px !important;
+}
+.sub-menus .side-baar-icon{
+  color: #687693 !important;
+}
 .top-baar {
   background-color: #ffffff !important;
   color: black !important;
-  width: calc(100% - 270px) !important;
+  width: calc(100% - 310px) !important;
   border-radius: 15px;
   margin: 15px;
   .header-toolbar {
