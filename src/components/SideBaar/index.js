@@ -6,9 +6,10 @@ import MuiDrawer from "@mui/material/Drawer";
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
 import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
-import { useLocation } from "react-router-dom";
-import { FaAngleDown } from "react-icons/fa";
+import { useLocation, useNavigate } from "react-router-dom";
+import { FaAngleDown, FaAngleUp } from "react-icons/fa";
 import { sidebaarRoutes } from "./Constants";
+import { useEffect } from "react";
 // import MailIcon from "@mui/icons-material/Mail";
 
 const drawerWidth = 280;
@@ -34,24 +35,6 @@ const closedMixin = (theme) => ({
   },
 });
 
-const AppBar = styled(MuiAppBar, {
-  shouldForwardProp: (prop) => prop !== "open",
-})(({ theme, open }) => ({
-  zIndex: theme.zIndex.drawer + 1,
-  transition: theme.transitions.create(["width", "margin"], {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  ...(open && {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(["width", "margin"], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  }),
-}));
-
 const Drawer = styled(MuiDrawer, {
   shouldForwardProp: (prop) => prop !== "open",
 })(({ theme, open }) => ({
@@ -69,7 +52,8 @@ const Drawer = styled(MuiDrawer, {
   }),
 }));
 
-export default function SideBaar(props) {
+export default function SideBaar() {
+  const navigate = useNavigate();
   const [open, setOpen] = React.useState(false);
   const [dropDown, setDropdown] = React.useState(false);
   const [SideBarItems, setSideBarItems] = React.useState(sidebaarRoutes);
@@ -83,19 +67,46 @@ export default function SideBaar(props) {
     setOpen(false);
   };
 
+  const handleRedirect = (props) => {
+    navigate(props);
+  };
+
   const handleToggleDropdown = (title) => {
     const newList = SideBarItems?.map((item) => {
       const updatedMenus = item.menus.map((menuItem) => ({
         ...menuItem,
         isSub: title === menuItem.title ? !menuItem.isSub : false,
+        arrow:
+          title === menuItem.title && !menuItem.isSub ? (
+            <FaAngleUp />
+          ) : (
+            <FaAngleDown />
+          ),
       }));
       return { ...item, menus: updatedMenus };
     });
     setSideBarItems(newList);
   };
 
+  useEffect(() => {
+    const newList = SideBarItems?.map((item) => {
+      const updatedMenus = item.menus.map((menuItem) => {
+        let m = {...menuItem};
+        menuItem?.subMenu?.map((subItems)=>({
+          ...subItems,
+
+        }))
+        m.isSub = location.pathname === menuItem.pathname ? true : false
+        return m;
+      });
+      return { ...item, menus: updatedMenus };
+    });
+    console.log("newList", newList, location.pathname);
+    // setSideBarItems(newList);
+  }, []);
+
   return (
-    <Drawer variant="permanent" open={true}>
+    <Drawer variant="permanent" className="drawer-box" open={true}>
       <Box className="px-3 py-5 mt-4">
         <h2 className="w-full font-bold text-xl">Vishal Construction</h2>
       </Box>
@@ -106,55 +117,73 @@ export default function SideBaar(props) {
               {item.title}
             </Typography>
             {item.menus?.map((menuItem) => (
-              <React.Fragment key={menuItem.title}>
+              <React.Fragment>
                 <Box disablePadding sx={{ display: "block" }}>
                   <Box
-                    onClick={() => handleToggleDropdown(menuItem.title)}
+                    onClick={() => {
+                      if (menuItem.isSub || menuItem?.subMenu) {
+                        handleToggleDropdown(menuItem.title);
+                      } else {
+                        handleRedirect(menuItem.pathname);
+                      }
+                    }}
                     className={`${
-                      location.pathname === menuItem.pathname ? "active" : ""
+                      location.pathname === menuItem.pathname
+                        ? "active main-menus"
+                        : "main-menus"
                     }`}
                     sx={{
-                      minHeight: 48,
+                      minHeight: 45,
                       justifyContent: "initial",
                       display: "flex",
                       alignItems: "center",
                       cursor: "pointer",
+                      mx: 2.5,
                       px: 2.5,
                     }}
                   >
                     {menuItem.icon}
                     <Typography variant="p" className="sidebarlist">
                       {menuItem.title}
-                      {menuItem.subMenu?.length ? <FaAngleDown /> : ""}
+                      {menuItem.subMenu?.length ? menuItem?.arrow : ""}
                     </Typography>
                   </Box>
-                  {menuItem.isSub &&
-                    menuItem.subMenu?.map((subMenuItem) => (
-                      <Box
-                        key={subMenuItem.title}
-                        className="sub-menus"
-                        sx={{
-                          minHeight: 48,
-                          justifyContent: "initial",
-                          display: "flex",
-                          alignItems: "center",
-                          px: 3.5,
-                        }}
-                      >
-                        {subMenuItem.icon}
-                        <Typography
-                          variant="p"
-                          className="sub-sidebarlist"
-                          sx={
-                            location.pathname === menuItem.pathname
-                              ? { color: "#000000" }
-                              : { color: "#687693" }
-                          }
+                  <Box
+                    className="sub-menu-box"
+                    sx={{
+                      mx: 2.5,
+                      px: 2.5,
+                    }}
+                  >
+                    {menuItem.isSub &&
+                      menuItem.subMenu?.map((subMenuItem) => (
+                        <Box
+                          className="sub-menus"
+                          id={subMenuItem.pathname}
+                          sx={{
+                            minHeight: 35,
+                            justifyContent: "initial",
+                            display: "flex",
+                            alignItems: "center",
+                            px: 1,
+                          }}
+                          onClick={() => handleRedirect(subMenuItem.pathname)}
                         >
-                          {subMenuItem.title}
-                        </Typography>
-                      </Box>
-                    ))}
+                          {subMenuItem.icon}
+                          <Typography
+                            variant="p"
+                            className="sub-sidebarlist"
+                            sx={
+                              location.pathname === menuItem.pathname
+                                ? { color: "#000000" }
+                                : { color: "#687693" }
+                            }
+                          >
+                            {subMenuItem.title}
+                          </Typography>
+                        </Box>
+                      ))}
+                  </Box>
                 </Box>
               </React.Fragment>
             ))}
