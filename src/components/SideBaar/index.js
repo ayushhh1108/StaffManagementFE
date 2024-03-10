@@ -179,7 +179,7 @@ export default function SideBaar() {
                             className="sub-sidebarlist"
                             sx={
                               location.pathname === menuItem.pathname
-                                ? { color: "#000000" }
+                                ? { color: "rgb(22 78 99)" }
                                 : { color: "#687693" }
                             }
                           >

@@ -110,7 +110,7 @@ export const sidebaarRoutes = [
       {
         title: "Blog",
         icon: <FaBlog className="side-baar-icon" />,
-        pathname: "/menu",
+        pathname: "/blog",
         isSub: false,
         arrow: <FaAngleDown />,
         subMenu: [
@@ -129,7 +129,7 @@ export const sidebaarRoutes = [
       {
         title: "Slider",
         icon: <PiSlidersHorizontalBold className="side-baar-icon" />,
-        pathname: "/menu",
+        pathname: "/slider",
         isSub: false,
         arrow: <FaAngleDown />,
         subMenu: [
@@ -192,7 +192,7 @@ export const sidebaarRoutes = [
       {
         title: "User Role",
         icon: <FaChalkboardUser className="side-baar-icon" />,
-        pathname: "/menu",
+        pathname: "/user-role",
         isSub: false,
         arrow: <FaAngleDown />,
         subMenu: [

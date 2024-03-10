@@ -70,16 +70,32 @@
   color: black !important;
 }
 .top-baar {
-  background-color: #ffffff !important;
-  color: black !important;
+  background-color: #164e63 !important;
+  color: #ffffff !important;
   width: calc(100% - 310px) !important;
   border-radius: 15px;
   margin: 15px;
+  z-index: 1 !important;
   .header-toolbar {
     justify-content: space-between;
     .account-box {
       display: flex;
       align-items: center;
+      cursor: pointer;
+      padding: 5px;
+      transition: all 0.7s;
+      &:hover {
+        background-color: #ffffff30;
+        border-radius: 5px;
+      }
+      &:active {
+        background-color: #ffffff30;
+        border-radius: 5px;
+      }
+      &:focus-visible {
+        background-color: #ffffff30;
+        border-radius: 5px;
+      }
       .account-image {
         width: 40px;
         height: 40px;
@@ -105,5 +121,27 @@
         }
       }
     }
+  }
+}
+@media (max-width: 1000px) {
+  .App .MuiBox-root .top-baar {
+    width: 96% !important;
+    margin: 15px auto !important;
+    right: 0;
+    left: 0;
+  }
+  .header-toolbar .h2 {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .three-baar-icon {
+    margin-right: 8px;
+    margin-bottom: 2px;
+  }
+}
+@media (max-width: 600px) {
+  .top-baar .header-toolbar .account-box .account-desc{
+    display: none !important;
   }
 }

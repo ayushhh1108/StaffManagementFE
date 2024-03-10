@@ -4,11 +4,13 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import SideBaar from "../components/SideBaar";
 import AppBaar from "../components/SideBaar/Components/index";
+import { useMediaQuery } from "@mui/material";
 const LoginPage = lazy(() => import("../pages/LoginPage"));
 const RegistrationPage = lazy(() => import("../pages/RegistrationPage"));
 const DashBoardPage = lazy(() => import("../pages/DashBoardPage"));
 
 const AppRoutes = () => {
+  const isMobileScreen = useMediaQuery('(max-width:1000px)');
   const locatinkn = useLocation();
   const element = useRoutes([
     { path: "/", element: <DashBoardPage /> },
@@ -31,7 +33,7 @@ const AppRoutes = () => {
           <CircularProgress style={{ color: "#1b6f58" }} />
         </Box>
       }
-    >{console.log("locatinkn",locatinkn.pathname)}
+    >
       {element}
     </Suspense>)
   }else{
@@ -50,10 +52,10 @@ const AppRoutes = () => {
             <CircularProgress style={{ color: "#1b6f58" }} />
           </Box>
         }
-      >{console.log("locatinkn",locatinkn.pathname)}
-      <Box sx={{ display: "flex", backgroundColor: "#dfe0e2" }}>
-        <AppBaar />
-        <SideBaar/>
+      >
+      <Box sx={{ display: "flex", backgroundColor: "#f1f5f9" }}>
+        <AppBaar />{console.log("isMobileScreen",isMobileScreen)}
+        {!isMobileScreen&&<SideBaar/>}
         {element}
       </Box>
       </Suspense>
