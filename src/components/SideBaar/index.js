@@ -91,18 +91,22 @@ export default function SideBaar() {
   useEffect(() => {
     const newList = SideBarItems?.map((item) => {
       const updatedMenus = item.menus.map((menuItem) => {
-        let m = {...menuItem};
-        menuItem?.subMenu?.map((subItems)=>({
-          ...subItems,
-
-        }))
-        m.isSub = location.pathname === menuItem.pathname ? true : false
-        return m;
+        const pathNames = menuItem?.subMenu?.map(
+          (subItems) => subItems.pathname
+        );
+        return {
+          ...menuItem,
+          isSub: pathNames?.includes(location.pathname),
+          arrow: pathNames?.includes(location.pathname) ? (
+            <FaAngleUp />
+          ) : (
+            <FaAngleDown />
+          ),
+        };
       });
       return { ...item, menus: updatedMenus };
     });
-    console.log("newList", newList, location.pathname);
-    // setSideBarItems(newList);
+    setSideBarItems(newList);
   }, []);
 
   return (
