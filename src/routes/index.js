@@ -8,8 +8,8 @@ import { useMediaQuery } from "@mui/material";
 const LoginPage = lazy(() => import("../pages/LoginPage"));
 const RegistrationPage = lazy(() => import("../pages/RegistrationPage"));
 const DashBoardPage = lazy(() => import("../pages/DashBoardPage"));
-const AddMenuPage = lazy(() => import("../pages/AddMenuPage"));
 const MenuPage = lazy(() => import("../pages/MenuPage"));
+const AddMenuPage = lazy(() => import("../pages/AddMenuPage"));
 
 const AppRoutes = () => {
   const isMobileScreen = useMediaQuery("(max-width:1000px)");
