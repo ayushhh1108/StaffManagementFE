@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from "react";
-import { Outlet, useLocation, useRoutes } from "react-router-dom";
+import { useLocation, useRoutes } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import SideBaar from "../components/SideBaar";
@@ -8,35 +8,19 @@ import { useMediaQuery } from "@mui/material";
 const LoginPage = lazy(() => import("../pages/LoginPage"));
 const RegistrationPage = lazy(() => import("../pages/RegistrationPage"));
 const DashBoardPage = lazy(() => import("../pages/DashBoardPage"));
+const AddMenuPage = lazy(() => import("../pages/MenuPage"));
 
 const AppRoutes = () => {
-  const isMobileScreen = useMediaQuery('(max-width:1000px)');
+  const isMobileScreen = useMediaQuery("(max-width:1000px)");
   const locatinkn = useLocation();
   const element = useRoutes([
     { path: "/", element: <DashBoardPage /> },
     { path: "/login", element: <LoginPage /> },
     { path: "/sign-up", element: <RegistrationPage /> },
+    { path: "/add-menu", element: <AddMenuPage /> },
   ]);
 
-  if(locatinkn.pathname==="/login"||locatinkn.pathname==="/sign-up"){
-    return (<Suspense
-      fallback={
-        <Box
-          sx={{
-            width: "100%",
-            height: "100vh",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <CircularProgress style={{ color: "#1b6f58" }} />
-        </Box>
-      }
-    >
-      {element}
-    </Suspense>)
-  }else{
+  if (locatinkn.pathname === "/login" || locatinkn.pathname === "/sign-up") {
     return (
       <Suspense
         fallback={
@@ -49,15 +33,41 @@ const AppRoutes = () => {
               alignItems: "center",
             }}
           >
-            <CircularProgress style={{ color: "#1b6f58" }} />
+            <CircularProgress style={{ color: "#164e63" }} />
           </Box>
         }
       >
-      <Box sx={{ display: "flex", backgroundColor: "#f1f5f9" }}>
-        <AppBaar />{console.log("isMobileScreen",isMobileScreen)}
-        {!isMobileScreen&&<SideBaar/>}
         {element}
-      </Box>
+      </Suspense>
+    );
+  } else {
+    return (
+      <Suspense
+        fallback={
+          <Box
+            sx={{
+              width: "100%",
+              height: "100vh",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <CircularProgress style={{ color: "#164e63" }} />
+          </Box>
+        }
+      >
+        <Box
+          sx={{
+            display: "flex",
+            minHeight: "100vh",
+            backgroundColor: "#f1f5f9",
+          }}
+        >
+          <AppBaar />
+          {!isMobileScreen && <SideBaar />}
+          {element}
+        </Box>
       </Suspense>
     );
   }
