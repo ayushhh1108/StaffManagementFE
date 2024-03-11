@@ -8,7 +8,8 @@ import { useMediaQuery } from "@mui/material";
 const LoginPage = lazy(() => import("../pages/LoginPage"));
 const RegistrationPage = lazy(() => import("../pages/RegistrationPage"));
 const DashBoardPage = lazy(() => import("../pages/DashBoardPage"));
-const AddMenuPage = lazy(() => import("../pages/MenuPage"));
+const AddMenuPage = lazy(() => import("../pages/AddMenuPage"));
+const MenuPage = lazy(() => import("../pages/MenuPage"));
 
 const AppRoutes = () => {
   const isMobileScreen = useMediaQuery("(max-width:1000px)");
@@ -18,6 +19,7 @@ const AppRoutes = () => {
     { path: "/login", element: <LoginPage /> },
     { path: "/sign-up", element: <RegistrationPage /> },
     { path: "/add-menu", element: <AddMenuPage /> },
+    { path: "/menu-list", element: <MenuPage /> },
   ]);
 
   if (locatinkn.pathname === "/login" || locatinkn.pathname === "/sign-up") {
