@@ -10,7 +10,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa";
 import { sidebaarRoutes } from "./Constants";
 import { useEffect } from "react";
-// import MailIcon from "@mui/icons-material/Mail";
+import { RxCross2 } from "react-icons/rx";
+import { useMediaQuery } from "@mui/material";
 
 const drawerWidth = 280;
 
@@ -52,7 +53,8 @@ const Drawer = styled(MuiDrawer, {
   }),
 }));
 
-export default function SideBaar() {
+export default function SideBaar({ handleCloseDrawer }) {
+  const isMobileScreen = useMediaQuery("(max-width:1000px)");
   const navigate = useNavigate();
   const [open, setOpen] = React.useState(false);
   const [dropDown, setDropdown] = React.useState(false);
@@ -69,6 +71,7 @@ export default function SideBaar() {
 
   const handleRedirect = (props) => {
     navigate(props);
+    handleCloseDrawer && handleCloseDrawer();
   };
 
   const handleToggleDropdown = (title) => {
@@ -112,7 +115,10 @@ export default function SideBaar() {
   return (
     <Drawer variant="permanent" className="drawer-box" open={true}>
       <Box className="px-3 py-5 mt-4">
-        <h2 className="w-full font-bold text-xl">Vishal Construction</h2>
+        <h2 className="w-full font-bold text-xl flex items-center justify-between">
+          Vishal Construction
+         {isMobileScreen&& <RxCross2 onClick={handleCloseDrawer} />}{" "}
+        </h2>
       </Box>
       <List>
         {SideBarItems?.map((item) => (
@@ -133,7 +139,7 @@ export default function SideBaar() {
                     }}
                     className={`${
                       location.pathname === menuItem.pathname
-                        ? "active main-menus"
+                        ? "active-side main-menus"
                         : "main-menus"
                     }`}
                     sx={{

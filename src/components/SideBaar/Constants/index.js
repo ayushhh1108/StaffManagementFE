@@ -98,7 +98,7 @@ export const sidebaarRoutes = [
           {
             title: "Add Menu",
             icon: <BsMenuButtonFill className="side-baar-icon" />,
-            pathname: "/menu",
+            pathname: "/add-menu",
           },
           {
             title: "Menu List",

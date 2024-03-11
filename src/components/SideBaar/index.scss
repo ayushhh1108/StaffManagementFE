@@ -21,7 +21,7 @@
     background: rgb(30 41 59);
   }
 }
-.active {
+.active-side {
   background-color: rgb(255 255 255 / 85%);
   border-radius: 0.75rem;
   color: rgb(22 78 99);
@@ -71,7 +71,7 @@
   height: 20px !important;
   color: #475569;
 }
-.active .side-baar-icon {
+.active-side .side-baar-icon {
   color: rgb(22 78 99) !important;
 }
 .sidebar-label {

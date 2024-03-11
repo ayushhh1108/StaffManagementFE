@@ -129,17 +129,17 @@ export default function AppBaar() {
     sidebaarRoutes.find((mainItem) => {
       mainItem.menus.find((item) => {
         if (location.pathname === item.pathname) {
-          title = item;
+          title = { mainTitle: item?.title };
         } else {
           item?.subMenu?.map((subItem) => {
             if (subItem.pathname === location.pathname) {
-              title = subItem;
+              title = { mainTitle: item?.title, subTitle: subItem?.title };
             }
           });
         }
       });
     });
-    setPageName(title?.title);
+    setPageName(title);
   }, [location.pathname]);
 
   return (
@@ -159,14 +159,21 @@ export default function AppBaar() {
             >
               <TiThMenu />
             </IconButton>
-            <h2 className="h2 font-bold text-xl">
-              <IoReorderThree
-                onClick={handleSideBaar}
-                size={30}
-                className="three-baar-icon"
-              />
-              {pageName}
-            </h2>
+            <div className="flex items-center">
+              {isMobileScreen && (
+                <IoReorderThree
+                  onClick={handleSideBaar}
+                  size={30}
+                  className="three-baar-icon"
+                />
+              )}
+              <span className="bread-crumb-first">{pageName?.mainTitle}</span>
+              {pageName?.subTitle ? (
+                <h2 className="h2">{"   >   " + pageName?.subTitle}</h2>
+              ) : (
+                ""
+              )}
+            </div>
           </Box>
           <Dropdown>
             <MenuButton className="account-box">
@@ -195,7 +202,11 @@ export default function AppBaar() {
         </Toolbar>
       </AppBar>
       <Drawer anchor={"left"} open={sideDrawer} onClose={handleSideBaar}>
-        <SideBaar />
+        <SideBaar
+          handleCloseDrawer={() => {
+            setSideDrower(false);
+          }}
+        />
       </Drawer>
     </>
   );

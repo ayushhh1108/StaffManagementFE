@@ -66,7 +66,7 @@
   height: 18px !important;
   color: #687693;
 }
-.active .side-baar-icon {
+.active-side .side-baar-icon {
   color: black !important;
 }
 .top-baar {
@@ -78,6 +78,14 @@
   z-index: 1 !important;
   .header-toolbar {
     justify-content: space-between;
+    .h2 {
+      font-size: 14px !important;
+      color: #ffffffb3;
+    }
+    .bread-crumb-first {
+      font-size: 14px !important;
+      margin-right: 6px;
+    }
     .account-box {
       display: flex;
       align-items: center;
@@ -141,7 +149,15 @@
   }
 }
 @media (max-width: 600px) {
-  .top-baar .header-toolbar .account-box .account-desc{
+  .top-baar .header-toolbar .account-box .account-desc {
     display: none !important;
+  }
+  .top-baar .header-toolbar .h2,
+  .top-baar .header-toolbar .bread-crumb-first {
+    font-size: 13px !important;
+  }
+  .top-baar .header-toolbar{
+    padding-left: 6px !important;
+    padding-right: 6px !important;
   }
 }
