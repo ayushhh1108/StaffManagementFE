@@ -1,0 +1,13 @@
+.th-texts {
+  font-family: "Josefin Sans", sans-serif !important;
+}
+.tr-texts th,
+.tr-texts td {
+  font-family: "Inter", sans-serif !important;
+}
+@media (max-width: 780px) {
+  .table-header-text,
+  .tr-texts td {
+    padding: 10px 15px !important;
+  }
+}

@@ -63,6 +63,7 @@ const AppRoutes = () => {
           sx={{
             display: "flex",
             minHeight: "100vh",
+            width:"100%",
             backgroundColor: "#f1f5f9",
           }}
         >

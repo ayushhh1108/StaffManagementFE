@@ -1,12 +1,132 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./index.scss";
 
 import MenuPageHook from "./MenuPageHooks";
 import { Box, Container, Grid, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
+import EnhancedTable from "../../components/Table";
 
 function MenuPage() {
   const { navigate } = MenuPageHook();
+  const [headerData, setHeaderData] = useState([
+    {
+      id: "no",
+      numeric: true,
+      label: "SR NO",
+    },
+    {
+      id: "name",
+      numeric: true,
+      label: "NAME",
+    },
+    {
+      id: "description",
+      numeric: true,
+      label: "DESCRIPTION",
+    },
+    {
+      id: "status",
+      numeric: true,
+      label: "STATUS",
+    },
+    {
+      id: "action",
+      numeric: true,
+      label: "ACTION",
+    },
+  ]);
+  const allData = [
+    {
+      name: "ABC",
+      description: "description",
+      status: "description",
+      _id: "111",
+    },
+    {
+      name: "dd",
+      description: "eeee",
+      status: "eeee",
+      _id: "987",
+    },
+    {
+      name: "Lorem",
+      description: "ipsum",
+      status: "dolor",
+      _id: "222",
+    },
+    {
+      name: "Foo",
+      description: "bar",
+      status: "baz",
+      _id: "333",
+    },
+    {
+      name: "Lorem",
+      description: "ipsum",
+      status: "dolor",
+      _id: "444",
+    },
+    {
+      name: "Foo",
+      description: "bar",
+      status: "baz",
+      _id: "555",
+    },
+    {
+      name: "Lorem",
+      description: "ipsum",
+      status: "dolor",
+      _id: "666",
+    },
+    {
+      name: "Foo",
+      description: "bar",
+      status: "baz",
+      _id: "777",
+    },
+    {
+      name: "Lorem",
+      description: "ipsum",
+      status: "dolor",
+      _id: "888",
+    },
+    {
+      name: "Foo",
+      description: "bar",
+      status: "baz",
+      _id: "999",
+    },
+    {
+      name: "Lorem",
+      description: "ipsum",
+      status: "dolor",
+      _id: "101010",
+    },
+    {
+      name: "Foo",
+      description: "bar",
+      status: "baz",
+      _id: "111111",
+    },
+    {
+      name: "Lorem",
+      description: "ipsum",
+      status: "dolor",
+      _id: "121212",
+    },
+    {
+      name: "Foo",
+      description: "bar",
+      status: "baz",
+      _id: "131313",
+    },
+    {
+      name: "Lorem",
+      description: "ipsum",
+      status: "dolor",
+      _id: "141414",
+    },
+  ];
 
   return (
     <Box
@@ -14,53 +134,11 @@ function MenuPage() {
       component="main"
       sx={{ flexGrow: 1, p: 3, mt: 8 }}
     >
-      <Container className="pt-[60px]">
-        <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-          <table className="w-full text-sm text-left rtl:text-right text-gray-500 ">
-            <thead className="text-xs text-gray-700 uppercase border-b bg-[#e2e8f0]">
-              <tr>
-                <th scope="col" className="px-6 py-3">
-                  SR No
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  Name
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  Description
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  Status
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  Action
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="odd:bg-white even:bg-gray-50 border-b ">
-                <td className="px-6 py-4">1</td>
-                <th
-                  scope="row"
-                  className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
-                >
-                  Apple MacBook Pro 17"
-                </th>
-                <td scope="row" className="px-6 py-4">
-                  Laptop
-                </td>
-                <td className="px-6 py-4">$2999</td>
-                <td className="px-6 py-4">
-                  <a
-                    href="#"
-                    className="font-medium text-blue-600 hover:underline"
-                  >
-                    Edit
-                  </a>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+      <Container className="pt-[60px] menu-list-container">
+        <EnhancedTable
+          cellData={headerData}
+          rowData={allData?.map((item, index) => ({ ...item, no: 1+index }))}
+        />
       </Container>
     </Box>
   );
