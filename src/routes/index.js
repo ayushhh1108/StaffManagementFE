@@ -13,7 +13,7 @@ const AddMenuPage = lazy(() => import("../pages/AddMenuPage"));
 
 const AppRoutes = () => {
   const isMobileScreen = useMediaQuery("(max-width:1000px)");
-  const locatinkn = useLocation();
+  const location = useLocation();
   const element = useRoutes([
     { path: "/", element: <DashBoardPage /> },
     { path: "/login", element: <LoginPage /> },
@@ -21,49 +21,33 @@ const AppRoutes = () => {
     { path: "/add-menu", element: <AddMenuPage /> },
     { path: "/menu-list", element: <MenuPage /> },
   ]);
+  
+  const isLoginSignup = location.pathname === "/login" || location.pathname === "/sign-up";
 
-  if (locatinkn.pathname === "/login" || locatinkn.pathname === "/sign-up") {
-    return (
-      <Suspense
-        fallback={
-          <Box
-            sx={{
-              width: "100%",
-              height: "100vh",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <CircularProgress style={{ color: "#164e63" }} />
-          </Box>
-        }
-      >
-        {element}
-      </Suspense>
-    );
-  } else {
-    return (
-      <Suspense
-        fallback={
-          <Box
-            sx={{
-              width: "100%",
-              height: "100vh",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <CircularProgress style={{ color: "#164e63" }} />
-          </Box>
-        }
-      >
+  return (
+    <Suspense
+      fallback={
+        <Box
+          sx={{
+            width: "100%",
+            height: "100vh",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <CircularProgress style={{ color: "#164e63" }} />
+        </Box>
+      }
+    >
+      {isLoginSignup ? (
+        element
+      ) : (
         <Box
           sx={{
             display: "flex",
             minHeight: "100vh",
-            width:"100%",
+            width: "100%",
             backgroundColor: "#f1f5f9",
           }}
         >
@@ -71,9 +55,9 @@ const AppRoutes = () => {
           {!isMobileScreen && <SideBaar />}
           {element}
         </Box>
-      </Suspense>
-    );
-  }
+      )}
+    </Suspense>
+  );
 };
 
 export default AppRoutes;
