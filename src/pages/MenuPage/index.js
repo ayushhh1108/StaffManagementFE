@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./index.scss";
-
 import MenuPageHook from "./MenuPageHooks";
-import { Box, Container, Grid, Typography } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Box, Container } from "@mui/material";
 import EnhancedTable from "../../components/Table";
 
 function MenuPage() {
@@ -137,7 +135,7 @@ function MenuPage() {
       <Container className="pt-[60px] menu-list-container">
         <EnhancedTable
           cellData={headerData}
-          rowData={allData?.map((item, index) => ({ ...item, no: 1+index }))}
+          rowData={allData?.map((item, index) => ({ ...item, no: 1 + index }))}
         />
       </Container>
     </Box>
