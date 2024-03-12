@@ -12,6 +12,7 @@ const MenuPage = lazy(() => import("../pages/MenuPage"));
 const AddMenuPage = lazy(() => import("../pages/AddMenuPage"));
 const AddBlogPage = lazy(() => import("../pages/AddBlogPage"));
 const BlogPage = lazy(() => import("../pages/BlogPage"));
+const AddSliderPage = lazy(() => import("../pages/AddSliderPage"));
 
 const AppRoutes = () => {
   const isMobileScreen = useMediaQuery("(max-width:1000px)");
@@ -24,6 +25,7 @@ const AppRoutes = () => {
     { path: "/menu-list", element: <MenuPage /> },
     { path: "/add-blog", element: <AddBlogPage /> },
     { path: "/blog-list", element: <BlogPage /> },
+    { path: "/add-slider", element: <AddSliderPage /> },
   ]);
   
   const isLoginSignup = location.pathname === "/login" || location.pathname === "/sign-up";
