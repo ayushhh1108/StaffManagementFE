@@ -24,7 +24,7 @@ function AddMenuPage() {
           <input
             type="text"
             id="first_name"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2 p-2.5 mb-4 add-menu-input"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-1/2 p-2.5 mb-4 add-menu-input"
             placeholder="name"
             required
           />
@@ -39,7 +39,7 @@ function AddMenuPage() {
           <input
             type="text"
             id="last_name"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2 p-2.5 add-menu-input"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-1/2 p-2.5 add-menu-input"
             placeholder="description"
             required
           />

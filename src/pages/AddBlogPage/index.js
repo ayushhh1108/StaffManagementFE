@@ -26,7 +26,7 @@ function AddBlogPage() {
           <input
             type="text"
             id="first_name"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2 p-2.5 mb-4 add-menu-input"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-1/2 p-2.5 mb-4 add-menu-input"
             placeholder="Title"
             required
           />
@@ -41,7 +41,7 @@ function AddBlogPage() {
           <input
             type="text"
             id="last_name"
-            className="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2 p-2.5 add-menu-input"
+            className="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-1/2 p-2.5 add-menu-input"
             placeholder="Short Description"
             required
           />
@@ -56,7 +56,7 @@ function AddBlogPage() {
           <input
             type="text"
             id="last_name"
-            className="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2 p-2.5 add-menu-input"
+            className="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-1/2 p-2.5 add-menu-input"
             placeholder="Meta Title"
             required
           />
@@ -71,7 +71,7 @@ function AddBlogPage() {
           <input
             type="text"
             id="last_name"
-            className="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2 p-2.5 add-menu-input"
+            className="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-1/2 p-2.5 add-menu-input"
             placeholder="Meta Keywords"
             required
           />
@@ -86,7 +86,7 @@ function AddBlogPage() {
           <input
             type="text"
             id="last_name"
-            className="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2 p-2.5 add-menu-input"
+            className="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-1/2 p-2.5 add-menu-input"
             placeholder="Meta Description"
             required
           />

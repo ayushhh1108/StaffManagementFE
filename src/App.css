@@ -162,3 +162,6 @@
     padding-right: 6px !important;
   }
 }
+input:focus{
+  border: 0.8px solid #164e63;
+}
