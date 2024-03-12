@@ -135,6 +135,7 @@ function MenuPage() {
       <Container className="pt-[60px] menu-list-container">
         <EnhancedTable
           cellData={headerData}
+          rowItems={["no","name","description","status"]}
           rowData={allData?.map((item, index) => ({ ...item, no: 1 + index }))}
         />
       </Container>

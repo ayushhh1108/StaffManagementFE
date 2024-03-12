@@ -79,7 +79,7 @@ function EnhancedTableHead(props) {
   );
 }
 
-export default function EnhancedTable({ rowData, cellData }) {
+export default function EnhancedTable({ rowData, cellData, rowItems }) {
   const [order, setOrder] = React.useState("asc");
   const [orderBy, setOrderBy] = React.useState("calories");
   const [selected, setSelected] = React.useState([]);
@@ -148,7 +148,11 @@ export default function EnhancedTable({ rowData, cellData }) {
     <Box sx={{ width: "100%" }} className="rounded">
       <Paper sx={{ width: "100%", mb: 2 }} className="rounded">
         <TableContainer className="rounded">
-          <Table sx={{ minWidth: 750 }} aria-labelledby="tableTitle" className="rounded">
+          <Table
+            sx={{ minWidth: 750 }}
+            aria-labelledby="tableTitle"
+            className="rounded"
+          >
             <EnhancedTableHead
               numSelected={selected.length}
               order={order}
@@ -161,7 +165,6 @@ export default function EnhancedTable({ rowData, cellData }) {
             <TableBody>
               {visibleRows.map((row, index) => {
                 const isItemSelected = isSelected(row.id);
-                const labelId = `enhanced-table-checkbox-${index}`;
 
                 return (
                   <TableRow
@@ -175,18 +178,21 @@ export default function EnhancedTable({ rowData, cellData }) {
                     sx={{ cursor: "pointer" }}
                     className="tr-texts"
                   >
-                    <TableCell id={labelId} scope="row">
-                      {row.no}
-                    </TableCell>
-                    <TableCell>{row.name}</TableCell>
-                    <TableCell>{row.description}</TableCell>
-                    <TableCell>{row.status}</TableCell>
+                    {rowItems?.map((item)=>(
+                    <TableCell>{row[item]}</TableCell>
+                    ))}
                     <TableCell>
                       <a
                         href="#"
-                        className="font-medium text-blue-600 hover:underline"
+                        className="font-medium text-[#164e63] hover:underline"
                       >
                         Edit
+                      </a>
+                      <a
+                        href="#"
+                        className="font-medium text-[#c70000] hover:underline ml-4"
+                      >
+                        Delete
                       </a>
                     </TableCell>
                   </TableRow>
