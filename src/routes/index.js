@@ -20,6 +20,7 @@ const AddUserPage = lazy(() => import("../pages/AddUsersPage"));
 const UsersPage = lazy(() => import("../pages/UsersPage"));
 const AddUserRolePage = lazy(() => import("../pages/AddUserRolePage"));
 const UserRolePage = lazy(() => import("../pages/UserRolePage"));
+const AccountPage = lazy(() => import("../pages/AccountPage"));
 
 const AppRoutes = () => {
   const isMobileScreen = useMediaQuery("(max-width:1000px)");
@@ -40,6 +41,7 @@ const AppRoutes = () => {
     { path: "/user-list", element: <UsersPage /> },
     { path: "/add-role", element: <AddUserRolePage /> },
     { path: "/roles-list", element: <UserRolePage /> },
+    { path: "/account", element: <AccountPage /> },
   ]);
   
   const isLoginSignup = location.pathname === "/login" || location.pathname === "/sign-up";
