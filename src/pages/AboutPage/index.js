@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import "./index.scss";
-import SliderPageHook from "./SliderPageHooks";
+import AboutPageHooks from "./AboutPageHooks";
 import { Box, Container } from "@mui/material";
 import EnhancedTable from "../../components/Table";
 
-function SliderPage() {
-  const { navigate } = SliderPageHook();
+function AboutPage() {
+  const { navigate } = AboutPageHooks();
   const [headerData, setHeaderData] = useState([
     {
       id: "no",
@@ -13,14 +13,9 @@ function SliderPage() {
       label: "SR NO",
     },
     {
-      id: "Name",
+      id: "title",
       numeric: false,
-      label: "Name",
-    },
-    {
-      id: "description",
-      numeric: false,
-      label: "DESCRIPTION",
+      label: "Title",
     },
     {
       id: "metaTitle",
@@ -33,6 +28,11 @@ function SliderPage() {
       label: "Meta Description",
     },
     {
+      id: "image_position",
+      numeric: false,
+      label: "Image Position",
+    },
+    {
       id: "action",
       numeric: true,
       label: "ACTION",
@@ -40,106 +40,106 @@ function SliderPage() {
   ]);
   const allData = [
     {
-      name: "ABC",
-      description: "description",
+      title: "ABC",
+      image_position:"left",
       metaTitle: "description",
       metaDesc: "metaDescmetaDesc",
       _id: "111",
     },
     {
-      name: "dd",
-      description: "eeee",
+      title: "dd",
+      image_position:"left",
       metaTitle: "eeee",
       metaDesc: "metaDescmetaDesc",
       _id: "987",
     },
     {
-      name: "Lorem",
-      description: "ipsum",
+      title: "Lorem",
+      image_position:"left",
       metaTitle: "dolor",
       metaDesc: "metaDescmetaDesc",
       _id: "222",
     },
     {
-      name: "Foo",
-      description: "bar",
+      title: "Foo",
+      image_position:"left",
       metaTitle: "baz",
       metaDesc: "metaDescmetaDesc",
       _id: "333",
     },
     {
-      name: "Lorem",
-      description: "ipsum",
+      title: "Lorem",
+      image_position:"left",
       metaTitle: "dolor",
       metaDesc: "metaDescmetaDesc",
       _id: "444",
     },
     {
-      name: "Foo",
-      description: "bar",
+      title: "Foo",
+      image_position:"left",
       metaTitle: "baz",
       metaDesc: "metaDescmetaDesc",
       _id: "555",
     },
     {
-      name: "Lorem",
-      description: "ipsum",
+      title: "Lorem",
+      image_position:"left",
       metaTitle: "dolor",
       metaDesc: "metaDescmetaDesc",
       _id: "666",
     },
     {
-      name: "Foo",
-      description: "bar",
+      title: "Foo",
+      image_position:"left",
       metaTitle: "baz",
       metaDesc: "metaDescmetaDesc",
       _id: "777",
     },
     {
-      name: "Lorem",
-      description: "ipsum",
+      title: "Lorem",
+      image_position:"left",
       metaTitle: "dolor",
       metaDesc: "metaDescmetaDesc",
       _id: "888",
     },
     {
-      name: "Foo",
-      description: "bar",
+      title: "Foo",
+      image_position:"left",
       metaTitle: "baz",
       metaDesc: "metaDescmetaDesc",
       _id: "999",
     },
     {
-      name: "Lorem",
-      description: "ipsum",
+      title: "Lorem",
+      image_position:"left",
       metaTitle: "dolor",
       metaDesc: "metaDescmetaDesc",
       _id: "101010",
     },
     {
-      name: "Foo",
-      description: "bar",
+      title: "Foo",
+      image_position:"left",
       metaTitle: "baz",
       metaDesc: "metaDescmetaDesc",
       _id: "111111",
     },
     {
-      name: "Lorem",
-      description: "ipsum",
+      title: "Lorem",
+      image_position:"left",
       metaTitle: "dolor",
       metaDesc: "metaDescmetaDesc",
       _id: "121212",
     },
     {
-      name: "Foo",
-      description: "bar",
+      title: "Foo",
+      image_position:"left",
       metaTitle: "baz",
       metaDesc: "metaDescmetaDesc",
       _id: "131313",
     },
     {
-      name: "Lorem",
-      description: "ipsum",
+      title: "Lorem",
+      image_position:"left",
       metaTitle: "dolor",
       metaDesc: "metaDescmetaDesc",
       _id: "141414",
@@ -157,15 +157,15 @@ function SliderPage() {
           type="button"
           className="text-white bg-[#1e6c89] hover:bg-[#164e63] font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-3"
         >
-          Add Slider
+          Add About Page
         </button>
         <EnhancedTable
           cellData={headerData}
-          rowItems={["no", "name", "description", "metaTitle", "metaDesc"]}
+          rowItems={["no", "title", "metaTitle", "metaDesc", "image_position"]}
           rowData={allData?.map((item, index) => ({ ...item, no: 1 + index }))}
         />
       </Container>
     </Box>
   );
 }
-export default SliderPage;
+export default AboutPage;

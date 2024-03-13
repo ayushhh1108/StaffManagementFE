@@ -1,6 +1,24 @@
 .th-texts {
   font-family: "Josefin Sans", sans-serif !important;
 }
+.tc-text {
+  text-align: center;
+  &:first-child {
+    text-align: left;
+  }
+  &:last-child {
+    text-align: center;
+  }
+}
+.table-header-text {
+  text-align: center;
+  &:first-child {
+    text-align: left;
+  }
+  &:last-child {
+    text-align: center;
+  }
+}
 .tr-texts th,
 .tr-texts td {
   font-family: "Inter", sans-serif !important;

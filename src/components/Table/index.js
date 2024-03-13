@@ -54,7 +54,6 @@ function EnhancedTableHead(props) {
         {cellData.map((headCell) => (
           <TableCell
             key={headCell.id}
-            align="left"
             padding="normal"
             className="table-header-text"
             sortDirection={orderBy === headCell.id ? order : false}
@@ -179,9 +178,9 @@ export default function EnhancedTable({ rowData, cellData, rowItems }) {
                     className="tr-texts"
                   >
                     {rowItems?.map((item)=>(
-                    <TableCell>{row[item]}</TableCell>
+                    <TableCell className="tc-text">{row[item]}</TableCell>
                     ))}
-                    <TableCell>
+                    <TableCell className="tc-text">
                       <a
                         href="#"
                         className="font-medium text-[#164e63] hover:underline"

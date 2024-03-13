@@ -1,15 +1,14 @@
 import * as React from "react";
 import "./index.scss";
 import CKEditor from "@ckeditor/ckeditor5-react";
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
-export default function ClassicTextEditor() {
+ const ClassicTextEditorr = ()=> {
   return (
-    <div className="App">
-      <h2>Using CKEditor&nbsp;5 build in React</h2>
+    <div className="add-menu-input w-1/2 mb-5">
       <CKEditor
         editor={ClassicEditor}
-        data="<p>Hello from CKEditor&nbsp;5!</p>"
+        data=""
         onReady={(editor) => {
           // You can store the "editor" and use when it is needed.
           console.log("Editor is ready to use!", editor);
@@ -27,3 +26,4 @@ export default function ClassicTextEditor() {
     </div>
   );
 }
+export default ClassicTextEditorr;

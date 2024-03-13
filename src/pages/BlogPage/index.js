@@ -30,7 +30,7 @@ function BlogPage() {
     {
       id: "metaDesc",
       numeric: false,
-      label: "Meta Discription",
+      label: "Meta Description",
     },
     {
       id: "action",
