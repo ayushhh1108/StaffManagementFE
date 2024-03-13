@@ -24,6 +24,7 @@ const AccountPage = lazy(() => import("../pages/AccountPage"));
 const ContactUsPage = lazy(() => import("../pages/ContactUsPage"));
 const SiteVisitPage = lazy(() => import("../pages/SiteVisitPage"));
 const InquiryListPage = lazy(() => import("../pages/InquiryListPage"));
+const CallbackListPage = lazy(() => import("../pages/CallbackPage"));
 
 const AppRoutes = () => {
   const isMobileScreen = useMediaQuery("(max-width:1000px)");
@@ -48,6 +49,7 @@ const AppRoutes = () => {
     { path: "/contact-us", element: <ContactUsPage /> },
     { path: "/site-visit", element: <SiteVisitPage /> },
     { path: "/inquiries", element: <InquiryListPage /> },
+    { path: "/callback", element: <CallbackListPage /> },
   ]);
   
   const isLoginSignup = location.pathname === "/login" || location.pathname === "/sign-up";
