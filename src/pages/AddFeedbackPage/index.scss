@@ -1,0 +1,36 @@
+.form-label {
+  font-size: 22px;
+  font-family: "Josefin Sans", sans-serif !important;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+.add-menu-input:focus-visible {
+  outline: none !important;
+}
+.add-menu-input .ck-toolbar,
+.add-menu-input .ck-content {
+  border-radius: 5px !important;
+}
+@media (max-width: 1080px) {
+  .upload-file-div {
+    display: flex;
+    flex-wrap: wrap;
+    .dropzone-box {
+      width: 51%;
+      padding: 2px;
+    }
+    // width: 70% !important;
+  }
+}
+@media (max-width: 780px) {
+  .add-menu-input,
+  .upload-file-div .dropzone-box {
+    width: 70% !important;
+  }
+}
+@media (max-width: 600px) {
+  .add-menu-input,
+  .upload-file-div .dropzone-box {
+    width: 100% !important;
+  }
+}

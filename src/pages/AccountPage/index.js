@@ -182,7 +182,7 @@ function AccountPage() {
               Contact Details
             </Typography>
 
-            <Box className="w-[25%] xs:w-full xs:mb-3 md:w-[50%] lg:w-[35%] xl:w-[25%] flex flex-wrap flex-col">
+            <Box className="w-[25%] account-details-box md:w-[50%] lg:w-[35%] xl:w-[25%] flex flex-wrap flex-col">
               <Box className="d-flex icons-box">
                 <MdAttachEmail color="#687693" className="me-1" size={20} />
                 <span className="feature-number">vishal@gmail.com</span>
@@ -198,7 +198,7 @@ function AccountPage() {
                 </span>
               </Box>
             </Box>
-            <Box className="w-[25%] xs:w-[100%] md:w-[50%] md:w-[35%] xl:w-[25%] flex flex-wrap flex-col">
+            <Box className="w-[25%] account-details-box md:w-[50%] md:w-[35%] xl:w-[25%] flex flex-wrap flex-col">
               <Box className="d-flex icons-box">
                 <FaFacebookF color="#687693" className="me-1" size={19} />
                 <span className="feature-number">@vishalSharma</span>
