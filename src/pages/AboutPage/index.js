@@ -41,105 +41,105 @@ function AboutPage() {
   const allData = [
     {
       title: "ABC",
-      image_position:"left",
+      image_position: "left",
       metaTitle: "description",
       metaDesc: "metaDescmetaDesc",
       _id: "111",
     },
     {
       title: "dd",
-      image_position:"left",
+      image_position: "left",
       metaTitle: "eeee",
       metaDesc: "metaDescmetaDesc",
       _id: "987",
     },
     {
       title: "Lorem",
-      image_position:"left",
+      image_position: "left",
       metaTitle: "dolor",
       metaDesc: "metaDescmetaDesc",
       _id: "222",
     },
     {
       title: "Foo",
-      image_position:"left",
+      image_position: "left",
       metaTitle: "baz",
       metaDesc: "metaDescmetaDesc",
       _id: "333",
     },
     {
       title: "Lorem",
-      image_position:"left",
+      image_position: "left",
       metaTitle: "dolor",
       metaDesc: "metaDescmetaDesc",
       _id: "444",
     },
     {
       title: "Foo",
-      image_position:"left",
+      image_position: "left",
       metaTitle: "baz",
       metaDesc: "metaDescmetaDesc",
       _id: "555",
     },
     {
       title: "Lorem",
-      image_position:"left",
+      image_position: "left",
       metaTitle: "dolor",
       metaDesc: "metaDescmetaDesc",
       _id: "666",
     },
     {
       title: "Foo",
-      image_position:"left",
+      image_position: "left",
       metaTitle: "baz",
       metaDesc: "metaDescmetaDesc",
       _id: "777",
     },
     {
       title: "Lorem",
-      image_position:"left",
+      image_position: "left",
       metaTitle: "dolor",
       metaDesc: "metaDescmetaDesc",
       _id: "888",
     },
     {
       title: "Foo",
-      image_position:"left",
+      image_position: "left",
       metaTitle: "baz",
       metaDesc: "metaDescmetaDesc",
       _id: "999",
     },
     {
       title: "Lorem",
-      image_position:"left",
+      image_position: "left",
       metaTitle: "dolor",
       metaDesc: "metaDescmetaDesc",
       _id: "101010",
     },
     {
       title: "Foo",
-      image_position:"left",
+      image_position: "left",
       metaTitle: "baz",
       metaDesc: "metaDescmetaDesc",
       _id: "111111",
     },
     {
       title: "Lorem",
-      image_position:"left",
+      image_position: "left",
       metaTitle: "dolor",
       metaDesc: "metaDescmetaDesc",
       _id: "121212",
     },
     {
       title: "Foo",
-      image_position:"left",
+      image_position: "left",
       metaTitle: "baz",
       metaDesc: "metaDescmetaDesc",
       _id: "131313",
     },
     {
       title: "Lorem",
-      image_position:"left",
+      image_position: "left",
       metaTitle: "dolor",
       metaDesc: "metaDescmetaDesc",
       _id: "141414",
@@ -160,6 +160,7 @@ function AboutPage() {
           Add About Page
         </button>
         <EnhancedTable
+          isActionCol
           cellData={headerData}
           rowItems={["no", "title", "metaTitle", "metaDesc", "image_position"]}
           rowData={allData?.map((item, index) => ({ ...item, no: 1 + index }))}

@@ -78,7 +78,12 @@ function EnhancedTableHead(props) {
   );
 }
 
-export default function EnhancedTable({ rowData, cellData, rowItems }) {
+export default function EnhancedTable({
+  rowData,
+  cellData,
+  rowItems,
+  isActionCol,
+}) {
   const [order, setOrder] = React.useState("asc");
   const [orderBy, setOrderBy] = React.useState("calories");
   const [selected, setSelected] = React.useState([]);
@@ -177,23 +182,26 @@ export default function EnhancedTable({ rowData, cellData, rowItems }) {
                     sx={{ cursor: "pointer" }}
                     className="tr-texts"
                   >
-                    {rowItems?.map((item)=>(
-                    <TableCell className="tc-text">{row[item]}</TableCell>
+                    {rowItems?.map((item) => (
+                      <TableCell className="tc-text">{row[item]}</TableCell>
                     ))}
-                    <TableCell className="tc-text">
-                      <a
-                        href="#"
-                        className="font-medium text-[#164e63] hover:underline"
-                      >
-                        Edit
-                      </a>
-                      <a
-                        href="#"
-                        className="font-medium text-[#c70000] hover:underline ml-4"
-                      >
-                        Delete
-                      </a>
-                    </TableCell>
+                    {console.log("isActionCol",isActionCol)}
+                    {isActionCol && (
+                      <TableCell className="tc-text">
+                        <a
+                          href="#"
+                          className="font-medium text-[#164e63] hover:underline"
+                        >
+                          Edit
+                        </a>
+                        <a
+                          href="#"
+                          className="font-medium text-[#c70000] hover:underline ml-4"
+                        >
+                          Delete
+                        </a>
+                      </TableCell>
+                    )}
                   </TableRow>
                 );
               })}

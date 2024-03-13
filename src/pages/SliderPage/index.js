@@ -160,6 +160,7 @@ function SliderPage() {
           Add Slider
         </button>
         <EnhancedTable
+          isActionCol
           cellData={headerData}
           rowItems={["no", "name", "description", "metaTitle", "metaDesc"]}
           rowData={allData?.map((item, index) => ({ ...item, no: 1 + index }))}

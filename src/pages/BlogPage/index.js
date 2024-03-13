@@ -160,6 +160,7 @@ function BlogPage() {
           Add Blog
         </button>
         <EnhancedTable
+          isActionCol
           cellData={headerData}
           rowItems={["no", "title", "description", "metaTitle", "metaDesc"]}
           rowData={allData?.map((item, index) => ({ ...item, no: 1 + index }))}

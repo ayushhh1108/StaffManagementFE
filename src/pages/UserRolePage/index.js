@@ -31,77 +31,77 @@ function UserRolePage() {
   const allData = [
     {
       name: "ABC",
-      status:"left",
+      status: "left",
       _id: "111",
     },
     {
       name: "dd",
-      status:"left",
+      status: "left",
       _id: "987",
     },
     {
       name: "Lorem",
-      status:"left",
+      status: "left",
       _id: "222",
     },
     {
       name: "Foo",
-      status:"left",
+      status: "left",
       _id: "333",
     },
     {
       name: "Lorem",
-      status:"left",
+      status: "left",
       _id: "444",
     },
     {
       name: "Foo",
-      status:"left",
+      status: "left",
       _id: "555",
     },
     {
       name: "Lorem",
-      status:"left",
+      status: "left",
       _id: "666",
     },
     {
       name: "Foo",
-      status:"left",
+      status: "left",
       _id: "777",
     },
     {
       name: "Lorem",
-      status:"left",
+      status: "left",
       _id: "888",
     },
     {
       name: "Foo",
-      status:"left",
+      status: "left",
       _id: "999",
     },
     {
       name: "Lorem",
-      status:"left",
+      status: "left",
       _id: "101010",
     },
     {
       name: "Foo",
-      status:"left",
+      status: "left",
       _id: "111111",
     },
     {
       name: "Lorem",
-      status:"left",
+      status: "left",
       _id: "121212",
     },
     {
       name: "Foo",
-      status:"left",
+      status: "left",
       _id: "131313",
     },
     {
       name: "Lorem",
-      status:"left",
+      status: "left",
       _id: "141414",
     },
   ];
@@ -120,6 +120,7 @@ function UserRolePage() {
           Add User Role
         </button>
         <EnhancedTable
+          isActionCol
           cellData={headerData}
           rowItems={["no", "name", "status"]}
           rowData={allData?.map((item, index) => ({ ...item, no: 1 + index }))}

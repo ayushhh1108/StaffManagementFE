@@ -181,6 +181,7 @@ function UsersPage() {
         </button>
         <EnhancedTable
           cellData={headerData}
+          isActionCol
           rowItems={[
             "no",
             "first_name",

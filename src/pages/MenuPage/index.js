@@ -141,6 +141,7 @@ function MenuPage() {
         </button>
         <EnhancedTable
           cellData={headerData}
+          isActionCol
           rowItems={["no", "name", "description", "status"]}
           rowData={allData?.map((item, index) => ({ ...item, no: 1 + index }))}
         />
