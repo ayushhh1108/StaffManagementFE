@@ -28,6 +28,8 @@ const CallbackListPage = lazy(() => import("../pages/CallbackPage"));
 const AddFeedbackPage = lazy(() => import("../pages/AddFeedbackPage"));
 const FeedbackListPage = lazy(() => import("../pages/FeedbackListPage"));
 const NewsLatterPage = lazy(() => import("../pages/NewsLattersPage"));
+const AddCareerPage = lazy(() => import("../pages/AddCareerPage"));
+const CareersPage = lazy(() => import("../pages/CareersPage"));
 
 const AppRoutes = () => {
   const isMobileScreen = useMediaQuery("(max-width:1000px)");
@@ -56,6 +58,8 @@ const AppRoutes = () => {
     { path: "/add-feedback", element: <AddFeedbackPage /> },
     { path: "/feedback-list", element: <FeedbackListPage /> },
     { path: "/newsletters", element: <NewsLatterPage /> },
+    { path: "/add-career", element: <AddCareerPage /> },
+    { path: "/career-list", element: <CareersPage /> },
   ]);
   
   const isLoginSignup = location.pathname === "/login" || location.pathname === "/sign-up";
