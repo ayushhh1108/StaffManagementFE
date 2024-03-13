@@ -27,6 +27,7 @@ const InquiryListPage = lazy(() => import("../pages/InquiryListPage"));
 const CallbackListPage = lazy(() => import("../pages/CallbackPage"));
 const AddFeedbackPage = lazy(() => import("../pages/AddFeedbackPage"));
 const FeedbackListPage = lazy(() => import("../pages/FeedbackListPage"));
+const NewsLatterPage = lazy(() => import("../pages/NewsLattersPage"));
 
 const AppRoutes = () => {
   const isMobileScreen = useMediaQuery("(max-width:1000px)");
@@ -54,6 +55,7 @@ const AppRoutes = () => {
     { path: "/callback", element: <CallbackListPage /> },
     { path: "/add-feedback", element: <AddFeedbackPage /> },
     { path: "/feedback-list", element: <FeedbackListPage /> },
+    { path: "/newsletters", element: <NewsLatterPage /> },
   ]);
   
   const isLoginSignup = location.pathname === "/login" || location.pathname === "/sign-up";
