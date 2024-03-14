@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import "./index.scss";
-import ReviewsPageHook from "./ReviewsPageHook";
+import BookingsPageHook from "./BookingsPageHook";
 import { Box, Container, Typography } from "@mui/material";
 import EnhancedTable from "../../components/Table";
 import { HeaderData, TableData } from "./constant";
 
-function ReviewsPage() {
-  const { navigate } = ReviewsPageHook();
+function BookingsPage() {
+  const { navigate } = BookingsPageHook();
 
   return (
     <Box
@@ -16,17 +16,17 @@ function ReviewsPage() {
     >
       <Container className="pt-[60px] menu-list-container text-left">
         <Typography variant="h5" className="mb-5 form-label text-left">
-          Reviews List{" "}
+          Bookings List{" "}
         </Typography>
         <EnhancedTable
           cellData={HeaderData}
           isActionCol={false}
           rowItems={[
             "no",
+            "property_name",
             "name",
             "email",
-            "rating",
-            "message",
+            "phone",
             "status",
             "action",
           ]}
@@ -39,4 +39,4 @@ function ReviewsPage() {
     </Box>
   );
 }
-export default ReviewsPage;
+export default BookingsPage;
