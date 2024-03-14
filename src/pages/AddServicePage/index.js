@@ -1,21 +1,21 @@
 import React, { useState } from "react";
 import "./index.scss";
 
-import AddDealingHooks from "./AddDealingHooks";
+import AddServiceHooks from "./AddServiceHooks";
 import { Box, Typography } from "@mui/material";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import Dropzone from "../../components/DropZone";
 import TextInput from "../../components/TextInput";
 
-function AddDealingPage() {
-  const { navigate } = AddDealingHooks();
+function AddServicePage() {
+  const { navigate } = AddServiceHooks();
 
   return (
     <Box component="main" sx={{ flexGrow: 1, p: 3, mt: 8, maxWidth: "100%" }}>
       <div className="container add-menu-form text-left my-5">
         <Typography variant="h5" className="mb-5 form-label">
-          Add Dealing{" "}
+          Add Service{" "}
         </Typography>
         <TextInput label={"Header"} isRequire id={"header"} />
         <TextInput label={"Title"} isRequire id={"title"} />
@@ -45,9 +45,6 @@ function AddDealingPage() {
             }}
           />
         </div>
-        <div className="upload-file-div mb-6 flex justify-between">
-          <Dropzone title={"Video"} />
-        </div>
 
         <button
           type="button"
@@ -65,4 +62,4 @@ function AddDealingPage() {
     </Box>
   );
 }
-export default AddDealingPage;
+export default AddServicePage;

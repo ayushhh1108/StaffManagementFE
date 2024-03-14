@@ -12,11 +12,14 @@ function PropertyListPage() {
     <Box
       className="menu-list-page"
       component="main"
-      sx={{ flexGrow: 1, p: 3, mt: 8 }}
+      sx={{ flexGrow: 1, p: 3, mt: 8,textAlign:"left" }}
     >
-      <Typography variant="h5" className="mb-5 form-label text-left">
-        Job Applications List{" "}
-      </Typography>
+      <button
+        type="button"
+        className="text-white bg-[#1e6c89] hover:bg-[#164e63] font-medium rounded-lg text-sm px-5 py-2.5 my-3"
+      >
+        Add Property
+      </button>
       <EnhancedTable
         cellData={HeaderData}
         isActionCol
