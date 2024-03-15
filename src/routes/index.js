@@ -55,6 +55,8 @@ const SocialMediaPage = lazy(() => import("../pages/SocialMediaPage"));
 const AddDirectorPage = lazy(() => import("../pages/AddDirectorPage"));
 const AddConstructionPage = lazy(() => import("../pages/AddConstructionPage"));
 const AddTeamPage = lazy(() => import("../pages/AddTeamPage"));
+const AddInvestWithUsPage = lazy(() => import("../pages/AddInvestWithUsPage"));
+const AddCMSPage = lazy(() => import("../pages/AddCMSPage"));
 
 const AppRoutes = () => {
   const isMobileScreen = useMediaQuery("(max-width:1000px)");
@@ -110,6 +112,8 @@ const AppRoutes = () => {
     { path: "/add-director", element: <AddDirectorPage /> },
     { path: "/add-construction-process", element: <AddConstructionPage /> },
     { path: "/add-team", element: <AddTeamPage /> },
+    { path: "/add-invest", element: <AddInvestWithUsPage /> },
+    { path: "/add-cms", element: <AddCMSPage /> },
   ]);
   
   const isLoginSignup = location.pathname === "/login" || location.pathname === "/sign-up";
