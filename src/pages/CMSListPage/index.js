@@ -19,7 +19,7 @@ function CMSListPage() {
           type="button"
           className="text-white bg-[#1e6c89] hover:bg-[#164e63] font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-3"
         >
-          Add Invest with Us
+          Add CMS
         </button>
         <EnhancedTable
           cellData={HeaderData}
