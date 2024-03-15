@@ -1,40 +1,33 @@
 import React, { useState } from "react";
 import "./index.scss";
 
-import AddConstructionHooks from "./AddConstructionHooks";
+import AddTeamHooks from "./AddTeamHooks";
 import { Box, Typography } from "@mui/material";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import Dropzone from "../../components/DropZone";
 import TextInput from "../../components/TextInput";
-import SelectInput from "../../components/SelectInput";
 
-function AddConstructionPage() {
-  const { navigate } = AddConstructionHooks();
+function AddTeamPage() {
+  const { navigate } = AddTeamHooks();
 
   return (
     <Box component="main" sx={{ flexGrow: 1, p: 3, mt: 8, maxWidth: "100%" }}>
       <div className="container add-menu-form text-left my-5">
         <Typography variant="h5" className="mb-5 form-label">
-          Add Construction Process{" "}
+          Add Team Member{" "}
         </Typography>
         <TextInput label={"Title"} isRequire id={"title"} />
-        <TextInput label={"Meta Title "} isRequire id={"meta_title"} />
-        <TextInput label={"Meta Keywords "} isRequire id={"meta_keywords"} />
         <TextInput
-          label={"Meta Description "}
+          label={"Short Description"}
           isRequire
-          id={"meta_description"}
+          id={"short_description"}
         />
-        <SelectInput
-          label={"Image Position"}
-          isRequire
-          id={"position"}
-          options={[
-            { label: "Left", value: "left" },
-            { label: "Right", value: "right" },
-          ]}
-        />
+        <TextInput label={"Designation"} id={"designation"} />
+        <TextInput label={"Facebook"} isRequire id={"facebook"} />
+        <TextInput label={"Twiter"} isRequire id={"twiter"} />
+        <TextInput label={"Instagram"} isRequire id={"instagram"} />
+        <TextInput label={"Linkedin"} isRequire id={"linkedin"} />
         <div className="add-menu-input w-1/2 mb-5">
           <CKEditor
             editor={ClassicEditor}
@@ -55,7 +48,7 @@ function AddConstructionPage() {
           />
         </div>
         <div className="upload-file-div mb-6 flex justify-between">
-          <Dropzone title={"Upload Image"} />
+          <Dropzone title={"Image"} />
         </div>
 
         <button
@@ -74,4 +67,4 @@ function AddConstructionPage() {
     </Box>
   );
 }
-export default AddConstructionPage;
+export default AddTeamPage;
