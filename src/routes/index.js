@@ -45,6 +45,7 @@ const ServiceItemPage = lazy(() => import("../pages/ServiceItemPage"));
 const ServicePage = lazy(() => import("../pages/ServicePage"));
 const ServiceInquiryPage = lazy(() => import("../pages/ServiceInquiryPage"));
 const AddFinancePage = lazy(() => import("../pages/AddFinancePage"));
+const AddSupplierPage = lazy(() => import("../pages/AddSupplierPage"));
 
 const AppRoutes = () => {
   const isMobileScreen = useMediaQuery("(max-width:1000px)");
@@ -90,6 +91,7 @@ const AppRoutes = () => {
     { path: "/service-item-list", element: <ServiceItemPage /> },
     { path: "/service-inquiries-list", element: <ServiceInquiryPage /> },
     { path: "/add-finance", element: <AddFinancePage /> },
+    { path: "/add-supplier", element: <AddSupplierPage /> },
   ]);
   
   const isLoginSignup = location.pathname === "/login" || location.pathname === "/sign-up";
