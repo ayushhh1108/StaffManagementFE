@@ -50,6 +50,7 @@ const FinancePage = lazy(() => import("../pages/FinancePage"));
 const SupplierPage = lazy(() => import("../pages/SupplierPage"));
 const AddAboutUsPage = lazy(() => import("../pages/AddAboutUsPage"));
 const AboutUsPage = lazy(() => import("../pages/AboutUsPage"));
+const SiteAddressPage = lazy(() => import("../pages/SiteAddressPage"));
 
 const AppRoutes = () => {
   const isMobileScreen = useMediaQuery("(max-width:1000px)");
@@ -100,6 +101,7 @@ const AppRoutes = () => {
     { path: "/supplier-list", element: <SupplierPage /> },
     { path: "/add-aboutus", element: <AddAboutUsPage /> },
     { path: "/about-us-list", element: <AboutUsPage /> },
+    { path: "/site-address", element: <SiteAddressPage /> },
   ]);
   
   const isLoginSignup = location.pathname === "/login" || location.pathname === "/sign-up";
