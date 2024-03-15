@@ -3,8 +3,6 @@ import "./index.scss";
 
 import AddAboutUsHooks from "./AddAboutUsHooks";
 import { Box, Typography } from "@mui/material";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import Dropzone from "../../components/DropZone";
 import TextInput from "../../components/TextInput";
 
