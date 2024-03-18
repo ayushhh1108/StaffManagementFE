@@ -18,7 +18,7 @@ function AddInvestWithUsPage() {
     handleDeleteBox,
   } = AddInvestWithUsHooks();
 
-  const DetailedInputSection = ({ title, desc, no }, isAddtrue) => {
+  const DetailedInputSection = ({ title, desc, no }, isAddtrue,isDeleteDisable) => {
     return (
       <Box className="details-inputs my-3">
         <TextInput
@@ -56,7 +56,7 @@ function AddInvestWithUsPage() {
         </div>
         <button
           type="button"
-          disabled={no == 1}
+          disabled={isDeleteDisable}
           onClick={() => handleDeleteBox(no)}
           className="text-white bg-[#b3b4b7] hover:bg-[#818183] font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
         >
@@ -139,7 +139,7 @@ function AddInvestWithUsPage() {
           What We Do Details{" "}
         </Typography>
         {detailedInputValues?.map((item, index) =>
-          DetailedInputSection(item, detailedInputValues?.length == index + 1)
+          DetailedInputSection(item, detailedInputValues?.length == index + 1, detailedInputValues?.length == 1)
         )}
         <hr class="h-px mb-8 bg-gray-200 border-0" />
         <Typography variant="h5" className="mb-5 form-label">

@@ -30,7 +30,9 @@ const FeedbackListPage = lazy(() => import("../pages/FeedbackListPage"));
 const NewsLatterPage = lazy(() => import("../pages/NewsLattersPage"));
 const AddCareerPage = lazy(() => import("../pages/AddCareerPage"));
 const CareersPage = lazy(() => import("../pages/CareersPage"));
-const JobApplicationlistPage = lazy(() => import("../pages/JobApplicationlistPage"));
+const JobApplicationlistPage = lazy(() =>
+  import("../pages/JobApplicationlistPage")
+);
 const ReviewsPage = lazy(() => import("../pages/ReviewsPage"));
 const BookingsPage = lazy(() => import("../pages/BookingsPage"));
 const AddPropertyPage = lazy(() => import("../pages/AddPropertyPage"));
@@ -60,7 +62,9 @@ const AddCMSPage = lazy(() => import("../pages/AddCMSPage"));
 const DirectorPage = lazy(() => import("../pages/DirectorPage"));
 const ConstructionsPage = lazy(() => import("../pages/ConstructionPage"));
 const TeamsPage = lazy(() => import("../pages/TeamsPage"));
-const InvestWithUsListPage = lazy(() => import("../pages/InvestWithUsListPage"));
+const InvestWithUsListPage = lazy(() =>
+  import("../pages/InvestWithUsListPage")
+);
 const CMSListPage = lazy(() => import("../pages/CMSListPage"));
 
 const AppRoutes = () => {
@@ -125,43 +129,62 @@ const AppRoutes = () => {
     { path: "/invest-list", element: <InvestWithUsListPage /> },
     { path: "/cms-list", element: <CMSListPage /> },
   ]);
-  
-  const isLoginSignup = location.pathname === "/login" || location.pathname === "/sign-up";
 
-  return (
-    <Suspense
-      fallback={
-        <Box
-          sx={{
-            width: "100%",
-            height: "100vh",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
+  const isLoginSignup =
+    location.pathname === "/login" || location.pathname === "/sign-up";
+
+  if (isLoginSignup) {
+    return (
+      <Suspense
+        fallback={
+          <Box
+            sx={{
+              width: "100%",
+              height: "100vh",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <CircularProgress style={{ color: "#164e63" }} />
+          </Box>
+        }
+      >
+        {element}
+      </Suspense>
+    );
+  } else {
+    return (
+      <Box
+        sx={{
+          display: "flex",
+          minHeight: "100vh",
+          width: "100%",
+          backgroundColor: "#f1f5f9",
+        }}
+      >
+        <AppBaar />
+        {!isMobileScreen && <SideBaar />}
+        <Suspense
+          fallback={
+            <Box
+              sx={{
+                width: "100%",
+                height: "100vh",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <CircularProgress style={{ color: "#164e63" }} />
+            </Box>
+          }
         >
-          <CircularProgress style={{ color: "#164e63" }} />
-        </Box>
-      }
-    >
-      {isLoginSignup ? (
-        element
-      ) : (
-        <Box
-          sx={{
-            display: "flex",
-            minHeight: "100vh",
-            width: "100%",
-            backgroundColor: "#f1f5f9",
-          }}
-        >
-          <AppBaar />
-          {!isMobileScreen && <SideBaar />}
           {element}
-        </Box>
-      )}
-    </Suspense>
-  );
+        </Suspense>
+      </Box>
+    );
+  }
 };
 
 export default AppRoutes;
