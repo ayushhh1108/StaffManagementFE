@@ -1,3 +1,94 @@
 .Registration-page {
   background-color: #e5e7eb;
+  min-height: 100vh;
+  .input-labels {
+    text-align: left;
+  }
+}
+
+.Registration-page {
+  input{
+    &::placeholder{
+      font-size: 14px;
+    }
+  }
+}
+@media (max-width: 1200px) {
+  .Registration-page .login-right,
+  .Registration-page .login-left {
+    width: 50% !important;
+  }
+}
+@media (max-width: 780px) {
+  .Registration-page .login-right,
+  .Registration-page .login-left {
+    width: 70% !important;
+    margin-bottom: 15px;
+  }
+  .Registration-page .login-main-container {
+    flex-wrap: wrap;
+  }
+  .Registration-page .login-main-container .login-left p {
+    width: 100%;
+  }
+  .Registration-page .login-main-container .login-left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 50px auto;
+  }
+  .Registration-page {
+    input{
+      &::placeholder{
+        font-size: 13px;
+      }
+    }
+  }
+}
+@media (max-width: 600px) {
+  .Registration-page .login-right,
+  .Registration-page .login-left {
+    width: 90% !important;
+    margin-bottom: 15px;
+  }
+  .Registration-page .login-main-container .login-right .bg-white {
+    padding: 24px;
+  }
+  .Registration-page .login-main-container .login-left h1 {
+    font-size: 26px;
+    margin-top: 10px;
+  }
+  .Registration-page .login-main-container .login-left p {
+    font-size: 14px;
+    margin-top: 6px;
+  }
+  .Registration-page .login-main-container .login-right .bg-white h2 {
+    margin-bottom: 0 !important;
+  }
+  .Registration-page
+    .login-main-container
+    .login-right
+    .bg-white
+    form
+    div
+    button {
+    padding: 7px 0px;
+    font-size: 15px;
+  }
+  .Registration-page .login-main-container .input-labels {
+    font-size: 15px;
+  }
+}
+@media (max-width: 380px) {
+  .Registration-page .login-right,
+  .Registration-page .login-left {
+    width: 98% !important;
+  }
+  .Registration-page .login-main-container .input-labels {
+    font-size: 14px;
+  }
+  .Registration-page .login-right {
+    margin-bottom: 75px;
+  }
 }

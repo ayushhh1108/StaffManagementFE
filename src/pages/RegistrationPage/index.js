@@ -9,9 +9,9 @@ function RegistrationPage() {
 
   return (
     <div className="Registration-page">
-      <div className="container px-6 mx-auto">
-        <div className="flex flex-col text-center md:text-left md:flex-row h-screen justify-evenly md:items-center">
-          <div className="flex flex-col w-full">
+      <div className="container px-6 min-h-screen mx-auto">
+        <div className="flex flex-col text-center md:text-left md:flex-row min-h-screen justify-evenly md:items-center login-main-container">
+          <div className="flex flex-col w-full login-left">
             <div>
               <svg
                 className="w-20 h-20 mx-auto md:float-left fill-stroke text-gray-800"
@@ -33,14 +33,14 @@ function RegistrationPage() {
               Unlock Your Real Estate World: Admin Access Await
             </p>
           </div>
-          <div className="w-full md:w-full lg:w-9/12 mx-auto md:mx-0">
+          <div className="w-full md:w-full lg:w-9/12 mx-auto md:mx-0 login-right">
             <div className="bg-white p-10 flex flex-col w-full shadow-xl rounded-xl">
               <h2 className="text-2xl font-bold text-gray-800 text-left mb-5">
                 Register
               </h2>
               <form action="" className="w-full">
                 <div id="input" className="flex flex-col w-full my-5">
-                  <label for="username" className="text-gray-500 mb-2">
+                  <label for="username" className="text-gray-500 mb-2 input-labels">
                     Username
                   </label>
                   <input
@@ -51,7 +51,7 @@ function RegistrationPage() {
                   />
                 </div>
                 <div id="input" className="flex flex-col w-full my-5">
-                  <label for="password" className="text-gray-500 mb-2">
+                  <label for="password" className="text-gray-500 mb-2 input-labels">
                     Password
                   </label>
                   <input
@@ -90,12 +90,12 @@ function RegistrationPage() {
                 <Grid container className="flex text-left mt-5">
                   <Grid
                     item
-                    className="w-full font-medium text-gray-500 text-left mt-3 pt-3"
+                    className="w-full font-medium text-gray-500 text-left mt-3 pt-3 input-labels"
                   >
                     Already have an account?
                     <span
                       onClick={() => {
-                        navigate("/sign-up");
+                        navigate("/login");
                       }}
                       variant="body2"
                       className="links cursor-pointer"

@@ -4,6 +4,11 @@
   .input-labels {
     text-align: left;
   }
+  input {
+    &::placeholder {
+      font-size: 14px;
+    }
+  }
 }
 @media (max-width: 1200px) {
   .Login-page .login-right,
@@ -17,18 +22,21 @@
     width: 70% !important;
     margin-bottom: 15px;
   }
-  .Login-page .login-main-container{
+  .Login-page .login-main-container {
     flex-wrap: wrap;
   }
-  .Login-page .login-main-container .login-left p{
+  .Login-page .login-main-container .login-left p {
     width: 100%;
   }
-  .Login-page .login-main-container .login-left{
+  .Login-page .login-main-container .login-left {
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     margin: 50px auto;
+  }
+  .Login-page input::placeholder {
+    font-size: 13px;
   }
 }
 @media (max-width: 600px) {
@@ -37,25 +45,25 @@
     width: 90% !important;
     margin-bottom: 15px;
   }
-  .Login-page .login-main-container .login-right .bg-white{
+  .Login-page .login-main-container .login-right .bg-white {
     padding: 24px;
   }
-  .Login-page .login-main-container .login-left h1{
+  .Login-page .login-main-container .login-left h1 {
     font-size: 26px;
     margin-top: 10px;
   }
-  .Login-page .login-main-container .login-left p{
+  .Login-page .login-main-container .login-left p {
     font-size: 14px;
     margin-top: 6px;
   }
-  .Login-page .login-main-container .login-right .bg-white h2{
+  .Login-page .login-main-container .login-right .bg-white h2 {
     margin-bottom: 0 !important;
   }
-  .Login-page .login-main-container .login-right .bg-white form div button{
+  .Login-page .login-main-container .login-right .bg-white form div button {
     padding: 7px 0px;
     font-size: 15px;
   }
-  .Login-page .login-main-container .input-labels{
+  .Login-page .login-main-container .input-labels {
     font-size: 15px;
   }
 }
@@ -64,10 +72,10 @@
   .Login-page .login-left {
     width: 98% !important;
   }
-  .Login-page .login-main-container .input-labels{
+  .Login-page .login-main-container .input-labels {
     font-size: 14px;
   }
-  .Login-page .login-right{
+  .Login-page .login-right {
     margin-bottom: 75px;
   }
 }
