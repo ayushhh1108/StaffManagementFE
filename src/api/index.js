@@ -1,8 +1,4 @@
-import api from './api';
-import apiEndPoints from './end-points';
-import {
-    addActionLoader,
-    removeActionLoader,
-} from '../redux/api-action-loading/actions';
+import api from "./api";
+import apiEndPoints from "./end-points";
 
-export { api, apiEndPoints, addActionLoader, removeActionLoader };
+export { api, apiEndPoints };

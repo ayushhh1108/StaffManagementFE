@@ -3,10 +3,9 @@ import "./index.scss";
 
 import LoginPageHook from "./loginPageHooks";
 import { Grid } from "@mui/material";
-import { Link } from "react-router-dom";
 
 function LoginPage() {
-  const { navigate } = LoginPageHook();
+  const { navigate, handleSubmit, handleInputChange, creds } = LoginPageHook();
 
   return (
     <div className="Login-page">
@@ -41,30 +40,41 @@ function LoginPage() {
               </h2>
               <form action="" className="w-full">
                 <div id="input" className="flex flex-col w-full my-5">
-                  <label for="username" className="text-gray-500 mb-2 input-labels">
+                  <label
+                    for="username"
+                    className="text-gray-500 mb-2 input-labels"
+                  >
                     Username
                   </label>
                   <input
                     type="text"
                     id="username"
+                    value={creds?.username}
+                    onChange={handleInputChange}
                     placeholder="Please insert your username"
-                    className="appearance-none border-2 border-gray-100 rounded-lg px-4 py-3 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:shadow-lg"
+                    className="appearance-none border-2 border-gray-100 rounded-lg px-4 py-3 placeholder-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-600 focus:shadow-lg"
                   />
                 </div>
                 <div id="input" className="flex flex-col w-full my-5">
-                  <label for="password" className="text-gray-500 mb-2 input-labels">
+                  <label
+                    for="password"
+                    className="text-gray-500 mb-2 input-labels"
+                  >
                     Password
                   </label>
                   <input
                     type="password"
                     id="password"
+                    value={creds?.password}
+                    onChange={handleInputChange}
                     placeholder="Please insert your password"
-                    className="appearance-none border-2 border-gray-100 rounded-lg px-4 py-3 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:shadow-lg"
+                    className="appearance-none border-2 border-gray-100 rounded-lg px-4 py-3 placeholder-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-600 focus:shadow-lg"
                   />
                 </div>
                 <div id="button" className="flex flex-col w-full my-5">
                   <button
                     type="button"
+                    onClick={handleSubmit}
                     className="w-full py-4 bg-gray-600 rounded-lg text-gray-100"
                   >
                     <div className="flex flex-row items-center justify-center">

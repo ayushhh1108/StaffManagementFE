@@ -6,7 +6,7 @@ import { Box, Grid, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
 function DashBoardPage() {
-  const { navigate } = DashBoardPageHook();
+  const { navigate, storeData } = DashBoardPageHook();
 
   return (
     <Box component="main" sx={{ flexGrow: 1, p: 3, mt: 8 }}>
@@ -30,7 +30,7 @@ function DashBoardPage() {
           versions from the 1914 translation by H. Rackham.
         </Typography>
       </Box>
-      <Box color="default w-full">
+      <Box color="default w-full">{console.log("storeData",storeData)}
         <Typography>
           Contrary to popular belief, Lorem Ipsum is not simply random text. It
           has roots in a piece of classical Latin literature from 45 BC, making

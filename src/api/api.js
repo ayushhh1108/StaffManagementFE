@@ -1,6 +1,4 @@
 import axios from 'axios';
-import { assign } from 'lodash'
-import { getBearerToken } from '../utils/auth';
 
 const createAPI = () => {
     const customerApiUrl = process.env.REACT_APP_API_BASE_URL;
@@ -9,14 +7,16 @@ const createAPI = () => {
         'Content-Type': 'application/json',
     };
 
+    console.log("customerApiUrl",customerApiUrl)
+
     const api = axios.create({
         baseURL: customerApiUrl,
         headers,
     });
 
     api.interceptors.request.use(async (config) => {
-        const bearerToken = await getBearerToken();
         const data = localStorage.getItem("BEARER_TOKEN")
+        console.log("config",config)
         if (
             data
         ) {

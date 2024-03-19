@@ -74,56 +74,7 @@ export const postAddBillingAddress = (payload) => async (dispatch) => {
         }
 };
 
-export const getPickUpServices = () => async (dispatch) => {
-    try {
-        const response = await api.get(
-            apiEndPoints.getPickupService(),
-        );
-        dispatch(getPickupservice(response))
-
-    } catch (error) {
-        const { response: { data = {} } = {} } = error;
-        return data;
-    }
-}
-
-export const getAddressByCityOrZip = (payload) => async (dispatch) => {
-    try {
-        const response = await api.post(apiEndPoints.getCityZipAddress(), {name: payload});
-        dispatch(getAddressByCity(response))
-    } catch (error) {
-        const { response: { data = {} } = {} } = error;
-        return data;
-    }
-}
-
-export const getDeliveryServiceData = () => async (dispatch) => {
-    try {
-        const response = await api.get(
-            apiEndPoints.getDeliveryService(),
-        );
-        dispatch(getDeliveryservice(response))
-
-    } catch (error) {
-        const { response: { data = {} } = {} } = error;
-        return data;
-    }
-}
-
-export const getHandleingType = () => async (dispatch) => {
-    try {
-        const response = await api.get(
-            apiEndPoints.getHandlingService(),
-        );
-        dispatch(getHandleingservice(response))
-
-    } catch (error) {
-        const { response: { data = {} } = {} } = error;
-        return data;
-    }
-}
-
-export const postGetQuote = (data,navigate,preset) => async (dispatch) => {
+export const registerAction = (data,navigate,preset) => async (dispatch) => {
     try {
         const response = await api.post(
             apiEndPoints.postSaveInfo(),data
@@ -139,13 +90,3 @@ export const postGetQuote = (data,navigate,preset) => async (dispatch) => {
         return data;
     }
 }
-
-export const getUserFreightClass = () => async (dispatch) => {
-    try {
-      const response = await api.get(apiEndPoints.getUserFreightClass());
-      dispatch(getUserFreightCheck(response));
-    } catch (error) {
-      const { response: { data = {} } = {} } = error;
-      return data;
-    }
-  };
