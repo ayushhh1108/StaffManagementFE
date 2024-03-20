@@ -5,7 +5,14 @@ import LoginPageHook from "./loginPageHooks";
 import { Grid } from "@mui/material";
 
 function LoginPage() {
-  const { navigate, handleSubmit, handleInputChange, creds } = LoginPageHook();
+  const {
+    navigate,
+    handleSubmit,
+    handleInputChange,
+    creds,
+    isForget,
+    setIsForget,
+  } = LoginPageHook();
 
   return (
     <div className="Login-page">
@@ -35,16 +42,27 @@ function LoginPage() {
           </div>
           <div className="w-full md:w-full lg:w-9/12 mx-auto md:mx-0 login-right">
             <div className="bg-white p-10 flex flex-col w-full shadow-xl rounded-xl">
-              <h2 className="text-2xl font-bold text-gray-800 text-left mb-5">
-                Log In
-              </h2>
+              {!isForget ? (
+                <h2 className="text-2xl font-bold text-gray-800 text-left mb-5">
+                  Log In
+                </h2>
+              ) : (
+                <label
+                  for="username"
+                  className="text-gray-500 mb-2 input-labels"
+                >
+                  Can't remember your password? Kindly type in your email
+                  address. An email with a password creation link will be sent
+                  to you.
+                </label>
+              )}
               <form action="" className="w-full">
                 <div id="input" className="flex flex-col w-full my-5">
                   <label
                     for="username"
                     className="text-gray-500 mb-2 input-labels"
                   >
-                    Username
+                    {isForget ? "Email" : "Username"}
                   </label>
                   <input
                     type="text"
@@ -55,22 +73,24 @@ function LoginPage() {
                     className="appearance-none border-2 border-gray-100 rounded-lg px-4 py-3 placeholder-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-600 focus:shadow-lg"
                   />
                 </div>
-                <div id="input" className="flex flex-col w-full my-5">
-                  <label
-                    for="password"
-                    className="text-gray-500 mb-2 input-labels"
-                  >
-                    Password
-                  </label>
-                  <input
-                    type="password"
-                    id="password"
-                    value={creds?.password}
-                    onChange={handleInputChange}
-                    placeholder="Please insert your password"
-                    className="appearance-none border-2 border-gray-100 rounded-lg px-4 py-3 placeholder-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-600 focus:shadow-lg"
-                  />
-                </div>
+                {!isForget && (
+                  <div id="input" className="flex flex-col w-full my-5">
+                    <label
+                      for="password"
+                      className="text-gray-500 mb-2 input-labels"
+                    >
+                      Password
+                    </label>
+                    <input
+                      type="password"
+                      id="password"
+                      value={creds?.password}
+                      onChange={handleInputChange}
+                      placeholder="Please insert your password"
+                      className="appearance-none border-2 border-gray-100 rounded-lg px-4 py-3 placeholder-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-600 focus:shadow-lg"
+                    />
+                  </div>
+                )}
                 <div id="button" className="flex flex-col w-full my-5">
                   <button
                     type="button"
@@ -94,33 +114,47 @@ function LoginPage() {
                           ></path>
                         </svg>
                       </div>
-                      <div className="font-bold">Log In</div>
+                      <div className="font-bold">
+                        {isForget ? "Get New Password" : "Log In"}
+                      </div>
                     </div>
                   </button>
                 </div>
                 <Grid container className="flex text-left mt-5">
-                  <span
-                    variant="body2"
-                    className="w-full font-medium text-gray-500 text-left cursor-pointer input-labels"
-                    // onClick={handleForgetPassword}
-                  >
-                    Forgot password?
-                  </span>
-                  <Grid
-                    item
-                    className="w-full font-medium text-gray-500 text-left mt-3 pt-3 input-labels"
-                  >
-                    Don't have an account?
+                  {isForget ? (
                     <span
-                      onClick={() => {
-                        navigate("/sign-up");
-                      }}
                       variant="body2"
-                      className="links cursor-pointer"
+                      className="d-block font-medium text-gray-500 text-left cursor-pointer input-labels "
+                      onClick={() => setIsForget(false)}
                     >
-                      {" Sign Up"}
+                      Back to login
                     </span>
-                  </Grid>
+                  ) : (
+                    <span
+                      variant="body2"
+                      className="d-block font-medium text-gray-500 text-left cursor-pointer input-labels "
+                      onClick={() => setIsForget(true)}
+                    >
+                      Forgot password?
+                    </span>
+                  )}
+                  {!isForget && (
+                    <Grid
+                      item
+                      className="w-full font-medium text-gray-500 text-left mt-3 pt-3 input-labels"
+                    >
+                      Don't have an account?
+                      <span
+                        onClick={() => {
+                          navigate("/sign-up");
+                        }}
+                        variant="body2"
+                        className="links cursor-pointer"
+                      >
+                        {" Sign Up"}
+                      </span>
+                    </Grid>
+                  )}
                 </Grid>
               </form>
             </div>

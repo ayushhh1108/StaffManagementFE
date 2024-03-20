@@ -6,6 +6,7 @@ import { loginSubmit } from "./action";
 export default function LoginPageHook() {
   const dispatch = useDispatch();
   const [creds, setCreds] = useState();
+  const [isForget, setIsForget] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -25,6 +26,8 @@ export default function LoginPageHook() {
     navigate,
     handleSubmit,
     handleInputChange,
-    creds
+    creds,
+    isForget,
+    setIsForget
   };
 }
