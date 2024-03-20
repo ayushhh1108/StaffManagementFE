@@ -14,12 +14,10 @@ export default function LoginPageHook() {
   const handleInputChange = (props) => {
     const key = props?.target?.id;
     const value = props?.target?.value;
-    console.log("setCreds", key, value);
     setCreds({ ...creds, [key]: value });
   };
 
   const handleSubmit = () => {
-    console.log("handleSubmit", creds);
     dispatch(loginSubmit(creds,navigate))
   };
   return {
