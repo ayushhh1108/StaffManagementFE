@@ -1,5 +1,3 @@
-import { IoCheckmarkDoneOutline } from "react-icons/io5";
-
 export const HeaderData = [
   {
     id: "no",

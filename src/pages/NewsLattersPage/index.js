@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./index.scss";
 import NewsLatterHook from "./NewsLatterHook";
 import { Box, Container } from "@mui/material";
