@@ -6,7 +6,8 @@ import TextInput from "../../components/TextInput";
 import SelectInput from "../../components/SelectInput";
 
 function AddUserRolePage() {
-  const { navigate } = AddUserRoleHooks();
+  const { navigate, handleSubmit, handleInputChange, data } =
+    AddUserRoleHooks();
 
   return (
     <Box component="main" sx={{ flexGrow: 1, p: 3, mt: 8, maxWidth: "100%" }}>
@@ -14,11 +15,19 @@ function AddUserRolePage() {
         <Typography variant="h5" className="mb-5 form-label">
           Add User Role{" "}
         </Typography>
-        <TextInput label={"Name"} isRequire id={"name"} />
+        <TextInput
+          label={"Name"}
+          isRequire
+          id={"name"}
+          handleChanges={handleInputChange}
+          value={data?.name}
+        />
         <SelectInput
           label={"Select Status"}
           isRequire
           id={"status"}
+          handleChange={handleInputChange}
+          value={data?.status}
           options={[
             { label: "Active", value: "active" },
             { label: "Inactive", value: "inactive" },
@@ -30,6 +39,7 @@ function AddUserRolePage() {
         <hr class="h-px mb-8 bg-gray-200 border-0"></hr>
         <button
           type="button"
+          onClick={handleSubmit}
           className="text-white bg-[#1e6c89] hover:bg-[#164e63] font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
         >
           Save
