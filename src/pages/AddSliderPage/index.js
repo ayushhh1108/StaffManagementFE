@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./index.scss";
 
 import AddSliderPageHook from "./AddSliderPageHooks";
@@ -25,6 +25,7 @@ function AddSliderPage() {
           <input
             type="text"
             id="name"
+            value={data?.name}
             onChange={handleInputChange}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-1/2 p-2.5 mb-4 add-menu-input"
             placeholder="Name"
@@ -41,6 +42,7 @@ function AddSliderPage() {
           <input
             type="text"
             id="desc"
+            value={data?.desc}
             onChange={handleInputChange}
             className="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-1/2 p-2.5 add-menu-input"
             placeholder="Description"
@@ -57,6 +59,7 @@ function AddSliderPage() {
           <input
             type="text"
             id="meta_title"
+            value={data?.meta_title}
             onChange={handleInputChange}
             className="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-1/2 p-2.5 add-menu-input"
             placeholder="Meta Title"
@@ -73,6 +76,7 @@ function AddSliderPage() {
           <input
             type="text"
             id="meta_key"
+            value={data?.meta_key}
             onChange={handleInputChange}
             className="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-1/2 p-2.5 add-menu-input"
             placeholder="Meta Keywords"
@@ -89,6 +93,7 @@ function AddSliderPage() {
           <input
             type="text"
             id="meta_desc"
+            value={data?.meta_desc}
             onChange={handleInputChange}
             className="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-1/2 p-2.5 add-menu-input"
             placeholder="Meta Description"

@@ -10,7 +10,7 @@ export default function AddSliderPageHook() {
 
   const handleInputChange = (event) => {
     const { id, value, checked, files } = event?.target;
-    const isUpload = id === "image" || id === "banner_image";
+    const isUpload = id === "upload_image";
     const newValue = id === "status" ? checked : isUpload ? files[0] : value;
     setData({ ...data, [id]: newValue });
   };

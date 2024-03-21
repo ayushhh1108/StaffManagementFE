@@ -1,7 +1,7 @@
 import * as React from "react";
 import "./index.scss";
 
-export default function SelectInput({ label, isRequire, id, options }) {
+export default function SelectInput({ label, isRequire, id, options, handleChange, value }) {
   return (
     <div>
       <label
@@ -13,6 +13,8 @@ export default function SelectInput({ label, isRequire, id, options }) {
       </label>
       <select
         id={id}
+        value={value}
+        onChange={handleChange}
         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#164e63] focus:border-[#164e63] block p-2.5 mb-4 add-menu-input w-1/2"
       >
         <option selected>Choose {label}</option>
