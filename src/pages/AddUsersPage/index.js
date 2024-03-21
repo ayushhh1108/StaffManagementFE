@@ -1,16 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import "./index.scss";
 import AddUsersPageHooks from "./AddUsersPageHooks";
 import { Box, Typography } from "@mui/material";
 import Dropzone from "../../components/DropZone";
 import TextInput from "../../components/TextInput";
-import ClassicTextEditorr from "../../components/ClassicTextEditor";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import SelectInput from "../../components/SelectInput";
 
 function AddUserPage() {
-  const { navigate } = AddUsersPageHooks();
+  const { navigate, handleSubmit, handleInputChange, data } =
+    AddUsersPageHooks();
 
   return (
     <Box component="main" sx={{ flexGrow: 1, p: 3, mt: 8, maxWidth: "100%" }}>
@@ -18,14 +16,40 @@ function AddUserPage() {
         <Typography variant="h5" className="mb-5 form-label">
           Add User{" "}
         </Typography>
-        <TextInput label={"First Name"} isRequire id={"first_name"} />
-        <TextInput label={"Last Name"} isRequire id={"last_name"} />
-        <TextInput label={"Email"} isRequire id={"email"} />
-        <TextInput label={"Mobile"} isRequire id={"mobile"} />
+        <TextInput
+          label={"First Name"}
+          isRequire
+          id={"first_name"}
+          handleChanges={handleInputChange}
+          value={data?.first_name}
+        />
+        <TextInput
+          label={"Last Name"}
+          isRequire
+          id={"last_name"}
+          handleChanges={handleInputChange}
+          value={data?.last_name}
+        />
+        <TextInput
+          label={"Email"}
+          isRequire
+          id={"email"}
+          handleChanges={handleInputChange}
+          value={data?.email}
+        />
+        <TextInput
+          label={"Mobile"}
+          isRequire
+          id={"mobile"}
+          handleChanges={handleInputChange}
+          value={data?.mobile}
+        />
         <SelectInput
           label={"Role"}
           isRequire
           id={"role"}
+          handleChange={handleInputChange}
+          value={data?.role}
           options={[
             { label: "Employee", value: "employee" },
             { label: "Client", value: "client" },
@@ -33,11 +57,12 @@ function AddUserPage() {
         />
 
         <div className="upload-file-div mb-6 flex justify-between">
-          <Dropzone title={"Image"} />
+          <Dropzone title={"Image"} id="image" onChanges={handleInputChange} />
         </div>
 
         <button
           type="button"
+          onClick={handleSubmit}
           className="text-white bg-[#1e6c89] hover:bg-[#164e63] font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
         >
           Save
