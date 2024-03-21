@@ -6,7 +6,8 @@ import { Box, Typography } from "@mui/material";
 import Dropzone from "../../components/DropZone";
 
 function AddSliderPage() {
-  const { navigate } = AddSliderPageHook();
+  const { navigate, handleSubmit, handleInputChange, data } =
+    AddSliderPageHook();
 
   return (
     <Box component="main" sx={{ flexGrow: 1, p: 3, mt: 8, maxWidth: "100%" }}>
@@ -23,7 +24,8 @@ function AddSliderPage() {
           </label>
           <input
             type="text"
-            id="first_name"
+            id="name"
+            onChange={handleInputChange}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-1/2 p-2.5 mb-4 add-menu-input"
             placeholder="Name"
             required
@@ -38,7 +40,8 @@ function AddSliderPage() {
           </label>
           <input
             type="text"
-            id="last_name"
+            id="desc"
+            onChange={handleInputChange}
             className="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-1/2 p-2.5 add-menu-input"
             placeholder="Description"
             required
@@ -53,7 +56,8 @@ function AddSliderPage() {
           </label>
           <input
             type="text"
-            id="last_name"
+            id="meta_title"
+            onChange={handleInputChange}
             className="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-1/2 p-2.5 add-menu-input"
             placeholder="Meta Title"
             required
@@ -68,7 +72,8 @@ function AddSliderPage() {
           </label>
           <input
             type="text"
-            id="last_name"
+            id="meta_key"
+            onChange={handleInputChange}
             className="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-1/2 p-2.5 add-menu-input"
             placeholder="Meta Keywords"
             required
@@ -83,18 +88,20 @@ function AddSliderPage() {
           </label>
           <input
             type="text"
-            id="last_name"
+            id="meta_desc"
+            onChange={handleInputChange}
             className="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-1/2 p-2.5 add-menu-input"
             placeholder="Meta Description"
             required
           />
         </div>
         <div className="upload-file-div mb-6 flex justify-between">
-          <Dropzone title={"Upload Image"} />
+          <Dropzone title={"Upload Image"} id="upload_image" onChanges={handleInputChange}  />
         </div>
 
         <button
           type="button"
+          onClick={handleSubmit}
           className="text-white bg-[#1e6c89] hover:bg-[#164e63] font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
         >
           Save
