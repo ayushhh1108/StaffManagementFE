@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import "./index.scss";
-
 import AddPropertyPageHooks from "./AddPropertyPageHooks";
 import {
   Box,
@@ -9,12 +8,10 @@ import {
   FormControlLabel,
   Radio,
   RadioGroup,
-  Rating,
   TextField,
   Typography,
 } from "@mui/material";
 import Dropzone from "../../components/DropZone";
-import TextInput from "../../components/TextInput";
 import SelectPlaceholder from "../../components/SelectPlaceholder";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
@@ -30,51 +27,19 @@ function AddPropertyPage() {
     otherSelects,
     handleRadioChange,
     radioButtonData,
-    isMobileScreen
+    isMobileScreen,
+    twoHundredArray,
+    oneToTen,
+    housing,
+    CommercialOfficeFeatures,
+    LandFeatures,
+    RegulerFeatures,
+    IsIdealForBusiness,
+    CommercialPlaces,
+    allData,
+    handleInputsChange,
+    handleSubmit,
   } = AddPropertyPageHooks();
-
-  const CommercialPlaces = [
-    "Commercial Office Space",
-    "Commercial Shop",
-    "Commercial Showroom",
-    "Commercial Land",
-    "Warehouse/ Godown",
-    "Industrial Shed",
-  ];
-
-  const IsIdealForBusiness = [
-    "Commercial Office Space",
-    "Commercial Shop",
-    "Commercial Showroom",
-  ];
-
-  const RegulerFeatures = [
-    "Flat/ Apartment",
-    "Residential House",
-    "Villa",
-    "Farm House",
-    "Pent house",
-  ];
-
-  const LandFeatures = [
-    "Industrial Shed",
-    "Agricultural Land",
-    "Commercial Land",
-    "Residential Land/ Plot",
-  ];
-
-  const CommercialOfficeFeatures = [
-    "Warehouse/ Godown",
-    "Commercial Office Space",
-    "Commercial Shop",
-    "Commercial Showroom",
-  ];
-
-  const housing = ["Residential House", "Farm House", "Villa"];
-
-  const oneToTen = Array.from({ length: 10 }, (_, index) => String(index + 1));
-
-  const twoHundredArray = Array.from({ length: 200 }, (_, index) => index + 1);
 
   const SelectorInput = (label, key, allData, value) => {
     return (
@@ -103,9 +68,11 @@ function AddPropertyPage() {
           <div key={label} className="d-flex flex-wrap input-box">
             <label className="filter-label">{label}</label>
             <TextField
-              id="outlined-basic"
               variant="outlined"
               className="text-field"
+              id={label}
+              value={allData[label]}
+              onChange={handleInputsChange}
               placeholder={`Enter Your ${label}`}
             />
           </div>
@@ -140,8 +107,10 @@ function AddPropertyPage() {
           <RadioGroup
             row
             aria-labelledby="demo-row-radio-buttons-group-label"
-            name="row-radio-buttons-group"
             className="items-center"
+            name="for"
+            value={allData?.for}
+            onChange={handleInputsChange}
           >
             <span className="mr-3">For</span>
             <FormControlLabel
@@ -193,6 +162,10 @@ function AddPropertyPage() {
   };
 
   const renderPropertyLocation = () => {
+    const propertyLocationLabel = handlePropertyLocationLabel()?.replace(
+      " ",
+      "_"
+    );
     return (
       <div className="w-full flex flex-wrap Property-Location-section my-3">
         <Typography variant="span" className="form-label mt-4 text-left">
@@ -201,9 +174,11 @@ function AddPropertyPage() {
         <div className="flex flex-wrap input-box">
           <label className="filter-label">City</label>
           <TextField
-            id="outlined-basic"
             variant="outlined"
             className="text-field"
+            id="city"
+            value={allData["city"]}
+            onChange={handleInputsChange}
             placeholder="Enter Your City"
           />
         </div>
@@ -212,9 +187,11 @@ function AddPropertyPage() {
             {handlePropertyLocationLabel()}
           </label>
           <TextField
-            id="outlined-basic"
             variant="outlined"
             className="text-field"
+            id={propertyLocationLabel}
+            value={allData[propertyLocationLabel]}
+            onChange={handleInputsChange}
             placeholder={handlePropertyLocationLabel()}
           />
         </div>
@@ -223,9 +200,9 @@ function AddPropertyPage() {
             <label className="filter-label">Land Zone</label>
             <SelectPlaceholder
               placeholder="Land Zone"
-              // handleChange={handleSelectChange}
-              // name={"total_flats"}
-              // value={totalFlatCount}
+              handleChange={handleSelectChange}
+              name={"land_zone"}
+              value={otherSelects?.land_zone}
               options={["Commercial", "Residental"]}
             />
           </div>
@@ -234,9 +211,11 @@ function AddPropertyPage() {
           <div className="flex flex-wrap input-box">
             <label className="filter-label">Ideal For Businesses</label>
             <TextField
-              id="outlined-basic"
               variant="outlined"
               className="text-field"
+              id="ideal_for_bussiness"
+              value={allData?.ideal_for_bussiness}
+              onChange={handleInputsChange}
               placeholder="Ideal For Businesses"
             />
           </div>
@@ -317,9 +296,11 @@ function AddPropertyPage() {
               Width of road facing the plot (m)
             </label>
             <TextField
-              id="outlined-basic"
               variant="outlined"
               className="text-field"
+              id="width_of_road_facing_plot"
+              value={allData?.width_of_road_facing_plot}
+              onChange={handleInputsChange}
               placeholder="Width of road facing the plot"
             />
           </div>
@@ -365,8 +346,10 @@ function AddPropertyPage() {
           <RadioGroup
             row
             aria-labelledby="demo-row-radio-buttons-group-label"
-            name="row-radio-buttons-group"
             className="items-center"
+            name="personal_washroom"
+            value={allData?.personal_washroom}
+            onChange={handleInputsChange}
           >
             <span className="mr-3">Personal Washroom:</span>
             <FormControlLabel
@@ -385,8 +368,10 @@ function AddPropertyPage() {
           <RadioGroup
             row
             aria-labelledby="demo-row-radio-buttons-group-label"
-            name="row-radio-buttons-group"
             className="items-center"
+            name="pantry_cafeteria"
+            value={allData?.pantry_cafeteria}
+            onChange={handleInputsChange}
           >
             <span className="mr-3">Pantry/Cafeteria:</span>
             <FormControlLabel
@@ -439,9 +424,11 @@ function AddPropertyPage() {
             Width of road facing the plot (m)
           </label>
           <TextField
-            id="outlined-basic"
             variant="outlined"
             className="text-field"
+            id="width_of_road_facing_plot"
+            value={allData?.width_of_road_facing_plot}
+            onChange={handleInputsChange}
             placeholder="Width of road facing the plot"
           />
         </div>
@@ -449,8 +436,10 @@ function AddPropertyPage() {
           <RadioGroup
             row
             aria-labelledby="demo-row-radio-buttons-group-label"
-            name="row-radio-buttons-group"
             className="items-center"
+            name="boundary_walls"
+            value={allData?.boundary_walls}
+            onChange={handleInputsChange}
           >
             <span className="mr-3">Boundary wall made: </span>
             <FormControlLabel
@@ -488,19 +477,23 @@ function AddPropertyPage() {
             <div className="flex flex-wrap input-box">
               <label className="filter-label">Carpet Area (Sq-ft)</label>
               <TextField
-                id="outlined-basic"
                 variant="outlined"
                 className="text-field"
                 placeholder="Carpet Area"
+                id="carpet_area"
+                value={allData?.carpet_area}
+                onChange={handleInputsChange}
               />
             </div>
             <div className="flex flex-wrap input-box">
               <label className="filter-label">Super Area (Sq-ft)</label>
               <TextField
-                id="outlined-basic"
                 variant="outlined"
                 className="text-field"
                 placeholder="Super Area"
+                id="super_area"
+                value={allData?.super_area}
+                onChange={handleInputsChange}
               />
             </div>
           </>
@@ -511,7 +504,9 @@ function AddPropertyPage() {
             <div className="flex flex-wrap input-box">
               <label className="filter-label">Plot Area (Sq-yrd)</label>
               <TextField
-                id="outlined-basic"
+                id="plot_area"
+                value={allData?.plot_area}
+                onChange={handleInputsChange}
                 variant="outlined"
                 className="text-field"
                 placeholder="Plot Area"
@@ -520,7 +515,9 @@ function AddPropertyPage() {
             <div className="flex flex-wrap input-box">
               <label className="filter-label">Plot Length (yrd)</label>
               <TextField
-                id="outlined-basic"
+                id="plot_length"
+                value={allData?.plot_length}
+                onChange={handleInputsChange}
                 variant="outlined"
                 className="text-field"
                 placeholder="Plot Length"
@@ -529,7 +526,9 @@ function AddPropertyPage() {
             <div className="flex flex-wrap input-box">
               <label className="filter-label">Plot Breadth (yrd)</label>
               <TextField
-                id="outlined-basic"
+                id="plot_breadth"
+                value={allData?.plot_breadth}
+                onChange={handleInputsChange}
                 variant="outlined"
                 className="text-field"
                 placeholder="Plot Breadth"
@@ -537,7 +536,15 @@ function AddPropertyPage() {
             </div>
             <FormControlLabel
               className="flex text-left w-full"
-              control={<Checkbox className="checkboxx" />}
+              control={
+                <Checkbox
+                  color="default"
+                  id="is_corner_plot"
+                  value={allData?.is_corner_plot}
+                  onChange={handleInputsChange}
+                  className="checkboxx"
+                />
+              }
               label={
                 <span className="checkbox-text">This is a corner plot</span>
               }
@@ -607,7 +614,9 @@ function AddPropertyPage() {
         <div className="flex flex-wrap input-box">
           <label className="filter-label">Expected Price</label>
           <TextField
-            id="outlined-basic"
+            id="expected_price"
+            value={allData?.expected_price}
+            onChange={handleInputsChange}
             variant="outlined"
             className="text-field"
             placeholder="Expected Price"
@@ -618,7 +627,9 @@ function AddPropertyPage() {
             Booking/Token Amount (optional)
           </label>
           <TextField
-            id="outlined-basic"
+            id="token_amt"
+            value={allData?.token_amt}
+            onChange={handleInputsChange}
             variant="outlined"
             className="text-field"
             placeholder="₹ Booking/Token Amount"
@@ -626,7 +637,15 @@ function AddPropertyPage() {
         </div>
         <FormControlLabel
           className="flex text-left w-full"
-          control={<Checkbox color="default" className="checkboxx" />}
+          control={
+            <Checkbox
+              id="is_price_negotiable"
+              value={allData?.is_price_negotiable}
+              onChange={handleInputsChange}
+              color="default"
+              className="checkboxx"
+            />
+          }
           label={<span className="checkbox-text">Price Negotiable</span>}
         />
       </div>
@@ -639,7 +658,7 @@ function AddPropertyPage() {
         <Typography variant="span" className="form-label mt-4 text-left">
           Photos
         </Typography>
-        <Dropzone />
+        <Dropzone id="image" onChanges={handleInputsChange} />
       </div>
     );
   };
@@ -648,7 +667,11 @@ function AddPropertyPage() {
     <Box
       component="main"
       className="post-property-page"
-      sx={isMobileScreen?{ flexGrow: 1, p: 3, mt: 8, maxWidth: "100%" }:{flexGrow: 1, p: 3, mt: 8, maxWidth: "calc(100% - 280px)" }}
+      sx={
+        isMobileScreen
+          ? { flexGrow: 1, p: 3, mt: 8, maxWidth: "100%" }
+          : { flexGrow: 1, p: 3, mt: 8, maxWidth: "calc(100% - 280px)" }
+      }
     >
       <div className="add-menu-form text-left mx-auto my-5">
         <Typography variant="h5" className="mb-5 form-label">
@@ -692,13 +715,18 @@ function AddPropertyPage() {
               </Typography>
               <CKEditor
                 editor={ClassicEditor}
-                data=""
+                data={allData?.editor_property_desc}
                 onReady={(editor) => {
                   // You can store the "editor" and use when it is needed.
                   console.log("Editor is ready to use!", editor);
                 }}
-                onChange={(event) => {
-                  console.log(event);
+                onChange={(event, editor) => {
+                  handleInputsChange({
+                    target: {
+                      value: editor?.getData(),
+                      id: "editor_property_desc",
+                    },
+                  });
                 }}
                 onBlur={(event, editor) => {
                   console.log("Blur.", editor);
@@ -717,7 +745,15 @@ function AddPropertyPage() {
             {propertyType.length ? renderImageUploadSection() : ""}
             <FormControlLabel
               className="flex items-center w-full text-left"
-              control={<Checkbox color="default" className="checkboxx" />}
+              control={
+                <Checkbox
+                  id="privacy_and_condition"
+                  value={allData?.privacy_and_condition}
+                  onChange={handleInputsChange}
+                  color="default"
+                  className="checkboxx"
+                />
+              }
               label={
                 <span className="checkbox-text">
                   I agree to the{" "}
@@ -733,7 +769,15 @@ function AddPropertyPage() {
             />
             <FormControlLabel
               className="flex items-center w-full text-left mb-3"
-              control={<Checkbox color="default" className="checkboxx" />}
+              control={
+                <Checkbox
+                  id="post_confirmation"
+                  value={allData?.post_confirmation}
+                  onChange={handleInputsChange}
+                  color="default"
+                  className="checkboxx"
+                />
+              }
               label={
                 <span className="checkbox-text">
                   I am posting this property 'exclusively' on Vishal
@@ -743,6 +787,7 @@ function AddPropertyPage() {
             />
             <button
               type="button"
+              onClick={handleSubmit}
               className="text-white bg-[#1e6c89] hover:bg-[#164e63] font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2"
             >
               Save
