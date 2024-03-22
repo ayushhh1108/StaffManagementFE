@@ -1,13 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import "./index.scss";
-
 import AddInvestWithUsHooks from "./AddInvestWithUsHooks";
 import { Box, Typography } from "@mui/material";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import Dropzone from "../../components/DropZone";
 import TextInput from "../../components/TextInput";
-import SelectInput from "../../components/SelectInput";
 
 function AddInvestWithUsPage() {
   const {
@@ -16,9 +14,16 @@ function AddInvestWithUsPage() {
     handleChangeInput,
     handleAddBox,
     handleDeleteBox,
+    data,
+    handleInputChange,
+    handleSubmit,
   } = AddInvestWithUsHooks();
 
-  const DetailedInputSection = ({ title, desc, no }, isAddtrue,isDeleteDisable) => {
+  const DetailedInputSection = (
+    { title, desc, no },
+    isAddtrue,
+    isDeleteDisable
+  ) => {
     return (
       <Box className="details-inputs my-3">
         <TextInput
@@ -83,19 +88,33 @@ function AddInvestWithUsPage() {
         </Typography>
         <Box className="w-full flex flex-wrap Main-Section">
           <div className="upload-file-div mb-6 flex justify-between">
-            <Dropzone title={"Banner Image"} />
+            <Dropzone
+              title={"Banner Image"}
+              id="banner_image"
+              onChanges={handleInputChange}
+            />
           </div>
           <Box className="w-1/2 flex flex-wrap Main-Section-inputs items-center">
-            <TextInput label={"Meta Title "} isRequire id={"meta_title"} />
+            <TextInput
+              label={"Meta Title "}
+              isRequire
+              id={"meta_title"}
+              handleChanges={handleInputChange}
+              value={data?.meta_title}
+            />
             <TextInput
               label={"Meta Keywords "}
               isRequire
               id={"meta_keywords"}
+              handleChanges={handleInputChange}
+              value={data?.meta_keywords}
             />
             <TextInput
               label={"Meta Description "}
               isRequire
               id={"meta_description"}
+              handleChanges={handleInputChange}
+              value={data?.meta_description}
             />
           </Box>
         </Box>
@@ -105,24 +124,32 @@ function AddInvestWithUsPage() {
         </Typography>
         <Box className="w-full flex flex-wrap Main-Section">
           <div className="upload-file-div mb-6 flex justify-between">
-            <Dropzone title={"Image"} />
+            <Dropzone
+              title={"Image"}
+              id="what_we_do_image"
+              onChanges={handleInputChange}
+            />
           </div>
           <Box className="w-1/2 flex flex-wrap Main-Section-inputs items-center">
             <TextInput
               label={"What we do header"}
               isRequire
               id={"what_we_do_header"}
+              handleChanges={handleInputChange}
+              value={data?.what_we_do_header}
             />
             <div className="add-menu-input w-1/2 mb-5">
               <CKEditor
                 editor={ClassicEditor}
-                data=""
+                data={data?.editor_desc}
                 onReady={(editor) => {
                   // You can store the "editor" and use when it is needed.
                   // console.log("Editor is ready to use!", editor);
                 }}
-                onChange={(event) => {
-                  console.log(event);
+                onChange={(event, editor) => {
+                  handleInputChange({
+                    target: { value: editor?.getData(), id: "editor_desc" },
+                  });
                 }}
                 onBlur={(event, editor) => {
                   console.log("Blur.", editor);
@@ -139,7 +166,11 @@ function AddInvestWithUsPage() {
           What We Do Details{" "}
         </Typography>
         {detailedInputValues?.map((item, index) =>
-          DetailedInputSection(item, detailedInputValues?.length == index + 1, detailedInputValues?.length == 1)
+          DetailedInputSection(
+            item,
+            detailedInputValues?.length == index + 1,
+            detailedInputValues?.length == 1
+          )
         )}
         <hr class="h-px mb-8 bg-gray-200 border-0" />
         <Typography variant="h5" className="mb-5 form-label">
@@ -149,19 +180,36 @@ function AddInvestWithUsPage() {
           label={"How to invest title"}
           isRequire
           id={"how_to_invest"}
+          handleChanges={handleInputChange}
+          value={data?.how_to_invest}
         />
         <Box className="w-full flex flex-wrap Main-Section">
           <div className="upload-file-div mb-6 flex justify-between">
-            <Dropzone title={"Image"} />
+            <Dropzone
+              title={"Image"}
+              id="how_to_invest_image1"
+              onChanges={handleInputChange}
+            />
           </div>
           <Box className="w-1/2 flex flex-wrap Main-Section-inputs items-center">
-            <TextInput label={"Title"} isRequire id={"title1"} />
+            <TextInput
+              label={"Title"}
+              isRequire
+              id={"title1"}
+              handleChanges={handleInputChange}
+              value={data?.title1}
+            />
             <div className="add-menu-input w-1/2 mb-5">
               <CKEditor
                 editor={ClassicEditor}
-                data=""
-                onChange={(event) => {
-                  console.log(event);
+                data={data?.how_to_invest_editor_desc1}
+                onChange={(event, editor) => {
+                  handleInputChange({
+                    target: {
+                      value: editor?.getData(),
+                      id: "how_to_invest_editor_desc1",
+                    },
+                  });
                 }}
                 onBlur={(event, editor) => {
                   console.log("Blur.", editor);
@@ -175,16 +223,31 @@ function AddInvestWithUsPage() {
         </Box>{" "}
         <Box className="w-full flex flex-wrap Main-Section">
           <div className="upload-file-div mb-6 flex justify-between">
-            <Dropzone title={"Image"} />
+            <Dropzone
+              title={"Image"}
+              id="how_to_invest_image2"
+              onChanges={handleInputChange}
+            />
           </div>
           <Box className="w-1/2 flex flex-wrap Main-Section-inputs items-center">
-            <TextInput label={"Title"} isRequire id={"title1"} />
+            <TextInput
+              label={"Title"}
+              isRequire
+              id={"title2"}
+              handleChanges={handleInputChange}
+              value={data?.title2}
+            />
             <div className="add-menu-input w-1/2 mb-5">
               <CKEditor
                 editor={ClassicEditor}
-                data=""
-                onChange={(event) => {
-                  console.log(event);
+                data={data?.how_to_invest_editor_desc2}
+                onChange={(event, editor) => {
+                  handleInputChange({
+                    target: {
+                      value: editor?.getData(),
+                      id: "how_to_invest_editor_desc2",
+                    },
+                  });
                 }}
                 onBlur={(event, editor) => {
                   console.log("Blur.", editor);
@@ -198,16 +261,31 @@ function AddInvestWithUsPage() {
         </Box>
         <Box className="w-full flex flex-wrap Main-Section">
           <div className="upload-file-div mb-6 flex justify-between">
-            <Dropzone title={"Image"} />
+            <Dropzone
+              title={"Image"}
+              id="how_to_invest_image3"
+              onChanges={handleInputChange}
+            />
           </div>
           <Box className="w-1/2 flex flex-wrap Main-Section-inputs items-center">
-            <TextInput label={"Title"} isRequire id={"title1"} />
+            <TextInput
+              label={"Title"}
+              isRequire
+              id={"title3"}
+              handleChanges={handleInputChange}
+              value={data?.title3}
+            />
             <div className="add-menu-input w-1/2 mb-5">
               <CKEditor
                 editor={ClassicEditor}
-                data=""
-                onChange={(event) => {
-                  console.log(event);
+                data={data?.how_to_invest_editor_desc3}
+                onChange={(event, editor) => {
+                  handleInputChange({
+                    target: {
+                      value: editor?.getData(),
+                      id: "how_to_invest_editor_desc3",
+                    },
+                  });
                 }}
                 onBlur={(event, editor) => {
                   console.log("Blur.", editor);
@@ -221,6 +299,7 @@ function AddInvestWithUsPage() {
         </Box>
         <button
           type="button"
+          onClick={handleSubmit}
           className="text-white bg-[#1e6c89] hover:bg-[#164e63] font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
         >
           Save

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function AddInvestWithUsHooks() {
+  const [data, setData] = useState();
   const navigate = useNavigate();
   const [detailedInputValues, setDetailedInputValues] = useState([
     { title: "", desc: "", no: 1 },
@@ -15,7 +16,6 @@ export default function AddInvestWithUsHooks() {
 
     // Get the old data object
     const oldData = newData.find((item) => item.no === no);
-    console.log("oldData", oldData);
 
     // Update the value for the specified key
     const updatedData = { ...oldData, [key]: value };
@@ -25,6 +25,7 @@ export default function AddInvestWithUsHooks() {
 
     // // Set the new state
     setDetailedInputValues(newData);
+    setData({ ...data, what_we_do_details: newData });
   };
 
   const handleAddBox = (no) => {
@@ -37,8 +38,38 @@ export default function AddInvestWithUsHooks() {
 
   const handleDeleteBox = (no) => {
     const newData = detailedInputValues?.filter((item) => item.no !== no);
-    console.log("newData",newData);
+    console.log("newData", newData);
     setDetailedInputValues(newData);
+  };
+
+  const handleInputChange = (id, val) => {
+    const event = isEventBased(id) ? id : null;
+    const key = event ? event.target.id : id;
+    const value = event
+      ? isUpload(key)
+        ? event.target.files[0]
+        : event.target.value
+      : val;
+    setData((prevData) => ({ ...prevData, [key]: value }));
+  };
+
+  const isUpload = (key) => {
+    const uploadKeys = [
+      "banner_image",
+      "what_we_do_image",
+      "how_to_invest_image",
+      "how_to_invest_image1",
+      "how_to_invest_image2",
+      "how_to_invest_image3",
+    ];
+    return uploadKeys.includes(key);
+  };
+
+  const isEventBased = (input) => !!input?.target?.id;
+
+  const handleSubmit = () => {
+    console.log("handleSubmit", data);
+    // dispatch(loginSubmit(creds,navigate))
   };
 
   return {
@@ -47,5 +78,8 @@ export default function AddInvestWithUsHooks() {
     handleChangeInput,
     handleAddBox,
     handleDeleteBox,
+    data,
+    handleInputChange,
+    handleSubmit,
   };
 }

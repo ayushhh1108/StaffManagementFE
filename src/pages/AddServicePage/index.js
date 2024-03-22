@@ -53,7 +53,7 @@ function AddServicePage() {
         <div className="add-menu-input w-1/2 mb-5">
           <CKEditor
             editor={ClassicEditor}
-            data=""
+            data={data?.editor_desc}
             onReady={(editor) => {
               // You can store the "editor" and use when it is needed.
               console.log("Editor is ready to use!", editor);
