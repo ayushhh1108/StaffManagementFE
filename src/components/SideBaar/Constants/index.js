@@ -439,7 +439,7 @@ export const sidebaarRoutes = [
           {
             title: "Add About us",
             icon: <IoPeopleCircleSharp className="side-baar-icon" />,
-            pathname: "/add-aboutus",
+            pathname: "/add-about-us",
           },
           {
             title: "About us List",

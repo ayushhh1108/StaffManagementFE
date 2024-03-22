@@ -114,7 +114,7 @@ const AppRoutes = () => {
     { path: "/add-supplier", element: <AddSupplierPage /> },
     { path: "/finance-list", element: <FinancePage /> },
     { path: "/supplier-list", element: <SupplierPage /> },
-    { path: "/add-aboutus", element: <AddAboutUsPage /> },
+    { path: "/add-about-us", element: <AddAboutUsPage /> },
     { path: "/about-us-list", element: <AboutUsPage /> },
     { path: "/site-address", element: <SiteAddressPage /> },
     { path: "/social", element: <SocialMediaPage /> },
