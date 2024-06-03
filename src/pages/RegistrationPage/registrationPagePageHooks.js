@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { isAuthenticated } from "../../utils/auth";
+import { toast } from "react-toastify";
 
 export default function RegistrationPageHook() {
   const [creds, setCreds] = useState();
@@ -9,6 +11,11 @@ export default function RegistrationPageHook() {
     { pagename: "Registration", url: "sign-up" },
   ]);
   useEffect(() => {
+    console.log(isAuthenticated(),"isAuthenticated()isAuthenticated()")
+    if (isAuthenticated()) {
+      toast.info("Already logged in.");
+      navigate("/");
+    }
     window.scrollTo(0, 0);
   }, []);
 
@@ -20,8 +27,8 @@ export default function RegistrationPageHook() {
   };
 
   const handleSubmit = () => {
-    console.log("handleSubmit",creds)
-  }
+    console.log("handleSubmit", creds);
+  };
 
   return { breadData, navigate, handleInputChange, creds, handleSubmit };
 }

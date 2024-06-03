@@ -3,7 +3,8 @@ import { api, apiEndPoints } from "../../api";
 
 export const POST_LOGIN_API = "POST_LOGIN_API";
 
-const loginSuccessfull = (payload) => {
+const loginSuccessfull = (payload,navigate) => {
+  navigate("/");
   return {
     type: POST_LOGIN_API,
     payload: payload,
@@ -26,8 +27,7 @@ export const loginSubmit = (payload, navigate) => async (dispatch) => {
     if (response?.data) {
       localStorage.setItem("user",response.data?.user?.token);
       toast.success("Login successfully");
-      dispatch(loginSuccessfull(response));
-      navigate("/");
+      dispatch(loginSuccessfull(response,navigate));
     } else if (response?.response?.data?.message) {
       toast.error(response?.response?.data?.message);
     }

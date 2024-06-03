@@ -3,13 +3,12 @@ import React from "react";
 import { Navigate } from "react-router-dom";
 
 export const ProtectedRoute = ({ children }) => {
-  const isAuthenticated = !!localStorage.getItem("user"); // Check if token exists in local storage
-
-  return isAuthenticated ? children : <Navigate to="/login" />;
+  // Check if token exists in local storage
+  return isAuthenticated() ? children : <Navigate to="/login" />;
 };
 
-export const getBearerToken = () => {
-  return LocalStorageManager.getLocalStorage("BEARER_TOKEN");
+export const getToken = () => {
+  return localStorage.getItem("user");
 };
 
 export const setBearerToken = (token) => {
@@ -35,10 +34,4 @@ export const logOut = () => {
   return LocalStorageManager.clearLocalStorage();
 };
 
-export const isAuthenticated = () => {
-  const token = getBearerToken();
-  if (token) {
-    return true;
-  }
-  return false;
-};
+export const isAuthenticated = () => Boolean(getToken());

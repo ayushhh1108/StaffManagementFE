@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { loginSubmit } from "./action";
+import { isAuthenticated } from "../../utils/auth";
+import { toast } from "react-toastify";
 
 export default function LoginPageHook() {
   const dispatch = useDispatch();
@@ -9,6 +11,11 @@ export default function LoginPageHook() {
   const [isForget, setIsForget] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
+    console.log(isAuthenticated(), "isAuthenticated()isAuthenticated()");
+    if (isAuthenticated()) {
+      toast.info("Already logged in.");
+      navigate("/");
+    }
     window.scrollTo(0, 0);
   }, []);
   const handleInputChange = (props) => {
@@ -18,7 +25,7 @@ export default function LoginPageHook() {
   };
 
   const handleSubmit = () => {
-    dispatch(loginSubmit(creds,navigate))
+    dispatch(loginSubmit(creds, navigate));
   };
   return {
     navigate,
@@ -26,6 +33,6 @@ export default function LoginPageHook() {
     handleInputChange,
     creds,
     isForget,
-    setIsForget
+    setIsForget,
   };
 }
