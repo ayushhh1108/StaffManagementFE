@@ -15,7 +15,7 @@ import { blue } from "@mui/material/colors";
 import { IoLogOut, IoReorderThree } from "react-icons/io5";
 import { useEffect } from "react";
 import { sidebaarRoutes } from "../Constants";
-import { useLocation } from "react-router-dom/dist";
+import { useLocation, useNavigate } from "react-router-dom/dist";
 import { useState } from "react";
 import { Drawer, useMediaQuery } from "@mui/material";
 import SideBaar from "..";
@@ -110,12 +110,17 @@ export default function AppBaar() {
   const isMobileScreen = useMediaQuery("(max-width:1000px)");
   const [sideDrawer, setSideDrower] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [pageName, setPageName] = useState("Dashboard");
   const handleDrawerOpen = () => {
     setOpen(true);
   };
   const createHandleMenuClick = (menuItem) => {
+    if (menuItem === "Log out") {
+      localStorage.clear();
+      navigate("/login");
+    }
     return () => {
       console.log(`Clicked on ${menuItem}`);
     };
@@ -193,7 +198,7 @@ export default function AppBaar() {
               </div>
             </MenuButton>
             <Menu slots={{ listbox: Listbox }}>
-              <MenuItem onClick={createHandleMenuClick("Log out")}>
+              <MenuItem onClick={() => createHandleMenuClick("Log out")}>
                 <IoLogOut size={22} className="mr-2" />
                 Log out
               </MenuItem>

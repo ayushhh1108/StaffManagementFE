@@ -24,13 +24,13 @@ export const loginSubmit = (payload, navigate) => async (dispatch) => {
       email: payload.username,
     });
     if (response?.data) {
+      localStorage.setItem("user",response.data?.user?.token);
       toast.success("Login successfully");
       dispatch(loginSuccessfull(response));
       navigate("/");
     } else if (response?.response?.data?.message) {
       toast.error(response?.response?.data?.message);
     }
-    console.log("payload", response);
   } catch (error) {
     const { response: { data = {} } = {} } = error;
     return data;
