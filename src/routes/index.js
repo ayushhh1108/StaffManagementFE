@@ -5,6 +5,7 @@ import Box from "@mui/material/Box";
 import SideBaar from "../components/SideBaar";
 import AppBaar from "../components/SideBaar/Components/index";
 import { useMediaQuery } from "@mui/material";
+import { ProtectedRoute } from "../utils/auth";
 const LoginPage = lazy(() => import("../pages/LoginPage"));
 const RegistrationPage = lazy(() => import("../pages/RegistrationPage"));
 const DashBoardPage = lazy(() => import("../pages/DashBoardPage"));
@@ -71,63 +72,63 @@ const AppRoutes = () => {
   const isMobileScreen = useMediaQuery("(max-width:1000px)");
   const location = useLocation();
   const element = useRoutes([
-    { path: "/", element: <DashBoardPage /> },
-    { path: "/login", element: <LoginPage /> },
-    { path: "/sign-up", element: <RegistrationPage /> },
-    { path: "/add-menu", element: <AddMenuPage /> },
-    { path: "/menu-list", element: <MenuPage /> },
-    { path: "/add-blog", element: <AddBlogPage /> },
-    { path: "/blog-list", element: <BlogPage /> },
-    { path: "/add-slider", element: <AddSliderPage /> },
-    { path: "/slider-list", element: <SliderPage /> },
-    { path: "/add-about-page", element: <AddAboutPage /> },
-    { path: "/about-page-list", element: <AboutPage /> },
-    { path: "/add-user", element: <AddUserPage /> },
-    { path: "/user-list", element: <UsersPage /> },
-    { path: "/add-role", element: <AddUserRolePage /> },
-    { path: "/roles-list", element: <UserRolePage /> },
-    { path: "/account", element: <AccountPage /> },
-    { path: "/contact-us", element: <ContactUsPage /> },
-    { path: "/site-visit", element: <SiteVisitPage /> },
-    { path: "/inquiries", element: <InquiryListPage /> },
-    { path: "/callback", element: <CallbackListPage /> },
-    { path: "/add-feedback", element: <AddFeedbackPage /> },
-    { path: "/feedback-list", element: <FeedbackListPage /> },
-    { path: "/newsletters", element: <NewsLatterPage /> },
-    { path: "/add-career", element: <AddCareerPage /> },
-    { path: "/career-list", element: <CareersPage /> },
-    { path: "/job-app", element: <JobApplicationlistPage /> },
-    { path: "/review", element: <ReviewsPage /> },
-    { path: "/bookings", element: <BookingsPage /> },
-    { path: "/add-property", element: <AddPropertyPage /> },
-    { path: "/property-list", element: <PropertyListPage /> },
-    { path: "/add-dealing", element: <AddDealingPage /> },
-    { path: "/add-dealing-item", element: <AddDealingItemPage /> },
-    { path: "/dealing-list", element: <DealingPage /> },
-    { path: "/dealing-item-list", element: <DealingItemPage /> },
-    { path: "/add-service", element: <AddServicePage /> },
-    { path: "/add-service-item", element: <AddServiceItemPage /> },
-    { path: "/service-list", element: <ServicePage /> },
-    { path: "/service-item-list", element: <ServiceItemPage /> },
-    { path: "/service-inquiries-list", element: <ServiceInquiryPage /> },
-    { path: "/add-finance", element: <AddFinancePage /> },
-    { path: "/add-supplier", element: <AddSupplierPage /> },
-    { path: "/finance-list", element: <FinancePage /> },
-    { path: "/supplier-list", element: <SupplierPage /> },
-    { path: "/add-about-us", element: <AddAboutUsPage /> },
-    { path: "/about-us-list", element: <AboutUsPage /> },
-    { path: "/site-address", element: <SiteAddressPage /> },
-    { path: "/social", element: <SocialMediaPage /> },
-    { path: "/add-director", element: <AddDirectorPage /> },
-    { path: "/add-construction-process", element: <AddConstructionPage /> },
-    { path: "/add-team", element: <AddTeamPage /> },
-    { path: "/add-invest", element: <AddInvestWithUsPage /> },
-    { path: "/add-cms", element: <AddCMSPage /> },
-    { path: "/director-list", element: <DirectorPage /> },
-    { path: "/construction-process-list", element: <ConstructionsPage /> },
-    { path: "/team-list", element: <TeamsPage /> },
-    { path: "/invest-list", element: <InvestWithUsListPage /> },
-    { path: "/cms-list", element: <CMSListPage /> },
+    { path: '/', element: <ProtectedRoute><DashBoardPage /></ProtectedRoute> }, // Protected route
+    { path: '/login', element: <LoginPage /> },
+    { path: '/sign-up', element: <RegistrationPage /> },
+    { path: '/add-menu', element: <ProtectedRoute><AddMenuPage /></ProtectedRoute> }, // Protected route
+    { path: '/menu-list', element: <ProtectedRoute><MenuPage /></ProtectedRoute> }, // Protected route
+    { path: '/add-blog', element: <ProtectedRoute><AddBlogPage /></ProtectedRoute> }, // Protected route
+    { path: '/blog-list', element: <ProtectedRoute><BlogPage /></ProtectedRoute> }, // Protected route
+    { path: '/add-slider', element: <ProtectedRoute><AddSliderPage /></ProtectedRoute> }, // Protected route
+    { path: '/slider-list', element: <ProtectedRoute><SliderPage /></ProtectedRoute> }, // Protected route
+    { path: '/add-about-page', element: <ProtectedRoute><AddAboutPage /></ProtectedRoute> }, // Protected route
+    { path: '/about-page-list', element: <ProtectedRoute><AboutPage /></ProtectedRoute> }, // Protected route
+    { path: '/add-user', element: <ProtectedRoute><AddUserPage /></ProtectedRoute> }, // Protected route
+    { path: '/user-list', element: <ProtectedRoute><UsersPage /></ProtectedRoute> }, // Protected route
+    { path: '/add-role', element: <ProtectedRoute><AddUserRolePage /></ProtectedRoute> }, // Protected route
+    { path: '/roles-list', element: <ProtectedRoute><UserRolePage /></ProtectedRoute> }, // Protected route
+    { path: '/account', element: <ProtectedRoute><AccountPage /></ProtectedRoute> }, // Protected route
+    { path: '/contact-us', element: <ProtectedRoute><ContactUsPage /></ProtectedRoute> }, // Protected route
+    { path: '/site-visit', element: <ProtectedRoute><SiteVisitPage /></ProtectedRoute> }, // Protected route
+    { path: '/inquiries', element: <ProtectedRoute><InquiryListPage /></ProtectedRoute> }, // Protected route
+    { path: '/callback', element: <ProtectedRoute><CallbackListPage /></ProtectedRoute> }, // Protected route
+    { path: '/add-feedback', element: <ProtectedRoute><AddFeedbackPage /></ProtectedRoute> }, // Protected route
+    { path: '/feedback-list', element: <ProtectedRoute><FeedbackListPage /></ProtectedRoute> }, // Protected route
+    { path: '/newsletters', element: <ProtectedRoute><NewsLatterPage /></ProtectedRoute> }, // Protected route
+    { path: '/add-career', element: <ProtectedRoute><AddCareerPage /></ProtectedRoute> }, // Protected route
+    { path: '/career-list', element: <ProtectedRoute><CareersPage /></ProtectedRoute> }, // Protected route
+    { path: '/job-app', element: <ProtectedRoute><JobApplicationlistPage /></ProtectedRoute> }, // Protected route
+    { path: '/review', element: <ProtectedRoute><ReviewsPage /></ProtectedRoute> }, // Protected route
+    { path: '/bookings', element: <ProtectedRoute><BookingsPage /></ProtectedRoute> }, // Protected route
+    { path: '/add-property', element: <ProtectedRoute><AddPropertyPage /></ProtectedRoute> }, // Protected route
+    { path: '/property-list', element: <ProtectedRoute><PropertyListPage /></ProtectedRoute> }, // Protected route
+    { path: '/add-dealing', element: <ProtectedRoute><AddDealingPage /></ProtectedRoute> }, // Protected route
+    { path: '/add-dealing-item', element: <ProtectedRoute><AddDealingItemPage /></ProtectedRoute> }, // Protected route
+    { path: '/dealing-list', element: <ProtectedRoute><DealingPage /></ProtectedRoute> }, // Protected route
+    { path: '/dealing-item-list', element: <ProtectedRoute><DealingItemPage /></ProtectedRoute> }, // Protected route
+    { path: '/add-service', element: <ProtectedRoute><AddServicePage /></ProtectedRoute> }, // Protected route
+    { path: '/add-service-item', element: <ProtectedRoute><AddServiceItemPage /></ProtectedRoute> }, // Protected route
+    { path: '/service-list', element: <ProtectedRoute><ServicePage /></ProtectedRoute> }, // Protected route
+    { path: '/service-item-list', element: <ProtectedRoute><ServiceItemPage /></ProtectedRoute> }, // Protected route
+    { path: '/service-inquiries-list', element: <ProtectedRoute><ServiceInquiryPage /></ProtectedRoute> }, // Protected route
+    { path: '/add-finance', element: <ProtectedRoute><AddFinancePage /></ProtectedRoute> }, // Protected route
+    { path: '/add-supplier', element: <ProtectedRoute><AddSupplierPage /></ProtectedRoute> }, // Protected route
+    { path: '/finance-list', element: <ProtectedRoute><FinancePage /></ProtectedRoute> }, // Protected route
+    { path: '/supplier-list', element: <ProtectedRoute><SupplierPage /></ProtectedRoute> }, // Protected route
+    { path: '/add-about-us', element: <ProtectedRoute><AddAboutUsPage /></ProtectedRoute> }, // Protected route
+    { path: '/about-us-list', element: <ProtectedRoute><AboutUsPage /></ProtectedRoute> }, // Protected route
+    { path: '/site-address', element: <ProtectedRoute><SiteAddressPage /></ProtectedRoute> }, // Protected route
+    { path: '/social', element: <ProtectedRoute><SocialMediaPage /></ProtectedRoute> }, // Protected route
+    { path: '/add-director', element: <ProtectedRoute><AddDirectorPage /></ProtectedRoute> }, // Protected route
+    { path: '/add-construction-process', element: <ProtectedRoute><AddConstructionPage /></ProtectedRoute> }, // Protected route
+    { path: '/add-team', element: <ProtectedRoute><AddTeamPage /></ProtectedRoute> }, // Protected route
+    { path: '/add-invest', element: <ProtectedRoute><AddInvestWithUsPage /></ProtectedRoute> }, // Protected route
+    { path: '/add-cms', element: <ProtectedRoute><AddCMSPage /></ProtectedRoute> }, // Protected route
+    { path: '/director-list', element: <ProtectedRoute><DirectorPage /></ProtectedRoute> }, // Protected route
+    { path: '/construction-process-list', element: <ProtectedRoute><ConstructionsPage /></ProtectedRoute> }, // Protected route
+    { path: '/team-list', element: <ProtectedRoute><TeamsPage /></ProtectedRoute> }, // Protected route
+    { path: '/invest-list', element: <ProtectedRoute><InvestWithUsListPage /></ProtectedRoute> }, // Protected route
+    { path: '/cms-list', element: <ProtectedRoute><CMSListPage /></ProtectedRoute> }, // Protected route
   ]);
 
   const isLoginSignup =
