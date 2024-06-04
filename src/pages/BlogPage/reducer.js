@@ -1,3 +1,5 @@
+import { isNotthenSecondParameter } from "../../utils/helper";
+
 const initialState = {
   blogsData: null,
 };
@@ -7,11 +9,11 @@ const blogsPageReducer = (state = initialState, action) => {
     case "GET_ALL_BLOGS":
       return {
         ...state,
-        blogsData: action.payload?.data?.data,
+        blogsData: isNotthenSecondParameter(action.payload?.data?.data, []),
       };
     default:
       return state;
   }
 };
 
-export default blogsPageReducer;    
+export default blogsPageReducer;
