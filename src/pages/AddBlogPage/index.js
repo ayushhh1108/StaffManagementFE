@@ -122,12 +122,18 @@ function AddBlogPage() {
           />
         </div>
         <div className="upload-file-div mb-6 flex justify-between">
-            <Dropzone
-              title={"Banner Image"}
-              id="banner_image"
-              onChanges={handleInputChange}
-            />
-          <Dropzone title={"Image"} id="image" onChanges={handleInputChange} />
+          <Dropzone
+            title={"Banner Image"}
+            id="banner_image"
+            onChanges={handleInputChange}
+            selectedImg={data?.banner_image}
+          />
+          <Dropzone
+            title={"Image"}
+            id="image"
+            onChanges={handleInputChange}
+            selectedImg={data?.image}
+          />
         </div>
 
         <button

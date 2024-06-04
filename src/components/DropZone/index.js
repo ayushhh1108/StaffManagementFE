@@ -1,7 +1,7 @@
 import * as React from "react";
 import "./index.scss";
 
-export default function Dropzone({ title, id, onChanges }) {
+export default function Dropzone({ title, id, onChanges, selectedImg }) {
   return (
     <div className="dropzone-box flex flex-wrap items-center justify-center w-[48%] mb-3">
       <label
@@ -9,9 +9,20 @@ export default function Dropzone({ title, id, onChanges }) {
         className="block mb-2 text-sm font-medium text-gray-900 w-full"
       >
         {title}
-      </label>  
+      </label>
+      <div className="selected-image-box">
+        {selectedImg && (
+          <div className={"img-box"}>
+            <img
+              src={URL.createObjectURL(selectedImg)}
+              alt=""
+              className="main-image"
+            />
+          </div>
+        )}
+      </div>
       <label
-        for={id?id:"dropzone-banner-image"}
+        for={id ? id : "dropzone-banner-image"}
         className="dropzone flex flex-col items-center justify-center w-full h-52 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50"
       >
         <div className="flex flex-col items-center justify-center pt-5 pb-6">
@@ -36,9 +47,10 @@ export default function Dropzone({ title, id, onChanges }) {
           </p>
         </div>
         <input
-          id={id?id:"dropzone-banner-image"}
+          id={id ? id : "dropzone-banner-image"}
           onChange={onChanges}
           type="file"
+          accept="image/png, image/jpeg"
           className="hidden"
         />
       </label>
