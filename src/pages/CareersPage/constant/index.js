@@ -7,9 +7,9 @@ export const HeaderData = [
     label: "SR NO",
   },
   {
-    id: "degination",
+    id: "designation",
     numeric: false,
-    label: "Degination",
+    label: "designation",
   },
   {
     id: "department",
@@ -50,7 +50,7 @@ export const HeaderData = [
 
 export const TableData = [
   {
-    degination: "ABC",
+    designation: "ABC",
     department: "left",
     experiance: "3+",
     description: "description",
@@ -60,7 +60,7 @@ export const TableData = [
     _id: "111",
   },
   {
-    degination: "dd",
+    designation: "dd",
     department: "left",
     experiance: "3+",
     description: "eeee",
@@ -70,7 +70,7 @@ export const TableData = [
     _id: "987",
   },
   {
-    degination: "Lorem",
+    designation: "Lorem",
     department: "left",
     experiance: "3+",
     description: "dolor",
@@ -80,7 +80,7 @@ export const TableData = [
     _id: "222",
   },
   {
-    degination: "Foo",
+    designation: "Foo",
     department: "left",
     experiance: "3+",
     description: "baz",
@@ -90,7 +90,7 @@ export const TableData = [
     _id: "333",
   },
   {
-    degination: "Lorem",
+    designation: "Lorem",
     department: "left",
     experiance: "3+",
     description: "dolor",
@@ -100,7 +100,7 @@ export const TableData = [
     _id: "444",
   },
   {
-    degination: "Foo",
+    designation: "Foo",
     department: "left",
     experiance: "3+",
     description: "baz",
@@ -110,7 +110,7 @@ export const TableData = [
     _id: "555",
   },
   {
-    degination: "Lorem",
+    designation: "Lorem",
     department: "left",
     experiance: "3+",
     description: "dolor",
@@ -120,7 +120,7 @@ export const TableData = [
     _id: "666",
   },
   {
-    degination: "Foo",
+    designation: "Foo",
     department: "left",
     experiance: "3+",
     description: "baz",
@@ -130,7 +130,7 @@ export const TableData = [
     _id: "777",
   },
   {
-    degination: "Lorem",
+    designation: "Lorem",
     department: "left",
     experiance: "3+",
     description: "dolor",
@@ -140,7 +140,7 @@ export const TableData = [
     _id: "888",
   },
   {
-    degination: "Foo",
+    designation: "Foo",
     department: "left",
     experiance: "3+",
     description: "baz",
@@ -150,7 +150,7 @@ export const TableData = [
     _id: "999",
   },
   {
-    degination: "Lorem",
+    designation: "Lorem",
     department: "left",
     experiance: "3+",
     description: "dolor",
@@ -160,7 +160,7 @@ export const TableData = [
     _id: "101010",
   },
   {
-    degination: "Foo",
+    designation: "Foo",
     department: "left",
     experiance: "3+",
     description: "baz",
@@ -170,7 +170,7 @@ export const TableData = [
     _id: "111111",
   },
   {
-    degination: "Lorem",
+    designation: "Lorem",
     department: "left",
     experiance: "3+",
     description: "dolor",
@@ -180,7 +180,7 @@ export const TableData = [
     _id: "121212",
   },
   {
-    degination: "Foo",
+    designation: "Foo",
     department: "left",
     experiance: "3+",
     description: "baz",
@@ -190,7 +190,7 @@ export const TableData = [
     _id: "131313",
   },
   {
-    degination: "Lorem",
+    designation: "Lorem",
     department: "left",
     experiance: "3+",
     description: "dolor",
