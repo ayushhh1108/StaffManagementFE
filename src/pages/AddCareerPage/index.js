@@ -5,8 +5,7 @@ import { Box, Typography } from "@mui/material";
 import TextInput from "../../components/TextInput";
 
 function AddCareerPage() {
-  const { navigate, handleSubmit, handleInputChange, data } =
-    AddCareerPageHooks();
+  const { handleSubmit, handleInputChange, data, error } = AddCareerPageHooks();
 
   return (
     <Box component="main" sx={{ flexGrow: 1, p: 3, mt: 8, maxWidth: "100%" }}>
@@ -15,11 +14,12 @@ function AddCareerPage() {
           Add Career{" "}
         </Typography>
         <TextInput
-          label={"Degination"}
+          label={"Designation"}
           isRequire
-          id={"degination"}
+          id={"designation"}
           handleChanges={handleInputChange}
-          value={data?.degination}
+          value={data?.designation}
+          isError={error?.designation}
         />
         <TextInput
           label={"Department"}
@@ -27,6 +27,7 @@ function AddCareerPage() {
           id={"department"}
           handleChanges={handleInputChange}
           value={data?.department}
+          isError={error?.department}
         />
         <TextInput
           label={"Experience"}
@@ -34,6 +35,7 @@ function AddCareerPage() {
           id={"experience"}
           handleChanges={handleInputChange}
           value={data?.experience}
+          isError={error?.experience}
         />
         <TextInput
           label={"Location"}
@@ -41,13 +43,16 @@ function AddCareerPage() {
           id={"location"}
           handleChanges={handleInputChange}
           value={data?.location}
+          isError={error?.location}
         />
         <TextInput
           label={"No Of Vacancy"}
           isRequire
-          id={"no_vacancy"}
+          id={"vacancy"}
           handleChanges={handleInputChange}
-          value={data?.no_vacancy}
+          value={data?.vacancy}
+          isError={error?.vacancy}
+          isNumber={true}
         />
         <TextInput
           label={"Description"}
@@ -55,6 +60,7 @@ function AddCareerPage() {
           id={"description"}
           handleChanges={handleInputChange}
           value={data?.description}
+          isError={error?.description}
         />
 
         <button

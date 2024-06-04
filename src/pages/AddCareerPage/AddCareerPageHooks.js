@@ -1,8 +1,12 @@
 import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { postAddCareer } from "./action";
 
 export default function AddCareerPageHooks() {
+  const dispatch = useDispatch();
   const [data, setData] = useState();
+  const [error, setError] = useState();
   const navigate = useNavigate();
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -15,14 +19,38 @@ export default function AddCareerPageHooks() {
         ? "rating"
         : event?.target?.id || idOrEvent;
     let value = event ? event.target.value : val;
+    const updatedError = { ...error };
+    delete updatedError[key];
+    setError(updatedError);
     setData({ ...data, [key]: value });
   };
 
   const isEventBased = (input) => !!input?.target?.id;
 
   const handleSubmit = () => {
-    console.log("handleSubmit", data);
-    // dispatch(loginSubmit(creds,navigate))
+    const requiredFields = [
+      "designation",
+      "department",
+      "experience",
+      "location",
+      "vacancy",
+      "description",
+    ];
+    let error = {};
+    let isFormValid = true;
+
+    requiredFields.forEach((field) => {
+      if (!data?.[field]) {
+        error[field] = true;
+        isFormValid = false;
+      }
+    });
+
+    if (isFormValid) {
+      dispatch(postAddCareer(data, navigate));
+    } else {
+      setError(error);
+    }
   };
 
   return {
@@ -30,5 +58,6 @@ export default function AddCareerPageHooks() {
     handleSubmit,
     handleInputChange,
     data,
+    error,
   };
 }

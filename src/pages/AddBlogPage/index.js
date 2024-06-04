@@ -7,8 +7,7 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import Dropzone from "../../components/DropZone";
 
 function AddBlogPage() {
-  const { navigate, handleSubmit, handleInputChange, data, error } =
-    AddBlogPageHook();
+  const { handleSubmit, handleInputChange, data, error } = AddBlogPageHook();
   const normalInputClass =
     "mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-1/2 p-2.5 add-menu-input";
   const errorInputClass =

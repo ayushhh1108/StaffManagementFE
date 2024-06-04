@@ -8,14 +8,25 @@ export default function TextInput({
   id,
   value,
   handleChanges,
+  isError,
+  isNumber,
 }) {
   const [val, setVal] = useState("");
   const handleChange = (event) => {
-    // console.log("handleChange",event.target.value,value,onChange)
-    handleChanges
-      ? handleChanges(id, event.target.value)
-      : setVal(event.target.value);
+    const value = event.target.value;
+    if (isNumber) {
+      const numValue = value.replace(/\D/g, "");
+      handleChanges
+        ? handleChanges(id, Number(numValue))
+        : setVal(Number(numValue));
+    } else {
+      handleChanges ? handleChanges(id, value) : setVal(value);
+    }
   };
+  const errorClass =
+    "bg-red-50 border border-red-300 text-red-900 text-sm rounded-lg block w-1/2 p-2.5 mb-4 add-menu-input";
+  const normalClass =
+    "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-1/2 p-2.5 mb-4 add-menu-input";
   return (
     <div>
       <label
@@ -29,7 +40,7 @@ export default function TextInput({
         type="text"
         id={id}
         onChange={handleChange}
-        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-1/2 p-2.5 mb-4 add-menu-input"
+        className={isError ? errorClass : normalClass}
         placeholder={label}
         required
         value={value ? value : val}
