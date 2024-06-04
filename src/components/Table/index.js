@@ -1,6 +1,4 @@
 import * as React from "react";
-import PropTypes from "prop-types";
-import { alpha } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -31,15 +29,15 @@ function getComparator(order, orderBy) {
 }
 
 function stableSort(array, comparator) {
-  const stabilizedThis = array.map((el, index) => [el, index]);
-  stabilizedThis.sort((a, b) => {
+  const stabilizedThis = array?.map((el, index) => [el, index]);
+  stabilizedThis?.sort((a, b) => {
     const order = comparator(a[0], b[0]);
     if (order !== 0) {
       return order;
     }
     return a[1] - b[1];
   });
-  return stabilizedThis.map((el) => el[0]);
+  return stabilizedThis?.map((el) => el[0]);
 }
 
 function EnhancedTableHead(props) {
@@ -51,7 +49,7 @@ function EnhancedTableHead(props) {
   return (
     <TableHead className="text-xs text-gray-700 uppercase border-b bg-[#e2e8f0] table-header">
       <TableRow>
-        {cellData.map((headCell) => (
+        {cellData?.map((headCell) => (
           <TableCell
             key={headCell.id}
             padding="normal"
@@ -98,7 +96,7 @@ export default function EnhancedTable({
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelected = rowData.map((n) => n.id);
+      const newSelected = rowData?.map((n) => n.id);
       setSelected(newSelected);
       return;
     }
@@ -112,13 +110,13 @@ export default function EnhancedTable({
     if (selectedIndex === -1) {
       newSelected = newSelected.concat(selected, id);
     } else if (selectedIndex === 0) {
-      newSelected = newSelected.concat(selected.slice(1));
+      newSelected = newSelected.concat(selected?.slice(1));
     } else if (selectedIndex === selected.length - 1) {
-      newSelected = newSelected.concat(selected.slice(0, -1));
+      newSelected = newSelected.concat(selected?.slice(0, -1));
     } else if (selectedIndex > 0) {
       newSelected = newSelected.concat(
-        selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1)
+        selected?.slice(0, selectedIndex),
+        selected?.slice(selectedIndex + 1)
       );
     }
     setSelected(newSelected);
@@ -141,7 +139,7 @@ export default function EnhancedTable({
 
   const visibleRows = React.useMemo(
     () =>
-      stableSort(rowData, getComparator(order, orderBy)).slice(
+      stableSort(rowData, getComparator(order, orderBy))?.slice(
         page * rowsPerPage,
         page * rowsPerPage + rowsPerPage
       ),
@@ -158,16 +156,16 @@ export default function EnhancedTable({
             className="rounded"
           >
             <EnhancedTableHead
-              numSelected={selected.length}
+              numSelected={selected?.length}
               order={order}
               orderBy={orderBy}
               onSelectAllClick={handleSelectAllClick}
               onRequestSort={handleRequestSort}
-              rowCount={rowData.length}
+              rowCount={rowData?.length}
               cellData={cellData}
             />
             <TableBody>
-              {visibleRows.map((row, index) => {
+              {visibleRows?.map((row, index) => {
                 const isItemSelected = isSelected(row.id);
 
                 return (
@@ -185,7 +183,6 @@ export default function EnhancedTable({
                     {rowItems?.map((item) => (
                       <TableCell className="tc-text">{row[item]}</TableCell>
                     ))}
-                    {console.log("isActionCol",isActionCol)}
                     {isActionCol && (
                       <TableCell className="tc-text">
                         <a
@@ -220,7 +217,7 @@ export default function EnhancedTable({
         <TablePagination
           rowsPerPageOptions={[5, 10, 25]}
           component="div"
-          count={rowData.length}
+          count={rowData?.length}
           rowsPerPage={rowsPerPage}
           page={page}
           onPageChange={handleChangePage}
