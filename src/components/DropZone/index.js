@@ -1,7 +1,13 @@
 import * as React from "react";
 import "./index.scss";
 
-export default function Dropzone({ title, id, onChanges, selectedImg }) {
+export default function Dropzone({
+  title,
+  id,
+  onChanges,
+  selectedImg,
+  isError,
+}) {
   return (
     <div className="dropzone-box flex flex-wrap items-center justify-center w-[48%] mb-3">
       <label
@@ -23,7 +29,11 @@ export default function Dropzone({ title, id, onChanges, selectedImg }) {
       </div>
       <label
         for={id ? id : "dropzone-banner-image"}
-        className="dropzone flex flex-col items-center justify-center w-full h-52 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50"
+        className={
+          isError
+            ? "dropzone flex flex-col items-center justify-center w-full h-52 border-2 border-red-300 border-dashed rounded-lg cursor-pointer bg-red-50"
+            : "dropzone flex flex-col items-center justify-center w-full h-52 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50"
+        }
       >
         <div className="flex flex-col items-center justify-center pt-5 pb-6">
           <svg

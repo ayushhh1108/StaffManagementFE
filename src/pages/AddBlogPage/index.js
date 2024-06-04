@@ -7,7 +7,12 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import Dropzone from "../../components/DropZone";
 
 function AddBlogPage() {
-  const { navigate, handleSubmit, handleInputChange, data } = AddBlogPageHook();
+  const { navigate, handleSubmit, handleInputChange, data, error } =
+    AddBlogPageHook();
+  const normalInputClass =
+    "mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-1/2 p-2.5 add-menu-input";
+  const errorInputClass =
+    "mb-4 bg-red-50 border border-red-300 text-red-900 text-sm rounded-lg block w-1/2 p-2.5 add-menu-input";
 
   return (
     <Box component="main" sx={{ flexGrow: 1, p: 3, mt: 8, maxWidth: "100%" }}>
@@ -16,6 +21,7 @@ function AddBlogPage() {
           Add Blog{" "}
         </Typography>
         <div>
+          {console.log("error", error)}
           <label
             for="first_name"
             className="block mb-2 text-sm font-medium text-gray-900"
@@ -27,7 +33,7 @@ function AddBlogPage() {
             id="title"
             value={data?.title}
             onChange={handleInputChange}
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-1/2 p-2.5 mb-4 add-menu-input"
+            className={error?.title ? errorInputClass : normalInputClass}
             placeholder="Title"
             required
           />
@@ -44,7 +50,7 @@ function AddBlogPage() {
             id="short_desc"
             value={data?.short_desc}
             onChange={handleInputChange}
-            className="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-1/2 p-2.5 add-menu-input"
+            className={error?.short_desc ? errorInputClass : normalInputClass}
             placeholder="Short Description"
             required
           />
@@ -61,7 +67,7 @@ function AddBlogPage() {
             id="meta_title"
             value={data?.meta_title}
             onChange={handleInputChange}
-            className="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-1/2 p-2.5 add-menu-input"
+            className={error?.meta_title ? errorInputClass : normalInputClass}
             placeholder="Meta Title"
             required
           />
@@ -78,7 +84,7 @@ function AddBlogPage() {
             id="meta_key"
             value={data?.meta_key}
             onChange={handleInputChange}
-            className="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-1/2 p-2.5 add-menu-input"
+            className={error?.meta_key ? errorInputClass : normalInputClass}
             placeholder="Meta Keywords"
             required
           />
@@ -95,12 +101,22 @@ function AddBlogPage() {
             id="meta_desc"
             value={data?.meta_desc}
             onChange={handleInputChange}
-            className="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-1/2 p-2.5 add-menu-input"
+            className={error?.meta_desc ? errorInputClass : normalInputClass}
             placeholder="Meta Description"
             required
           />
         </div>
         <div className="add-menu-input w-1/2 mb-5">
+          <label
+            for="description"
+            className={
+              error?.editor_desc
+                ? "block mb-2 text-sm font-medium text-[red]"
+                : "block mb-2 text-sm font-medium text-gray-900"
+            }
+          >
+            Description*
+          </label>
           <CKEditor
             editor={ClassicEditor}
             data={data?.editor_desc}
@@ -119,6 +135,7 @@ function AddBlogPage() {
             onFocus={(event, editor) => {
               console.log("Focus.", editor);
             }}
+            onError={error?.editor_desc}
           />
         </div>
         <div className="upload-file-div mb-6 flex justify-between">
@@ -127,12 +144,14 @@ function AddBlogPage() {
             id="banner_image"
             onChanges={handleInputChange}
             selectedImg={data?.banner_image}
+            isError={error?.banner_image}
           />
           <Dropzone
             title={"Image"}
             id="image"
             onChanges={handleInputChange}
             selectedImg={data?.image}
+            isError={error?.image}
           />
         </div>
 
