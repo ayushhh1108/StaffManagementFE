@@ -2,6 +2,7 @@
 export default {
     // getLocationAndPickupApi: (id) => `https://gli.logisticallytms.com/api/v3/enums?api_key=${id}`,
     postLogin: ()=> `auth/login`,
+    postAddBlog: ()=> `blog/createBlog`,
     // getUserToken:(id)=>`users/token/get?token=${id}`,
     // getWalletBalance:()=> `customer/current-balance`,
     // getShipmentDatas:()=> `shipments`,
