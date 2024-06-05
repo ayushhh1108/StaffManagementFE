@@ -4,7 +4,7 @@ import axios from "axios";
 
 export const POST_LOGIN_API = "POST_LOGIN_API";
 
-const loginSuccessfull = (payload,navigate) => {
+const loginSuccessfull = (payload, navigate) => {
   navigate("/");
   return {
     type: POST_LOGIN_API,
@@ -21,14 +21,17 @@ const loginSuccessfull = (payload,navigate) => {
 
 export const loginSubmit = (payload, navigate) => async (dispatch) => {
   try {
-    const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/${apiEndPoints.postLogin()}`, {
-      password: payload?.password,
-      email: payload.username,
-    });
-    if (response?.data) {
-      localStorage.setItem("user",response.data?.user?.token);
+    const response = await axios.post(
+      `${process.env.REACT_APP_API_BASE_URL}/${apiEndPoints.postLogin()}`,
+      {
+        password: payload?.password,
+        email: payload.username,
+      }
+    );
+    if (response?.headers?.authorization) {
+      localStorage.setItem("user", response?.headers?.authorization);
       toast.success("Login successfully");
-      dispatch(loginSuccessfull(response,navigate));
+      dispatch(loginSuccessfull(response, navigate));
     } else if (response?.response?.data?.message) {
       toast.error(response?.response?.data?.message);
     }
@@ -37,55 +40,3 @@ export const loginSubmit = (payload, navigate) => async (dispatch) => {
     return data;
   }
 };
-
-// export const getPickUpServices = () => async (dispatch) => {
-//   try {
-//     const response = await api.get(apiEndPoints.getPickupService());
-//     dispatch(getPickupservice(response));
-//   } catch (error) {
-//     const { response: { data = {} } = {} } = error;
-//     return data;
-//   }
-// };
-
-// export const getAddressByCityOrZip = (payload) => async (dispatch) => {
-//   try {
-//     const response = await api.post(apiEndPoints.getCityZipAddress(), {
-//       name: payload,
-//     });
-//     dispatch(getAddressByCity(response));
-//   } catch (error) {
-//     const { response: { data = {} } = {} } = error;
-//     return data;
-//   }
-// };
-
-// export const getDeliveryServiceData = () => async (dispatch) => {
-//   try {
-//     const response = await api.get(apiEndPoints.getDeliveryService());
-//     dispatch(getDeliveryservice(response));
-//   } catch (error) {
-//     const { response: { data = {} } = {} } = error;
-//     return data;
-//   }
-// };
-
-// export const getHandleingType = () => async (dispatch) => {
-//   try {
-//     const response = await api.get(apiEndPoints.getHandlingService());
-//     dispatch(getHandleingservice(response));
-//   } catch (error) {
-//     const { response: { data = {} } = {} } = error;
-//     return data;
-//   }
-// };
-
-// export const getUserFreightClass = () => async (dispatch) => {
-//   try {
-//     const response = await api.get(apiEndPoints.getUserFreightClass());
-//     dispatch(getUserFreightCheck(response));
-//   } catch (error) {
-//     const { response: { data = {} } = {} } = error;
-//     return data;
-//   }
-// };

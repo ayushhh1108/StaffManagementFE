@@ -11,7 +11,6 @@ export default function LoginPageHook() {
   const [isForget, setIsForget] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
-    console.log(isAuthenticated(), "isAuthenticated()isAuthenticated()");
     if (isAuthenticated()) {
       toast.info("Already logged in.");
       navigate("/");
