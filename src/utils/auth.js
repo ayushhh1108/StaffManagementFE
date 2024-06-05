@@ -4,8 +4,8 @@ import { Navigate } from "react-router-dom";
 
 export const ProtectedRoute = ({ children }) => {
   // Check if token exists in local storage
-  return isAuthenticated() ? children : <Navigate to="/login" />;
-  // return children;
+  // return isAuthenticated() ? children : <Navigate to="/login" />;
+   return children;
 };
 
 export const getToken = () => {
