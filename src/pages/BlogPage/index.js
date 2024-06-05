@@ -7,7 +7,7 @@ import { HeaderData } from "./constant";
 import { loaderFunc } from "../../utils/helper";
 
 function BlogPage() {
-  const { navigate, tableData } = BlogPageHook();
+  const { navigate, tableData, handleEdit } = BlogPageHook();
 
   return (
     <Box
@@ -34,6 +34,7 @@ function BlogPage() {
               ...item,
               no: 1 + index,
             }))}
+            handleEditClick={handleEdit}
           />
         )}
         {/* {!tableData ? (

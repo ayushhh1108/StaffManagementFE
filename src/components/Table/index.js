@@ -81,6 +81,7 @@ export default function EnhancedTable({
   cellData,
   rowItems,
   isActionCol,
+  handleEditClick,
 }) {
   const [order, setOrder] = React.useState("asc");
   const [orderBy, setOrderBy] = React.useState("calories");
@@ -186,7 +187,9 @@ export default function EnhancedTable({
                     {isActionCol && (
                       <TableCell className="tc-text">
                         <a
-                          href="#"
+                          onClick={() =>
+                            handleEditClick && handleEditClick(row)
+                          }
                           className="font-medium text-[#164e63] hover:underline"
                         >
                           Edit

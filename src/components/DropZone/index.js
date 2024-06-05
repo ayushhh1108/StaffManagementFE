@@ -20,7 +20,11 @@ export default function Dropzone({
         {selectedImg && (
           <div className={"img-box"}>
             <img
-              src={URL.createObjectURL(selectedImg)}
+              src={
+                typeof selectedImg === "string"
+                  ? selectedImg
+                  : URL?.createObjectURL(selectedImg)
+              }
               alt=""
               className="main-image"
             />

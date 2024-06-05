@@ -7,7 +7,8 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import Dropzone from "../../components/DropZone";
 
 function AddBlogPage() {
-  const { handleSubmit, handleInputChange, data, error } = AddBlogPageHook();
+  const { handleSubmit, handleInputChange, data, error, isEdit } =
+    AddBlogPageHook();
   const normalInputClass =
     "mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-1/2 p-2.5 add-menu-input";
   const errorInputClass =
@@ -17,7 +18,7 @@ function AddBlogPage() {
     <Box component="main" sx={{ flexGrow: 1, p: 3, mt: 8, maxWidth: "100%" }}>
       <div className="container add-menu-form text-left my-5">
         <Typography variant="h5" className="mb-5 form-label">
-          Add Blog{" "}
+          {isEdit ? "Edit Blog" : "Add Blog"}{" "}
         </Typography>
         <div>
           {console.log("error", error)}

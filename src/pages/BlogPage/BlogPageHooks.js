@@ -26,8 +26,15 @@ export default function MenuPageHook() {
     setTableData(td);
   }, [StoreData]);
 
+  const handleEdit = ({ _id }) => {
+    navigate("/add-blog", {
+      state: StoreData?.blogsData?.find((item) => item?._id === _id),
+    });
+  };
+
   return {
     navigate,
     tableData,
+    handleEdit,
   };
 }

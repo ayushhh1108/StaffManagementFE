@@ -1,12 +1,24 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { postAddBlog } from "./action";
+import { useLocation, useNavigate } from "react-router-dom";
+import { postAddBlog, postUpdateBlog } from "./action";
 
 export default function AddMenuPageHook() {
   const dispatch = useDispatch();
-  const [data, setData] = useState();
+  const location = useLocation();
+  const editData = location?.state;
+  const [data, setData] = useState({
+    title: editData?.title ?? "",
+    short_desc: editData?.sortDescription ?? "",
+    meta_title: editData?.metaTitle ?? "",
+    meta_key: editData?.metaKeywords ?? "",
+    meta_desc: editData?.metaDescription ?? "",
+    editor_desc: editData?.description ?? "",
+    banner_image: editData?.blogImage?.[0]?.bannerImage?.[0]?.path,
+    image: editData?.blogImage?.[0]?.blogImage?.[0]?.path,
+  });
   const [error, setError] = useState();
+  const [isEdit, setIsEdit] = useState(location?.state?._id);
   const navigate = useNavigate();
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -53,7 +65,12 @@ export default function AddMenuPageHook() {
       payload.append("metaTitle", data?.meta_title);
       payload.append("metaKeywords", data?.meta_key);
       payload.append("metaDescription", data?.meta_desc);
-      dispatch(postAddBlog(payload, navigate));
+      if (isEdit) {
+        payload.append("_id", isEdit);
+        dispatch(postUpdateBlog(payload, navigate));
+      } else {
+        dispatch(postAddBlog(payload, navigate));
+      }
     } else {
       setError(error);
     }
@@ -65,5 +82,6 @@ export default function AddMenuPageHook() {
     handleInputChange,
     data,
     error,
+    isEdit,
   };
 }
