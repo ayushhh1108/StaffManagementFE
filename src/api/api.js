@@ -1,5 +1,4 @@
 import axios from "axios";
-import { getToken } from "../utils/auth";
 
 const createAPI = () => {
   const customerApiUrl = process.env.REACT_APP_API_BASE_URL;
@@ -18,7 +17,7 @@ const createAPI = () => {
   api.interceptors.request.use(async (config) => {
     const data = localStorage.getItem("user");
     console.log("config", config);
-    if (data) {
+    if (data && !config.skipAuth) {
       config.headers[`Authorization`] = data;
     }
     return config;

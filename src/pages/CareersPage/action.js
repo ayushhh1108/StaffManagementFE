@@ -12,7 +12,9 @@ const allCareersGetSuccessfully = (payload) => {
 
 export const getAllCareers = () => async (dispatch) => {
   try {
-    const response = await api.post(apiEndPoints.getAllCareer());
+    const response = await api.get(apiEndPoints.getAllCareer(), {
+      // skipAuth: true,
+    });
     if (response?.data) {
       toast.success(response?.data?.message);
       dispatch(allCareersGetSuccessfully(response));

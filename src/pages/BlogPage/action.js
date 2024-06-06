@@ -9,7 +9,7 @@ const allBlogsGetSuccessfully = (payload) => {
   };
 export const getAllblogs = (payload, navigate) => async (dispatch) => {
   try {
-    const response = await api.post(apiEndPoints.getAllBlogs());
+    const response = await api.get(apiEndPoints.getAllBlogs());
     if (response?.data) {
       toast.success(response?.data?.message);
         dispatch(allBlogsGetSuccessfully(response));

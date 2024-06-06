@@ -1,7 +1,7 @@
 import React from "react";
 import "./index.scss";
 import CareersPageHooks from "./CareersPageHooks";
-import { Box, Container } from "@mui/material";
+import { Box } from "@mui/material";
 import EnhancedTable from "../../components/Table";
 import { HeaderData } from "./constant";
 import { loaderFunc } from "../../utils/helper";
