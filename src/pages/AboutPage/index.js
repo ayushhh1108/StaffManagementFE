@@ -5,9 +5,18 @@ import { Box, Container } from "@mui/material";
 import EnhancedTable from "../../components/Table";
 import { HeaderData } from "./constant";
 import { loaderFunc } from "../../utils/helper";
+import DeleteDialog from "../../components/DeleteDialog";
 
 function AboutPage() {
-  const { navigate, tableData, handleEdit } = AboutPageHooks();
+  const {
+    navigate,
+    tableData,
+    handleEdit,
+    handleDelete,
+    open,
+    setOpen,
+    handleConfirmDelete,
+  } = AboutPageHooks();
 
   return (
     <Box
@@ -40,9 +49,11 @@ function AboutPage() {
               no: 1 + index,
             }))}
             handleEditClick={handleEdit}
+            handleDeleteClick={handleDelete}
           />
         )}
       </Container>
+      {DeleteDialog(open, setOpen, handleConfirmDelete)}
     </Box>
   );
 }

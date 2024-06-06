@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getAllAboutPageData } from "./action";
+import { deleteAboutpage, getAllAboutPageData } from "./action";
 
 export default function AboutPageHooks() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [tableData, setTableData] = useState();
+  const [deleteId, setDeleteId] = useState();
+  const [open, setOpen] = useState(false);
   const StoreData = useSelector((state) => state?.aboutPageReducer);
   useEffect(() => {
     dispatch(getAllAboutPageData());
@@ -30,10 +32,25 @@ export default function AboutPageHooks() {
       state: StoreData?.aboutPageData?.find((item) => item?._id === _id),
     });
   };
+  const handleDelete = ({ _id }) => {
+    setDeleteId(_id);
+    setOpen(true);
+  };
+
+  const handleConfirmDelete = async() => {
+    console.log("handleDeletehandleDelete", deleteId);
+    await dispatch(deleteAboutpage({ _id: deleteId }, navigate));
+    await setOpen(false);
+    await dispatch(getAllAboutPageData());
+  };
 
   return {
     navigate,
     tableData,
     handleEdit,
+    handleDelete,
+    open,
+    setOpen,
+    handleConfirmDelete,
   };
 }

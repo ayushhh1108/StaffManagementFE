@@ -34,3 +34,24 @@ export const getAllAboutPageData = () => async (dispatch) => {
     return data;
   }
 };
+
+export const deleteAboutpage = (payload, navigate) => async (dispatch) => {
+  try {
+    const response = await api.post(apiEndPoints.deleteAboutpage(), payload);
+    if (response?.data) {
+      toast.success(
+        isNotthenSecondParameter(
+          response?.data?.message,
+          "Delete Data Successfull"
+        )
+      );
+      dispatch(allAboutDataGetSuccessfully(response));
+    } else if (response?.response?.data?.message) {
+      toast.error(response?.response?.data?.message);
+    }
+    console.log("response", response);
+  } catch (error) {
+    const { response: { data = {} } = {} } = error;
+    return data;
+  }
+};

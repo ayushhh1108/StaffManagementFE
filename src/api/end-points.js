@@ -9,5 +9,6 @@ export default {
     postAddAboutpage: ()=> `about/createAboutPage`,
     postUpdateAboutpage: ()=> `about/updateAboutPage`,
     getAllAboutpage: ()=> `about/getAboutPageList`,
+    deleteAboutpage: ()=> `about/deleteAboutPageData`,
     // getUserToken:(id)=>`users/token/get?token=${id}`,
 };

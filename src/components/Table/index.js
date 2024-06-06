@@ -82,6 +82,7 @@ export default function EnhancedTable({
   rowItems,
   isActionCol,
   handleEditClick,
+  handleDeleteClick,
 }) {
   const [order, setOrder] = React.useState("asc");
   const [orderBy, setOrderBy] = React.useState("calories");
@@ -195,7 +196,9 @@ export default function EnhancedTable({
                           Edit
                         </a>
                         <a
-                          href="#"
+                          onClick={() =>
+                            handleDeleteClick && handleDeleteClick(row)
+                          }
                           className="font-medium text-[#c70000] hover:underline ml-4"
                         >
                           Delete
