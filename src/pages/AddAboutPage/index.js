@@ -9,7 +9,7 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import SelectInput from "../../components/SelectInput";
 
 function AddAboutPage() {
-  const { navigate, handleSubmit, handleInputChange, data } =
+  const { navigate, handleSubmit, handleInputChange, data, error } =
     AddAboutPageHooks();
 
   return (
@@ -24,6 +24,7 @@ function AddAboutPage() {
           id={"title"}
           handleChanges={handleInputChange}
           value={data?.title}
+          isError={error?.title}
         />
         <TextInput
           label={"Meta Title"}
@@ -31,6 +32,7 @@ function AddAboutPage() {
           id={"meta_title"}
           handleChanges={handleInputChange}
           value={data?.meta_title}
+          isError={error?.meta_title}
         />
         <TextInput
           label={"Meta Keywords"}
@@ -38,6 +40,7 @@ function AddAboutPage() {
           id={"meta_keywords"}
           handleChanges={handleInputChange}
           value={data?.meta_keywords}
+          isError={error?.meta_keywords}
         />
         <TextInput
           label={"Meta Description"}
@@ -45,12 +48,17 @@ function AddAboutPage() {
           id={"meta_description"}
           handleChanges={handleInputChange}
           value={data?.meta_description}
+          isError={error?.meta_description}
         />
 
         <div className="add-menu-input w-1/2 mb-5">
           <label
             for="first_name"
-            className="block mb-2 text-sm font-medium text-gray-900"
+            className={
+              error?.editor_desc
+                ? "block mb-2 text-sm font-medium text-[red]"
+                : "block mb-2 text-sm font-medium text-gray-900"
+            }
           >
             Description
           </label>
@@ -83,10 +91,17 @@ function AddAboutPage() {
             { label: "Left", value: "left" },
             { label: "Right", value: "right" },
           ]}
+          isError={error?.position}
         />
 
         <div className="upload-file-div mb-6 flex justify-between">
-          <Dropzone title={"Image"} id="image" onChanges={handleInputChange}  />
+          <Dropzone
+            title={"Image"}
+            id="image"
+            isError={error?.image}
+            selectedImg={data?.image}
+            onChanges={handleInputChange}
+          />
         </div>
 
         <button

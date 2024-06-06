@@ -18,7 +18,7 @@ const createAPI = () => {
     const data = localStorage.getItem("user");
     console.log("config", config);
     if (data && !config.skipAuth) {
-      config.headers[`Authorization`] = data;
+      config.headers[`authorization`] = data;
     }
     return config;
   });
