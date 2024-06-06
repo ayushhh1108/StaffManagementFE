@@ -1,12 +1,21 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
-import { postAddAboutPage } from "./action";
+import { postAddAboutPage, postUpdateAboutPage } from "./action";
 
 export default function AddAboutPageHooks() {
   const dispatch = useDispatch();
   const location = useLocation();
-  const [data, setData] = useState();
+  const editData = location?.state;
+  const [data, setData] = useState({
+    title: editData?.title ?? "",
+    meta_title: editData?.metaTitle ?? "",
+    meta_keywords: editData?.metaKeywords ?? "",
+    meta_description: editData?.metaDescription ?? "",
+    editor_desc: editData?.description ?? "",
+    position: editData?.imagePosition ?? "",
+    image: editData?.image?.[0]?.path,
+  });
   const [error, setError] = useState();
   const [isEdit, setIsEdit] = useState(location?.state?._id);
   const navigate = useNavigate();
@@ -60,7 +69,7 @@ export default function AddAboutPageHooks() {
       payload.append("imagePosition", data?.position);
       if (isEdit) {
         payload.append("_id", isEdit);
-        // dispatch(postUpdateBlog(payload, navigate));
+        dispatch(postUpdateAboutPage(payload, navigate));
       } else {
         dispatch(postAddAboutPage(payload, navigate));
       }

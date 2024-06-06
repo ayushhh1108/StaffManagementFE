@@ -7,7 +7,7 @@ export default {
     postAddCareer: ()=> `career/createCareer`,
     getAllCareer: ()=> `career/getAllCareer`,
     postAddAboutpage: ()=> `about/createAboutPage`,
-    postUpdateAboutpage: ()=> `blog/updateBlog`,
+    postUpdateAboutpage: ()=> `about/updateAboutPage`,
     getAllAboutpage: ()=> `about/getAboutPageList`,
     // getUserToken:(id)=>`users/token/get?token=${id}`,
 };

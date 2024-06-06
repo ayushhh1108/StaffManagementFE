@@ -25,8 +25,15 @@ export default function AboutPageHooks() {
     setTableData(td);
   }, [StoreData]);
 
+  const handleEdit = ({ _id }) => {
+    navigate("/add-about-page", {
+      state: StoreData?.aboutPageData?.find((item) => item?._id === _id),
+    });
+  };
+
   return {
     navigate,
-    tableData
+    tableData,
+    handleEdit,
   };
 }

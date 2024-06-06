@@ -7,7 +7,7 @@ import { HeaderData } from "./constant";
 import { loaderFunc } from "../../utils/helper";
 
 function AboutPage() {
-  const { navigate, tableData } = AboutPageHooks();
+  const { navigate, tableData, handleEdit } = AboutPageHooks();
 
   return (
     <Box
@@ -39,6 +39,7 @@ function AboutPage() {
               ...item,
               no: 1 + index,
             }))}
+            handleEditClick={handleEdit}
           />
         )}
       </Container>
