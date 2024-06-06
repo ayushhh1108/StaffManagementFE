@@ -5,9 +5,18 @@ import { Box, Container } from "@mui/material";
 import EnhancedTable from "../../components/Table";
 import { HeaderData } from "./constant";
 import { loaderFunc } from "../../utils/helper";
+import DeleteDialog from "../../components/DeleteDialog";
 
 function BlogPage() {
-  const { navigate, tableData, handleEdit } = BlogPageHook();
+  const {
+    navigate,
+    tableData,
+    handleEdit,
+    handleDelete,
+    open,
+    setOpen,
+    handleConfirmDelete,
+  } = BlogPageHook();
 
   return (
     <Box
@@ -35,6 +44,7 @@ function BlogPage() {
               no: 1 + index,
             }))}
             handleEditClick={handleEdit}
+            handleDeleteClick={handleDelete}
           />
         )}
         {/* {!tableData ? (
@@ -63,6 +73,7 @@ function BlogPage() {
           />
         )} */}
       </Container>
+      {DeleteDialog(open, setOpen, handleConfirmDelete)}
     </Box>
   );
 }

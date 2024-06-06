@@ -45,7 +45,6 @@ export const deleteAboutpage = (payload, navigate) => async (dispatch) => {
           "Delete Data Successfull"
         )
       );
-      dispatch(allAboutDataGetSuccessfully(response));
     } else if (response?.response?.data?.message) {
       toast.error(response?.response?.data?.message);
     }

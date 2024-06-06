@@ -1,17 +1,27 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { postAddCareer } from "./action";
+import { useLocation, useNavigate } from "react-router-dom";
+import { postAddCareer, postUpdateCareer } from "./action";
 
 export default function AddCareerPageHooks() {
   const dispatch = useDispatch();
-  const [data, setData] = useState();
+  const location = useLocation();
+  const editData = location?.state;
+  const [isEdit, setIsEdit] = useState(editData?._id);
+  const [data, setData] = useState({
+    designation: editData?.designation,
+    department: editData?.department,
+    experience: editData?.experience,
+    vacancy: editData?.vacancy,
+    description: editData?.description,
+    location: location?.state?.location,
+  });
   const [error, setError] = useState();
   const navigate = useNavigate();
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
+  console.log("editData");
   const handleInputChange = (idOrEvent, val) => {
     const event = isEventBased(idOrEvent) ? idOrEvent : null;
     const key =
@@ -47,7 +57,11 @@ export default function AddCareerPageHooks() {
     });
 
     if (isFormValid) {
-      dispatch(postAddCareer(data, navigate));
+      if (isEdit) {
+        dispatch(postUpdateCareer({ ...data, _id: isEdit }, navigate));
+      } else {
+        dispatch(postAddCareer(data, navigate));
+      }
     } else {
       setError(error);
     }
