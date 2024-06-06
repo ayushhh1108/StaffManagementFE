@@ -3,10 +3,11 @@ import "./index.scss";
 import AboutPageHooks from "./AboutPageHooks";
 import { Box, Container } from "@mui/material";
 import EnhancedTable from "../../components/Table";
-import { HeaderData, TableData } from "./constant";
+import { HeaderData } from "./constant";
+import { loaderFunc } from "../../utils/helper";
 
 function AboutPage() {
-  const { navigate } = AboutPageHooks();
+  const { navigate, tableData } = AboutPageHooks();
 
   return (
     <Box
@@ -22,12 +23,24 @@ function AboutPage() {
         >
           Add About Page
         </button>
-        <EnhancedTable
-          isActionCol
-          cellData={HeaderData}
-          rowItems={["no", "title", "metaTitle", "metaDesc", "image_position"]}
-          rowData={TableData?.map((item, index) => ({ ...item, no: 1 + index }))}
-        />
+        {loaderFunc(
+          tableData,
+          <EnhancedTable
+            isActionCol
+            cellData={HeaderData}
+            rowItems={[
+              "no",
+              "title",
+              "metaTitle",
+              "metaDesc",
+              "image_position",
+            ]}
+            rowData={tableData?.map((item, index) => ({
+              ...item,
+              no: 1 + index,
+            }))}
+          />
+        )}
       </Container>
     </Box>
   );

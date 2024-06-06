@@ -8,6 +8,6 @@ export default {
     getAllCareer: ()=> `career/getAllCareer`,
     postAddAboutpage: ()=> `about/createAboutPage`,
     postUpdateAboutpage: ()=> `blog/updateBlog`,
-    getAllAboutpage: ()=> `blog/getAllBlog`,
+    getAllAboutpage: ()=> `about/getAboutPageList`,
     // getUserToken:(id)=>`users/token/get?token=${id}`,
 };
