@@ -26,12 +26,8 @@ export default function UserRolePageHooks() {
   }, [StoreData]);
 
   const handleEdit = ({ _id }) => {
-    console.log(
-      "StoreData?.careersData?.find((item) => item?._id === _id)",
-      StoreData?.careersData?.find((item) => item?._id === _id)
-    );
     navigate("/add-role", {
-      state: StoreData?.careersData?.find((item) => item?._id === _id),
+      state: StoreData?.userRoleData?.find((item) => item?._id === _id),
     });
   };
   const handleDelete = ({ _id }) => {

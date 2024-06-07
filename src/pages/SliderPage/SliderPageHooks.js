@@ -9,14 +9,14 @@ export default function SliderPageHook() {
   const [deleteId, setDeleteId] = useState();
   const [open, setOpen] = useState(false);
   const [tableData, setTableData] = useState();
-  const StoreData = useSelector((state) => state?.blogsPageReducer);
+  const StoreData = useSelector((state) => state?.sliderReducer);
   useEffect(() => {
     dispatch(getAllSlider());
     window.scrollTo(0, 0);
   }, []);
 
   useEffect(() => {
-    const td = StoreData?.blogsData?.map(
+    const td = StoreData?.sliderData?.map(
       ({ title, description, metaTitle, _id, sortDescription }) => ({
         title,
         description,
@@ -30,7 +30,7 @@ export default function SliderPageHook() {
 
   const handleEdit = ({ _id }) => {
     navigate("/add-slider", {
-      state: StoreData?.blogsData?.find((item) => item?._id === _id),
+      state: StoreData?.sliderData?.find((item) => item?._id === _id),
     });
   };
   const handleDelete = ({ _id }) => {
