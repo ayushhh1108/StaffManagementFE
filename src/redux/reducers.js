@@ -6,6 +6,7 @@ import aboutPageReducer from "../pages/AboutPage/reducer";
 import sliderReducer from "../pages/SliderPage/reducer";
 import usersReducer from "../pages/UsersPage/reducer";
 import userRoleReducer from "../pages/UserRolePage/reducer";
+import feedbackReducer from "../pages/FeedbackListPage/reducer";
 
 const createReducer = () => {
   const rootReducer = combineReducers({
@@ -16,6 +17,7 @@ const createReducer = () => {
     sliderReducer: sliderReducer,
     usersReducer: usersReducer,
     userRoleReducer: userRoleReducer,
+    feedbackReducer: feedbackReducer,
   });
   return rootReducer;
 };

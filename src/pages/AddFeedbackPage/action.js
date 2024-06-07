@@ -29,7 +29,7 @@ export const postAddFeedback = (payload, navigate) => async (dispatch) => {
 export const updateFeedback = (payload, navigate) => async (dispatch) => {
   try {
     const response = await api.post(
-      apiEndPoints.postUpdateFeedback(),
+      apiEndPoints.updateFeedback(),
       payload,
       {
         headers,

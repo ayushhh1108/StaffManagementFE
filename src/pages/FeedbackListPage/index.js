@@ -4,9 +4,19 @@ import FeedbackListPageHooks from "./FeedbackListPageHooks";
 import { Box, Container } from "@mui/material";
 import EnhancedTable from "../../components/Table";
 import { HeaderData, TableData } from "./constant";
+import DeleteDialog from "../../components/DeleteDialog";
+import { loaderFunc } from "../../utils/helper";
 
 function FeedbackListPage() {
-  const { navigate } = FeedbackListPageHooks();
+  const {
+    navigate,
+    tableData,
+    handleEdit,
+    handleDelete,
+    open,
+    setOpen,
+    handleConfirmDelete,
+  } = FeedbackListPageHooks();
 
   return (
     <Box
@@ -17,21 +27,27 @@ function FeedbackListPage() {
       <Container className="pt-[60px] menu-list-container text-left">
         <button
           type="button"
-          onClick={()=>navigate("/add-feedback")}
+          onClick={() => navigate("/add-feedback")}
           className="text-white bg-[#1e6c89] hover:bg-[#164e63] font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-3"
         >
           Add Feedback
         </button>
-        <EnhancedTable
-          isActionCol
-          cellData={HeaderData}
-          rowItems={["no", "name", "rating", "message", "status"]}
-          rowData={TableData?.map((item, index) => ({
-            ...item,
-            no: 1 + index,
-          }))}
-        />
+        {loaderFunc(
+          tableData,
+          <EnhancedTable
+            isActionCol
+            cellData={HeaderData}
+            rowItems={["no", "name", "rating", "message", "status"]}
+            rowData={tableData?.map((item, index) => ({
+              ...item,
+              no: 1 + index,
+            }))}
+            handleEditClick={handleEdit}
+            handleDeleteClick={handleDelete}
+          />
+        )}
       </Container>
+      {DeleteDialog(open, setOpen, handleConfirmDelete)}
     </Box>
   );
 }

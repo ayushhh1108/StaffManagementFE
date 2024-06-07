@@ -25,6 +25,8 @@ export default {
   getAllUsers: () => `user/getAllUser`,
   deleteUser: () => `user/deleteUser`,
   addFeedback: () => `feedback/createFeedbackRequest`,
-  deleteUser: () => `feedback/deleteFeedbackData`,
+  deleteFeedback: () => `feedback/deleteFeedbackData`,
+  getFeedback: () => `feedback/getFeedbackList`,
+  updateFeedback: () => `feedback/updateFeedbackRequest`,
   // getUserToken:(id)=>`users/token/get?token=${id}`,
 };
