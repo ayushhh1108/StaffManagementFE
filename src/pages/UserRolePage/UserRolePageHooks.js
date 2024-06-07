@@ -36,7 +36,6 @@ export default function UserRolePageHooks() {
   };
 
   const handleConfirmDelete = async () => {
-    console.log("handleDeletehandleDelete", deleteId);
     await dispatch(deleteRole({ _id: deleteId }, navigate));
     await setOpen(false);
   };
