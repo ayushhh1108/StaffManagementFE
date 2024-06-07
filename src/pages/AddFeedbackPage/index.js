@@ -7,7 +7,7 @@ import Dropzone from "../../components/DropZone";
 import TextInput from "../../components/TextInput";
 
 function AddFeedbackPage() {
-  const { navigate, handleSubmit, handleInputChange, data } =
+  const { navigate, handleSubmit, handleInputChange, data, error } =
     AddFeedbackPageHook();
 
   return (
@@ -22,6 +22,7 @@ function AddFeedbackPage() {
           id={"name"}
           handleChanges={handleInputChange}
           value={data?.name}
+          isError={error?.name}
         />
         <TextInput
           label={"City"}
@@ -29,6 +30,7 @@ function AddFeedbackPage() {
           id={"city"}
           handleChanges={handleInputChange}
           value={data?.city}
+          isError={error?.city}
         />
         <TextInput
           label={"Comment"}
@@ -36,9 +38,15 @@ function AddFeedbackPage() {
           id={"comment"}
           handleChanges={handleInputChange}
           value={data?.comment}
+          isError={error?.comment}
         />
         <div>
-          <label className="block mb-2 text-sm font-medium text-gray-900">
+          {console.log("error", error)}
+          <label
+            className={`block mb-2 text-sm font-medium text-${
+              error?.rating ? "[red]" : "gray-900"
+            }`}
+          >
             Rating
           </label>
           <Rating
@@ -53,11 +61,15 @@ function AddFeedbackPage() {
             title={"Icon Image"}
             id="icon_image"
             onChanges={handleInputChange}
+            isError={error?.icon_image}
+            selectedImg={data?.icon_image}
           />
           <Dropzone
             title={"Property Image"}
             id="property_image"
             onChanges={handleInputChange}
+            isError={error?.property_image}
+            selectedImg={data?.property_image}
           />
         </div>
 

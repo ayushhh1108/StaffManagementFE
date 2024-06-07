@@ -24,5 +24,7 @@ export default {
   postUser: () => `user/createUser`,
   getAllUsers: () => `user/getAllUser`,
   deleteUser: () => `user/deleteUser`,
+  addFeedback: () => `feedback/createFeedbackRequest`,
+  deleteUser: () => `feedback/deleteFeedbackData`,
   // getUserToken:(id)=>`users/token/get?token=${id}`,
 };
