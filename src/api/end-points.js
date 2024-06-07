@@ -22,5 +22,7 @@ export default {
   getAllUserRole: () => `role/userRoleList`,
   updateUser: () => `user/updateUser`,
   postUser: () => `user/createUser`,
+  getAllUsers: () => `user/getAllUser`,
+  deleteUser: () => `user/deleteUser`,
   // getUserToken:(id)=>`users/token/get?token=${id}`,
 };

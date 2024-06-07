@@ -9,14 +9,14 @@ export default function UserRolePageHooks() {
   const [tableData, setTableData] = useState();
   const [deleteId, setDeleteId] = useState();
   const [open, setOpen] = useState(false);
-  const StoreData = useSelector((state) => state?.careersReducer);
+  const StoreData = useSelector((state) => state?.userRoleReducer);
   useEffect(() => {
     dispatch(getAllUserRole());
     window.scrollTo(0, 0);
   }, []);
 
   useEffect(() => {
-    const td = StoreData?.careersData?.map(({ name, status, _id }) => ({
+    const td = StoreData?.userRoleData?.map(({ name, status, _id }) => ({
       name,
       status,
       _id,
