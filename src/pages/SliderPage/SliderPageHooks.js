@@ -25,7 +25,7 @@ export default function SliderPageHook() {
         _id,
       })
     );
-    setTableData(td);
+    setTableData(td ? td : []);
   }, [StoreData]);
 
   const handleEdit = ({ _id }) => {

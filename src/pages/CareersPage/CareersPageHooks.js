@@ -37,7 +37,7 @@ export default function CareersPageHooks() {
         _id,
       })
     );
-    setTableData(td);
+    setTableData(td ? td : []);
   }, [StoreData]);
 
   const handleEdit = ({ _id }) => {

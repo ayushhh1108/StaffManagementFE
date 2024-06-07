@@ -24,7 +24,7 @@ export default function AboutPageHooks() {
         _id,
       })
     );
-    setTableData(td);
+    setTableData(td ? td : []);
   }, [StoreData]);
 
   const handleEdit = ({ _id }) => {
@@ -37,7 +37,7 @@ export default function AboutPageHooks() {
     setOpen(true);
   };
 
-  const handleConfirmDelete = async() => {
+  const handleConfirmDelete = async () => {
     console.log("handleDeletehandleDelete", deleteId);
     await dispatch(deleteAboutpage({ _id: deleteId }, navigate));
     await setOpen(false);
