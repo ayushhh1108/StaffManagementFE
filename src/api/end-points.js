@@ -20,5 +20,7 @@ export default {
   postUpdateRole: () => `role/updateStatusUserRole`,
   deleteUserRole: () => `role/userRoleDelete`,
   getAllUserRole: () => `role/userRoleList`,
+  updateUser: () => `user/updateUser`,
+  postUser: () => `user/createUser`,
   // getUserToken:(id)=>`users/token/get?token=${id}`,
 };

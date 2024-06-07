@@ -7,7 +7,7 @@ import TextInput from "../../components/TextInput";
 import SelectInput from "../../components/SelectInput";
 
 function AddUserPage() {
-  const { navigate, handleSubmit, handleInputChange, data } =
+  const { navigate, handleSubmit, handleInputChange, data, error } =
     AddUsersPageHooks();
 
   return (
@@ -22,6 +22,7 @@ function AddUserPage() {
           id={"first_name"}
           handleChanges={handleInputChange}
           value={data?.first_name}
+          isError={error?.first_name}
         />
         <TextInput
           label={"Last Name"}
@@ -29,6 +30,7 @@ function AddUserPage() {
           id={"last_name"}
           handleChanges={handleInputChange}
           value={data?.last_name}
+          isError={error?.last_name}
         />
         <TextInput
           label={"Email"}
@@ -36,6 +38,7 @@ function AddUserPage() {
           id={"email"}
           handleChanges={handleInputChange}
           value={data?.email}
+          isError={error?.email}
         />
         <TextInput
           label={"Mobile"}
@@ -43,6 +46,7 @@ function AddUserPage() {
           id={"mobile"}
           handleChanges={handleInputChange}
           value={data?.mobile}
+          isError={error?.mobile}
         />
         <SelectInput
           label={"Role"}
@@ -50,6 +54,7 @@ function AddUserPage() {
           id={"role"}
           handleChange={handleInputChange}
           value={data?.role}
+          isError={error?.role}
           options={[
             { label: "Employee", value: "employee" },
             { label: "Client", value: "client" },
@@ -57,7 +62,13 @@ function AddUserPage() {
         />
 
         <div className="upload-file-div mb-6 flex justify-between">
-          <Dropzone title={"Image"} id="image" onChanges={handleInputChange} />
+          <Dropzone
+            title={"Image"}
+            id="image"
+            onChanges={handleInputChange}
+            isError={error?.image}
+            selectedImg={data?.image}
+          />
         </div>
 
         <button
