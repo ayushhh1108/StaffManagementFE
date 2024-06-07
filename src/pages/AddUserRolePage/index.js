@@ -6,7 +6,7 @@ import TextInput from "../../components/TextInput";
 import SelectInput from "../../components/SelectInput";
 
 function AddUserRolePage() {
-  const { navigate, handleSubmit, handleInputChange, data } =
+  const { navigate, handleSubmit, handleInputChange, data, error } =
     AddUserRoleHooks();
 
   return (
@@ -21,6 +21,7 @@ function AddUserRolePage() {
           id={"name"}
           handleChanges={handleInputChange}
           value={data?.name}
+          isError={error?.name}
         />
         <SelectInput
           label={"Select Status"}
@@ -32,6 +33,7 @@ function AddUserRolePage() {
             { label: "Active", value: "active" },
             { label: "Inactive", value: "inactive" },
           ]}
+          isError={error?.status}
         />
         <Typography variant="p" className="text-[13px] mb-0 text-gray-500">
           Module Rights{" "}

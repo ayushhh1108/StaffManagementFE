@@ -29,7 +29,7 @@ export default function SliderPageHook() {
   }, [StoreData]);
 
   const handleEdit = ({ _id }) => {
-    navigate("/add-blog", {
+    navigate("/add-slider", {
       state: StoreData?.blogsData?.find((item) => item?._id === _id),
     });
   };

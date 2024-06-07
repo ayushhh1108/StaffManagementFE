@@ -16,5 +16,9 @@ export default {
   postUpdateSlider: () => `slider/updateSlider`,
   getAllSlider: () => `slider/getSliderList`,
   deleteSlider: () => `slider/deleteSliders`,
+  postAddRole: () => `role/createUserRole`,
+  postUpdateRole: () => `role/updateStatusUserRole`,
+  deleteUserRole: () => `role/userRoleDelete`,
+  getAllUserRole: () => `role/userRoleList`,
   // getUserToken:(id)=>`users/token/get?token=${id}`,
 };

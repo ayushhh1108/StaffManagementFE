@@ -1,8 +1,18 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
+import { postAddRole, postUpdateRole } from "./action";
 
 export default function AddUserRoleHooks() {
-  const [data, setData] = useState();
+  const dispatch = useDispatch();
+  const location = useLocation();
+  const editData = location?.state;
+  const [isEdit, setIsEdit] = useState(editData?._id);
+  const [data, setData] = useState({
+    name: editData?.name,
+    status: editData?.status,
+  });
+  const [error, setError] = useState();
   const navigate = useNavigate();
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -14,14 +24,36 @@ export default function AddUserRoleHooks() {
     let value = event ? event.target.value : val;
     const isUpload = key === "image";
     value = isUpload && event ? event.target.files[0] : value;
+    const updatedError = { ...error };
+    delete updatedError[key];
+    setError(updatedError);
     setData({ ...data, [key]: value });
   };
 
   const isEventBased = (input) => !!input?.target?.id;
 
   const handleSubmit = () => {
-    console.log("handleSubmit", data);
-    // dispatch(loginSubmit(creds,navigate))
+    const requiredFields = ["status", "name"];
+    let error = {};
+    let isFormValid = true;
+
+    requiredFields.forEach((field) => {
+      if (!data?.[field]) {
+        error[field] = true;
+        isFormValid = false;
+      }
+    });
+
+    if (isFormValid) {
+      if (isEdit) {
+        dispatch(postUpdateRole({ ...data, _id: isEdit }, navigate));
+      } else {
+        console.log("statusstatusstatus", data);
+        dispatch(postAddRole(data, navigate));
+      }
+    } else {
+      setError(error);
+    }
   };
 
   return {
@@ -29,5 +61,6 @@ export default function AddUserRoleHooks() {
     handleSubmit,
     handleInputChange,
     data,
+    error,
   };
 }
