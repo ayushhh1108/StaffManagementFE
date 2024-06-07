@@ -12,5 +12,9 @@ export default {
   postUpdateAboutpage: () => `about/updateAboutPage`,
   getAllAboutpage: () => `about/getAboutPageList`,
   deleteAboutpage: () => `about/deleteAboutPageData`,
+  postAddSlider: () => `slider/createSlider`,
+  postUpdateSlider: () => `slider/updateSlider`,
+  getAllSlider: () => `slider/getSliderList`,
+  deleteSlider: () => `slider/deleteSliders`,
   // getUserToken:(id)=>`users/token/get?token=${id}`,
 };
