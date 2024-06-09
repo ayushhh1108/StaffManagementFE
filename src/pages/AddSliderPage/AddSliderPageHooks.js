@@ -14,7 +14,7 @@ export default function AddSliderPageHook() {
     meta_title: editData?.metaTitle ?? "",
     meta_key: editData?.metaKeywords ?? "",
     meta_desc: editData?.metaDescription ?? "",
-    upload_image: editData?.blogImage?.[0]?.bannerImage?.[0]?.path,
+    upload_image: editData?.image?.[0]?.path,
     descriptionPosition: editData?.descriptionPosition,
   });
   const [isEdit, setIsEdit] = useState(location?.state?._id);
@@ -22,6 +22,7 @@ export default function AddSliderPageHook() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+  console.log("handleSubmit", editData);
 
   const handleInputChange = (event) => {
     const { id, value, checked, files } = event?.target;
@@ -66,7 +67,6 @@ export default function AddSliderPageHook() {
         dispatch(postUpdateSlider(payload, navigate));
       } else {
         dispatch(postAddSlider(payload, navigate));
-        console.log("handleSubmit", data);
       }
     } else {
       setError(error);
@@ -81,6 +81,6 @@ export default function AddSliderPageHook() {
     handleInputChange,
     data,
     error,
-    isEdit
+    isEdit,
   };
 }

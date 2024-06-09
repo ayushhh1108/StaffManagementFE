@@ -16,12 +16,12 @@ export default function SliderPageHook() {
   }, []);
 
   useEffect(() => {
-    const td = StoreData?.sliderData?.map(
-      ({ title, description, metaTitle, _id, sortDescription }) => ({
-        title,
+    const td = StoreData?.sliderData?.list?.map(
+      ({ name, description, metaTitle, _id, metaDescription }) => ({
+        name,
         description,
         metaTitle,
-        metaDesc: sortDescription,
+        metaDesc: metaDescription,
         _id,
       })
     );
@@ -30,7 +30,7 @@ export default function SliderPageHook() {
 
   const handleEdit = ({ _id }) => {
     navigate("/add-slider", {
-      state: StoreData?.sliderData?.find((item) => item?._id === _id),
+      state: StoreData?.sliderData?.list?.find((item) => item?._id === _id),
     });
   };
   const handleDelete = ({ _id }) => {
@@ -39,7 +39,6 @@ export default function SliderPageHook() {
   };
 
   const handleConfirmDelete = async () => {
-    console.log("handleDeletehandleDelete", deleteId);
     await dispatch(deleteSlider({ _id: deleteId }, navigate));
     await setOpen(false);
   };
