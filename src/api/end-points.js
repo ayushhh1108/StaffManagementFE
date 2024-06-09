@@ -15,7 +15,7 @@ export default {
   postAddSlider: () => `slider/createSlider`,
   postUpdateSlider: () => `slider/updateSlider`,
   getAllSlider: () => `slider/getSliderList`,
-  deleteSlider: () => `slider/deleteSliders`,
+  deleteSlider: () => `slider/deleteSlider`,
   postAddRole: () => `role/createUserRole`,
   postUpdateRole: () => `role/updateStatusUserRole`,
   deleteUserRole: () => `role/userRoleDelete`,
