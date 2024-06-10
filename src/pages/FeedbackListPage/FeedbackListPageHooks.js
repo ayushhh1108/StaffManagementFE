@@ -18,11 +18,11 @@ export default function FeedbackListPageHooks() {
 
   useEffect(() => {
     const td = StoreData?.feedbackData?.map(
-      ({ title, metaTitle, metaDescription, _id, imagePosition }) => ({
-        image_position: imagePosition,
-        title,
-        metaTitle: metaTitle,
-        metaDesc: metaDescription,
+      ({ name, message, _id, status, rating }) => ({
+        name,
+        status,
+        rating,
+        message,
         _id,
       })
     );
@@ -31,17 +31,17 @@ export default function FeedbackListPageHooks() {
 
   const handleEdit = ({ _id }) => {
     navigate("/add-feedback", {
-      state: StoreData?.aboutPageData?.find((item) => item?._id === _id),
+      state: StoreData?.feedbackData?.find((item) => item?._id === _id),
     });
   };
-  
+
   const handleDelete = ({ _id }) => {
     setDeleteId(_id);
     setOpen(true);
   };
 
+  console.log("handleDeletehandleDelete", StoreData);
   const handleConfirmDelete = async () => {
-    console.log("handleDeletehandleDelete", deleteId);
     // await dispatch(deleteAboutpage({ _id: deleteId }, navigate));
     await setOpen(false);
     // await dispatch(getAllAboutPageData());
