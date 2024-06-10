@@ -10,7 +10,7 @@ export default function AddFeedbackPageHook() {
   const [data, setData] = useState({
     name: editData?.name ?? "",
     city: editData?.city ?? "",
-    comment: editData?.comment ?? "",
+    message: editData?.message ?? "",
     rating: editData?.metaDescription ?? "",
     icon_image: editData?.iconImage?.[0]?.path,
     property_image: editData?.propertyImage?.[0]?.path,
@@ -45,10 +45,10 @@ export default function AddFeedbackPageHook() {
     const requiredFields = [
       "name",
       "city",
-      "comment",
+      "message",
       "rating",
       "icon_image",
-      "property_image",
+      // "property_image",
     ];
     let error = {};
     let isFormValid = true;
@@ -64,10 +64,10 @@ export default function AddFeedbackPageHook() {
       const payload = new FormData();
       payload.append("name", data?.name);
       payload.append("city", data?.city);
-      payload.append("comment", data?.comment);
+      payload.append("message", data?.message);
       payload.append("rating", data?.rating);
-      payload.append("iconImage", data?.icon_image);
-      payload.append("propertyImage", data?.property_image);
+      payload.append("image", data?.icon_image);
+      // payload.append("propertyImage", data?.property_image);
       if (isEdit) {
         payload.append("_id", isEdit);
         console.log("isEdit", data);

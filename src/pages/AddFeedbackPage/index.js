@@ -33,12 +33,12 @@ function AddFeedbackPage() {
           isError={error?.city}
         />
         <TextInput
-          label={"Comment"}
+          label={"Message"}
           isRequire
-          id={"comment"}
+          id={"message"}
           handleChanges={handleInputChange}
-          value={data?.comment}
-          isError={error?.comment}
+          value={data?.message}
+          isError={error?.message}
         />
         <div>
           {console.log("error", error)}

@@ -5,7 +5,7 @@ const headers = {
 };
 
 const handleSuccessfullNavigate = (navigate) => {
-  navigate("/about-page-list");
+  navigate("/feedback-list");
 };
 
 export const postAddFeedback = (payload, navigate) => async (dispatch) => {
@@ -28,13 +28,9 @@ export const postAddFeedback = (payload, navigate) => async (dispatch) => {
 
 export const updateFeedback = (payload, navigate) => async (dispatch) => {
   try {
-    const response = await api.post(
-      apiEndPoints.updateFeedback(),
-      payload,
-      {
-        headers,
-      }
-    );
+    const response = await api.post(apiEndPoints.updateFeedback(), payload, {
+      headers,
+    });
     if (response?.data) {
       toast.success(response?.data?.message);
     } else if (response?.response?.data?.message) {
