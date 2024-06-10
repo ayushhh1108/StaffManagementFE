@@ -11,9 +11,9 @@ export default function AddFeedbackPageHook() {
     name: editData?.name ?? "",
     city: editData?.city ?? "",
     message: editData?.message ?? "",
-    rating: editData?.metaDescription ?? "",
-    icon_image: editData?.iconImage?.[0]?.path,
-    property_image: editData?.propertyImage?.[0]?.path,
+    rating: editData?.rating ?? "",
+    icon_image: editData?.image?.[0]?.iconImage?.[0]?.path,
+    property_image: editData?.image?.[0]?.image?.[0]?.path
   });
   const [error, setError] = useState();
   const [isEdit, setIsEdit] = useState(location?.state?._id);
@@ -40,15 +40,15 @@ export default function AddFeedbackPageHook() {
 
   const isEventBased = (input) => !!input?.target?.id;
 
+  console.log("handleSubmit", editData);
   const handleSubmit = () => {
-    console.log("handleSubmit", data);
     const requiredFields = [
       "name",
       "city",
       "message",
       "rating",
       "icon_image",
-      // "property_image",
+      "property_image",
     ];
     let error = {};
     let isFormValid = true;
@@ -66,8 +66,8 @@ export default function AddFeedbackPageHook() {
       payload.append("city", data?.city);
       payload.append("message", data?.message);
       payload.append("rating", data?.rating);
-      payload.append("image", data?.icon_image);
-      // payload.append("propertyImage", data?.property_image);
+      payload.append("image", data?.property_image);
+      payload.append("iconImage", data?.icon_image);
       if (isEdit) {
         payload.append("_id", isEdit);
         console.log("isEdit", data);
