@@ -7,29 +7,9 @@ export const HeaderData = [
     label: "SR NO",
   },
   {
-    id: "name",
-    numeric: false,
-    label: "Name",
-  },
-  {
     id: "email",
     numeric: false,
     label: "Email",
-  },
-  {
-    id: "phone",
-    numeric: false,
-    label: "Phone",
-  },
-  {
-    id: "subject",
-    numeric: false,
-    label: "Subject",
-  },
-  {
-    id: "message",
-    numeric: false,
-    label: "Message",
   },
   {
     id: "status",

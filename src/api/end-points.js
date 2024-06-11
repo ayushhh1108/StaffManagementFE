@@ -28,5 +28,6 @@ export default {
   deleteFeedback: () => `feedback/deleteFeedbackData`,
   getFeedback: () => `feedback/getFeedbackList`,
   updateFeedback: () => `feedback/updateFeedbackRequest`,
+  getNewsLater: () => `newsletter/getAllNewsLetter`,
   // getUserToken:(id)=>`users/token/get?token=${id}`,
 };
