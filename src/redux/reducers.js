@@ -8,6 +8,7 @@ import usersReducer from "../pages/UsersPage/reducer";
 import userRoleReducer from "../pages/UserRolePage/reducer";
 import feedbackReducer from "../pages/FeedbackListPage/reducer";
 import newslaterReducer from "../pages/NewsLattersPage/reducer";
+import jobApplicationsReducer from "../pages/JobApplicationlistPage/reducer";
 
 const createReducer = () => {
   const rootReducer = combineReducers({
@@ -20,6 +21,7 @@ const createReducer = () => {
     userRoleReducer: userRoleReducer,
     feedbackReducer: feedbackReducer,
     newslaterReducer: newslaterReducer,
+    jobApplicationsReducer: jobApplicationsReducer,
   });
   return rootReducer;
 };

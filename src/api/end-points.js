@@ -29,5 +29,6 @@ export default {
   getFeedback: () => `feedback/getFeedbackList`,
   updateFeedback: () => `feedback/updateFeedbackRequest`,
   getNewsLater: () => `newsletter/getAllNewsLetter`,
+  getJobApplications: () => `career/JobApplications`,
   // getUserToken:(id)=>`users/token/get?token=${id}`,
 };
