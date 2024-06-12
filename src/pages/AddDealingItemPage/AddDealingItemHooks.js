@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
-import { postDealingItem } from "./action";
+import { postDealingItem, updateDealingItem } from "./action";
 
 export default function AddDealingItemHooks() {
   const dispatch = useDispatch();
@@ -9,12 +9,14 @@ export default function AddDealingItemHooks() {
   const editData = location?.state;
   const [data, setData] = useState({
     title: editData?.title ?? "",
+    short_description: editData?.shortDescription ?? "",
+    editor_desc: editData?.description ?? "",
+    icon: editData?.icon ?? "",
     meta_title: editData?.metaTitle ?? "",
     meta_keywords: editData?.metaKeywords ?? "",
     meta_description: editData?.metaDescription ?? "",
-    editor_desc: editData?.description ?? "",
-    position: editData?.imagePosition ?? "",
-    image: editData?.image?.[0]?.path,
+    image: editData?.media?.[0]?.image?.[0]?.path,
+    banner: editData?.media?.[0]?.banner?.[0]?.path,
   });
   const [error, setError] = useState();
   const [isEdit, setIsEdit] = useState(location?.state?._id);
@@ -37,8 +39,8 @@ export default function AddDealingItemHooks() {
 
   const isEventBased = (input) => !!input?.target?.id;
 
+  console.log("handleSubmit", editData);
   const handleSubmit = () => {
-    console.log("handleSubmit", data);
     const requiredFields = [
       "title",
       "short_description",
@@ -77,7 +79,7 @@ export default function AddDealingItemHooks() {
       payload.append("image", data?.image);
       if (isEdit) {
         payload.append("_id", isEdit);
-        // dispatch(postUpdateAboutPage(payload, navigate));
+        dispatch(updateDealingItem(payload, navigate));
       } else {
         dispatch(postDealingItem(payload, navigate));
       }

@@ -26,10 +26,10 @@ export const postDealingItem = (payload, navigate) => async (dispatch) => {
   }
 };
 
-export const postUpdateAboutPage = (payload, navigate) => async (dispatch) => {
+export const updateDealingItem = (payload, navigate) => async (dispatch) => {
   try {
     const response = await api.post(
-      apiEndPoints.postUpdateAboutpage(),
+      apiEndPoints.updateDealingInItem(),
       payload,
       {
         headers,
