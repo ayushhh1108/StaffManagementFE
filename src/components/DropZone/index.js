@@ -14,7 +14,7 @@ export default function Dropzone({
         for="last_name"
         className="block mb-2 text-sm font-medium text-gray-900 w-full"
       >
-        {title}
+        {title}*
       </label>
       <div className="selected-image-box">
         {selectedImg && (
