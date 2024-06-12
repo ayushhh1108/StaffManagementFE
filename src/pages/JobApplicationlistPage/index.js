@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import "./index.scss";
 import JobApplicationlistHook from "./JobApplicationlistHook";
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import EnhancedTable from "../../components/Table";
-import { HeaderData, TableData } from "./constant";
+import { HeaderData } from "./constant";
 import { loaderFunc } from "../../utils/helper";
 
 function JobApplicationlistPage() {
-  const { navigate, tableData } = JobApplicationlistHook();
+  const { tableData } = JobApplicationlistHook();
 
   return (
     <Box
