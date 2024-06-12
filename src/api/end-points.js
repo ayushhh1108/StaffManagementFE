@@ -30,5 +30,8 @@ export default {
   updateFeedback: () => `feedback/updateFeedbackRequest`,
   getNewsLater: () => `newsletter/getAllNewsLetter`,
   getJobApplications: () => `career/JobApplications`,
-  // getUserToken:(id)=>`users/token/get?token=${id}`,
+  postDealingInItem: () => `home/createDealingInItem`,
+  getDealingInItems: () => `home/getDealingItemList`,
+  updateDealingInItem: () => `home/updateDealingInItem`,
+  deleteDealingInItem: () => `home/deleteDealingItem`,
 };
