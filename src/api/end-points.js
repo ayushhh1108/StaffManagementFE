@@ -34,4 +34,6 @@ export default {
   getDealingInItems: () => `home/getDealingItemList`,
   updateDealingInItem: () => `home/updateDealingInItem`,
   deleteDealingInItem: () => `home/deleteDealingItem`,
+  getServiceRequests: () => `service/getServicesEnquiryList`,
+  deleteServiceRequest: () => `service/deleteServicesEnquiry`,
 };

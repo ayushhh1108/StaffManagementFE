@@ -182,7 +182,6 @@ export default function EnhancedTable({
                     sx={{ cursor: "pointer" }}
                     className="tr-texts"
                   >
-                    {console.log("row", row, rowItems)}
                     {rowItems?.map((item) => (
                       <TableCell className="tc-text">{row[item]}</TableCell>
                     ))}

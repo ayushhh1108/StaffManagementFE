@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import "./index.scss";
 import ServiceInquiryHook from "./ServiceInquiryHook";
 import { Box, Container, Typography } from "@mui/material";
 import EnhancedTable from "../../components/Table";
-import { HeaderData, TableData } from "./constant";
+import { HeaderData } from "./constant";
+import { loaderFunc } from "../../utils/helper";
+import DeleteDialog from "../../components/DeleteDialog";
 
 function ServiceInquiryPage() {
-  const { navigate } = ServiceInquiryHook();
+  const { tableData, open, setOpen, handleConfirmDelete } =
+    ServiceInquiryHook();
 
   return (
     <Box
@@ -18,25 +21,30 @@ function ServiceInquiryPage() {
         <Typography variant="h5" className="mb-5 form-label text-left">
           Service Inquiries List{" "}
         </Typography>
-        <EnhancedTable
-          cellData={HeaderData}
-          isActionCol
-          rowItems={[
-            "no",
-            "name",
-            "email",
-            "phone",
-            "budget",
-            "message",
-            "photo",
-            "status",
-          ]}
-          rowData={TableData?.map((item, index) => ({
-            ...item,
-            no: 1 + index,
-          }))}
-        />
+        {loaderFunc(
+          tableData,
+          <EnhancedTable
+            cellData={HeaderData}
+            // isActionCol
+            rowItems={[
+              "no",
+              "name",
+              "email",
+              "phone",
+              "budget",
+              "message",
+              "photo",
+              "status",
+              "action",
+            ]}
+            rowData={tableData?.map((item, index) => ({
+              ...item,
+              no: 1 + index,
+            }))}
+          />
+        )}
       </Container>
+      {DeleteDialog(open, setOpen, handleConfirmDelete)}
     </Box>
   );
 }
