@@ -7,6 +7,7 @@ export default function Dropzone({
   onChanges,
   selectedImg,
   isError,
+  isMultiple,
 }) {
   return (
     <div className="dropzone-box flex flex-wrap items-center justify-center w-[48%] mb-3">
@@ -16,19 +17,35 @@ export default function Dropzone({
       >
         {title}*
       </label>
-      <div className="selected-image-box">
-        {selectedImg && (
-          <div className={"img-box"}>
-            <img
-              src={
-                typeof selectedImg === "string"
-                  ? selectedImg
-                  : URL?.createObjectURL(selectedImg)
-              }
-              alt=""
-              className="main-image"
-            />
-          </div>
+      <div className="selected-image-box flex">
+        {selectedImg && isMultiple ? (
+          <>
+            {[...selectedImg]?.map((item) => (
+              <div className={"img-box"}>
+                <img
+                  src={
+                    typeof item === "string" ? item : URL?.createObjectURL(item)
+                  }
+                  alt=""
+                  className="main-image"
+                />
+              </div>
+            ))}
+          </>
+        ) : (
+          selectedImg && (
+            <div className={"img-box"}>
+              <img
+                src={
+                  typeof selectedImg === "string"
+                    ? selectedImg
+                    : URL?.createObjectURL(selectedImg)
+                }
+                alt=""
+                className="main-image"
+              />
+            </div>
+          )
         )}
       </div>
       <label
@@ -64,6 +81,7 @@ export default function Dropzone({
           id={id ? id : "dropzone-banner-image"}
           onChange={onChanges}
           type="file"
+          multiple={isMultiple}
           accept="image/png, image/jpeg"
           className="hidden"
         />

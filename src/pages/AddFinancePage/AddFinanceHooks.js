@@ -22,8 +22,9 @@ export default function AddFinanceHooks() {
     const event = isEventBased(id) ? id : null;
     const key = event ? event.target.id : id;
     let value = event ? event.target.value : val;
-    const isUpload = key === "bankImage" || key === "bannerImage";
+    const isUpload = key === "bannerImage";
     value = isUpload && event ? event.target.files[0] : value;
+    value = key === "bankImage" && event ? [...event.target.files] : value;
     const updatedError = { ...error };
     delete updatedError[key];
     setError(updatedError);
@@ -56,7 +57,11 @@ export default function AddFinanceHooks() {
 
     if (isFormValid) {
       payload.delete("editor_desc");
+      payload.delete("bankImage");
       payload.append("description", data?.editor_desc);
+      data?.bankImage?.map((item) => {
+        payload.append("bankImage", item);
+      });
       if (isEdit) {
         payload.append("_id", isEdit);
         // dispatch(postUpdateAboutPage(payload, navigate));

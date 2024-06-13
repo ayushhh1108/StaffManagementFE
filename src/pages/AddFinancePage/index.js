@@ -86,6 +86,7 @@ function AddFinancePage() {
             onChanges={handleInputChange}
             isError={error?.bankImage}
             selectedImg={data?.bankImage}
+            isMultiple={true}
           />
           <Dropzone
             title={"Banner Image"}
