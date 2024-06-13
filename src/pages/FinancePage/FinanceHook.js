@@ -33,7 +33,7 @@ export default function FinanceHook() {
       "StoreData?.careersData?.find((item) => item?._id === _id)",
       StoreData?.financeData?.find((item) => item?._id === _id)
     );
-    navigate("/add-career", {
+    navigate("/add-finance", {
       state: StoreData?.financeData?.find((item) => item?._id === _id),
     });
   };

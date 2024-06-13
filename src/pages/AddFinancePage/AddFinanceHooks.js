@@ -10,7 +10,9 @@ export default function AddFinanceHooks() {
   const editData = location?.state;
   const [data, setData] = useState({
     ...editData,
-    image: editData?.image?.[0]?.path,
+    bannerImage: editData?.media?.[0]?.bannerImage?.[0]?.path,
+    bankImage: editData?.media?.[0]?.bankImage?.map((i) => i?.path),
+    editor_desc: editData?.description,
   });
   const [error, setError] = useState();
   const [isEdit, setIsEdit] = useState(location?.state?._id);
@@ -42,6 +44,7 @@ export default function AddFinanceHooks() {
     "metaDescription",
   ];
 
+  console.log("handleSubmit", editData);
   const handleSubmit = () => {
     const payload = new FormData();
     let error = {};
@@ -66,7 +69,6 @@ export default function AddFinanceHooks() {
         payload.append("_id", isEdit);
         // dispatch(postUpdateAboutPage(payload, navigate));
       } else {
-        console.log("handleSubmit", data);
         dispatch(postFinance(payload, navigate));
       }
     } else {
