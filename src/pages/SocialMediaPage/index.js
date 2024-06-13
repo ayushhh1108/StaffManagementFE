@@ -5,7 +5,7 @@ import { Box, Typography } from "@mui/material";
 import TextInput from "../../components/TextInput";
 
 function SocialMediaPage() {
-  const { navigate, handleSubmit, handleInputChange, data } =
+  const { navigate, handleSubmit, handleInputChange, data, error } =
     SocialMediaHooks();
 
   return (
@@ -20,13 +20,15 @@ function SocialMediaPage() {
           id={"facebook"}
           handleChanges={handleInputChange}
           value={data?.facebook}
+          isError={error?.facebook}
         />
         <TextInput
           label={"Twiter"}
           isRequire
-          id={"twiter"}
+          id={"twitter"}
           handleChanges={handleInputChange}
-          value={data?.twiter}
+          value={data?.twitter}
+          isError={error?.twitter}
         />
         <TextInput
           label={"Instagram"}
@@ -34,6 +36,7 @@ function SocialMediaPage() {
           id={"instagram"}
           handleChanges={handleInputChange}
           value={data?.instagram}
+          isError={error?.instagram}
         />
         <TextInput
           label={"Linkedin"}
@@ -41,6 +44,7 @@ function SocialMediaPage() {
           id={"linkedin"}
           handleChanges={handleInputChange}
           value={data?.linkedin}
+          isError={error?.linkedin}
         />
         <TextInput
           label={"Youtube"}
@@ -48,6 +52,7 @@ function SocialMediaPage() {
           id={"youtube"}
           handleChanges={handleInputChange}
           value={data?.youtube}
+          isError={error?.youtube}
         />
 
         <button
@@ -55,7 +60,7 @@ function SocialMediaPage() {
           onClick={handleSubmit}
           className="text-white bg-[#1e6c89] hover:bg-[#164e63] font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
         >
-          Save
+          Update
         </button>
         <button
           type="button"

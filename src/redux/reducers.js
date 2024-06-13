@@ -12,6 +12,7 @@ import jobApplicationsReducer from "../pages/JobApplicationlistPage/reducer";
 import dealinItemsPageReducer from "../pages/DealingItemPage/reducer";
 import serviceRequestReducer from "../pages/ServiceInquiryPage/reducer";
 import financeReducer from "../pages/FinancePage/reducer";
+import socialReducer from "../pages/SocialMediaPage/reducer";
 
 const createReducer = () => {
   const rootReducer = combineReducers({
@@ -28,6 +29,7 @@ const createReducer = () => {
     dealinItemsPageReducer: dealinItemsPageReducer,
     serviceRequestReducer: serviceRequestReducer,
     financeReducer: financeReducer,
+    socialReducer: socialReducer,
   });
   return rootReducer;
 };

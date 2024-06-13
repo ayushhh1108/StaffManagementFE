@@ -40,4 +40,6 @@ export default {
   getFinancepage: () => `finance/getFinanceList`,
   postUpdateFinance: () => `finance/updateFinance`,
   deleteFinance: () => `finance/deleteFinanceData`,
+  updateSocialMedia: () => `home/updateSocialMedia`,
+  getSocialMedia: () => `home/getSocialMedia`,
 };

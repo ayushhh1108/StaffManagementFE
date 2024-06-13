@@ -10,6 +10,7 @@ export default function TextInput({
   handleChanges,
   isError,
   isNumber,
+  placeholder,
 }) {
   const [val, setVal] = useState("");
   const handleChange = (event) => {
@@ -42,6 +43,7 @@ export default function TextInput({
         onChange={handleChange}
         className={isError ? errorClass : normalClass}
         placeholder={label}
+        name={label}
         required
         value={value ? value : val}
       />
