@@ -32,9 +32,9 @@ export const getFinanceData = () => async (dispatch) => {
   }
 };
 
-export const deleteCareer = (payload, navigate) => async (dispatch) => {
+export const deleteFinance = (payload, navigate) => async (dispatch) => {
   try {
-    const response = await api.post(apiEndPoints.deleteCareer(), payload);
+    const response = await api.post(apiEndPoints.deleteFinance(), payload);
     if (response?.data) {
       toast.success(
         isNotthenSecondParameter(

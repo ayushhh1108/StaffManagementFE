@@ -39,4 +39,5 @@ export default {
   postFinancepage: () => `finance/createFinance`,
   getFinancepage: () => `finance/getFinanceList`,
   postUpdateFinance: () => `finance/updateFinance`,
+  deleteFinance: () => `finance/deleteFinanceData`,
 };

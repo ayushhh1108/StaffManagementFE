@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getFinanceData } from "./action";
+import { deleteFinance, getFinanceData } from "./action";
 
 export default function FinanceHook() {
   const dispatch = useDispatch();
@@ -44,7 +44,7 @@ export default function FinanceHook() {
 
   console.log("handleDeletehandleDelete", StoreData);
   const handleConfirmDelete = async () => {
-    // await dispatch(deleteCareer({ _id: deleteId }, navigate));
+    await dispatch(deleteFinance({ _id: deleteId }, navigate));
     await setOpen(false);
   };
 
