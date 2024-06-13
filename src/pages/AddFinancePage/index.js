@@ -8,7 +8,7 @@ import Dropzone from "../../components/DropZone";
 import TextInput from "../../components/TextInput";
 
 function AddFinancePage() {
-  const { navigate, handleSubmit, handleInputChange, data } = AddFinanceHooks();
+  const { handleSubmit, handleInputChange, data, error } = AddFinanceHooks();
 
   return (
     <Box component="main" sx={{ flexGrow: 1, p: 3, mt: 8, maxWidth: "100%" }}>
@@ -22,29 +22,43 @@ function AddFinancePage() {
           id={"title"}
           handleChanges={handleInputChange}
           value={data?.title}
+          isError={error?.title}
         />
         <TextInput
           label={"Meta Title"}
           isRequire
-          id={"meta_title"}
+          id={"metaTitle"}
           handleChanges={handleInputChange}
-          value={data?.meta_title}
+          value={data?.metaTitle}
+          isError={error?.metaTitle}
         />
         <TextInput
           label={"Meta Keywords"}
           isRequire
-          id={"meta_keywords"}
+          id={"metaKeywords"}
           handleChanges={handleInputChange}
-          value={data?.meta_keywords}
+          value={data?.metaKeywords}
+          isError={error?.metaKeywords}
         />
         <TextInput
           label={"Meta Descripion"}
           isRequire
-          id={"meta_description"}
+          id={"metaDescription"}
           handleChanges={handleInputChange}
-          value={data?.meta_description}
+          value={data?.metaDescription}
+          isError={error?.metaDescription}
         />
         <div className="add-menu-input w-1/2 mb-5">
+          <label
+            for="first_name"
+            className={
+              error?.editor_desc
+                ? "block mb-2 text-sm font-medium text-[red]"
+                : "block mb-2 text-sm font-medium text-gray-900"
+            }
+          >
+            Description
+          </label>
           <CKEditor
             editor={ClassicEditor}
             data={data?.editor_desc}
@@ -68,12 +82,16 @@ function AddFinancePage() {
         <div className="upload-file-div mb-6 flex justify-between">
           <Dropzone
             title={"Bank Image"}
-            id="bank_image"
+            id="bankImage"
             onChanges={handleInputChange}
+            isError={error?.bankImage}
+            selectedImg={data?.bankImage}
           />
           <Dropzone
             title={"Banner Image"}
-            id="banner_image"
+            id="bannerImage"
+            isError={error?.bannerImage}
+            selectedImg={data?.bannerImage}
             onChanges={handleInputChange}
           />
         </div>

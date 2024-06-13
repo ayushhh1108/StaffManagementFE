@@ -36,4 +36,5 @@ export default {
   deleteDealingInItem: () => `home/deleteDealingItem`,
   getServiceRequests: () => `service/getServicesEnquiryList`,
   deleteServiceRequest: () => `service/deleteServicesEnquiry`,
+  postFinancepage: () => `finance/createFinance`,
 };

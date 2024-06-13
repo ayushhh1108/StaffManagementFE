@@ -1,9 +1,19 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
+import { postFinance } from "./action";
 
 export default function AddFinanceHooks() {
-  const [data, setData] = useState();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
+  const editData = location?.state;
+  const [data, setData] = useState({
+    ...editData,
+    image: editData?.image?.[0]?.path,
+  });
+  const [error, setError] = useState();
+  const [isEdit, setIsEdit] = useState(location?.state?._id);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -12,15 +22,51 @@ export default function AddFinanceHooks() {
     const event = isEventBased(id) ? id : null;
     const key = event ? event.target.id : id;
     let value = event ? event.target.value : val;
-    const isUpload = key === "bank_image" || key === "banner_image";
+    const isUpload = key === "bankImage" || key === "bannerImage";
     value = isUpload && event ? event.target.files[0] : value;
+    const updatedError = { ...error };
+    delete updatedError[key];
+    setError(updatedError);
     setData({ ...data, [key]: value });
   };
 
   const isEventBased = (input) => !!input?.target?.id;
+  const requiredFields = [
+    "bankImage",
+    "bannerImage",
+    "title",
+    "editor_desc",
+    "metaTitle",
+    "metaKeywords",
+    "metaDescription",
+  ];
 
   const handleSubmit = () => {
-    console.log("handleSubmit", data);
+    const payload = new FormData();
+    let error = {};
+    let isFormValid = true;
+
+    requiredFields.forEach((field) => {
+      if (!data?.[field]) {
+        error[field] = true;
+        isFormValid = false;
+      }
+      payload.append(field, data?.[field]);
+    });
+
+    if (isFormValid) {
+      payload.delete("editor_desc");
+      payload.append("description", data?.editor_desc);
+      if (isEdit) {
+        payload.append("_id", isEdit);
+        // dispatch(postUpdateAboutPage(payload, navigate));
+      } else {
+        console.log("handleSubmit", data);
+        dispatch(postFinance(payload, navigate));
+      }
+    } else {
+      setError(error);
+    }
     // dispatch(loginSubmit(creds,navigate))
   };
 
@@ -29,5 +75,6 @@ export default function AddFinanceHooks() {
     handleSubmit,
     handleInputChange,
     data,
+    error,
   };
 }
