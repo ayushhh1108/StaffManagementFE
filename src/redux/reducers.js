@@ -11,6 +11,7 @@ import newslaterReducer from "../pages/NewsLattersPage/reducer";
 import jobApplicationsReducer from "../pages/JobApplicationlistPage/reducer";
 import dealinItemsPageReducer from "../pages/DealingItemPage/reducer";
 import serviceRequestReducer from "../pages/ServiceInquiryPage/reducer";
+import financeReducer from "../pages/FinancePage/reducer";
 
 const createReducer = () => {
   const rootReducer = combineReducers({
@@ -25,7 +26,8 @@ const createReducer = () => {
     newslaterReducer: newslaterReducer,
     jobApplicationsReducer: jobApplicationsReducer,
     dealinItemsPageReducer: dealinItemsPageReducer,
-    serviceRequestReducer: serviceRequestReducer
+    serviceRequestReducer: serviceRequestReducer,
+    financeReducer: financeReducer,
   });
   return rootReducer;
 };
