@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import { postAddAboutPage, postUpdateAboutPage } from "./action";
+import { isEvent, isEventBased } from "../../utils/helper";
 
 export default function AddAboutPageHooks() {
   const dispatch = useDispatch();
@@ -24,7 +25,7 @@ export default function AddAboutPageHooks() {
   }, []);
 
   const handleInputChange = (id, val) => {
-    const event = isEventBased(id) ? id : null;
+    const event = isEvent(id);
     const key = event ? event.target.id : id;
     let value = event ? event.target.value : val;
     const isUpload = key === "image";
@@ -35,7 +36,7 @@ export default function AddAboutPageHooks() {
     setData({ ...data, [key]: value });
   };
 
-  const isEventBased = (input) => !!input?.target?.id;
+
 
   const handleSubmit = () => {
     console.log("handleSubmit", data);

@@ -29,3 +29,13 @@ export const isNotthenSecondParameter = (first, second) => {
     return second;
   }
 };
+
+export const isEventBased = (input) => !!input?.target?.id;
+
+export const isEvent = (id) => (isEventBased(id) ? id : null);
+
+export const extractKeyValue = (input, id, val) => {
+  const key = isEventBased(input) ? input.target.id : id;
+  let value = isEventBased(input) ? input.target.value : val;
+  return { key, value };
+};
