@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
-import { postFinance } from "./action";
+import { postFinance, postUpdateFinance } from "./action";
 
 export default function AddFinanceHooks() {
   const dispatch = useDispatch();
@@ -67,7 +67,7 @@ export default function AddFinanceHooks() {
       });
       if (isEdit) {
         payload.append("_id", isEdit);
-        // dispatch(postUpdateAboutPage(payload, navigate));
+        dispatch(postUpdateFinance(payload, navigate));
       } else {
         dispatch(postFinance(payload, navigate));
       }

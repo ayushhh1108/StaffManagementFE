@@ -26,10 +26,10 @@ export const postFinance = (payload, navigate) => async (dispatch) => {
   }
 };
 
-export const updateFinance = (payload, navigate) => async (dispatch) => {
+export const postUpdateFinance = (payload, navigate) => async (dispatch) => {
   try {
     const response = await api.post(
-      apiEndPoints.postUpdateAboutpage(),
+      apiEndPoints.postUpdateFinance(),
       payload,
       {
         headers,

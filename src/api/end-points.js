@@ -38,4 +38,5 @@ export default {
   deleteServiceRequest: () => `service/deleteServicesEnquiry`,
   postFinancepage: () => `finance/createFinance`,
   getFinancepage: () => `finance/getFinanceList`,
+  postUpdateFinance: () => `finance/updateFinance`,
 };
