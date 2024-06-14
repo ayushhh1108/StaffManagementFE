@@ -12,9 +12,9 @@ export const HeaderData = [
     label: "Name",
   },
   {
-    id: "degination",
+    id: "designation",
     numeric: false,
-    label: "Degination",
+    label: "Designation",
   },
   {
     id: "description",

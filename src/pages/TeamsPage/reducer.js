@@ -6,7 +6,7 @@ const initialState = {
 
 const teamMembersReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "GET_DIRECTORS_DATA":
+    case "GET_TEAM_MEMBERS":
       return {
         ...state,
         teamMemberData: isNotthenSecondParameter(

@@ -1,12 +1,22 @@
 import React from "react";
 import "./index.scss";
 import TeamsHooks from "./TeamsHooks";
-import { Box, Container } from "@mui/material";
+import { Box } from "@mui/material";
 import EnhancedTable from "../../components/Table";
-import { HeaderData, TableData } from "./constant";
+import { HeaderData } from "./constant";
+import { loaderFunc } from "../../utils/helper";
+import DeleteDialog from "../../components/DeleteDialog";
 
 function TeamsPage() {
-  const { navigate } = TeamsHooks();
+  const {
+    navigate,
+    tableData,
+    handleEdit,
+    handleDelete,
+    open,
+    setOpen,
+    handleConfirmDelete,
+  } = TeamsHooks();
 
   return (
     <Box
@@ -22,26 +32,33 @@ function TeamsPage() {
         >
           Add Team Member
         </button>
-        <EnhancedTable
-          cellData={HeaderData}
-          isActionCol
-          rowItems={[
-            "no",
-            "name",
-            "degination",
-            "description",
-            "facebook",
-            "instagram",
-            "twitter",
-            "linkedin",
-            "status",
-          ]}
-          rowData={TableData?.map((item, index) => ({
-            ...item,
-            no: 1 + index,
-          }))}
-        />
+        {console.log("tableData", tableData)}
+        {loaderFunc(
+          tableData,
+          <EnhancedTable
+            cellData={HeaderData}
+            isActionCol
+            rowItems={[
+              "no",
+              "name",
+              "designation",
+              "description",
+              "facebook",
+              "instagram",
+              "twitter",
+              "linkedin",
+              "status",
+            ]}
+            rowData={tableData?.map((item, index) => ({
+              ...item,
+              no: 1 + index,
+            }))}
+            handleEditClick={handleEdit}
+            handleDeleteClick={handleDelete}
+          />
+        )}
       </div>
+      {DeleteDialog(open, setOpen, handleConfirmDelete)}
     </Box>
   );
 }
