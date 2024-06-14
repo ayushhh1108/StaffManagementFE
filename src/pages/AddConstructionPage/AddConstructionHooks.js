@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
-import { postConstructionProcess } from "./action";
+import { postConstructionProcess, updateConstructionProcess } from "./action";
 
 export default function AddConstructionHooks() {
   const dispatch = useDispatch();
@@ -59,7 +59,7 @@ export default function AddConstructionHooks() {
     if (isFormValid) {
       if (isEdit) {
         payload.append("_id", isEdit);
-        // dispatch(updateDirector(payload, navigate));
+        dispatch(updateConstructionProcess(payload, navigate));
       } else {
         console.log("handleSubmit", data);
         dispatch(postConstructionProcess(payload, navigate));
