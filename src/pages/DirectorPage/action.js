@@ -32,9 +32,9 @@ export const getDirectorsData = () => async (dispatch) => {
   }
 };
 
-export const deleteAboutpage = (payload, navigate) => async (dispatch) => {
+export const deleteDirector = (payload, navigate) => async (dispatch) => {
   try {
-    const response = await api.post(apiEndPoints.deleteAboutpage(), payload);
+    const response = await api.post(apiEndPoints.postDeleteDirector(), payload);
     if (response?.data) {
       toast.success(
         isNotthenSecondParameter(
@@ -42,6 +42,7 @@ export const deleteAboutpage = (payload, navigate) => async (dispatch) => {
           "Delete Data Successfull"
         )
       );
+      window.location.reload();
     } else if (response?.response?.data?.message) {
       toast.error(response?.response?.data?.message);
     }

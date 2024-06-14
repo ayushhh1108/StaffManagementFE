@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getDirectorsData } from "./action";
+import { deleteDirector, getDirectorsData } from "./action";
 
 export default function DirectorHooks() {
   const dispatch = useDispatch();
@@ -55,10 +55,10 @@ export default function DirectorHooks() {
     setOpen(true);
   };
 
-  const handleConfirmDelete = async () => {
+  const handleConfirmDelete = () => {
     console.log("handleDeletehandleDelete", deleteId);
-    // await dispatch(deleteAboutpage({ _id: deleteId }, navigate));
-    await setOpen(false);
+    dispatch(deleteDirector({ _id: deleteId }, navigate));
+    setOpen(false);
     // await dispatch(getDirectorsData());
   };
 

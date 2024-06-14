@@ -45,4 +45,5 @@ export default {
   postDirector: () => `ourteam/createDirector`,
   getDirectorsData: () => `ourteam/getDirectorList`,
   postUpdateDirector: () => `ourteam/updateDirector`,
+  postDeleteDirector: () => `ourteam/deleteDirector`,
 };
