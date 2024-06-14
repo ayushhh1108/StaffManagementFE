@@ -14,6 +14,7 @@ import serviceRequestReducer from "../pages/ServiceInquiryPage/reducer";
 import financeReducer from "../pages/FinancePage/reducer";
 import socialReducer from "../pages/SocialMediaPage/reducer";
 import directorPageReducer from "../pages/DirectorPage/reducer";
+import constructionPageReducer from "../pages/ConstructionPage/reducer";
 
 const createReducer = () => {
   const rootReducer = combineReducers({
@@ -32,6 +33,7 @@ const createReducer = () => {
     financeReducer: financeReducer,
     socialReducer: socialReducer,
     directorPageReducer: directorPageReducer,
+    constructionPageReducer: constructionPageReducer,
   });
   return rootReducer;
 };
