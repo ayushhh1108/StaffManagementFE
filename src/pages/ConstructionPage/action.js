@@ -32,23 +32,27 @@ export const getConstructionProcess = () => async (dispatch) => {
   }
 };
 
-export const deleteDirector = (payload, navigate) => async (dispatch) => {
-  try {
-    const response = await api.post(apiEndPoints.postDeleteDirector(), payload);
-    if (response?.data) {
-      toast.success(
-        isNotthenSecondParameter(
-          response?.data?.message,
-          "Delete Data Successfull"
-        )
+export const deleteConstructionProcess =
+  (payload, navigate) => async (dispatch) => {
+    try {
+      const response = await api.post(
+        apiEndPoints.deleteConstructionProcess(),
+        payload
       );
-      window.location.reload();
-    } else if (response?.response?.data?.message) {
-      toast.error(response?.response?.data?.message);
+      if (response?.data) {
+        toast.success(
+          isNotthenSecondParameter(
+            response?.data?.message,
+            "Delete Data Successfull"
+          )
+        );
+        window.location.reload();
+      } else if (response?.response?.data?.message) {
+        toast.error(response?.response?.data?.message);
+      }
+      console.log("response", response);
+    } catch (error) {
+      const { response: { data = {} } = {} } = error;
+      return data;
     }
-    console.log("response", response);
-  } catch (error) {
-    const { response: { data = {} } = {} } = error;
-    return data;
-  }
-};
+  };

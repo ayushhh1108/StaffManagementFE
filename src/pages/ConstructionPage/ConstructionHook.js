@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { getConstructionProcess } from "./action";
+import { deleteConstructionProcess, getConstructionProcess } from "./action";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function ConstructionHook() {
@@ -41,9 +41,8 @@ export default function ConstructionHook() {
 
   const handleConfirmDelete = () => {
     console.log("handleDeletehandleDelete", deleteId);
-    // dispatch(deleteDirector({ _id: deleteId }, navigate));
+    dispatch(deleteConstructionProcess({ _id: deleteId }, navigate));
     setOpen(false);
-    // await dispatch(getDirectorsData());
   };
 
   return {
