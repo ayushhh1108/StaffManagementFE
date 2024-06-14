@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
-import { postAddDirector } from "./action";
+import { postAddDirector, updateDirector } from "./action";
 
 export default function AddDirectorHooks() {
   const dispatch = useDispatch();
@@ -9,8 +9,9 @@ export default function AddDirectorHooks() {
   const editData = location?.state;
   const [data, setData] = useState({
     ...editData,
-    image: editData?.image?.[0]?.path,
+    image: editData?.image?.[0]?.image?.[0]?.path,
   });
+  console.log("editData", editData);
   const [error, setError] = useState();
   const [isEdit, setIsEdit] = useState(location?.state?._id);
   const navigate = useNavigate();
@@ -57,7 +58,7 @@ export default function AddDirectorHooks() {
     if (isFormValid) {
       if (isEdit) {
         payload.append("_id", isEdit);
-        // dispatch(postUpdateAboutPage(payload, navigate));
+        dispatch(updateDirector(payload, navigate));
       } else {
         console.log("handleSubmit", data);
         dispatch(postAddDirector(payload, navigate));

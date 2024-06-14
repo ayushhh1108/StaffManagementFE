@@ -44,4 +44,5 @@ export default {
   getSocialMedia: () => `home/getSocialMedia`,
   postDirector: () => `ourteam/createDirector`,
   getDirectorsData: () => `ourteam/getDirectorList`,
+  postUpdateDirector: () => `ourteam/updateDirector`,
 };

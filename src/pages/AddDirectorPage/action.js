@@ -26,10 +26,10 @@ export const postAddDirector = (payload, navigate) => async (dispatch) => {
   }
 };
 
-export const postUpdateAboutPage = (payload, navigate) => async (dispatch) => {
+export const updateDirector = (payload, navigate) => async (dispatch) => {
   try {
     const response = await api.post(
-      apiEndPoints.postUpdateAboutpage(),
+      apiEndPoints.postUpdateDirector(),
       payload,
       {
         headers,
