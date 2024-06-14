@@ -46,4 +46,8 @@ export default {
   getDirectorsData: () => `ourteam/getDirectorList`,
   postUpdateDirector: () => `ourteam/updateDirector`,
   postDeleteDirector: () => `ourteam/deleteDirector`,
+  getConstructionProcess: () => `construction/getAllActiveConstructionProcess`,
+  postConstructionProcess: () => `construction/createConstructionProcess`,
+  updateConstructionProcess: () => `construction/updateConstructionProcess`,
+  deleteConstructionProcess: () => `construction/deleteConstructionProcess`,
 };
