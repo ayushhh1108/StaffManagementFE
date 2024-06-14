@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import { postAddAboutPage, postUpdateAboutPage } from "./action";
-import { isEvent, isEventBased } from "../../utils/helper";
+import { isEvent } from "../../utils/helper";
 
 export default function AddAboutPageHooks() {
   const dispatch = useDispatch();

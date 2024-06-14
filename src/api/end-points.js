@@ -42,4 +42,5 @@ export default {
   deleteFinance: () => `finance/deleteFinanceData`,
   updateSocialMedia: () => `home/updateSocialMedia`,
   getSocialMedia: () => `home/getSocialMedia`,
+  postDirector: () => `ourteam/createDirector`,
 };

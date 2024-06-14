@@ -8,8 +8,7 @@ import Dropzone from "../../components/DropZone";
 import TextInput from "../../components/TextInput";
 
 function AddDirectorPage() {
-  const { navigate, handleSubmit, handleInputChange, data } =
-    AddDirectorHooks();
+  const { handleSubmit, handleInputChange, data, error } = AddDirectorHooks();
 
   return (
     <Box component="main" sx={{ flexGrow: 1, p: 3, mt: 8, maxWidth: "100%" }}>
@@ -18,24 +17,27 @@ function AddDirectorPage() {
           Add Director{" "}
         </Typography>
         <TextInput
-          label={"Title"}
+          label={"Name"}
           isRequire
-          id={"title"}
+          id={"name"}
           handleChanges={handleInputChange}
-          value={data?.title}
+          value={data?.name}
+          isError={error?.name}
         />
         <TextInput
           label={"Short Description"}
           isRequire
-          id={"short_description"}
+          id={"shortDescription"}
           handleChanges={handleInputChange}
-          value={data?.short_description}
+          value={data?.shortDescription}
+          isError={error?.shortDescription}
         />
         <TextInput
           label={"Designation"}
           id={"designation"}
           handleChanges={handleInputChange}
           value={data?.designation}
+          isError={error?.designation}
         />
         <TextInput
           label={"Facebook"}
@@ -43,13 +45,15 @@ function AddDirectorPage() {
           id={"facebook"}
           handleChanges={handleInputChange}
           value={data?.facebook}
+          isError={error?.facebook}
         />
         <TextInput
-          label={"Twiter"}
+          label={"Twitter"}
           isRequire
-          id={"twiter"}
+          id={"twitter"}
           handleChanges={handleInputChange}
-          value={data?.twiter}
+          value={data?.twitter}
+          isError={error?.twitter}
         />
         <TextInput
           label={"Instagram"}
@@ -57,6 +61,7 @@ function AddDirectorPage() {
           id={"instagram"}
           handleChanges={handleInputChange}
           value={data?.instagram}
+          isError={error?.instagram}
         />
         <TextInput
           label={"Linkedin"}
@@ -64,18 +69,29 @@ function AddDirectorPage() {
           id={"linkedin"}
           handleChanges={handleInputChange}
           value={data?.linkedin}
+          isError={error?.linkedin}
         />
         <div className="add-menu-input w-1/2 mb-5">
+          <label
+            for="first_name"
+            className={
+              error?.description
+                ? "block mb-2 text-sm font-medium text-[red]"
+                : "block mb-2 text-sm font-medium text-gray-900"
+            }
+          >
+            Description
+          </label>
           <CKEditor
             editor={ClassicEditor}
-            data={data?.editor_desc}
+            data={data?.description}
             onReady={(editor) => {
               // You can store the "editor" and use when it is needed.
               console.log("Editor is ready to use!", editor);
             }}
             onChange={(event, editor) => {
               handleInputChange({
-                target: { value: editor?.getData(), id: "editor_desc" },
+                target: { value: editor?.getData(), id: "description" },
               });
             }}
             onBlur={(event, editor) => {
@@ -87,7 +103,13 @@ function AddDirectorPage() {
           />
         </div>
         <div className="upload-file-div mb-6 flex justify-between">
-          <Dropzone title={"Image"} id="image" onChanges={handleInputChange} />
+          <Dropzone
+            title={"Image"}
+            id="image"
+            onChanges={handleInputChange}
+            isError={error?.image}
+            selectedImg={data?.image}
+          />
         </div>
 
         <button
