@@ -50,4 +50,8 @@ export default {
   postConstructionProcess: () => `construction/createConstructionProcess`,
   updateConstructionProcess: () => `construction/updateConstructionProcess`,
   deleteConstructionProcess: () => `construction/deleteConstructionProcess`,
+  postTeamMember: () => `ourteam/createTeamMember`,
+  getTeamMember: () => `ourteam/getTeamList`,
+  updateTeamMember: () => `ourteam/updateTeamMember`,
+  deleteTeamMember: () => `ourteam/deleteTeamMember`,
 };
