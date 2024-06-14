@@ -25,6 +25,9 @@ export default function AddDirectorHooks() {
     let value = event ? event.target.value : val;
     const isUpload = key === "image";
     value = isUpload && event ? event.target.files[0] : value;
+    const updatedError = { ...error };
+    delete updatedError[key];
+    setError(updatedError);
     setData({ ...data, [key]: value });
   };
 
