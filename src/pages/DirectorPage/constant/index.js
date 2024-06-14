@@ -12,9 +12,9 @@ export const HeaderData = [
     label: "Name",
   },
   {
-    id: "degination",
+    id: "designation",
     numeric: false,
-    label: "Degination",
+    label: "Designation",
   },
   {
     id: "description",
@@ -55,8 +55,8 @@ export const HeaderData = [
 
 export const TableData = [
   {
-    degination: "ABC",
     name: "left",
+    degination: "ABC",
     experiance: "3+",
     description: "description",
     facebook: "rajsthan",

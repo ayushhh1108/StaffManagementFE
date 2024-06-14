@@ -3,10 +3,20 @@ import "./index.scss";
 import DirectorHooks from "./DirectorHooks";
 import { Box } from "@mui/material";
 import EnhancedTable from "../../components/Table";
-import { HeaderData, TableData } from "./constant";
+import { HeaderData } from "./constant";
+import { loaderFunc } from "../../utils/helper";
+import DeleteDialog from "../../components/DeleteDialog";
 
 function DirectorPage() {
-  const { navigate } = DirectorHooks();
+  const {
+    navigate,
+    tableData,
+    handleEdit,
+    handleDelete,
+    open,
+    setOpen,
+    handleConfirmDelete,
+  } = DirectorHooks();
 
   return (
     <Box
@@ -17,28 +27,37 @@ function DirectorPage() {
       <div className="pt-[60px] menu-list-container text-left">
         <button
           type="button"
-          onClick={()=>navigate("/add-director")}
+          onClick={() => navigate("/add-director")}
           className="text-white bg-[#1e6c89] hover:bg-[#164e63] font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-3"
         >
           Add Director
         </button>
-        <EnhancedTable
-          cellData={HeaderData}
-          isActionCol
-          rowItems={[
-            "no",
-            "name",
-            "degination",
-            "description",
-            "facebook",
-            "instagram",
-            "twitter",
-            "linkedin",
-            "status",
-          ]}
-          rowData={TableData?.map((item, index) => ({ ...item, no: 1 + index }))}
-        />
+        {loaderFunc(
+          tableData,
+          <EnhancedTable
+            cellData={HeaderData}
+            isActionCol
+            rowItems={[
+              "no",
+              "name",
+              "designation",
+              "description",
+              "facebook",
+              "instagram",
+              "twitter",
+              "linkedin",
+              "status",
+            ]}
+            rowData={tableData?.map((item, index) => ({
+              ...item,
+              no: 1 + index,
+            }))}
+            handleEditClick={handleEdit}
+            handleDeleteClick={handleDelete}
+          />
+        )}
       </div>
+      {DeleteDialog(open, setOpen, handleConfirmDelete)}
     </Box>
   );
 }
