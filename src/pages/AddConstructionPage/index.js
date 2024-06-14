@@ -9,7 +9,7 @@ import TextInput from "../../components/TextInput";
 import SelectInput from "../../components/SelectInput";
 
 function AddConstructionPage() {
-  const { navigate, handleSubmit, handleInputChange, data } =
+  const { navigate, handleSubmit, handleInputChange, data, error } =
     AddConstructionHooks();
 
   return (
@@ -24,50 +24,65 @@ function AddConstructionPage() {
           id={"title"}
           handleChanges={handleInputChange}
           value={data?.title}
+          isError={error?.title}
         />
         <TextInput
           label={"Meta Title "}
           isRequire
-          id={"meta_title"}
+          id={"metaTitle"}
           handleChanges={handleInputChange}
-          value={data?.meta_title}
+          value={data?.metaTitle}
+          isError={error?.metaTitle}
         />
         <TextInput
           label={"Meta Keywords "}
           isRequire
-          id={"meta_keywords"}
+          id={"metaKeywords"}
           handleChanges={handleInputChange}
-          value={data?.meta_keywords}
+          value={data?.metaKeywords}
+          isError={error?.metaKeywords}
         />
         <TextInput
           label={"Meta Description "}
           isRequire
-          id={"meta_description"}
+          id={"metaDescription"}
           handleChanges={handleInputChange}
-          value={data?.meta_description}
+          value={data?.metaDescription}
+          isError={error?.metaDescription}
         />
         <SelectInput
           label={"Image Position"}
           isRequire
-          id={"position"}
+          id={"imagePosition"}
           handleChange={handleInputChange}
-          value={data?.position}
+          value={data?.imagePosition}
           options={[
             { label: "Left", value: "left" },
             { label: "Right", value: "right" },
           ]}
+          isError={error?.imagePosition}
         />
         <div className="add-menu-input w-1/2 mb-5">
+          <label
+            for="first_name"
+            className={
+              error?.description
+                ? "block mb-2 text-sm font-medium text-[red]"
+                : "block mb-2 text-sm font-medium text-gray-900"
+            }
+          >
+            Description
+          </label>
           <CKEditor
             editor={ClassicEditor}
-            data={data?.editor_desc}
+            data={data?.description}
             onReady={(editor) => {
               // You can store the "editor" and use when it is needed.
               console.log("Editor is ready to use!", editor);
             }}
             onChange={(event, editor) => {
               handleInputChange({
-                target: { value: editor?.getData(), id: "editor_desc" },
+                target: { value: editor?.getData(), id: "description" },
               });
             }}
             onBlur={(event, editor) => {
@@ -81,8 +96,10 @@ function AddConstructionPage() {
         <div className="upload-file-div mb-6 flex justify-between">
           <Dropzone
             title={"Upload Image"}
-            id="upload_image"
+            id="image"
             onChanges={handleInputChange}
+            isError={error?.image}
+            selectedImg={data?.image}
           />
         </div>
 

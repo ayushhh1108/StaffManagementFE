@@ -10,10 +10,12 @@ export default function AboutPageHooks() {
   const [deleteId, setDeleteId] = useState();
   const [open, setOpen] = useState(false);
   const StoreData = useSelector((state) => state?.aboutPageReducer);
+  
   useEffect(() => {
     dispatch(getAllAboutPageData());
     window.scrollTo(0, 0);
   }, []);
+
   useEffect(() => {
     const td = StoreData?.aboutPageData?.map(
       ({ title, metaTitle, metaDescription, _id, imagePosition }) => ({
