@@ -88,25 +88,25 @@ export const sidebaarRoutes = [
         icon: <FaChartBar className="side-baar-icon" />,
         pathname: "/",
       },
-      {
-        title: "Menu",
-        icon: <BsMenuButtonWideFill className="side-baar-icon" />,
-        pathname: "/menu",
-        isSub: false,
-        arrow: <FaAngleDown />,
-        subMenu: [
-          {
-            title: "Add Menu",
-            icon: <BsMenuButtonFill className="side-baar-icon" />,
-            pathname: "/add-menu",
-          },
-          {
-            title: "Menu List",
-            icon: <BsMenuAppFill className="side-baar-icon" />,
-            pathname: "/menu-list",
-          },
-        ],
-      },
+      // {
+      //   title: "Menu",
+      //   icon: <BsMenuButtonWideFill className="side-baar-icon" />,
+      //   pathname: "/menu",
+      //   isSub: false,
+      //   arrow: <FaAngleDown />,
+      //   subMenu: [
+      //     {
+      //       title: "Add Menu",
+      //       icon: <BsMenuButtonFill className="side-baar-icon" />,
+      //       pathname: "/add-menu",
+      //     },
+      //     {
+      //       title: "Menu List",
+      //       icon: <BsMenuAppFill className="side-baar-icon" />,
+      //       pathname: "/menu-list",
+      //     },
+      //   ],
+      // },
       {
         title: "Blog",
         icon: <FaBlog className="side-baar-icon" />,
