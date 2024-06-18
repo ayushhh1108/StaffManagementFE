@@ -3,10 +3,11 @@ import "./index.scss";
 import ContactUsPageHooks from "./ContactUsPageHooks";
 import { Box, Container } from "@mui/material";
 import EnhancedTable from "../../components/Table";
-import { HeaderData, TableData } from "./constant";
+import { HeaderData } from "./constant";
+import { loaderFunc } from "../../utils/helper";
 
 function ContactUsPage() {
-  const { navigate } = ContactUsPageHooks();
+  const { navigate, tableData } = ContactUsPageHooks();
 
   return (
     <Box
@@ -15,24 +16,27 @@ function ContactUsPage() {
       sx={{ flexGrow: 1, p: 3, mt: 8 }}
     >
       <Container className="pt-[60px] menu-list-container text-left">
-        <EnhancedTable
-          cellData={HeaderData}
-          isActionCol={false}
-          rowItems={[
-            "no",
-            "name",
-            "email",
-            "phone",
-            "subject",
-            "message",
-            "status",
-            "action",
-          ]}
-          rowData={TableData?.map((item, index) => ({
-            ...item,
-            no: 1 + index,
-          }))}
-        />
+        {loaderFunc(
+          tableData,
+          <EnhancedTable
+            cellData={HeaderData}
+            isActionCol={false}
+            rowItems={[
+              "no",
+              "name",
+              "email",
+              "phone",
+              "subject",
+              "message",
+              "status",
+              "action",
+            ]}
+            rowData={tableData?.map((item, index) => ({
+              ...item,
+              no: 1 + index,
+            }))}
+          />
+        )}
       </Container>
     </Box>
   );
