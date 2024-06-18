@@ -3,17 +3,13 @@ import "./index.scss";
 import AccountPageHooks from "./AccountPageHooks";
 import { Box, Container, Typography } from "@mui/material";
 import acImage from "../../assets/images/ac-image.png";
-import {
-  FaFacebookF,
-  FaInstagram,
-  FaLocationArrow,
-} from "react-icons/fa";
+import { FaFacebookF, FaInstagram, FaLocationArrow } from "react-icons/fa";
 import { MdAttachEmail } from "react-icons/md";
 import { IoCallSharp } from "react-icons/io5";
 import { FaXTwitter } from "react-icons/fa6";
 
 function AccountPage() {
-  const { navigate } = AccountPageHooks();
+  const { user } = AccountPageHooks();
 
   return (
     <Box
@@ -28,10 +24,10 @@ function AccountPage() {
               <img src={acImage} alt="home" className="profile-image" />
               <Box className="feedback-description">
                 <Typography variant="h6" className="name">
-                  Vishal
+                  {`${user?.firstName} ${user?.lastName}`}
                 </Typography>
                 <Typography variant="p" className="position">
-                  Managing Director
+                  {user?.role?.[0]?.name}
                 </Typography>
               </Box>
             </Box>
@@ -45,11 +41,11 @@ function AccountPage() {
             <Box className="w-[25%] account-details-box md:w-[50%] lg:w-[35%] xl:w-[25%] flex flex-wrap flex-col">
               <Box className="d-flex icons-box">
                 <MdAttachEmail color="#687693" className="me-1" size={20} />
-                <span className="feature-number">vishal@gmail.com</span>
+                <span className="feature-number">{user?.email}</span>
               </Box>
               <Box className="d-flex icons-box">
                 <IoCallSharp color="#687693" className="me-1" size={19} />
-                <span className="feature-number">+91 123-4567-890</span>
+                <span className="feature-number">{user?.mobile}</span>
               </Box>
               <Box className="d-flex icons-box">
                 <FaLocationArrow color="#687693" className="me-1" size={19} />
