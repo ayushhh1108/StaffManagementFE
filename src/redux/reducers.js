@@ -17,6 +17,7 @@ import directorPageReducer from "../pages/DirectorPage/reducer";
 import constructionPageReducer from "../pages/ConstructionPage/reducer";
 import teamMembersReducer from "../pages/TeamsPage/reducer";
 import contactUsPageReducer from "../pages/ContactUsPage/reducer";
+import siteVisitPageReducer from "../pages/SiteVisitPage/reducer";
 
 const createReducer = () => {
   const rootReducer = combineReducers({
@@ -38,6 +39,7 @@ const createReducer = () => {
     constructionPageReducer: constructionPageReducer,
     teamMembersReducer: teamMembersReducer,
     contactUsPageReducer: contactUsPageReducer,
+    siteVisitPageReducer: siteVisitPageReducer,
   });
   return rootReducer;
 };
