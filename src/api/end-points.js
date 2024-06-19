@@ -56,4 +56,5 @@ export default {
   deleteTeamMember: () => `ourteam/deleteTeamMember`,
   getContactUs: () => `contactus/getContactUsList`,
   getSiteVisits: () => `sitevisit/getAllSiteVisitList`,
+  getInquiriesdata: () => `enquiry/getAllEnquiryList`,
 };
