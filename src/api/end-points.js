@@ -57,4 +57,5 @@ export default {
   getContactUs: () => `contactus/getContactUsList`,
   getSiteVisits: () => `sitevisit/getAllSiteVisitList`,
   getInquiriesdata: () => `enquiry/getAllEnquiryList`,
+  getCallbackdata: () => `callBack/getAllCallbackList`,
 };
