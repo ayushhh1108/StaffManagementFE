@@ -4,11 +4,11 @@ import { useNavigate } from "react-router-dom";
 import { deleteDirector, getDirectorsData } from "./action";
 
 export default function DirectorHooks() {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [tableData, setTableData] = useState();
   const [deleteId, setDeleteId] = useState();
   const [open, setOpen] = useState(false);
+  const dispatch = useDispatch();
   const StoreData = useSelector((state) => state?.directorPageReducer);
 
   useEffect(() => {

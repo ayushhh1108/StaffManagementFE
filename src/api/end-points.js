@@ -58,4 +58,5 @@ export default {
   getSiteVisits: () => `sitevisit/getAllSiteVisitList`,
   getInquiriesdata: () => `enquiry/getAllEnquiryList`,
   getCallbackdata: () => `callBack/getAllCallbackList`,
+  getSiteAddress: () => `home/getFooterAddress`,
 };

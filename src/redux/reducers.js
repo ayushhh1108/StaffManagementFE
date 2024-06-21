@@ -20,6 +20,7 @@ import contactUsPageReducer from "../pages/ContactUsPage/reducer";
 import siteVisitPageReducer from "../pages/SiteVisitPage/reducer";
 import inquiryPageReducer from "../pages/InquiryListPage/reducer";
 import callbackPageReducer from "../pages/CallbackPage/reducer";
+import siteAddressReducer from "../pages/SiteAddressPage/reducer";
 
 const createReducer = () => {
   const rootReducer = combineReducers({
@@ -44,6 +45,7 @@ const createReducer = () => {
     siteVisitPageReducer: siteVisitPageReducer,
     inquiryPageReducer: inquiryPageReducer,
     callbackPageReducer: callbackPageReducer,
+    siteAddressReducer: siteAddressReducer,
   });
   return rootReducer;
 };
