@@ -4,7 +4,6 @@ import { api, apiEndPoints } from "../../api";
 export const GET_SITE_ADDRESS_LINKS = `GET_SITE_ADDRESS_LINKS`;
 
 const getsiteAddressSuccess = (payload) => {
-  console.log("payload", payload);
   return {
     type: GET_SITE_ADDRESS_LINKS,
     payload: payload,
