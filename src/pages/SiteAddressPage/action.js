@@ -11,11 +11,11 @@ const getsiteAddressSuccess = (payload) => {
   };
 };
 
-export const updateSocialLinks = (payload, navigate) => async (dispatch) => {
+export const updateSiteAddress = (payload, navigate) => async (dispatch) => {
   try {
-    const response = await api.post(apiEndPoints.updateSocialMedia(), payload);
+    console.log("updateSiteAddress", payload);
+    const response = await api.post(apiEndPoints.updateSiteAddress(), payload);
     if (response?.data) {
-      await toast.success(response?.data?.message);
       await getSiteAddress();
     } else if (response?.response?.data?.message) {
       toast.error(response?.response?.data?.message);

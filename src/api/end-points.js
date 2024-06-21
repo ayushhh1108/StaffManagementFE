@@ -59,4 +59,5 @@ export default {
   getInquiriesdata: () => `enquiry/getAllEnquiryList`,
   getCallbackdata: () => `callBack/getAllCallbackList`,
   getSiteAddress: () => `home/getFooterAddress`,
+  updateSiteAddress: () => `home/updateVishalAddress`,
 };

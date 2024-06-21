@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getSiteAddress } from "./action";
+import { getSiteAddress, updateSiteAddress } from "./action";
 
 export default function SiteAddressHooks() {
   const dispatch = useDispatch();
@@ -21,6 +21,9 @@ export default function SiteAddressHooks() {
     let value = event ? event.target.value : val;
     const isUpload = key === "upload_image";
     value = isUpload && event ? event.target.files[0] : value;
+    const updatedError = { ...error };
+    delete updatedError[key];
+    setError(updatedError);
     setData({ ...data, [key]: value });
   };
 
@@ -31,7 +34,37 @@ export default function SiteAddressHooks() {
   }, [storeData]);
 
   const handleSubmit = () => {
-    // dispatch(loginSubmit(creds,navigate))
+    const requiredFields = [
+      "address",
+      "city",
+      "state",
+      "pinCode",
+      "mobile",
+      "email",
+      "timing",
+    ];
+    let error = {};
+    let isFormValid = true;
+
+    requiredFields.forEach((field) => {
+      if (!data?.[field]) {
+        error[field] = true;
+        isFormValid = false;
+      }
+    });
+
+    if (isFormValid) {
+      const { address, city, state, pinCode, mobile, email, timing, _id } =
+        data;
+      dispatch(
+        updateSiteAddress(
+          { address, city, state, pinCode, mobile, email, timing, _id },
+          navigate
+        )
+      );
+    } else {
+      setError(error);
+    }
   };
 
   return {
