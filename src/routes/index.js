@@ -130,7 +130,7 @@ const AppRoutes = () => {
     { path: '/team-list', element: <ProtectedRoute><TeamsPage /></ProtectedRoute> }, // Protected route
     { path: '/invest-list', element: <ProtectedRoute><InvestWithUsListPage /></ProtectedRoute> }, // Protected route
     { path: '/cms-list', element: <ProtectedRoute><CMSListPage /></ProtectedRoute> }, // Protected route
-    { path: '/lagacy', element: <ProtectedRoute><LegacyPage /></ProtectedRoute> }, // Protected route
+    { path: '/legacy', element: <ProtectedRoute><LegacyPage /></ProtectedRoute> }, // Protected route
   ]);
 
   const isLoginSignup =

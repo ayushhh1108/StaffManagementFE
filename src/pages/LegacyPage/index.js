@@ -11,7 +11,7 @@ function LegacyPage() {
     <Box component="main" sx={{ flexGrow: 1, p: 3, mt: 8, maxWidth: "100%" }}>
       <div className="container add-menu-form text-left my-5">
         <Typography variant="h5" className="mb-5 form-label">
-          Add Address{" "}
+          Legacy Section{" "}
         </Typography>
         <TextInput
           label={"Address"}
