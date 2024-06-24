@@ -1,21 +1,27 @@
 import { toast } from "react-toastify";
 import { api, apiEndPoints } from "../../api";
 
-export const GET_SITE_ADDRESS_LINKS = `GET_SITE_ADDRESS_LINKS`;
+export const GET_LEGACY_DATA = `GET_LEGACY_DATA`;
 
-const getsiteAddressSuccess = (payload) => {
+const getLegacyDataSuccess = (payload) => {
   return {
-    type: GET_SITE_ADDRESS_LINKS,
+    type: GET_LEGACY_DATA,
     payload: payload,
   };
 };
 
-export const updateSiteAddress = (payload, navigate) => async (dispatch) => {
+const headers = {
+  "Content-Type": "multipart/form-data", // Modify this line
+};
+
+export const updateLegacyData = (payload, navigate) => async (dispatch) => {
   try {
-    console.log("updateSiteAddress", payload);
-    const response = await api.post(apiEndPoints.updateSiteAddress(), payload);
+    console.log("updateLegacyData", payload);
+    const response = await api.post(apiEndPoints.updateLegacyData(), payload, {
+      headers,
+    });
     if (response?.data) {
-      await getSiteAddress();
+      await getLegacyData();
     } else if (response?.response?.data?.message) {
       toast.error(response?.response?.data?.message);
     }
@@ -25,12 +31,12 @@ export const updateSiteAddress = (payload, navigate) => async (dispatch) => {
   }
 };
 
-export const getSiteAddress = () => async (dispatch) => {
+export const getLegacyData = () => async (dispatch) => {
   try {
-    const response = await api.get(apiEndPoints.getSiteAddress());
+    const response = await api.get(apiEndPoints.getLegacyData());
     if (response?.data) {
       toast.success(response?.data?.message);
-      dispatch(getsiteAddressSuccess(response));
+      dispatch(getLegacyDataSuccess(response));
     } else if (response?.response?.data?.message) {
       toast.error(response?.response?.data?.message);
     }

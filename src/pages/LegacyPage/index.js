@@ -3,6 +3,7 @@ import "./index.scss";
 import { Box, Typography } from "@mui/material";
 import TextInput from "../../components/TextInput";
 import LegacyPageHooks from "./LegacyPageHooks";
+import Dropzone from "../../components/DropZone";
 
 function LegacyPage() {
   const { handleSubmit, handleInputChange, data, error } = LegacyPageHooks();
@@ -14,62 +15,50 @@ function LegacyPage() {
           Legacy Section{" "}
         </Typography>
         <TextInput
-          label={"Address"}
+          label={"No Of Clients"}
           isRequire
-          id={"address"}
+          id={"clients"}
           handleChanges={handleInputChange}
-          value={data?.address}
-          isError={error?.address}
+          value={data?.clients}
+          isError={error?.clients}
+          isNumber={true}
         />
         <TextInput
-          label={"City"}
+          label={"No Of Years"}
           isRequire
-          id={"city"}
+          id={"years"}
           handleChanges={handleInputChange}
-          value={data?.city}
-          isError={error?.city}
+          value={data?.years}
+          isError={error?.years}
+          isNumber={true}
         />
         <TextInput
-          label={"State"}
+          label={"No Of Projects"}
           isRequire
-          id={"state"}
+          id={"projects"}
           handleChanges={handleInputChange}
-          value={data?.state}
-          isError={error?.state}
-        />
-        <TextInput
-          label={"Pincode"}
-          isRequire
-          id={"pinCode"}
-          handleChanges={handleInputChange}
-          value={data?.pinCode}
-          isError={error?.pinCode}
-        />
-        <TextInput
-          label={"Mobile"}
-          isRequire
-          id={"mobile"}
-          handleChanges={handleInputChange}
-          value={data?.mobile}
-          isError={error?.mobile}
-        />
-        <TextInput
-          label={"Email"}
-          isRequire
-          id={"email"}
-          handleChanges={handleInputChange}
-          value={data?.email}
-          isError={error?.email}
-        />
-        <TextInput
-          label={"Timing"}
-          isRequire
-          id={"timing"}
-          handleChanges={handleInputChange}
-          value={data?.timing}
-          isError={error?.timing}
+          value={data?.projects}
+          isError={error?.projects}
+          isNumber={true}
         />
 
+        <TextInput
+          label={"Short Description"}
+          isRequire
+          id={"shortDescription"}
+          handleChanges={handleInputChange}
+          value={data?.shortDescription}
+          isError={error?.shortDescription}
+        />
+        <div className="upload-file-div mb-6 flex justify-between">
+          <Dropzone
+            title={"Background Image"}
+            id="backgroundImage"
+            onChanges={handleInputChange}
+            isError={error?.backgroundImage}
+            selectedImg={data?.backgroundImage}
+          />
+        </div>
         <button
           type="button"
           onClick={handleSubmit}

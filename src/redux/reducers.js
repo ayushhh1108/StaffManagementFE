@@ -21,6 +21,7 @@ import siteVisitPageReducer from "../pages/SiteVisitPage/reducer";
 import inquiryPageReducer from "../pages/InquiryListPage/reducer";
 import callbackPageReducer from "../pages/CallbackPage/reducer";
 import siteAddressReducer from "../pages/SiteAddressPage/reducer";
+import legacyDataReducer from "../pages/LegacyPage/reducer";
 
 const createReducer = () => {
   const rootReducer = combineReducers({
@@ -46,6 +47,7 @@ const createReducer = () => {
     inquiryPageReducer: inquiryPageReducer,
     callbackPageReducer: callbackPageReducer,
     siteAddressReducer: siteAddressReducer,
+    legacyDataReducer: legacyDataReducer,
   });
   return rootReducer;
 };

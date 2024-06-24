@@ -60,4 +60,6 @@ export default {
   getCallbackdata: () => `callBack/getAllCallbackList`,
   getSiteAddress: () => `home/getFooterAddress`,
   updateSiteAddress: () => `home/updateVishalAddress`,
+  updateLegacyData: () => `home/updateMovingBanner`,
+  getLegacyData: () => `home/movingBanner`,
 };
