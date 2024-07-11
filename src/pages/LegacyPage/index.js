@@ -23,6 +23,16 @@ function LegacyPage() {
           isError={error?.clients}
           isNumber={true}
         />
+
+        <TextInput
+          label={"Client Description"}
+          isRequire
+          id={"clientDescription"}
+          handleChanges={handleInputChange}
+          value={data?.clientDescription}
+          isError={error?.clientDescription}
+        />
+
         <TextInput
           label={"No Of Years"}
           isRequire
@@ -32,6 +42,16 @@ function LegacyPage() {
           isError={error?.years}
           isNumber={true}
         />
+
+        <TextInput
+          label={"Year Description"}
+          isRequire
+          id={"yearDescription"}
+          handleChanges={handleInputChange}
+          value={data?.yearDescription}
+          isError={error?.yearDescription}
+        />
+
         <TextInput
           label={"No Of Projects"}
           isRequire
@@ -43,6 +63,15 @@ function LegacyPage() {
         />
 
         <TextInput
+          label={"Projects Description"}
+          isRequire
+          id={"projectDescription"}
+          handleChanges={handleInputChange}
+          value={data?.projectDescription}
+          isError={error?.projectDescription}
+        />
+
+        <TextInput
           label={"Short Description"}
           isRequire
           id={"shortDescription"}
@@ -50,13 +79,30 @@ function LegacyPage() {
           value={data?.shortDescription}
           isError={error?.shortDescription}
         />
+
+        <TextInput
+          label={"Description"}
+          isRequire
+          id={"description"}
+          handleChanges={handleInputChange}
+          value={data?.description}
+          isError={error?.description}
+        />
+
         <div className="upload-file-div mb-6 flex justify-between">
           <Dropzone
-            title={"Background Image"}
-            id="backgroundImage"
+            title={"Landscape Image"}
+            id="landscapeImage"
             onChanges={handleInputChange}
-            isError={error?.backgroundImage}
-            selectedImg={data?.backgroundImage}
+            isError={error?.landscapeImage}
+            selectedImg={data?.landscapeImage}
+          />
+          <Dropzone
+            title={"Portrait Image"}
+            id="portraitImage"
+            onChanges={handleInputChange}
+            isError={error?.portraitImage}
+            selectedImg={data?.portraitImage}
           />
         </div>
         <button

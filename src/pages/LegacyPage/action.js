@@ -36,6 +36,7 @@ export const getLegacyData = () => async (dispatch) => {
     const response = await api.get(apiEndPoints.getLegacyData());
     if (response?.data) {
       toast.success(response?.data?.message);
+      console.log("response?.data", response?.data);
       dispatch(getLegacyDataSuccess(response));
     } else if (response?.response?.data?.message) {
       toast.error(response?.response?.data?.message);
