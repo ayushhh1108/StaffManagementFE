@@ -19,7 +19,7 @@ export default function LegacyPageHooks() {
     const event = isEventBased(id) ? id : null;
     const key = event ? event.target.id : id;
     let value = event ? event.target.value : val;
-    const isUpload = key === "backgroundImage";
+    const isUpload = key === "landscapeImage" || key === "portraitImage";
     value = isUpload && event ? event.target.files[0] : value;
     const updatedError = { ...error };
     delete updatedError[key];
@@ -35,7 +35,7 @@ export default function LegacyPageHooks() {
       storeData?.legacyData?.length && {
         ...storeData?.legacyData[0],
         portraitImage: storeData?.legacyData[0]?.portraitImage[0],
-        landscapeImage: storeData?.legacyData[0]?.portraitImage[0],
+        landscapeImage: storeData?.legacyData[0]?.landscapeImage[0],
       }
     );
   }, [storeData]);
@@ -53,41 +53,10 @@ export default function LegacyPageHooks() {
     "landscapeImage",
   ];
 
-  const fileURL_to_blob = (file_url) => {
-    return new Promise((resolve, reject) => {
-      let request = new XMLHttpRequest();
-      request.open('GET', file_url, true);
-      request.responseType = 'blob';
-      request.onload = function() {
-          var reader = new FileReader();
-          reader.readAsDataURL(request.response);
-          reader.onload =  function(e){
-              //console.log('DataURL:', e.target.result);
-              resolve(e.target.result);
-          };
-      };
-      request.onerror=function(e){
-        reject(e);
-      }
-      request.send();
-    });
-  }
-  
-
   const handleSubmit = () => {
     const payload = new FormData();
     let error = {};
     let isFormValid = true;
-    if (typeof data?.portraitImage === "string") {
-      // data.portraitImage = createFile(data?.portraitImage);
-      console.log(
-        "createFile(data?.portraitImage)",
-        fileURL_to_blob(data?.portraitImage)
-      );
-    }
-    if (typeof data?.landscapeImage === "string") {
-      // data.landscapeImage = createFile(data?.landscapeImage);
-    }
 
     requiredFields.forEach((field) => {
       if (!data?.[field]) {
@@ -100,10 +69,6 @@ export default function LegacyPageHooks() {
     if (isFormValid) {
       payload.append("_id", data?._id);
       dispatch(updateLegacyData(payload, navigate));
-      console.log(
-        "storeData",
-        storeData?.legacyData?.length && storeData?.legacyData[0]
-      );
     } else {
       setError(error);
     }
