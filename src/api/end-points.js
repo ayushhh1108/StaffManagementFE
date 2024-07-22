@@ -19,7 +19,7 @@ export default {
   postAddRole: () => `role/createUserRole`,
   postUpdateRole: () => `role/updateStatusUserRole`,
   deleteUserRole: () => `role/userRoleDelete`,
-  getAllUserRole: () => `role/userRoleList`,
+  getAllUserRole: () => `role/getUserRolesList`,
   updateUser: () => `user/updateUser`,
   postUser: () => `user/createUser`,
   getAllUsers: () => `user/getAllUser`,
