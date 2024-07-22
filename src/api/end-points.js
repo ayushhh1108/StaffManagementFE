@@ -1,5 +1,5 @@
 export default {
-  postLogin: () => `auth/login`,
+  postLogin: () => `admin/auth/login`,
   postAddBlog: () => `blog/createBlog`,
   postUpdateBlog: () => `blog/updateBlog`,
   getAllBlogs: () => `blog/getAllBlog`,
