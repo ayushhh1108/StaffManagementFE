@@ -21,7 +21,7 @@ export default {
   deleteUserRole: () => `role/userRoleDelete`,
   getAllUserRole: () => `role/getUserRolesList`,
   updateUser: () => `user/updateUser`,
-  postUser: () => `user/createUser`,
+  postUser: () => `admin/auth/registerUser`,
   getAllUsers: () => `user/getAllUser`,
   deleteUser: () => `user/deleteUser`,
   addFeedback: () => `feedback/createFeedbackRequest`,

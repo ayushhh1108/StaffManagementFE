@@ -1,27 +1,42 @@
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import { postAddUser, updateUser } from "./action";
+import { getAllUserRole } from "../UserRolePage/action";
 
 export default function AddUsersPageHooks() {
   const dispatch = useDispatch();
   const location = useLocation();
   const editData = location?.state;
   const [data, setData] = useState({
-    first_name: editData?.firstName ?? "",
-    last_name: editData?.lastName ?? "",
+    firstName: editData?.firstName ?? "",
+    lastName: editData?.lastName ?? "",
     email: editData?.email ?? "",
     mobile: editData?.mobile ?? "",
-    role: editData?.role ?? "",
-    image: editData?.image?.[0]?.path ?? "",
+    password: editData?.password ?? "",
+    userRole: editData?.userRole ?? "",
   });
   console.log("editData", editData);
   const [error, setError] = useState();
+  const [roleData, setRoleData] = useState();
   const [isEdit, setIsEdit] = useState(location?.state?._id);
+
+  const StoreData = useSelector((state) => state?.userRoleReducer);
   const navigate = useNavigate();
+
   useEffect(() => {
     window.scrollTo(0, 0);
+    dispatch(getAllUserRole());
   }, []);
+
+  useEffect(() => {
+    const td = StoreData?.userRoleData?.map(({ name, _id }) => ({
+      label: name,
+      value: _id,
+    }));
+    console.log("td", td);
+    setRoleData(td ? td : []);
+  }, [StoreData]);
 
   const handleInputChange = (id, val) => {
     const event = isEventBased(id) ? id : null;
@@ -39,12 +54,12 @@ export default function AddUsersPageHooks() {
 
   const handleSubmit = () => {
     const requiredFields = [
-      "first_name",
-      "last_name",
+      "firstName",
+      "lastName",
       "email",
       "mobile",
-      "role",
-      "image",
+      "userRole",
+      "password",
     ];
     let error = {};
     let isFormValid = true;
@@ -57,19 +72,9 @@ export default function AddUsersPageHooks() {
     });
 
     if (isFormValid) {
-      const payload = new FormData();
-      payload.append("firstName", data?.first_name);
-      payload.append("lastName", data?.last_name);
-      payload.append("email", data?.email);
-      payload.append("mobile", data?.mobile);
-      payload.append("userRole", data?.role);
-      payload.append("image", data?.image);
       if (isEdit) {
-        payload.append("_id", isEdit);
-        dispatch(updateUser(payload, navigate));
       } else {
-        console.log("handleSubmit", data);
-        dispatch(postAddUser(payload, navigate));
+        dispatch(postAddUser({ ...data, countryCode: "+91" }, navigate));
       }
     } else {
       setError(error);
@@ -83,5 +88,6 @@ export default function AddUsersPageHooks() {
     handleInputChange,
     data,
     error,
+    roleData,
   };
 }

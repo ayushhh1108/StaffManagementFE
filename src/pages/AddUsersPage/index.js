@@ -7,7 +7,7 @@ import TextInput from "../../components/TextInput";
 import SelectInput from "../../components/SelectInput";
 
 function AddUserPage() {
-  const { navigate, handleSubmit, handleInputChange, data, error } =
+  const { navigate, handleSubmit, handleInputChange, data, error, roleData } =
     AddUsersPageHooks();
 
   return (
@@ -19,18 +19,18 @@ function AddUserPage() {
         <TextInput
           label={"First Name"}
           isRequire
-          id={"first_name"}
+          id={"firstName"}
           handleChanges={handleInputChange}
-          value={data?.first_name}
-          isError={error?.first_name}
+          value={data?.firstName}
+          isError={error?.firstName}
         />
         <TextInput
           label={"Last Name"}
           isRequire
-          id={"last_name"}
+          id={"lastName"}
           handleChanges={handleInputChange}
-          value={data?.last_name}
-          isError={error?.last_name}
+          value={data?.lastName}
+          isError={error?.lastName}
         />
         <TextInput
           label={"Email"}
@@ -41,35 +41,31 @@ function AddUserPage() {
           isError={error?.email}
         />
         <TextInput
+          label={"Password"}
+          isRequire
+          id={"password"}
+          handleChanges={handleInputChange}
+          value={data?.password}
+          isError={error?.password}
+        />
+        <TextInput
           label={"Mobile"}
           isRequire
           id={"mobile"}
           handleChanges={handleInputChange}
           value={data?.mobile}
+          isNumber
           isError={error?.mobile}
         />
         <SelectInput
           label={"Role"}
           isRequire
-          id={"role"}
+          id={"userRole"}
           handleChange={handleInputChange}
-          value={data?.role}
-          isError={error?.role}
-          options={[
-            { label: "Employee", value: "employee" },
-            { label: "Client", value: "client" },
-          ]}
+          value={data?.userRole}
+          isError={error?.userRole}
+          options={roleData}
         />
-
-        <div className="upload-file-div mb-6 flex justify-between">
-          <Dropzone
-            title={"Image"}
-            id="image"
-            onChanges={handleInputChange}
-            isError={error?.image}
-            selectedImg={data?.image}
-          />
-        </div>
 
         <button
           type="button"
