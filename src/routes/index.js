@@ -67,7 +67,6 @@ const InvestWithUsListPage = lazy(() =>
   import("../pages/InvestWithUsListPage")
 );
 const CMSListPage = lazy(() => import("../pages/CMSListPage"));
-const LegacyPage = lazy(() => import("../pages/LegacyPage"));
 
 const AppRoutes = () => {
   const isMobileScreen = useMediaQuery("(max-width:1000px)");
@@ -130,7 +129,6 @@ const AppRoutes = () => {
     { path: '/team-list', element: <ProtectedRoute><TeamsPage /></ProtectedRoute> }, // Protected route
     { path: '/invest-list', element: <ProtectedRoute><InvestWithUsListPage /></ProtectedRoute> }, // Protected route
     { path: '/cms-list', element: <ProtectedRoute><CMSListPage /></ProtectedRoute> }, // Protected route
-    { path: '/legacy', element: <ProtectedRoute><LegacyPage /></ProtectedRoute> }, // Protected route
   ]);
 
   const isLoginSignup =

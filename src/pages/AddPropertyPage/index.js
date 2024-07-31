@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import "./index.scss";
 import AddPropertyPageHooks from "./AddPropertyPageHooks";
 import {
+  Autocomplete,
   Box,
   Checkbox,
+  Chip,
   FormControl,
   FormControlLabel,
   Radio,
@@ -15,6 +17,8 @@ import Dropzone from "../../components/DropZone";
 import SelectPlaceholder from "../../components/SelectPlaceholder";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import { FaPlus } from "react-icons/fa";
+import { FaMinus } from "react-icons/fa";
 
 function AddPropertyPage() {
   const {
@@ -39,8 +43,16 @@ function AddPropertyPage() {
     allData,
     handleInputsChange,
     handleSubmit,
+    Features,
+    setFeatures,
+    tags, setTags,
+    inputValue, setInputValue,
+    classes,
+    handleDelete,
+    handleKeyDown,
   } = AddPropertyPageHooks();
 
+  console.log("allData+++", allData);
   const SelectorInput = (label, key, allData, value) => {
     return (
       <div className="flex flex-wrap input-box">
@@ -683,9 +695,8 @@ function AddPropertyPage() {
               {["Owner", "Agent", "Builder"].map((type) => (
                 <Box
                   key={type}
-                  className={`tab ${
-                    clientData?.clientType === type ? "selected" : ""
-                  }`}
+                  className={`tab ${clientData?.clientType === type ? "selected" : ""
+                    }`}
                 >
                   <Typography
                     variant="p"
@@ -700,15 +711,67 @@ function AddPropertyPage() {
             </Box>
             {renderOwnerDetails()}
             {renderPropertyDetails()}
+            <div className="w-full flex flex-wrap Property-Location-section my-3" >
+              <div
+                key={"Property_Title"}
+                className="d-flex flex-wrap input-box"
+              >
+                <label className="filter-label">{"Property Title"}</label>
+                <TextField
+                  variant="outlined"
+                  className="text-field"
+                  id={"propertyTitle"}
+                  value={allData["propertyTitle"]}
+                  onChange={handleInputsChange}
+                  placeholder={`Enter Your ${"Property Title"}`}
+                />
+              </div>
+              <div
+                key={"Property_sub_Title"}
+                className="d-flex flex-wrap input-box"
+              >
+                <label className="filter-label">{"Property sub Title"}</label>
+                <TextField
+                  variant="outlined"
+                  className="text-field"
+                  id={"propertySubTitle"}
+                  value={allData["propertySubTitle"]}
+                  onChange={handleInputsChange}
+                  placeholder={`Enter Your ${"Property Title"}`}
+                />
+              </div>
+            </div>
+            <div className="w-full flex flex-wrap mx-3" >
+              <label className="filter-label ">{"Property Tags"}</label>
+            </div>
+            <div className={`items-center w-full input-box flex flex-wrap Property-Location-section !my-0`}>
+              {tags.map((tag) => (
+                <Chip
+                  key={tag}
+                  label={tag}
+                  onDelete={handleDelete(tag)}
+                  className="bg-blue-100 text-blue-700"
+                />
+              ))}
+              <TextField
+                variant="outlined"
+                className="text-field"
+                value={allData["propertytags"]}
+                onChange={(e) => setInputValue(e.target.value)}
+                onKeyDown={handleKeyDown}
+                placeholder="Type and press enter..."
+              />
+            </div>
             {renderPropertyLocation()}
             {propertyType && RegulerFeatures.includes(propertyType[0])
               ? renderPropertyFeatures()
               : propertyType && LandFeatures.includes(propertyType[0])
-              ? renderLandPropertyFeatures()
-              : propertyType &&
-                CommercialOfficeFeatures.includes(propertyType[0])
-              ? renderCommercialPropertyFeatures()
-              : ""}
+                ? renderLandPropertyFeatures()
+                : propertyType &&
+                  CommercialOfficeFeatures.includes(propertyType[0])
+                  ? renderCommercialPropertyFeatures()
+                  : ""}
+
             <div className="add-menu-input w-1/2  my-3">
               <Typography variant="span" className="form-label mt-4 text-left">
                 Property Description
@@ -736,10 +799,48 @@ function AddPropertyPage() {
                 }}
               />
             </div>
+            <div style={{ width: "100%" }}>
+              <div
+                key={"Property_Feature"}
+                className="flex flex-wrap w-100"
+                style={{ width: "100%" }}
+              >
+                <label className="filter-label block w-full">
+                  {"Property Feature"}
+                </label>
+                {Features?.map((item, index) => (
+                  <div className="flex items-center w-auto">
+                    <TextField
+                      variant="outlined"
+                      style={{ marginRight: "7px", marginTop: "7px" }}
+                      className="text-field mr-1"
+                      id={"Property_Feature"}
+                      value={allData["Property_Feature"]}
+                      onChange={handleInputsChange}
+                      placeholder={`Enter Feature`}
+                    />
+                    {Features.length - 1 === index && (
+                      <div className="items-center">
+                        <FaPlus
+                          className="mx-3 cursor-pointer my-5"
+                          onClick={() => {
+                            setFeatures([
+                              ...Features,
+                              { key: Features.length + 1 },
+                            ]);
+                          }}
+                        />
+                        <FaMinus className="mx-3 cursor-pointer my-1" onClick={() => { setFeatures(Features.slice(0, -1)) }} />
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
             {propertyType.length ? renderAreaSection() : ""}
             {propertyType.length
               ? !LandFeatures.includes(propertyType[0]) &&
-                renderPropertyAvaibality()
+              renderPropertyAvaibality()
               : ""}
             {propertyType.length ? renderPriceSection() : ""}
             {propertyType.length ? renderImageUploadSection() : ""}

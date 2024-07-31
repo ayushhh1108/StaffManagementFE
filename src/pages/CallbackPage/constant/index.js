@@ -22,9 +22,9 @@ export const HeaderData = [
     label: "Phone",
   },
   {
-    id: "message",
+    id: "place",
     numeric: false,
-    label: "Message",
+    label: "Place",
   },
   {
     id: "status",

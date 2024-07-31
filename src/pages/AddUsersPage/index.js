@@ -7,7 +7,7 @@ import TextInput from "../../components/TextInput";
 import SelectInput from "../../components/SelectInput";
 
 function AddUserPage() {
-  const { navigate, handleSubmit, handleInputChange, data, error, roleData } =
+  const { navigate, handleSubmit, handleInputChange, data, error } =
     AddUsersPageHooks();
 
   return (
@@ -19,18 +19,18 @@ function AddUserPage() {
         <TextInput
           label={"First Name"}
           isRequire
-          id={"firstName"}
+          id={"first_name"}
           handleChanges={handleInputChange}
-          value={data?.firstName}
-          isError={error?.firstName}
+          value={data?.first_name}
+          isError={error?.first_name}
         />
         <TextInput
           label={"Last Name"}
           isRequire
-          id={"lastName"}
+          id={"last_name"}
           handleChanges={handleInputChange}
-          value={data?.lastName}
-          isError={error?.lastName}
+          value={data?.last_name}
+          isError={error?.last_name}
         />
         <TextInput
           label={"Email"}
@@ -41,31 +41,35 @@ function AddUserPage() {
           isError={error?.email}
         />
         <TextInput
-          label={"Password"}
-          isRequire
-          id={"password"}
-          handleChanges={handleInputChange}
-          value={data?.password}
-          isError={error?.password}
-        />
-        <TextInput
           label={"Mobile"}
           isRequire
           id={"mobile"}
           handleChanges={handleInputChange}
           value={data?.mobile}
-          isNumber
           isError={error?.mobile}
         />
         <SelectInput
           label={"Role"}
           isRequire
-          id={"userRole"}
+          id={"role"}
           handleChange={handleInputChange}
-          value={data?.userRole}
-          isError={error?.userRole}
-          options={roleData}
+          value={data?.role}
+          isError={error?.role}
+          options={[
+            { label: "Employee", value: "employee" },
+            { label: "Client", value: "client" },
+          ]}
         />
+
+        <div className="upload-file-div mb-6 flex justify-between">
+          <Dropzone
+            title={"Image"}
+            id="image"
+            onChanges={handleInputChange}
+            isError={error?.image}
+            selectedImg={data?.image}
+          />
+        </div>
 
         <button
           type="button"

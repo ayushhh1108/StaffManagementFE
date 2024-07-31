@@ -10,7 +10,9 @@ const handleSuccessfullNavigate = (navigate) => {
 
 export const postAddUser = (payload, navigate) => async (dispatch) => {
   try {
-    const response = await api.post(apiEndPoints.postUser(), payload);
+    const response = await api.post(apiEndPoints.postUser(), payload, {
+      headers,
+    });
     if (response?.data?.status) {
       toast.success(response?.data?.message);
       handleSuccessfullNavigate(navigate);

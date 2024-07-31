@@ -13,6 +13,10 @@ export default function AddPropertyPageHooks() {
   const [radioButtonData, setRadioButtonData] = useState({
     possession_status: "under_construction",
   });
+  const classes = {};
+  const [tags, setTags] = useState([]);
+  const [inputValue, setInputValue] = useState('');
+  const [Features, setFeatures] = useState([{ key: 1, value: "" }, { key: 2 }, { key: 3 }]);
 
   const CommercialPlaces = [
     "Commercial Office Space",
@@ -90,20 +94,20 @@ export default function AddPropertyPageHooks() {
       isName === "for"
         ? "for"
         : isName === "boundary_walls"
-        ? "boundary_walls"
-        : isName === "personal_washroom"
-        ? "personal_washroom"
-        : isName === "pantry_cafeteria"
-        ? "pantry_cafeteria"
-        : key;
+          ? "boundary_walls"
+          : isName === "personal_washroom"
+            ? "personal_washroom"
+            : isName === "pantry_cafeteria"
+              ? "pantry_cafeteria"
+              : key;
     let value = event ? event.target.value : val;
     const isUpload = key === "image";
     value =
       isUpload && event
         ? event.target.files[0]
         : key === "is_corner_plot"
-        ? idOrEvent?.target?.checked
-        : value;
+          ? idOrEvent?.target?.checked
+          : value;
     console.log("idOrEvent", key, idOrEvent?.target?.checked);
     setData(key, value);
   };
@@ -114,7 +118,20 @@ export default function AddPropertyPageHooks() {
     setAllData({ ...allData, [key]: value });
   };
 
-  const handleSubmit = () => {};
+  const handleDelete = (tagToDelete) => () => {
+    setTags((tags) => tags.filter((tag) => tag !== tagToDelete));
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter' && inputValue.trim()) {
+      setTags([...tags, inputValue.trim()]);
+      setInputValue('');
+      e.preventDefault();
+    }
+  };
+
+
+  const handleSubmit = () => { };
 
   return {
     navigate,
@@ -138,5 +155,11 @@ export default function AddPropertyPageHooks() {
     allData,
     handleInputsChange,
     handleSubmit,
+    Features, setFeatures,
+    tags, setTags,
+    inputValue, setInputValue,
+    classes,
+    handleDelete,
+    handleKeyDown,
   };
 }

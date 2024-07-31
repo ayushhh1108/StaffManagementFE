@@ -18,7 +18,7 @@ export default function UserRolePageHooks() {
   useEffect(() => {
     const td = StoreData?.userRoleData?.map(({ name, status, _id }) => ({
       name,
-      status: status ? "Active" : "Inactive",
+      status,
       _id,
     }));
     console.log("td", td);
