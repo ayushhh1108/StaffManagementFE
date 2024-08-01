@@ -1,10 +1,14 @@
 import { useMediaQuery } from "@mui/material";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
+import { postAddProperty } from "./action";
 
 export default function AddPropertyPageHooks() {
   const navigate = useNavigate();
-  const [clientData, setClientData] = useState({ clientType: "Owner" });
+  const dispatch = useDispatch();
+  const location = useLocation();
+  const [clientData, setClientData] = useState({ iAm: "Owner" });
   const [allData, setAllData] = useState({ for: "sale" });
   const [propertyType, setPropertyType] = useState([]);
   const [totalFlatCount, setTotalFlatCount] = useState([]);
@@ -15,8 +19,12 @@ export default function AddPropertyPageHooks() {
   });
   const classes = {};
   const [tags, setTags] = useState([]);
-  const [inputValue, setInputValue] = useState('');
-  const [Features, setFeatures] = useState([{ key: 1, value: "" }, { key: 2 }, { key: 3 }]);
+  const [inputValue, setInputValue] = useState("");
+  const [Features, setFeatures] = useState([
+    { key: 1, value: "" },
+    { key: 2 },
+    { key: 3 },
+  ]);
 
   const CommercialPlaces = [
     "Commercial Office Space",
@@ -60,8 +68,8 @@ export default function AddPropertyPageHooks() {
   const twoHundredArray = Array.from({ length: 200 }, (_, index) => index + 1);
 
   const onTypeChange = (props) => {
-    setClientData({ ...clientData, clientType: props.target.id });
-    setData("clientType", props?.target?.id);
+    setClientData({ ...clientData, iAm: props.target.id });
+    setData("iAm", props?.target?.id);
   };
 
   useEffect(() => {
@@ -70,14 +78,15 @@ export default function AddPropertyPageHooks() {
 
   const handleSelectChange = (event) => {
     const { value, name } = event.target;
-    if (name === "property_type") {
+    if (name === "pType") {
       setPropertyType([value]);
     } else if (name === "total_flats") {
       setTotalFlatCount([value]);
     } else {
       setOtherSelects({ ...otherSelects, [name]: [value] });
     }
-    setAllData(name, value);
+    console.log("data", event, otherSelects);
+    setData(name, value);
   };
 
   const handleRadioChange = (event) => {
@@ -94,20 +103,21 @@ export default function AddPropertyPageHooks() {
       isName === "for"
         ? "for"
         : isName === "boundary_walls"
-          ? "boundary_walls"
-          : isName === "personal_washroom"
-            ? "personal_washroom"
-            : isName === "pantry_cafeteria"
-              ? "pantry_cafeteria"
-              : key;
+        ? "boundary_walls"
+        : isName === "personal_washroom"
+        ? "personal_washroom"
+        : isName === "pantry_cafeteria"
+        ? "pantry_cafeteria"
+        : key;
     let value = event ? event.target.value : val;
-    const isUpload = key === "image";
+    const isUpload =
+      key === "mainImage" || key === "imageGallery" || key === "layoutPlan";
     value =
       isUpload && event
         ? event.target.files[0]
         : key === "is_corner_plot"
-          ? idOrEvent?.target?.checked
-          : value;
+        ? idOrEvent?.target?.checked
+        : value;
     console.log("idOrEvent", key, idOrEvent?.target?.checked);
     setData(key, value);
   };
@@ -123,15 +133,92 @@ export default function AddPropertyPageHooks() {
   };
 
   const handleKeyDown = (e) => {
-    if (e.key === 'Enter' && inputValue.trim()) {
+    if (e.key === "Enter" && inputValue.trim()) {
       setTags([...tags, inputValue.trim()]);
-      setInputValue('');
+      setInputValue("");
       e.preventDefault();
     }
   };
 
+  const handleSubmit = () => {
+    console.log("handleSubmit", allData, tags);
+    let isFormValid = true;
+    const payload = new FormData();
+    payload.append("iAm", allData?.["iAm"]);
+    payload.append("for", allData?.["for"]);
+    payload.append("pType", allData?.["pType"]);
+    payload.append("postingAs", allData?.["iAm"]);
 
-  const handleSubmit = () => { };
+    payload.append("name", allData?.Name);
+    payload.append("mobile", allData?.["Mobile"]);
+    payload.append("email", allData?.["Email"]);
+
+    payload.append("pCity", allData?.City);
+    payload.append("locality", allData?.Locality);
+    payload.append("nameOfProject", allData?.propertyTitle);
+
+    tags?.map((item, index) => {
+      payload.append(`propertyTag[${index}]`, item);
+    });
+    payload.append("propertySubTitle", allData?.propertySubTitle);
+    payload.append("description", allData?.editor_property_desc);
+    payload.append("isNegotiate", allData?.is_price_negotiable);
+    payload.append("isPostPropertyAgree", allData?.post_confirmation);
+    payload.append("isTermsAndConditionAgree", allData?.privacy_and_condition);
+
+    payload.append("bookingPrice", allData?.token_amt);
+    payload.append("expectedPrice", allData?.expected_price);
+
+    payload.append("totalFlats", allData?.totalFlatCount);
+    payload.append("balconies", allData?.Balconies);
+    payload.append("bedrooms", allData?.Bedrooms);
+    payload.append("floorNo", allData?.floor_no);
+
+    payload.append("totalFloors", allData?.total_floors);
+    payload.append("furnishedStatus", allData?.furnished_status);
+    payload.append("bathrooms", allData?.Bathrooms);
+    payload.append(
+      "FloorsAllowedForConstruction",
+      allData?.allowed_floor_contruction
+    );
+    payload.append("WidthOfRoadInM", allData?.width_of_road_facing_plot);
+    payload.append("WidthOfRoad", allData?.width_of_open_side);
+    payload.append("NoOfOpenSides", allData?.no_of_open_sides);
+    payload.append("isBoundaryWall", allData?.boundary_walls);
+
+    payload.append("plotArea", allData?.plot_area);
+    payload.append("plotLength", allData?.plot_length);
+    payload.append("isCornerPlot", allData?.is_corner_plot);
+    payload.append("plotBreadth", allData?.plot_breadth);
+    payload.append("superArea", allData?.super_area);
+    payload.append("carpetArea", allData?.carpet_area);
+
+    payload.append("possessionStatus", allData?.possession_status);
+    payload.append("availableFromMonth", allData?.Month);
+    payload.append("availableFromYear", allData?.Year);
+
+    Features?.map((item, index) => {
+      payload.append(
+        `amenities[${index}]`,
+        allData[`Property_Feature${index}`]
+      );
+    });
+
+    payload.append("address[city]", allData?.City);
+    payload.append("address[zip]", allData?.Zipcode);
+    payload.append("address[state]", allData?.state);
+    payload.append("address[street]", allData?.street);
+    payload.append("mainImage", allData?.mainImage);
+    payload.append("imageGallery", allData?.imageGallery);
+    payload.append("layoutPlan", allData?.layoutPlan);
+
+    if (isFormValid) {
+      dispatch(postAddProperty(payload, navigate));
+    } else {
+      // setError(error);
+    }
+    // dispatch(loginSubmit(creds,navigate))
+  };
 
   return {
     navigate,
@@ -155,11 +242,15 @@ export default function AddPropertyPageHooks() {
     allData,
     handleInputsChange,
     handleSubmit,
-    Features, setFeatures,
-    tags, setTags,
-    inputValue, setInputValue,
+    Features,
+    setFeatures,
+    tags,
+    setTags,
+    inputValue,
+    setInputValue,
     classes,
     handleDelete,
     handleKeyDown,
+    setData,
   };
 }

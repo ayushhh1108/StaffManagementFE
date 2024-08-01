@@ -54,4 +54,5 @@ export default {
   getTeamMember: () => `ourteam/getTeamList`,
   updateTeamMember: () => `ourteam/updateTeamMember`,
   deleteTeamMember: () => `ourteam/deleteTeamMember`,
+  postPropertyEnd: () => `property/createProperty`,
 };

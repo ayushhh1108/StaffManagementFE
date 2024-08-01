@@ -45,11 +45,14 @@ function AddPropertyPage() {
     handleSubmit,
     Features,
     setFeatures,
-    tags, setTags,
-    inputValue, setInputValue,
+    tags,
+    setTags,
+    inputValue,
+    setInputValue,
     classes,
     handleDelete,
     handleKeyDown,
+    setData,
   } = AddPropertyPageHooks();
 
   console.log("allData+++", allData);
@@ -69,7 +72,7 @@ function AddPropertyPage() {
   };
 
   const renderOwnerDetails = () => {
-    if (clientData?.clientType !== "Owner") return null;
+    if (clientData?.iAm !== "Owner") return null;
 
     return (
       <div className="w-full flex flex-wrap owner-detail-section my-3">
@@ -142,7 +145,7 @@ function AddPropertyPage() {
           <SelectPlaceholder
             placeholder="Property type"
             handleChange={handleSelectChange}
-            name={"property_type"}
+            name={"pType"}
             value={propertyType}
             options={propertyOptions}
           />
@@ -192,6 +195,39 @@ function AddPropertyPage() {
             value={allData["city"]}
             onChange={handleInputsChange}
             placeholder="Enter Your City"
+          />
+        </div>
+        <div className="flex flex-wrap input-box">
+          <label className="filter-label">Zipcode</label>
+          <TextField
+            variant="outlined"
+            className="text-field"
+            id="Zipcode"
+            value={allData["Zipcode"]}
+            onChange={handleInputsChange}
+            placeholder="Enter Your Zipcode"
+          />
+        </div>
+        <div className="flex flex-wrap input-box">
+          <label className="filter-label">State</label>
+          <TextField
+            variant="outlined"
+            className="text-field"
+            id="state"
+            value={allData["state"]}
+            onChange={handleInputsChange}
+            placeholder="Enter Your State"
+          />
+        </div>
+        <div className="flex flex-wrap input-box">
+          <label className="filter-label">Street</label>
+          <TextField
+            variant="outlined"
+            className="text-field"
+            id="street"
+            value={allData["street"]}
+            onChange={handleInputsChange}
+            placeholder="Enter Your Street"
           />
         </div>
         <div className="flex flex-wrap input-box">
@@ -666,12 +702,32 @@ function AddPropertyPage() {
 
   const renderImageUploadSection = () => {
     return (
-      <div className="w-full flex flex-wrap property-feature-section my-3">
-        <Typography variant="span" className="form-label mt-4 text-left">
-          Photos
-        </Typography>
-        <Dropzone id="image" onChanges={handleInputsChange} />
-      </div>
+      <>
+        <div className="w-full flex flex-wrap property-feature-section my-3">
+          <Dropzone
+            title={"Main Image"}
+            id="mainImage"
+            onChanges={handleInputsChange}
+            selectedImg={allData?.mainImage}
+          />
+        </div>
+        <div className="w-full flex flex-wrap property-feature-section my-3">
+          <Dropzone
+            title={"Image Gallery"}
+            id="imageGallery"
+            onChanges={handleInputsChange}
+            selectedImg={allData?.imageGallery}
+          />
+        </div>
+        <div className="w-full flex flex-wrap property-feature-section my-3">
+          <Dropzone
+            title={"Layout Plan"}
+            id="layoutPlan"
+            onChanges={handleInputsChange}
+            selectedImg={allData?.layoutPlan}
+          />
+        </div>
+      </>
     );
   };
 
@@ -695,8 +751,9 @@ function AddPropertyPage() {
               {["Owner", "Agent", "Builder"].map((type) => (
                 <Box
                   key={type}
-                  className={`tab ${clientData?.clientType === type ? "selected" : ""
-                    }`}
+                  className={`tab ${
+                    clientData?.iAm === type ? "selected" : ""
+                  }`}
                 >
                   <Typography
                     variant="p"
@@ -711,7 +768,7 @@ function AddPropertyPage() {
             </Box>
             {renderOwnerDetails()}
             {renderPropertyDetails()}
-            <div className="w-full flex flex-wrap Property-Location-section my-3" >
+            <div className="w-full flex flex-wrap Property-Location-section my-3">
               <div
                 key={"Property_Title"}
                 className="d-flex flex-wrap input-box"
@@ -741,10 +798,12 @@ function AddPropertyPage() {
                 />
               </div>
             </div>
-            <div className="w-full flex flex-wrap mx-3" >
+            <div className="w-full flex flex-wrap mx-3">
               <label className="filter-label ">{"Property Tags"}</label>
             </div>
-            <div className={`items-center w-full input-box flex flex-wrap Property-Location-section !my-0`}>
+            <div
+              className={`items-center w-full input-box flex flex-wrap Property-Location-section !my-0`}
+            >
               {tags.map((tag) => (
                 <Chip
                   key={tag}
@@ -766,11 +825,11 @@ function AddPropertyPage() {
             {propertyType && RegulerFeatures.includes(propertyType[0])
               ? renderPropertyFeatures()
               : propertyType && LandFeatures.includes(propertyType[0])
-                ? renderLandPropertyFeatures()
-                : propertyType &&
-                  CommercialOfficeFeatures.includes(propertyType[0])
-                  ? renderCommercialPropertyFeatures()
-                  : ""}
+              ? renderLandPropertyFeatures()
+              : propertyType &&
+                CommercialOfficeFeatures.includes(propertyType[0])
+              ? renderCommercialPropertyFeatures()
+              : ""}
 
             <div className="add-menu-input w-1/2  my-3">
               <Typography variant="span" className="form-label mt-4 text-left">
@@ -784,12 +843,7 @@ function AddPropertyPage() {
                   console.log("Editor is ready to use!", editor);
                 }}
                 onChange={(event, editor) => {
-                  handleInputsChange({
-                    target: {
-                      value: editor?.getData(),
-                      id: "editor_property_desc",
-                    },
-                  });
+                  setData("editor_property_desc", editor?.getData());
                 }}
                 onBlur={(event, editor) => {
                   console.log("Blur.", editor);
@@ -814,8 +868,8 @@ function AddPropertyPage() {
                       variant="outlined"
                       style={{ marginRight: "7px", marginTop: "7px" }}
                       className="text-field mr-1"
-                      id={"Property_Feature"}
-                      value={allData["Property_Feature"]}
+                      id={`Property_Feature${index}`}
+                      value={allData[`Property_Feature${index}`]}
                       onChange={handleInputsChange}
                       placeholder={`Enter Feature`}
                     />
@@ -830,7 +884,12 @@ function AddPropertyPage() {
                             ]);
                           }}
                         />
-                        <FaMinus className="mx-3 cursor-pointer my-1" onClick={() => { setFeatures(Features.slice(0, -1)) }} />
+                        <FaMinus
+                          className="mx-3 cursor-pointer my-1"
+                          onClick={() => {
+                            setFeatures(Features.slice(0, -1));
+                          }}
+                        />
                       </div>
                     )}
                   </div>
@@ -840,7 +899,7 @@ function AddPropertyPage() {
             {propertyType.length ? renderAreaSection() : ""}
             {propertyType.length
               ? !LandFeatures.includes(propertyType[0]) &&
-              renderPropertyAvaibality()
+                renderPropertyAvaibality()
               : ""}
             {propertyType.length ? renderPriceSection() : ""}
             {propertyType.length ? renderImageUploadSection() : ""}

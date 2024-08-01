@@ -7,7 +7,6 @@ const createAPI = () => {
     "Content-Type": "application/json",
   };
 
-
   const api = axios.create({
     baseURL: customerApiUrl,
     headers,
@@ -15,6 +14,7 @@ const createAPI = () => {
 
   api.interceptors.request.use(async (config) => {
     const data = localStorage.getItem("user");
+    console.log("data", JSON.parse(data)?.token);
     if (data && !config.skipAuth) {
       config.headers[`authorization`] = data;
     }
