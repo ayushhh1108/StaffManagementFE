@@ -10,6 +10,7 @@ const handleSuccessfullNavigate = (navigate) => {
 };
 
 export const postAddProperty = (payload, navigate) => async (dispatch) => {
+  
   try {
     const response = await api.post(apiEndPoints.postPropertyEnd(), payload, {
       headers,
