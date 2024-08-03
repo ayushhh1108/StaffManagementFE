@@ -6,7 +6,7 @@ import EnhancedTable from "../../components/Table";
 import { HeaderData, TableData } from "./constant";
 
 function PropertyListPage() {
-  const { navigate } = PropertyListHook();
+  const { navigate, allProperty } = PropertyListHook();
 
   return (
     <Box
@@ -21,24 +21,24 @@ function PropertyListPage() {
       >
         Add Property
       </button>
-      <EnhancedTable
+      {allProperty?.length ? <EnhancedTable
         cellData={HeaderData}
         isActionCol
         rowItems={[
           "no",
-          "property_name",
-          "property_type",
-          "city",
+          "propertyTitle",
+          "pType",
+          "pCity",
           "for",
-          "posting_as",
+          "iAm",
           "status",
           "option",
         ]}
-        rowData={TableData?.map((item, index) => ({
+        rowData={allProperty?.map((item, index) => ({
           ...item,
           no: 1 + index,
         }))}
-      />
+      /> : null}
     </Box>
   );
 }

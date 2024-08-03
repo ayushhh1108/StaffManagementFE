@@ -91,8 +91,8 @@ export default function AddPropertyPageHooks() {
 
   const handleRadioChange = (event) => {
     const { name, value } = event.target;
-    setRadioButtonData({ ...radioButtonData, [name]: value });
-    setAllData(name, value);
+    setRadioButtonData({ [name]: value });
+    setAllData({ ...allData, [name]: value });
   };
 
   const handleInputsChange = (idOrEvent, val) => {
@@ -103,22 +103,22 @@ export default function AddPropertyPageHooks() {
       isName === "for"
         ? "for"
         : isName === "boundary_walls"
-        ? "boundary_walls"
-        : isName === "personal_washroom"
-        ? "personal_washroom"
-        : isName === "pantry_cafeteria"
-        ? "pantry_cafeteria"
-        : key;
+          ? "boundary_walls"
+          : isName === "personal_washroom"
+            ? "personal_washroom"
+            : isName === "pantry_cafeteria"
+              ? "pantry_cafeteria"
+              : key;
     let value = event ? event.target.value : val;
     const isUpload =
       key === "mainImage" || key === "imageGallery" || key === "layoutPlan";
     value =
       isUpload && event
-        ? event.target.files[0]
+        ? event.target.files
         : key === "is_corner_plot"
-        ? idOrEvent?.target?.checked
-        : value;
-    console.log("idOrEvent", key, idOrEvent?.target?.checked);
+          ? idOrEvent?.target?.checked
+          : value;
+    console.log("idOrEvent", key, value);
     setData(key, value);
   };
 
@@ -208,9 +208,31 @@ export default function AddPropertyPageHooks() {
     appendIfValue("address[zip]", allData?.Zipcode);
     appendIfValue("address[state]", allData?.state);
     appendIfValue("address[street]", allData?.street);
-    appendIfValue("mainImage", allData?.mainImage);
-    appendIfValue("imageGallery", allData?.imageGallery);
-    appendIfValue("layoutPlan", allData?.layoutPlan);
+
+    for (let index in allData?.mainImage || []) {
+      if (allData?.mainImage.hasOwnProperty(index)) {
+        const file = allData?.mainImage[index];
+        appendIfValue(`mainImage`, file);
+      }
+    }
+
+    for (let index in allData?.imageGallery || []) {
+      if (allData?.imageGallery.hasOwnProperty(index)) {
+        const file = allData?.imageGallery[index];
+        appendIfValue(`imageGallery`, file);
+      }
+    }
+
+    for (let index in allData?.layoutPlan || []) {
+      if (allData?.layoutPlan.hasOwnProperty(index)) {
+        const file = allData?.layoutPlan[index];
+        appendIfValue(`layoutPlan`, file);
+      }
+    }
+
+    // appendIfValue("mainImage", allData?.mainImage);
+    // appendIfValue("imageGallery", allData?.imageGallery);
+    // appendIfValue("layoutPlan", allData?.layoutPlan);
 
     if (isFormValid) {
       dispatch(postAddProperty(payload, navigate));

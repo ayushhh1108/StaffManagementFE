@@ -8,17 +8,17 @@ export const HeaderData = [
     label: "SR NO",
   },
   {
-    id: "property_name",
+    id: "propertyTitle",
     numeric: false,
     label: "Property Name",
   },
   {
-    id: "property_type",
+    id: "pType",
     numeric: false,
     label: "Property Type",
   },
   {
-    id: "city",
+    id: "pCity",
     numeric: false,
     label: "City",
   },
@@ -28,7 +28,7 @@ export const HeaderData = [
     label: "For",
   },
   {
-    id: "posting_as",
+    id: "iAm",
     numeric: false,
     label: "Posting As",
   },

@@ -1,13 +1,28 @@
 import * as React from "react";
 import "./index.scss";
 
+const viewImage = (selectedImg) => {
+  const data = [...selectedImg]?.map((item) => (
+    <div className={"img-box"}>
+      <img
+        src={
+          typeof item === "string" ? item : URL?.createObjectURL(item)
+        }
+        alt=""
+        className="main-image"
+      />
+    </div>
+  ));
+  return data;
+};
+
 export default function Dropzone({
   title,
   id,
   onChanges,
   selectedImg,
   isError,
-  isMultiple,
+  isMultiple = true,
 }) {
   return (
     <div className="dropzone-box flex flex-wrap items-center justify-center w-[48%] mb-3">
@@ -17,20 +32,13 @@ export default function Dropzone({
       >
         {title}*
       </label>
+
       <div className="selected-image-box flex">
+        {console.log("viewImage", selectedImg && viewImage(selectedImg))
+        }
         {selectedImg && isMultiple ? (
           <>
-            {[...selectedImg]?.map((item) => (
-              <div className={"img-box"}>
-                <img
-                  src={
-                    typeof item === "string" ? item : URL?.createObjectURL(item)
-                  }
-                  alt=""
-                  className="main-image"
-                />
-              </div>
-            ))}
+            {viewImage(selectedImg)}
           </>
         ) : (
           selectedImg && (
