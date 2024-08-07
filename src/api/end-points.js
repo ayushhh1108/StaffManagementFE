@@ -57,4 +57,7 @@ export default {
   postPropertyEnd: () => `property/createProperty`,
   getAllProperty: () => `property/getAllProperty`,
   getAllContactUsData: () => `contactus/getContactUsList`,
+  getAllSiteVisitData: () => `sitevisit/getAllSiteVisitList`,
+  getAllEnquiryData: () => `enquiry/getAllEnquiryList`,
+  getAllCallbackData: () => `callBack/getAllCallbackList`,
 };
