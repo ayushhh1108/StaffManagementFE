@@ -3,10 +3,11 @@ import "./index.scss";
 import SiteVisitPageHooks from "./SiteVisitPageHooks";
 import { Box, Container } from "@mui/material";
 import EnhancedTable from "../../components/Table";
-import { HeaderData, TableData } from "./constant";
+import { HeaderData } from "./constant";
+import { loaderFunc } from "../../utils/helper";
 
 function SiteVisitPage() {
-  const { navigate } = SiteVisitPageHooks();
+  const { navigate, tableData } = SiteVisitPageHooks();
 
   return (
     <Box
@@ -15,6 +16,8 @@ function SiteVisitPage() {
       sx={{ flexGrow: 1, p: 3, mt: 8 }}
     >
       <Container className="pt-[60px] menu-list-container text-left">
+      {loaderFunc(
+          tableData,
         <EnhancedTable
           cellData={HeaderData}
           isActionCol={false}
@@ -27,11 +30,8 @@ function SiteVisitPage() {
             "status",
             "action",
           ]}
-          rowData={TableData?.map((item, index) => ({
-            ...item,
-            no: 1 + index,
-          }))}
-        />
+          rowData={tableData}
+        />)}
       </Container>
     </Box>
   );
