@@ -16,6 +16,10 @@ import socialReducer from "../pages/SocialMediaPage/reducer";
 import directorPageReducer from "../pages/DirectorPage/reducer";
 import constructionPageReducer from "../pages/ConstructionPage/reducer";
 import teamMembersReducer from "../pages/TeamsPage/reducer";
+import contactUsDataReducer from "../pages/ContactUsPage/reducer";
+import siteVisitDataReducer from "../pages/SiteVisitPage/reducer";
+import enquiryDataReducer from "../pages/InquiryListPage/reducer";
+import callBackDataReducer from "../pages/CallbackPage/reducer";
 
 const createReducer = () => {
   const rootReducer = combineReducers({
@@ -36,6 +40,10 @@ const createReducer = () => {
     directorPageReducer: directorPageReducer,
     constructionPageReducer: constructionPageReducer,
     teamMembersReducer: teamMembersReducer,
+    contactUsDataReducer: contactUsDataReducer,
+    siteVisitDataReducer: siteVisitDataReducer,
+    enquiryDataReducer: enquiryDataReducer,
+    callBackDataReducer: callBackDataReducer,
   });
   return rootReducer;
 };
