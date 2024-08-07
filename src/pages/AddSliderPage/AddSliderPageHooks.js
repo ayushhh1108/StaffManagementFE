@@ -33,7 +33,6 @@ export default function AddSliderPageHook() {
     setError(updatedError);
     setData({ ...data, [id]: newValue });
   };
-
   const handleSubmit = () => {
     const requiredFields = [
       "name",
@@ -53,6 +52,12 @@ export default function AddSliderPageHook() {
         isFormValid = false;
       }
     });
+    console.log(
+      "banner_imagebanner_imagebanner_image",
+      data,
+      error,
+      isFormValid
+    );
     if (isFormValid) {
       const payload = new FormData();
       payload.append("name", data?.name);

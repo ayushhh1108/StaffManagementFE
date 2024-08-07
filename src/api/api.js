@@ -13,7 +13,7 @@ const createAPI = () => {
   });
 
   api.interceptors.request.use(async (config) => {
-    const data = JSON.parse(localStorage.getItem("user"))?.token;
+    const data = localStorage.getItem("user");
     if (data && !config.skipAuth) {
       config.headers[`authorization`] = data;
     }

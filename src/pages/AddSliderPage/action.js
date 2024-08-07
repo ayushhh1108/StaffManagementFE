@@ -23,20 +23,20 @@ export const postAddSlider = (payload, navigate) => async (dispatch) => {
 };
 
 export const postUpdateSlider = (payload, navigate) => async (dispatch) => {
-    try {
-      const response = await api.post(apiEndPoints.postUpdateSlider(), payload, {
-        headers,
-      });
-      if (response?.data) {
-        toast.success(response?.data?.message);
-        navigate("/slider-list");
-      } else if (response?.response?.data?.message) {
-        toast.error(response?.response?.data?.message);
-      }
-      console.log("response", response);
-    } catch (error) {
-      const { response: { data = {} } = {} } = error;
-      return data;
+  console.log("error", payload);
+  try {
+    const response = await api.post(apiEndPoints.postUpdateSlider(), payload, {
+      headers,
+    });
+    if (response?.data) {
+      toast.success(response?.data?.message);
+      navigate("/slider-list");
+    } else if (response?.response?.data?.message) {
+      toast.error(response?.response?.data?.message);
     }
-  };
-  
+    console.log("response", response);
+  } catch (error) {
+    const { response: { data = {} } = {} } = error;
+    return data;
+  }
+};
