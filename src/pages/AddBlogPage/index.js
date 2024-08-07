@@ -138,7 +138,7 @@ function AddBlogPage() {
             onError={error?.editor_desc}
           />
         </div>
-        <div className="upload-file-div mb-6 flex justify-between">
+        <div className="upload-file-div mb-6 flex justify-between">{console.log("data",data)}
           <Dropzone
             title={"Banner Image"}
             id="banner_image"

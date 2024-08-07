@@ -22,7 +22,7 @@ export default function Dropzone({
   onChanges,
   selectedImg,
   isError,
-  isMultiple = true,
+  isMultiple,
 }) {
   return (
     <div className="dropzone-box flex flex-wrap items-center justify-center w-[48%] mb-3">
@@ -34,11 +34,9 @@ export default function Dropzone({
       </label>
 
       <div className="selected-image-box flex">
-        {console.log("viewImage", selectedImg && viewImage(selectedImg))
-        }
         {selectedImg && isMultiple ? (
           <>
-            {viewImage(selectedImg)}
+            {viewImage(selectedImg,isMultiple)}
           </>
         ) : (
           selectedImg && (
