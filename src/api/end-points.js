@@ -19,7 +19,7 @@ export default {
   postAddRole: () => `role/createUserRole`,
   postUpdateRole: () => `role/updateStatusUserRole`,
   deleteUserRole: () => `role/userRoleDelete`,
-  getAllUserRole: () => `role/userRoleList`,
+  getAllUserRole: () => `role/getUserRolesList`,
   updateUser: () => `user/updateUser`,
   postUser: () => `user/createUser`,
   getAllUsers: () => `user/getAllUser`,
@@ -56,4 +56,5 @@ export default {
   deleteTeamMember: () => `ourteam/deleteTeamMember`,
   postPropertyEnd: () => `property/createProperty`,
   getAllProperty: () => `property/getAllProperty`,
+  getAllContactUsData: () => `contactus/getContactUsList`,
 };
