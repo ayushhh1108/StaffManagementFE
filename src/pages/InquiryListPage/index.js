@@ -4,9 +4,10 @@ import InquiryListPageHooks from "./InquiryListPageHooks";
 import { Box, Container } from "@mui/material";
 import EnhancedTable from "../../components/Table";
 import { HeaderData, TableData } from "./constant";
+import { loaderFunc } from "../../utils/helper";
 
 function InquiryListPage() {
-  const { navigate } = InquiryListPageHooks();
+  const { navigate, tableData } = InquiryListPageHooks();
 
   return (
     <Box
@@ -15,6 +16,8 @@ function InquiryListPage() {
       sx={{ flexGrow: 1, p: 3, mt: 8 }}
     >
       <Container className="pt-[60px] menu-list-container text-left">
+      {loaderFunc(
+          tableData,
         <EnhancedTable
           cellData={HeaderData}
           isActionCol={false}
@@ -27,11 +30,8 @@ function InquiryListPage() {
             "status",
             "action",
           ]}
-          rowData={TableData?.map((item, index) => ({
-            ...item,
-            no: 1 + index,
-          }))}
-        />
+          rowData={tableData}
+        />)}
       </Container>
     </Box>
   );
