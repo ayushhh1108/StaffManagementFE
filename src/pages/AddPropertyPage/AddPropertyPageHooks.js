@@ -140,7 +140,7 @@ export default function AddPropertyPageHooks() {
     }
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async() => {
     console.log("handleSubmit", allData, tags);
     let isFormValid = true;
     const payload = new FormData();
@@ -157,7 +157,7 @@ export default function AddPropertyPageHooks() {
     payload.append("locality", allData?.Locality);
     payload.append("nameOfProject", allData?.propertyTitle);
 
-    tags?.map((item, index) => {
+    await tags?.map((item, index) => {
       payload.append(`propertyTag[${index}]`, item);
     });
     payload.append("propertySubTitle", allData?.propertySubTitle);
@@ -197,7 +197,7 @@ export default function AddPropertyPageHooks() {
     payload.append("availableFromMonth", allData?.Month);
     payload.append("availableFromYear", allData?.Year);
 
-    Features?.map((item, index) => {
+    await Features?.map((item, index) => {
       payload.append(
         `amenities[${index}]`,
         allData[`Property_Feature${index}`]
@@ -211,12 +211,13 @@ export default function AddPropertyPageHooks() {
     payload.append("mainImage", allData?.mainImage);
     payload.append("imageGallery", allData?.imageGallery);
     payload.append("layoutPlan", allData?.layoutPlan);
+    console.log("admin@gmail.com",payload)
 
-    if (isFormValid) {
+    // if (isFormValid) {
       dispatch(postAddProperty(payload, navigate));
-    } else {
+    // } else {
       // setError(error);
-    }
+    // }
     // dispatch(loginSubmit(creds,navigate))
   };
 

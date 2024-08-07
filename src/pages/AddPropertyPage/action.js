@@ -11,16 +11,24 @@ const handleSuccessfullNavigate = (navigate) => {
 
 export const postAddProperty = (payload, navigate) => async (dispatch) => {
   try {
+    console.log(
+      "admin@gmail234.com1",
+      payload,
+      api,
+      apiEndPoints,
+      apiEndPoints.postPropertyEnd(),
+      headers
+    );
     const response = await api.post(apiEndPoints.postPropertyEnd(), payload, {
       headers,
     });
+    console.log("imageGallery", response);
     if (response?.data?.status) {
       toast.success(response?.data?.message);
       handleSuccessfullNavigate(navigate);
     } else if (response?.response?.data?.message) {
       toast.error(response?.response?.data?.message);
     }
-    console.log("imageGallery", response);
   } catch (error) {
     const { response: { data = {} } = {} } = error;
     return data;
