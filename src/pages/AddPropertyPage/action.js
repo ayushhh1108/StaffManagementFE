@@ -9,7 +9,12 @@ const handleSuccessfullNavigate = (navigate) => {
   navigate("/director-list");
 };
 
+const handleSuccessfullNavigatetoProperty = (navigate) => {
+  navigate("/property-list");
+}
+
 export const postAddProperty = (payload, navigate) => async (dispatch) => {
+
   try {
     console.log(
       "admin@gmail234.com1",
@@ -25,7 +30,7 @@ export const postAddProperty = (payload, navigate) => async (dispatch) => {
     console.log("imageGallery", response);
     if (response?.data?.status) {
       toast.success(response?.data?.message);
-      handleSuccessfullNavigate(navigate);
+      handleSuccessfullNavigatetoProperty(navigate);
     } else if (response?.response?.data?.message) {
       toast.error(response?.response?.data?.message);
     }

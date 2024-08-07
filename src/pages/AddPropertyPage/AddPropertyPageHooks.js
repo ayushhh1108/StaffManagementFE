@@ -91,8 +91,8 @@ export default function AddPropertyPageHooks() {
 
   const handleRadioChange = (event) => {
     const { name, value } = event.target;
-    setRadioButtonData({ ...radioButtonData, [name]: value });
-    setAllData(name, value);
+    setRadioButtonData({ [name]: value });
+    setAllData({ ...allData, [name]: value });
   };
 
   const handleInputsChange = (idOrEvent, val) => {
@@ -103,22 +103,22 @@ export default function AddPropertyPageHooks() {
       isName === "for"
         ? "for"
         : isName === "boundary_walls"
-        ? "boundary_walls"
-        : isName === "personal_washroom"
-        ? "personal_washroom"
-        : isName === "pantry_cafeteria"
-        ? "pantry_cafeteria"
-        : key;
+          ? "boundary_walls"
+          : isName === "personal_washroom"
+            ? "personal_washroom"
+            : isName === "pantry_cafeteria"
+              ? "pantry_cafeteria"
+              : key;
     let value = event ? event.target.value : val;
     const isUpload =
       key === "mainImage" || key === "imageGallery" || key === "layoutPlan";
     value =
       isUpload && event
-        ? event.target.files[0]
+        ? event.target.files
         : key === "is_corner_plot"
-        ? idOrEvent?.target?.checked
-        : value;
-    console.log("idOrEvent", key, idOrEvent?.target?.checked);
+          ? idOrEvent?.target?.checked
+          : value;
+    console.log("idOrEvent", key, value);
     setData(key, value);
   };
 
@@ -144,74 +144,95 @@ export default function AddPropertyPageHooks() {
     console.log("handleSubmit", allData, tags);
     let isFormValid = true;
     const payload = new FormData();
-    payload.append("iAm", allData?.["iAm"]);
-    payload.append("for", allData?.["for"]);
-    payload.append("pType", allData?.["pType"]);
-    payload.append("postingAs", allData?.["iAm"]);
-
-    payload.append("name", allData?.Name);
-    payload.append("mobile", allData?.["Mobile"]);
-    payload.append("email", allData?.["Email"]);
-
-    payload.append("pCity", allData?.City);
-    payload.append("locality", allData?.Locality);
-    payload.append("nameOfProject", allData?.propertyTitle);
-
-    await tags?.map((item, index) => {
-      payload.append(`propertyTag[${index}]`, item);
+    const appendIfValue = (key, value) => {
+      if (value !== undefined && value !== null) {
+        payload.append(key, value);
+      }
+    };
+    appendIfValue("iAm", clientData?.["iAm"]);
+    appendIfValue("for", allData?.["for"]);
+    appendIfValue("pType", allData?.["pType"]);
+    appendIfValue("postingAs", clientData?.["iAm"]);
+    appendIfValue("name", allData?.Name);
+    appendIfValue("mobile", allData?.["Mobile"]);
+    appendIfValue("email", allData?.["Email"]);
+    appendIfValue("pCity", allData?.city);
+    appendIfValue("locality", allData?.Locality);
+    appendIfValue("nameOfProject", allData?.propertyTitle);
+    tags?.map((item, index) => {
+      appendIfValue(`propertyTag[${index}]`, item);
     });
-    payload.append("propertySubTitle", allData?.propertySubTitle);
-    payload.append("description", allData?.editor_property_desc);
-    payload.append("isNegotiate", allData?.is_price_negotiable);
-    payload.append("isPostPropertyAgree", allData?.post_confirmation);
-    payload.append("isTermsAndConditionAgree", allData?.privacy_and_condition);
-
-    payload.append("bookingPrice", allData?.token_amt);
-    payload.append("expectedPrice", allData?.expected_price);
-
-    payload.append("totalFlats", allData?.totalFlatCount);
-    payload.append("balconies", allData?.Balconies);
-    payload.append("bedrooms", allData?.Bedrooms);
-    payload.append("floorNo", allData?.floor_no);
-
-    payload.append("totalFloors", allData?.total_floors);
-    payload.append("furnishedStatus", allData?.furnished_status);
-    payload.append("bathrooms", allData?.Bathrooms);
-    payload.append(
+    appendIfValue("propertyTitle", allData?.propertyTitle);
+    appendIfValue("propertySubTitle", allData?.propertySubTitle);
+    appendIfValue("description", allData?.editor_property_desc);
+    appendIfValue("isNegotiate", allData?.is_price_negotiable === "on");
+    appendIfValue("isPostPropertyAgree", allData?.post_confirmation === "on");
+    appendIfValue(
+      "isTermsAndConditionAgree",
+      allData?.privacy_and_condition === "on"
+    );
+    appendIfValue("bookingPrice", allData?.token_amt);
+    appendIfValue("expectedPrice", allData?.expected_price);
+    appendIfValue("totalFlats", allData?.totalFlatCount);
+    appendIfValue("balconies", allData?.Balconies);
+    appendIfValue("bedrooms", allData?.Bedrooms);
+    appendIfValue("floorNo", allData?.floor_no);
+    appendIfValue("totalFloors", allData?.total_floors);
+    appendIfValue("furnishedStatus", allData?.furnished_status);
+    appendIfValue("bathrooms", allData?.Bathrooms);
+    appendIfValue(
       "FloorsAllowedForConstruction",
       allData?.allowed_floor_contruction
     );
-    payload.append("WidthOfRoadInM", allData?.width_of_road_facing_plot);
-    payload.append("WidthOfRoad", allData?.width_of_open_side);
-    payload.append("NoOfOpenSides", allData?.no_of_open_sides);
-    payload.append("isBoundaryWall", allData?.boundary_walls);
+    appendIfValue("WidthOfRoadInM", allData?.width_of_road_facing_plot);
+    appendIfValue("WidthOfRoad", allData?.width_of_open_side);
+    appendIfValue("NoOfOpenSides", allData?.no_of_open_sides);
+    appendIfValue("isBoundaryWall", allData?.boundary_walls);
 
-    payload.append("plotArea", allData?.plot_area);
-    payload.append("plotLength", allData?.plot_length);
-    payload.append("isCornerPlot", allData?.is_corner_plot);
-    payload.append("plotBreadth", allData?.plot_breadth);
-    payload.append("superArea", allData?.super_area);
-    payload.append("carpetArea", allData?.carpet_area);
+    appendIfValue("plotArea", allData?.plot_area);
+    appendIfValue("plotLength", allData?.plot_length);
+    appendIfValue("isCornerPlot", allData?.is_corner_plot === "on");
+    appendIfValue("plotBreadth", allData?.plot_breadth);
+    appendIfValue("superArea", allData?.super_area);
+    appendIfValue("carpetArea", allData?.carpet_area);
 
-    payload.append("possessionStatus", allData?.possession_status);
-    payload.append("availableFromMonth", allData?.Month);
-    payload.append("availableFromYear", allData?.Year);
+    appendIfValue("possessionStatus", allData?.possession_status);
+    appendIfValue("availableFromMonth", allData?.Month);
+    appendIfValue("availableFromYear", allData?.Year);
 
-    await Features?.map((item, index) => {
-      payload.append(
-        `amenities[${index}]`,
-        allData[`Property_Feature${index}`]
-      );
+    Features?.map((item, index) => {
+      appendIfValue(`amenities[${index}]`, allData[`Property_Feature${index}`]);
     });
 
-    payload.append("address[city]", allData?.City);
-    payload.append("address[zip]", allData?.Zipcode);
-    payload.append("address[state]", allData?.state);
-    payload.append("address[street]", allData?.street);
-    payload.append("mainImage", allData?.mainImage);
-    payload.append("imageGallery", allData?.imageGallery);
-    payload.append("layoutPlan", allData?.layoutPlan);
-    console.log("admin@gmail.com",payload)
+    appendIfValue("address[city]", allData?.City);
+    appendIfValue("address[zip]", allData?.Zipcode);
+    appendIfValue("address[state]", allData?.state);
+    appendIfValue("address[street]", allData?.street);
+
+    for (let index in allData?.mainImage || []) {
+      if (allData?.mainImage.hasOwnProperty(index)) {
+        const file = allData?.mainImage[index];
+        appendIfValue(`mainImage`, file);
+      }
+    }
+
+    for (let index in allData?.imageGallery || []) {
+      if (allData?.imageGallery.hasOwnProperty(index)) {
+        const file = allData?.imageGallery[index];
+        appendIfValue(`imageGallery`, file);
+      }
+    }
+
+    for (let index in allData?.layoutPlan || []) {
+      if (allData?.layoutPlan.hasOwnProperty(index)) {
+        const file = allData?.layoutPlan[index];
+        appendIfValue(`layoutPlan`, file);
+      }
+    }
+
+    // appendIfValue("mainImage", allData?.mainImage);
+    // appendIfValue("imageGallery", allData?.imageGallery);
+    // appendIfValue("layoutPlan", allData?.layoutPlan);
 
     // if (isFormValid) {
       dispatch(postAddProperty(payload, navigate));
