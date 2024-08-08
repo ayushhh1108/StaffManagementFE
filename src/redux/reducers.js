@@ -20,6 +20,9 @@ import contactUsDataReducer from "../pages/ContactUsPage/reducer";
 import siteVisitDataReducer from "../pages/SiteVisitPage/reducer";
 import enquiryDataReducer from "../pages/InquiryListPage/reducer";
 import callBackDataReducer from "../pages/CallbackPage/reducer";
+import reviewDataReducer from "../pages/ReviewsPage/reducer";
+import bookingDataReducer from "../pages/BookingsPage/reducer";
+import siteAddressReducer from "../pages/SiteAddressPage/reducer";
 
 const createReducer = () => {
   const rootReducer = combineReducers({
@@ -44,6 +47,9 @@ const createReducer = () => {
     siteVisitDataReducer: siteVisitDataReducer,
     enquiryDataReducer: enquiryDataReducer,
     callBackDataReducer: callBackDataReducer,
+    reviewDataReducer: reviewDataReducer,
+    bookingDataReducer: bookingDataReducer,
+    siteAddressReducer: siteAddressReducer,
   });
   return rootReducer;
 };
