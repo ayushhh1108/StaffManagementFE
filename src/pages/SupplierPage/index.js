@@ -4,9 +4,11 @@ import SupplierHook from "./SupplierHook";
 import { Box, Container } from "@mui/material";
 import EnhancedTable from "../../components/Table";
 import { HeaderData, TableData } from "./constant";
+import { loaderFunc } from "../../utils/helper";
+import DeleteDialog from "../../components/DeleteDialog";
 
 function SupplierPage() {
-  const { navigate } = SupplierHook();
+  const { navigate,tableData,handleDelete,open, setOpen, handleConfirmDelete, handleEdit } = SupplierHook();
   return (
     <Box
       className="menu-list-page"
@@ -21,13 +23,19 @@ function SupplierPage() {
         >
           Add Supplier
         </button>
+        {loaderFunc(
+          tableData,
         <EnhancedTable
           cellData={HeaderData}
           isActionCol
           rowItems={["no", "supplier_of", "name", "status"]}
-          rowData={TableData?.map((item, index) => ({ ...item, no: 1 + index }))}
-        />
+          rowData={tableData}
+          handleEditClick={handleEdit}
+          handleDeleteClick={handleDelete}
+        />)}
       </Container>
+      {DeleteDialog(open, setOpen, handleConfirmDelete)}
+
     </Box>
   );
 }
