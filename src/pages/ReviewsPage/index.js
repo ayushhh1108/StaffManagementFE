@@ -3,10 +3,11 @@ import "./index.scss";
 import ReviewsPageHook from "./ReviewsPageHook";
 import { Box, Container, Typography } from "@mui/material";
 import EnhancedTable from "../../components/Table";
-import { HeaderData, TableData } from "./constant";
+import { HeaderData } from "./constant";
+import { loaderFunc } from "../../utils/helper";
 
 function ReviewsPage() {
-  const { navigate } = ReviewsPageHook();
+  const { navigate, tableData } = ReviewsPageHook();
 
   return (
     <Box
@@ -18,6 +19,8 @@ function ReviewsPage() {
         <Typography variant="h5" className="mb-5 form-label text-left">
           Reviews List{" "}
         </Typography>
+        {loaderFunc(
+          tableData,
         <EnhancedTable
           cellData={HeaderData}
           isActionCol={false}
@@ -30,11 +33,8 @@ function ReviewsPage() {
             "status",
             "action",
           ]}
-          rowData={TableData?.map((item, index) => ({
-            ...item,
-            no: 1 + index,
-          }))}
-        />
+          rowData={tableData}
+        />)}
       </Container>
     </Box>
   );
