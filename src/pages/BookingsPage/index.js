@@ -3,10 +3,10 @@ import "./index.scss";
 import BookingsPageHook from "./BookingsPageHook";
 import { Box, Container, Typography } from "@mui/material";
 import EnhancedTable from "../../components/Table";
-import { HeaderData, TableData } from "./constant";
+import { HeaderData } from "./constant";
 
 function BookingsPage() {
-  const { navigate } = BookingsPageHook();
+  const { navigate, tableData} = BookingsPageHook();
 
   return (
     <Box
@@ -30,10 +30,7 @@ function BookingsPage() {
             "status",
             "action",
           ]}
-          rowData={TableData?.map((item, index) => ({
-            ...item,
-            no: 1 + index,
-          }))}
+          rowData={tableData}
         />
       </Container>
     </Box>
