@@ -60,4 +60,8 @@ export default {
   getAllSiteVisitData: () => `sitevisit/getAllSiteVisitList`,
   getAllEnquiryData: () => `enquiry/getAllEnquiryList`,
   getAllCallbackData: () => `callBack/getAllCallbackList`,
+  getAllReviewData: () => `review/getAllReviewList`,
+  getAllBookingData: () => `booking/getBookingList`,
+  getFooterAddress: () => `home/getFooterAddress`,
+  updateVishalAddress: () => `home/updateVishalAddress`,
 };
