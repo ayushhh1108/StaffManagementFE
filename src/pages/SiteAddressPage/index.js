@@ -5,7 +5,7 @@ import { Box, Typography } from "@mui/material";
 import TextInput from "../../components/TextInput";
 
 function SiteAddressPage() {
-  const { navigate, handleSubmit, handleInputChange, data } =
+  const { navigate, handleSubmit, handleInputChange, data, error} =
     SiteAddressHooks();
 
   return (
@@ -20,6 +20,8 @@ function SiteAddressPage() {
           id={"address"}
           handleChanges={handleInputChange}
           value={data?.address}
+          isError={error?.address}
+
         />
         <TextInput
           label={"City"}
@@ -27,6 +29,7 @@ function SiteAddressPage() {
           id={"city"}
           handleChanges={handleInputChange}
           value={data?.city}
+          isError={error?.city}
         />
         <TextInput
           label={"State"}
@@ -34,13 +37,15 @@ function SiteAddressPage() {
           id={"state"}
           handleChanges={handleInputChange}
           value={data?.state}
+          isError={error?.state}
         />
         <TextInput
           label={"Pincode"}
           isRequire
-          id={"pincode"}
+          id={"pinCode"}
           handleChanges={handleInputChange}
-          value={data?.pincode}
+          value={data?.pinCode}
+          isError={error?.pinCode}
         />
         <TextInput
           label={"Mobile"}
@@ -48,6 +53,7 @@ function SiteAddressPage() {
           id={"mobile"}
           handleChanges={handleInputChange}
           value={data?.mobile}
+          isError={error?.mobile}
         />
         <TextInput
           label={"Email"}
@@ -55,6 +61,7 @@ function SiteAddressPage() {
           id={"email"}
           handleChanges={handleInputChange}
           value={data?.email}
+          isError={error?.email}
         />
         <TextInput
           label={"Timing"}
@@ -62,6 +69,7 @@ function SiteAddressPage() {
           id={"timing"}
           handleChanges={handleInputChange}
           value={data?.timing}
+          isError={error?.timing}
         />
 
         <button
