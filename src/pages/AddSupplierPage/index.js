@@ -7,7 +7,7 @@ import TextInput from "../../components/TextInput";
 import SelectInput from "../../components/SelectInput";
 
 function AddSupplierPage() {
-  const { navigate, handleSubmit, handleInputChange, data } =
+  const { navigate, handleSubmit, handleInputChange, data,error } =
     AddSupplierHooks();
 
   return (
@@ -17,25 +17,36 @@ function AddSupplierPage() {
           Add Supplier{" "}
         </Typography>
         <TextInput
-          label={"Your Name"}
+          label={"First Name"}
           isRequire
-          id={"name"}
+          id={"firstName"}
           handleChanges={handleInputChange}
-          value={data?.name}
+          value={data?.firstName}
+          isError={error?.firstName}
+        />
+        <TextInput
+          label={"Last Name"}
+          isRequire
+          id={"lastName"}
+          handleChanges={handleInputChange}
+          value={data?.lastName}
+          isError={error?.lastName}
         />
         <TextInput
           label={"Company Name"}
           isRequire
-          id={"company_name"}
+          id={"companyName"}
           handleChanges={handleInputChange}
-          value={data?.company_name}
+          value={data?.companyName}
+          isError={error?.companyName}
         />
         <SelectInput
           label={"Position/Job Role"}
           isRequire
-          id={"position"}
+          id={"role"}
           handleChange={handleInputChange}
-          value={data?.position}
+          value={data?.role}
+          isError={error?.role}
           options={[
             { label: "Left", value: "left" },
             { label: "Right", value: "right" },
@@ -47,6 +58,8 @@ function AddSupplierPage() {
           id={"mobile"}
           handleChanges={handleInputChange}
           value={data?.mobile}
+          isError={error?.mobile}
+          isNumber
         />
         <TextInput
           label={"Email"}
@@ -54,6 +67,7 @@ function AddSupplierPage() {
           id={"email"}
           handleChanges={handleInputChange}
           value={data?.email}
+          isError={error?.email}
         />
         <TextInput
           label={"City"}
@@ -61,6 +75,7 @@ function AddSupplierPage() {
           id={"city"}
           handleChanges={handleInputChange}
           value={data?.city}
+          isError={error?.city}
         />
         <TextInput
           label={"Location"}
@@ -68,13 +83,15 @@ function AddSupplierPage() {
           id={"location"}
           handleChanges={handleInputChange}
           value={data?.location}
+          isError={error?.location}
         />
         <SelectInput
           label={"Supplier of"}
           isRequire
-          id={"supplier"}
+          id={"supplierOf"}
           handleChange={handleInputChange}
-          value={data?.supplier}
+          value={data?.supplierOf}
+          isError={error?.supplierOf}
           options={[
             { label: "Marble", value: "marble" },
             { label: "Bricks", value: "bricks" },
@@ -86,11 +103,14 @@ function AddSupplierPage() {
           id={"message"}
           handleChanges={handleInputChange}
           value={data?.message}
+          isError={error?.message}
         />
         <div className="upload-file-div mb-6 flex justify-between">
           <Dropzone
             title={"Banner"}
-            id="banner_image"
+            id="file"
+            isError={error?.file}
+            selectedImg={data?.file}
             onChanges={handleInputChange}
           />
         </div>
