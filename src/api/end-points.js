@@ -61,7 +61,12 @@ export default {
   getAllEnquiryData: () => `enquiry/getAllEnquiryList`,
   getAllCallbackData: () => `callBack/getAllCallbackList`,
   getAllReviewData: () => `review/getAllReviewList`,
+  getAllReviewData: () => `review/getAllReviewList`,
   getAllBookingData: () => `booking/getBookingList`,
   getFooterAddress: () => `home/getFooterAddress`,
   updateVishalAddress: () => `home/updateVishalAddress`,
+  getSupplierPage: () => `supplier/getSupplierList`,
+  postSupplier: () => `supplier/createSupplier`,
+  postDeleteSupplier: () => `supplier/deleteSupplier`,
+  updateSupplier: () => `supplier/updateSupplier`,
 };
