@@ -29,7 +29,11 @@ export const loginSubmit = (payload, navigate) => async (dispatch) => {
       }
     );
     if (response?.headers?.authorization) {
-      localStorage.setItem("user", response?.headers?.authorization);
+      const data = {
+        ...response?.data?.user,
+        token: response?.headers?.authorization,
+      };
+      localStorage.setItem("user", JSON.stringify(data));
       toast.success("Login successfully");
       dispatch(loginSuccessfull(response, navigate));
     } else if (response?.response?.data?.message) {
