@@ -164,6 +164,11 @@ export const sidebaarRoutes = [
           },
         ],
       },
+      {
+        title: "Legacy",
+        icon: <FaRegAddressCard className="side-baar-icon" />,
+        pathname: "/Legacy",
+      },
     ],
   },
   // User Management
@@ -429,25 +434,25 @@ export const sidebaarRoutes = [
   {
     title: "Company Information",
     menus: [
-      {
-        title: "About us",
-        icon: <IoIosPeople className="side-baar-icon" />,
-        pathname: "/about-us",
-        isSub: false,
-        arrow: <FaAngleDown />,
-        subMenu: [
-          {
-            title: "Add About us",
-            icon: <IoPeopleCircleSharp className="side-baar-icon" />,
-            pathname: "/add-about-us",
-          },
-          {
-            title: "About us List",
-            icon: <PiUserListFill className="side-baar-icon" />,
-            pathname: "/about-us-list",
-          },
-        ],
-      },
+      // {
+      //   title: "About us",
+      //   icon: <IoIosPeople className="side-baar-icon" />,
+      //   pathname: "/about-us",
+      //   isSub: false,
+      //   arrow: <FaAngleDown />,
+      //   subMenu: [
+      //     {
+      //       title: "Add About us",
+      //       icon: <IoPeopleCircleSharp className="side-baar-icon" />,
+      //       pathname: "/add-about-us",
+      //     },
+      //     {
+      //       title: "About us List",
+      //       icon: <PiUserListFill className="side-baar-icon" />,
+      //       pathname: "/about-us-list",
+      //     },
+      //   ],
+      // },
       {
         title: "Site address",
         icon: <FaRegAddressCard className="side-baar-icon" />,
