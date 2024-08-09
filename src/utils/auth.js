@@ -9,7 +9,7 @@ export const ProtectedRoute = ({ children }) => {
 };
 
 export const getToken = () => {
-  return localStorage.getItem("user");
+  return JSON.parse(localStorage.getItem("user"))?.token;
 };
 
 export const setBearerToken = (token) => {
