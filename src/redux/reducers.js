@@ -24,6 +24,7 @@ import reviewDataReducer from "../pages/ReviewsPage/reducer";
 import bookingDataReducer from "../pages/BookingsPage/reducer";
 import siteAddressReducer from "../pages/SiteAddressPage/reducer";
 import supplierDataReducer from "../pages/SupplierPage/reducer";
+import legacyDataReducer from "../pages/LegacyPage/reducer";
 
 const createReducer = () => {
   const rootReducer = combineReducers({
@@ -52,6 +53,7 @@ const createReducer = () => {
     bookingDataReducer: bookingDataReducer,
     siteAddressReducer: siteAddressReducer,
     supplierDataReducer: supplierDataReducer,
+    legacyDataReducer: legacyDataReducer,
   });
   return rootReducer;
 };
