@@ -69,4 +69,6 @@ export default {
   postSupplier: () => `supplier/createSupplier`,
   postDeleteSupplier: () => `supplier/deleteSupplier`,
   updateSupplier: () => `supplier/updateSupplier`,
+  updateLegacyData: () => `home/updateLegacy`,
+  getLegacyData: () => `home/legacy`,
 };
