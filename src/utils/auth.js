@@ -8,8 +8,10 @@ export const ProtectedRoute = ({ children }) => {
   //  return children;
 };
 
-export const getToken = () => {
-  return JSON.parse(localStorage.getItem("user"))?.token;
+export const getToken = async () => {
+  const localStorageData = JSON.parse(localStorage.getItem("user"));
+  const token = localStorageData?.token;
+  return token;
 };
 
 export const setBearerToken = (token) => {

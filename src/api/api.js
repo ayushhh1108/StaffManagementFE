@@ -14,7 +14,7 @@ const createAPI = () => {
   });
 
   api.interceptors.request.use(async (config) => {
-    const data = getToken()?.token;
+    const data = getToken();
     if (data && !config.skipAuth) {
       config.headers[`authorization`] = data;
     }
