@@ -9,7 +9,8 @@ import Dropzone from "../../components/DropZone";
 import TextInput from "../../components/TextInput";
 
 function AddDealingPage() {
-  const { navigate, handleSubmit, handleInputChange, data } = AddDealingHooks();
+  const { navigate, handleSubmit, handleInputChange, error, data } =
+    AddDealingHooks();
 
   return (
     <Box component="main" sx={{ flexGrow: 1, p: 3, mt: 8, maxWidth: "100%" }}>
@@ -18,63 +19,54 @@ function AddDealingPage() {
           Add Dealing{" "}
         </Typography>
         <TextInput
-          label={"Header"}
-          isRequire
-          id={"header"}
-          handleChanges={handleInputChange}
-          value={data?.header}
-        />
-        <TextInput
           label={"Title"}
           isRequire
           id={"title"}
           handleChanges={handleInputChange}
           value={data?.title}
+          isError={error?.title}
+        />
+        <TextInput
+          label={"Description"}
+          isRequire
+          id={"description"}
+          handleChanges={handleInputChange}
+          value={data?.description}
+          isError={error?.description}
         />
         <TextInput
           label={"Meta Title"}
           isRequire
-          id={"meta_title"}
+          id={"metaTitle"}
           handleChanges={handleInputChange}
-          value={data?.meta_title}
+          value={data?.metaTitle}
+          isError={error?.metaTitle}
         />
         <TextInput
           label={"Meta Keywords"}
           isRequire
-          id={"meta_keywords"}
+          id={"metaKeywords"}
           handleChanges={handleInputChange}
-          value={data?.meta_keywords}
+          value={data?.metaKeywords}
+          isError={error?.metaKeywords}
         />
         <TextInput
           label={"Meta Descripion"}
           isRequire
-          id={"meta_description"}
+          id={"metaDescription"}
           handleChanges={handleInputChange}
-          value={data?.meta_description}
+          value={data?.metaDescription}
+          isError={error?.metaDescription}
         />
-        <div className="add-menu-input w-1/2 mb-5">
-          <CKEditor
-            editor={ClassicEditor}
-            data={data?.editor_desc}
-            onReady={(editor) => {
-              // You can store the "editor" and use when it is needed.
-              console.log("Editor is ready to use!", editor);
-            }}
-            onChange={(event, editor) => {
-              handleInputChange({
-                target: { value: editor?.getData(), id: "editor_desc" },
-              });
-            }}
-            onBlur={(event, editor) => {
-              console.log("Blur.", editor);
-            }}
-            onFocus={(event, editor) => {
-              console.log("Focus.", editor);
-            }}
-          />
-        </div>
+
         <div className="upload-file-div mb-6 flex justify-between">
-          <Dropzone title={"Video"} id="video" onChanges={handleInputChange} />
+          <Dropzone
+            title={"Icon"}
+            id="iconImage"
+            onChanges={handleInputChange}
+            isError={error?.iconImage}
+            selectedImg={data?.iconImage}
+          />
         </div>
 
         <button

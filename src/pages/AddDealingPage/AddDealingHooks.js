@@ -1,8 +1,18 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
+import { postAddDealIn } from "./action";
 
 export default function AddDealingHooks() {
-  const [data, setData] = useState();
+  const dispatch = useDispatch();
+  const location = useLocation();
+  const editData = location?.state;
+  const [data, setData] = useState({
+    ...editData,
+    image: editData?.image?.[0]?.image?.[0]?.path,
+  });
+  const [error, setError] = useState();
+  const [isEdit, setIsEdit] = useState(location?.state?._id);
   const navigate = useNavigate();
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -12,16 +22,49 @@ export default function AddDealingHooks() {
     const event = isEventBased(id) ? id : null;
     const key = event ? event.target.id : id;
     let value = event ? event.target.value : val;
-    const isUpload = key === "video";
+    const isUpload = key === "iconImage";
     value = isUpload && event ? event.target.files[0] : value;
+    const updatedError = { ...error };
+    delete updatedError[key];
+    setError(updatedError);
     setData({ ...data, [key]: value });
   };
 
   const isEventBased = (input) => !!input?.target?.id;
 
+  const requiredFields = [
+    "iconImage",
+    "title",
+    "description",
+    "metaTitle",
+    "metaKeywords",
+    "metaDescription",
+  ];
   const handleSubmit = () => {
     console.log("handleSubmit", data);
-    // dispatch(loginSubmit(creds,navigate))
+    let error = {};
+    let isFormValid = true;
+    const payload = new FormData();
+
+    requiredFields.forEach((field) => {
+      if (!data?.[field]) {
+        error[field] = true;
+        isFormValid = false;
+      }
+      payload.append(field, data?.[field]);
+    });
+
+    if (isFormValid) {
+      if (isEdit) {
+        payload.append("_id", isEdit);
+        // dispatch(updateDirector(payload, navigate));
+      } else {
+        console.log("handleSubmit", data);
+        dispatch(postAddDealIn(payload, navigate));
+      }
+    } else {
+      setError(error);
+    }
   };
 
   return {
@@ -29,5 +72,6 @@ export default function AddDealingHooks() {
     handleSubmit,
     handleInputChange,
     data,
+    error,
   };
 }

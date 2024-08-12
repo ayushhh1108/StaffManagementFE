@@ -9,9 +9,11 @@ export const ProtectedRoute = ({ children }) => {
 };
 
 export const getToken = async () => {
-  const localStorageData = JSON.parse(localStorage.getItem("user"));
-  const token = localStorageData?.token;
-  return token;
+  const localStorageData = await JSON.parse(localStorage.getItem("user"));
+  if (localStorageData) {
+    const token = await localStorageData?.token;
+    return token;
+  }
 };
 
 export const setBearerToken = (token) => {

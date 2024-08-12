@@ -71,4 +71,5 @@ export default {
   updateSupplier: () => `supplier/updateSupplier`,
   updateLegacyData: () => `home/updateLegacy`,
   getLegacyData: () => `home/legacy`,
+  postDealIn: () => `lookingfor/createLookingFor`,
 };
