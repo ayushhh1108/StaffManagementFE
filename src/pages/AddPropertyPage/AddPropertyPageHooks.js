@@ -19,6 +19,7 @@ export default function AddPropertyPageHooks() {
   });
   const classes = {};
   const [tags, setTags] = useState([]);
+  const [loader, setLoader] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [Features, setFeatures] = useState([
     { key: 1, value: "" },
@@ -103,12 +104,12 @@ export default function AddPropertyPageHooks() {
       isName === "for"
         ? "for"
         : isName === "boundary_walls"
-          ? "boundary_walls"
-          : isName === "personal_washroom"
-            ? "personal_washroom"
-            : isName === "pantry_cafeteria"
-              ? "pantry_cafeteria"
-              : key;
+        ? "boundary_walls"
+        : isName === "personal_washroom"
+        ? "personal_washroom"
+        : isName === "pantry_cafeteria"
+        ? "pantry_cafeteria"
+        : key;
     let value = event ? event.target.value : val;
     const isUpload =
       key === "mainImage" || key === "imageGallery" || key === "layoutPlan";
@@ -116,8 +117,8 @@ export default function AddPropertyPageHooks() {
       isUpload && event
         ? event.target.files
         : key === "is_corner_plot"
-          ? idOrEvent?.target?.checked
-          : value;
+        ? idOrEvent?.target?.checked
+        : value;
     console.log("idOrEvent", key, value);
     setData(key, value);
   };
@@ -140,10 +141,11 @@ export default function AddPropertyPageHooks() {
     }
   };
 
-  const handleSubmit = async() => {
+  const handleSubmit = async () => {
     console.log("handleSubmit", allData, tags);
     let isFormValid = true;
     const payload = new FormData();
+    setLoader(true);
     const appendIfValue = (key, value) => {
       if (value !== undefined && value !== null) {
         payload.append(key, value);
@@ -235,11 +237,12 @@ export default function AddPropertyPageHooks() {
     // appendIfValue("layoutPlan", allData?.layoutPlan);
 
     // if (isFormValid) {
-      dispatch(postAddProperty(payload, navigate));
+    await dispatch(postAddProperty(payload, navigate));
     // } else {
-      // setError(error);
+    // setError(error);
     // }
     // dispatch(loginSubmit(creds,navigate))
+    setLoader(false);
   };
 
   return {
@@ -274,5 +277,6 @@ export default function AddPropertyPageHooks() {
     handleDelete,
     handleKeyDown,
     setData,
+    loader
   };
 }

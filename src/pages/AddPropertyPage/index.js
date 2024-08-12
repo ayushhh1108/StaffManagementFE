@@ -19,6 +19,8 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { FaPlus } from "react-icons/fa";
 import { FaMinus } from "react-icons/fa";
+import Loader from "../../components/Loader";
+import { months, underConstructionYears } from "./constant";
 
 function AddPropertyPage() {
   const {
@@ -53,6 +55,7 @@ function AddPropertyPage() {
     handleDelete,
     handleKeyDown,
     setData,
+    loader,
   } = AddPropertyPageHooks();
 
   console.log("allData+++", allData);
@@ -638,8 +641,8 @@ function AddPropertyPage() {
         </FormControl>
         {isUnderConstruction ? (
           <>
-            {SelectorInput("Month", "Month", oneToTen, otherSelects?.Month)}
-            {SelectorInput("Year", "Year", oneToTen, otherSelects?.Year)}
+            {SelectorInput("Month", "Month", months, otherSelects?.Month)}
+            {SelectorInput("Year", "Year", underConstructionYears, otherSelects?.Year)}
           </>
         ) : (
           SelectorInput(
@@ -744,210 +747,218 @@ function AddPropertyPage() {
           : { flexGrow: 1, p: 3, mt: 8, maxWidth: "calc(100% - 280px)" }
       }
     >
-      <div className="add-menu-form text-left mx-auto my-5">
-        <Typography variant="h5" className="mb-5 form-label">
-          Add Property{" "}
-        </Typography>
-        <Box className="filter-section my-3 flex">
-          <Box className="main-filter w-full">
-            <Box className="tabs">
-              {["Owner", "Agent", "Builder"].map((type) => (
-                <Box
-                  key={type}
-                  className={`tab ${
-                    clientData?.iAm === type ? "selected" : ""
-                  }`}
-                >
-                  <Typography
-                    variant="p"
-                    onClick={onTypeChange}
-                    className="first-tab"
-                    id={type}
+      {" "}
+      {loader ? (
+        Loader()
+      ) : (
+        <div className="add-menu-form text-left mx-auto my-5">
+          <Typography variant="h5" className="mb-5 form-label">
+            Add Property{" "}
+          </Typography>
+          <Box className="filter-section my-3 flex">
+            <Box className="main-filter w-full">
+              <Box className="tabs">
+                {["Owner", "Agent", "Builder"].map((type) => (
+                  <Box
+                    key={type}
+                    className={`tab ${
+                      clientData?.iAm === type ? "selected" : ""
+                    }`}
                   >
-                    {type}
-                  </Typography>
-                </Box>
-              ))}
-            </Box>
-            {renderOwnerDetails()}
-            {renderPropertyDetails()}
-            <div className="w-full flex flex-wrap Property-Location-section my-3">
-              <div
-                key={"Property_Title"}
-                className="d-flex flex-wrap input-box"
-              >
-                <label className="filter-label">{"Property Title"}</label>
-                <TextField
-                  variant="outlined"
-                  className="text-field"
-                  id={"propertyTitle"}
-                  value={allData["propertyTitle"]}
-                  onChange={handleInputsChange}
-                  placeholder={`Enter Your ${"Property Title"}`}
-                />
-              </div>
-              <div
-                key={"Property_sub_Title"}
-                className="d-flex flex-wrap input-box"
-              >
-                <label className="filter-label">{"Property sub Title"}</label>
-                <TextField
-                  variant="outlined"
-                  className="text-field"
-                  id={"propertySubTitle"}
-                  value={allData["propertySubTitle"]}
-                  onChange={handleInputsChange}
-                  placeholder={`Enter Your ${"Property Title"}`}
-                />
-              </div>
-            </div>
-            <div className="w-full flex flex-wrap mx-3">
-              <label className="filter-label ">{"Property Tags"}</label>
-            </div>
-            <div
-              className={`items-center w-full input-box flex flex-wrap Property-Location-section !my-0`}
-            >
-              {tags.map((tag) => (
-                <Chip
-                  key={tag}
-                  label={tag}
-                  onDelete={handleDelete(tag)}
-                  className="bg-blue-100 text-blue-700"
-                />
-              ))}
-              <TextField
-                variant="outlined"
-                className="text-field"
-                value={allData["propertytags"]}
-                onChange={(e) => setInputValue(e.target.value)}
-                onKeyDown={handleKeyDown}
-                placeholder="Type and press enter..."
-              />
-            </div>
-            {renderPropertyLocation()}
-            {propertyType && RegulerFeatures.includes(propertyType[0])
-              ? renderPropertyFeatures()
-              : propertyType && LandFeatures.includes(propertyType[0])
-              ? renderLandPropertyFeatures()
-              : propertyType &&
-                CommercialOfficeFeatures.includes(propertyType[0])
-              ? renderCommercialPropertyFeatures()
-              : ""}
-
-            <div className="add-menu-input w-1/2  my-3">
-              <Typography variant="span" className="form-label mt-4 text-left">
-                Property Description
-              </Typography>
-              <CKEditor
-                editor={ClassicEditor}
-                data={allData?.editor_property_desc || null}
-                onChange={(event, editor) => {
-                  setData("editor_property_desc", editor?.getData());
-                }}
-              />
-            </div>
-            <div style={{ width: "100%" }}>
-              <div
-                key={"Property_Feature"}
-                className="flex flex-wrap w-100"
-                style={{ width: "100%" }}
-              >
-                <label className="filter-label block w-full">
-                  {"Property Feature"}
-                </label>
-                {Features?.map((item, index) => (
-                  <div className="flex items-center w-auto">
-                    <TextField
-                      variant="outlined"
-                      style={{ marginRight: "7px", marginTop: "7px" }}
-                      className="text-field mr-1"
-                      id={`Property_Feature${index}`}
-                      value={allData[`Property_Feature${index}`]}
-                      onChange={handleInputsChange}
-                      placeholder={`Enter Feature`}
-                    />
-                    {Features.length - 1 === index && (
-                      <div className="items-center">
-                        <FaPlus
-                          className="mx-3 cursor-pointer my-5"
-                          onClick={() => {
-                            setFeatures([
-                              ...Features,
-                              { key: Features.length + 1 },
-                            ]);
-                          }}
-                        />
-                        <FaMinus
-                          className="mx-3 cursor-pointer my-1"
-                          onClick={() => {
-                            setFeatures(Features.slice(0, -1));
-                          }}
-                        />
-                      </div>
-                    )}
-                  </div>
+                    <Typography
+                      variant="p"
+                      onClick={onTypeChange}
+                      className="first-tab"
+                      id={type}
+                    >
+                      {type}
+                    </Typography>
+                  </Box>
                 ))}
+              </Box>
+              {renderOwnerDetails()}
+              {renderPropertyDetails()}
+              <div className="w-full flex flex-wrap Property-Location-section my-3">
+                <div
+                  key={"Property_Title"}
+                  className="d-flex flex-wrap input-box"
+                >
+                  <label className="filter-label">{"Property Title"}</label>
+                  <TextField
+                    variant="outlined"
+                    className="text-field"
+                    id={"propertyTitle"}
+                    value={allData["propertyTitle"]}
+                    onChange={handleInputsChange}
+                    placeholder={`Enter Your ${"Property Title"}`}
+                  />
+                </div>
+                <div
+                  key={"Property_sub_Title"}
+                  className="d-flex flex-wrap input-box"
+                >
+                  <label className="filter-label">{"Property sub Title"}</label>
+                  <TextField
+                    variant="outlined"
+                    className="text-field"
+                    id={"propertySubTitle"}
+                    value={allData["propertySubTitle"]}
+                    onChange={handleInputsChange}
+                    placeholder={`Enter Your ${"Property Title"}`}
+                  />
+                </div>
               </div>
-            </div>
-            {propertyType.length ? renderAreaSection() : ""}
-            {propertyType.length
-              ? !LandFeatures.includes(propertyType[0]) &&
-                renderPropertyAvaibality()
-              : ""}
-            {propertyType.length ? renderPriceSection() : ""}
-            {propertyType.length ? renderImageUploadSection() : ""}
-            <FormControlLabel
-              className="flex items-center w-full text-left"
-              control={
-                <Checkbox
-                  id="privacy_and_condition"
-                  value={allData?.privacy_and_condition}
-                  onChange={handleInputsChange}
-                  color="default"
-                  className="checkboxx"
+              <div className="w-full flex flex-wrap mx-3">
+                <label className="filter-label ">{"Property Tags"}</label>
+              </div>
+              <div
+                className={`items-center w-full input-box flex flex-wrap Property-Location-section !my-0`}
+              >
+                {tags.map((tag) => (
+                  <Chip
+                    key={tag}
+                    label={tag}
+                    onDelete={handleDelete(tag)}
+                    className="bg-blue-100 text-blue-700"
+                  />
+                ))}
+                <TextField
+                  variant="outlined"
+                  className="text-field"
+                  value={allData["propertytags"]}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                  placeholder="Type and press enter..."
                 />
-              }
-              label={
-                <span className="checkbox-text">
-                  I agree to the{" "}
-                  <Typography variant="span" color="error">
-                    Privacy & Policy *
-                  </Typography>
-                  {"  "} and {"  "}
-                  <Typography variant="span" color="error">
-                    terms & conditions *
-                  </Typography>
-                </span>
-              }
-            />
-            <FormControlLabel
-              className="flex items-center w-full text-left mb-3"
-              control={
-                <Checkbox
-                  id="post_confirmation"
-                  value={allData?.post_confirmation}
-                  onChange={handleInputsChange}
-                  color="default"
-                  className="checkboxx"
+              </div>
+              {renderPropertyLocation()}
+              {propertyType && RegulerFeatures.includes(propertyType[0])
+                ? renderPropertyFeatures()
+                : propertyType && LandFeatures.includes(propertyType[0])
+                ? renderLandPropertyFeatures()
+                : propertyType &&
+                  CommercialOfficeFeatures.includes(propertyType[0])
+                ? renderCommercialPropertyFeatures()
+                : ""}
+
+              <div className="add-menu-input w-1/2  my-3">
+                <Typography
+                  variant="span"
+                  className="form-label mt-4 text-left"
+                >
+                  Property Description
+                </Typography>
+                <CKEditor
+                  editor={ClassicEditor}
+                  data={allData?.editor_property_desc || null}
+                  onChange={(event, editor) => {
+                    setData("editor_property_desc", editor?.getData());
+                  }}
                 />
-              }
-              label={
-                <span className="checkbox-text">
-                  I am posting this property 'exclusively' on Vishal
-                  Construction
-                </span>
-              }
-            />
-            <button
-              type="button"
-              onClick={handleSubmit}
-              className="text-white bg-[#1e6c89] hover:bg-[#164e63] font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2"
-            >
-              Save
-            </button>
+              </div>
+              <div style={{ width: "100%" }}>
+                <div
+                  key={"Property_Feature"}
+                  className="flex flex-wrap w-100"
+                  style={{ width: "100%" }}
+                >
+                  <label className="filter-label block w-full">
+                    {"Property Feature"}
+                  </label>
+                  {Features?.map((item, index) => (
+                    <div className="flex items-center w-auto">
+                      <TextField
+                        variant="outlined"
+                        style={{ marginRight: "7px", marginTop: "7px" }}
+                        className="text-field mr-1"
+                        id={`Property_Feature${index}`}
+                        value={allData[`Property_Feature${index}`]}
+                        onChange={handleInputsChange}
+                        placeholder={`Enter Feature`}
+                      />
+                      {Features.length - 1 === index && (
+                        <div className="items-center">
+                          <FaPlus
+                            className="mx-3 cursor-pointer my-5"
+                            onClick={() => {
+                              setFeatures([
+                                ...Features,
+                                { key: Features.length + 1 },
+                              ]);
+                            }}
+                          />
+                          <FaMinus
+                            className="mx-3 cursor-pointer my-1"
+                            onClick={() => {
+                              setFeatures(Features.slice(0, -1));
+                            }}
+                          />
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+              {propertyType.length ? renderAreaSection() : ""}
+              {propertyType.length
+                ? !LandFeatures.includes(propertyType[0]) &&
+                  renderPropertyAvaibality()
+                : ""}
+              {propertyType.length ? renderPriceSection() : ""}
+              {propertyType.length ? renderImageUploadSection() : ""}
+              <FormControlLabel
+                className="flex items-center w-full text-left"
+                control={
+                  <Checkbox
+                    id="privacy_and_condition"
+                    value={allData?.privacy_and_condition}
+                    onChange={handleInputsChange}
+                    color="default"
+                    className="checkboxx"
+                  />
+                }
+                label={
+                  <span className="checkbox-text">
+                    I agree to the{" "}
+                    <Typography variant="span" color="error">
+                      Privacy & Policy *
+                    </Typography>
+                    {"  "} and {"  "}
+                    <Typography variant="span" color="error">
+                      terms & conditions *
+                    </Typography>
+                  </span>
+                }
+              />
+              <FormControlLabel
+                className="flex items-center w-full text-left mb-3"
+                control={
+                  <Checkbox
+                    id="post_confirmation"
+                    value={allData?.post_confirmation}
+                    onChange={handleInputsChange}
+                    color="default"
+                    className="checkboxx"
+                  />
+                }
+                label={
+                  <span className="checkbox-text">
+                    I am posting this property 'exclusively' on Vishal
+                    Construction
+                  </span>
+                }
+              />
+              <button
+                type="button"
+                onClick={handleSubmit}
+                className="text-white bg-[#1e6c89] hover:bg-[#164e63] font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2"
+              >
+                Save
+              </button>
+            </Box>
           </Box>
-        </Box>
-      </div>
+        </div>
+      )}
     </Box>
   );
 }
