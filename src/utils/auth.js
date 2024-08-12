@@ -4,14 +4,15 @@ import { Navigate } from "react-router-dom";
 
 export const ProtectedRoute = ({ children }) => {
   // Check if token exists in local storage
+  console.log("isAuthenticated()", isAuthenticated());
   return isAuthenticated() ? children : <Navigate to="/login" />;
   //  return children;
 };
 
-export const getToken = async () => {
-  const localStorageData = await JSON.parse(localStorage.getItem("user"));
+export const getToken = () => {
+  const localStorageData = JSON.parse(localStorage.getItem("user"));
   if (localStorageData) {
-    const token = await localStorageData?.token;
+    const token = localStorageData?.token;
     return token;
   }
 };
