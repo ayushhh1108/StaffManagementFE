@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getDealinData } from "./action";
+import { deleteDealIn, getDealinData } from "./action";
 
 export default function DealingHook() {
   const dispatch = useDispatch();
@@ -57,7 +57,7 @@ export default function DealingHook() {
 
   const handleConfirmDelete = () => {
     console.log("handleDeletehandleDelete", deleteId);
-    // dispatch(deleteDirector({ _id: deleteId }, navigate));
+    dispatch(deleteDealIn({ _id: deleteId }, navigate));
     setOpen(false);
     // await dispatch(getDirectorsData());
   };

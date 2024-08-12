@@ -73,4 +73,5 @@ export default {
   getLegacyData: () => `home/legacy`,
   postDealIn: () => `lookingfor/createLookingFor`,
   getDealInData: () => `lookingfor/getAllLookingFor`,
+  deleteDealIn: () => `lookingfor/deleteLookingFor`,
 };

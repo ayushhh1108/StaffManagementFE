@@ -31,3 +31,24 @@ export const getDealinData = () => async (dispatch) => {
     return data;
   }
 };
+
+export const deleteDealIn = (payload, navigate) => async (dispatch) => {
+  try {
+    const response = await api.post(apiEndPoints.deleteDealIn(), payload);
+    if (response?.data) {
+      toast.success(
+        isNotthenSecondParameter(
+          response?.data?.message,
+          "Delete Data Successfull"
+        )
+      );
+      window.location.reload();
+    } else if (response?.response?.data?.message) {
+      toast.error(response?.response?.data?.message);
+    }
+    console.log("response", response);
+  } catch (error) {
+    const { response: { data = {} } = {} } = error;
+    return data;
+  }
+};
