@@ -25,6 +25,7 @@ import bookingDataReducer from "../pages/BookingsPage/reducer";
 import siteAddressReducer from "../pages/SiteAddressPage/reducer";
 import supplierDataReducer from "../pages/SupplierPage/reducer";
 import legacyDataReducer from "../pages/LegacyPage/reducer";
+import dealInPageReducer from "../pages/DealingPage/reducer";
 
 const createReducer = () => {
   const rootReducer = combineReducers({
@@ -54,6 +55,7 @@ const createReducer = () => {
     siteAddressReducer: siteAddressReducer,
     supplierDataReducer: supplierDataReducer,
     legacyDataReducer: legacyDataReducer,
+    dealInPageReducer: dealInPageReducer
   });
   return rootReducer;
 };
