@@ -26,3 +26,20 @@ export const postAddDealIn = (payload, navigate) => async (dispatch) => {
     return data;
   }
 };
+
+export const updateDealIn = (payload, navigate) => async (dispatch) => {
+  try {
+    const response = await api.post(apiEndPoints.updateDealIn(), payload, {
+      headers,
+    });
+    if (response?.data) {
+      toast.success(response?.data?.message);
+    } else if (response?.response?.data?.message) {
+      toast.error(response?.response?.data?.message);
+    }
+    handleSuccessfullNavigate(navigate);
+  } catch (error) {
+    const { response: { data = {} } = {} } = error;
+    return data;
+  }
+};

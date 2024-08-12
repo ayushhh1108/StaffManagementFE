@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
-import { postAddDealIn } from "./action";
+import { postAddDealIn, updateDealIn } from "./action";
 
 export default function AddDealingHooks() {
   const dispatch = useDispatch();
@@ -57,7 +57,7 @@ export default function AddDealingHooks() {
     if (isFormValid) {
       if (isEdit) {
         payload.append("_id", isEdit);
-        // dispatch(updateDirector(payload, navigate));
+        dispatch(updateDealIn(payload, navigate));
       } else {
         console.log("handleSubmit", data);
         dispatch(postAddDealIn(payload, navigate));

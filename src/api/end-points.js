@@ -74,4 +74,5 @@ export default {
   postDealIn: () => `lookingfor/createLookingFor`,
   getDealInData: () => `lookingfor/getAllLookingFor`,
   deleteDealIn: () => `lookingfor/deleteLookingFor`,
+  updateDealIn: () => `lookingfor/updateLookingFor`,
 };
