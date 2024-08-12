@@ -84,7 +84,7 @@ export default function Dropzone({
           onChange={onChanges}
           type="file"
           multiple={isMultiple}
-          accept="image/png, image/jpeg"
+          accept="image/png, image/jpeg, application/pdf"
           className="hidden"
         />
       </label>
