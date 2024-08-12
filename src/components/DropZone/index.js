@@ -5,9 +5,7 @@ const viewImage = (selectedImg) => {
   const data = [...selectedImg]?.map((item) => (
     <div className={"img-box"}>
       <img
-        src={
-          typeof item === "string" ? item : URL?.createObjectURL(item)
-        }
+        src={typeof item === "string" ? item : URL?.createObjectURL(item)}
         alt=""
         className="main-image"
       />
@@ -32,12 +30,10 @@ export default function Dropzone({
       >
         {title}*
       </label>
-
+      {console.log("selectedImg,isMultiple", selectedImg, isMultiple)}
       <div className="selected-image-box flex">
         {selectedImg && isMultiple ? (
-          <>
-            {viewImage(selectedImg,isMultiple)}
-          </>
+          <>{viewImage(selectedImg, isMultiple)}</>
         ) : (
           selectedImg && (
             <div className={"img-box"}>

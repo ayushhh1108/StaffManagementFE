@@ -707,7 +707,7 @@ function AddPropertyPage() {
           <Dropzone
             title={"Main Image"}
             id="mainImage"
-            // isMultiple="true"
+            isMultiple={true}
             onChanges={handleInputsChange}
             selectedImg={allData?.mainImage}
           />
@@ -716,7 +716,7 @@ function AddPropertyPage() {
           <Dropzone
             title={"Image Gallery"}
             id="imageGallery"
-            // isMultiple="true"
+            isMultiple={true}
             onChanges={handleInputsChange}
             selectedImg={allData?.imageGallery}
           />
@@ -725,7 +725,7 @@ function AddPropertyPage() {
           <Dropzone
             title={"Layout Plan"}
             id="layoutPlan"
-            // isMultiple="true"
+            isMultiple={true}
             onChanges={handleInputsChange}
             selectedImg={allData?.layoutPlan}
           />
@@ -754,8 +754,9 @@ function AddPropertyPage() {
               {["Owner", "Agent", "Builder"].map((type) => (
                 <Box
                   key={type}
-                  className={`tab ${clientData?.iAm === type ? "selected" : ""
-                    }`}
+                  className={`tab ${
+                    clientData?.iAm === type ? "selected" : ""
+                  }`}
                 >
                   <Typography
                     variant="p"
@@ -827,11 +828,11 @@ function AddPropertyPage() {
             {propertyType && RegulerFeatures.includes(propertyType[0])
               ? renderPropertyFeatures()
               : propertyType && LandFeatures.includes(propertyType[0])
-                ? renderLandPropertyFeatures()
-                : propertyType &&
-                  CommercialOfficeFeatures.includes(propertyType[0])
-                  ? renderCommercialPropertyFeatures()
-                  : ""}
+              ? renderLandPropertyFeatures()
+              : propertyType &&
+                CommercialOfficeFeatures.includes(propertyType[0])
+              ? renderCommercialPropertyFeatures()
+              : ""}
 
             <div className="add-menu-input w-1/2  my-3">
               <Typography variant="span" className="form-label mt-4 text-left">
@@ -891,7 +892,7 @@ function AddPropertyPage() {
             {propertyType.length ? renderAreaSection() : ""}
             {propertyType.length
               ? !LandFeatures.includes(propertyType[0]) &&
-              renderPropertyAvaibality()
+                renderPropertyAvaibality()
               : ""}
             {propertyType.length ? renderPriceSection() : ""}
             {propertyType.length ? renderImageUploadSection() : ""}
