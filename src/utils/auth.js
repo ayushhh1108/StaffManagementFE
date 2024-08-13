@@ -17,8 +17,9 @@ export const getToken = () => {
   }
 };
 
-export const setBearerToken = (token) => {
-  return LocalStorageManager.setLocalStorage("BEARER_TOKEN", `Bearer ${token}`);
+export const getLocalStorageData = (token) => {
+  const localStorageData = JSON.parse(localStorage.getItem("user"));
+  return localStorageData;
   //   return SessionStorageManager.setSessionStorage(
   //     BEARER_TOKEN,
   //     `Bearer ${token}`
