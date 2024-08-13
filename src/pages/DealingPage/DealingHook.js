@@ -20,7 +20,7 @@ export default function DealingHook() {
     const td = StoreData?.dealInData?.map((item, index) => ({
       ...item,
       status: !item?.active ? "Inactive" : "Active",
-      no: index,
+      no: index + 1,
     }));
     setTableData(td ? td : []);
   }, [StoreData]);
@@ -41,8 +41,6 @@ export default function DealingHook() {
     setOpen(false);
     // await dispatch(getDirectorsData());
   };
-
-  
 
   return {
     navigate,
