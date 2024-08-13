@@ -9,7 +9,7 @@ export default function AddDealingHooks() {
   const editData = location?.state;
   const [data, setData] = useState({
     ...editData,
-    image: editData?.image?.[0]?.image?.[0]?.path,
+    iconImage: editData?.iconImage?.[0],
   });
   const [error, setError] = useState();
   const [isEdit, setIsEdit] = useState(location?.state?._id);
@@ -40,8 +40,8 @@ export default function AddDealingHooks() {
     "metaKeywords",
     "metaDescription",
   ];
+  console.log("handleSubmit", editData);
   const handleSubmit = () => {
-    console.log("handleSubmit", data);
     let error = {};
     let isFormValid = true;
     const payload = new FormData();

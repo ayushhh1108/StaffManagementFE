@@ -17,37 +17,17 @@ export default function DealingHook() {
   }, []);
   console.log("StoreData", StoreData);
   useEffect(() => {
-    const td = StoreData?.dealInData?.list?.map(
-      ({
-        name,
-        designation,
-        experiance,
-        _id,
-        description,
-        instagram,
-        facebook,
-        twitter,
-        linkedin,
-        isDisable,
-      }) => ({
-        name,
-        designation,
-        experiance,
-        description,
-        instagram,
-        facebook,
-        twitter,
-        linkedin,
-        status: isDisable ? "Inactive" : "Active",
-        _id,
-      })
-    );
+    const td = StoreData?.dealInData?.map((item, index) => ({
+      ...item,
+      status: !item?.active ? "Inactive" : "Active",
+      no: index,
+    }));
     setTableData(td ? td : []);
   }, [StoreData]);
 
   const handleEdit = ({ _id }) => {
-    navigate("/add-dealin", {
-      state: StoreData?.directorsData?.list?.find((item) => item?._id === _id),
+    navigate("/add-dealing", {
+      state: StoreData?.dealInData?.find((item) => item?._id === _id),
     });
   };
   const handleDelete = ({ _id }) => {
@@ -61,6 +41,8 @@ export default function DealingHook() {
     setOpen(false);
     // await dispatch(getDirectorsData());
   };
+
+  
 
   return {
     navigate,
