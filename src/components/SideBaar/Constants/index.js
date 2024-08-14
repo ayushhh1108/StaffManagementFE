@@ -169,6 +169,25 @@ export const sidebaarRoutes = [
         icon: <FaRegAddressCard className="side-baar-icon" />,
         pathname: "/Legacy",
       },
+      {
+        title: "World Of Vishal",
+        icon: <IoIosPeople className="side-baar-icon" />,
+        pathname: "/vishal",
+        isSub: false,
+        arrow: <FaAngleDown />,
+        subMenu: [
+          {
+            title: "Add World Of Vishal",
+            icon: <IoPeopleCircleSharp className="side-baar-icon" />,
+            pathname: "/add-worldofvishal",
+          },
+          {
+            title: "World Of Vishal List",
+            icon: <PiUserListFill className="side-baar-icon" />,
+            pathname: "/worldofvishal-list",
+          },
+        ],
+      },
     ],
   },
   // User Management
@@ -434,25 +453,6 @@ export const sidebaarRoutes = [
   {
     title: "Company Information",
     menus: [
-      // {
-      //   title: "About us",
-      //   icon: <IoIosPeople className="side-baar-icon" />,
-      //   pathname: "/about-us",
-      //   isSub: false,
-      //   arrow: <FaAngleDown />,
-      //   subMenu: [
-      //     {
-      //       title: "Add About us",
-      //       icon: <IoPeopleCircleSharp className="side-baar-icon" />,
-      //       pathname: "/add-about-us",
-      //     },
-      //     {
-      //       title: "About us List",
-      //       icon: <PiUserListFill className="side-baar-icon" />,
-      //       pathname: "/about-us-list",
-      //     },
-      //   ],
-      // },
       {
         title: "Site address",
         icon: <FaRegAddressCard className="side-baar-icon" />,

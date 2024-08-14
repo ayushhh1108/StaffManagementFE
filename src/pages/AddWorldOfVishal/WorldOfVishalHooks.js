@@ -1,15 +1,18 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
-import { postTeamMember, updateTeamMember } from "./action";
+import { postWorldOfVishal } from "./action";
 
-export default function AddTeamHooks() {
+export default function WorldOfVishalHooks() {
   const dispatch = useDispatch();
   const location = useLocation();
   const editData = location?.state;
   const [data, setData] = useState({
     ...editData,
     image: editData?.image?.[0],
+    metaTitle: "test",
+    metaKeywords: "test",
+    metaDescription: "test",
   });
   console.log("editData", editData);
   const [error, setError] = useState();
@@ -35,15 +38,12 @@ export default function AddTeamHooks() {
   const isEventBased = (input) => !!input?.target?.id;
 
   const requiredFields = [
-    "name",
+    "title",
     "image",
-    "shortDescription",
     "description",
-    "designation",
-    "facebook",
-    "twitter",
-    "instagram",
-    "linkedin",
+    "metaTitle",
+    "metaKeywords",
+    "metaDescription",
   ];
 
   const handleSubmit = () => {
@@ -62,10 +62,10 @@ export default function AddTeamHooks() {
     if (isFormValid) {
       if (isEdit) {
         payload.append("_id", isEdit);
-        dispatch(updateTeamMember(payload, navigate));
+        // dispatch(updateTeamMember(payload, navigate));
       } else {
         console.log("handleSubmit", data);
-        dispatch(postTeamMember(payload, navigate));
+        dispatch(postWorldOfVishal(payload, navigate));
       }
     } else {
       setError(error);
