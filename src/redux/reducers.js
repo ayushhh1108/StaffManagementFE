@@ -26,6 +26,7 @@ import siteAddressReducer from "../pages/SiteAddressPage/reducer";
 import supplierDataReducer from "../pages/SupplierPage/reducer";
 import legacyDataReducer from "../pages/LegacyPage/reducer";
 import dealInPageReducer from "../pages/DealingPage/reducer";
+import worldofVishalReducer from "../pages/WorldofVishal/reducer";
 
 const createReducer = () => {
   const rootReducer = combineReducers({
@@ -55,7 +56,8 @@ const createReducer = () => {
     siteAddressReducer: siteAddressReducer,
     supplierDataReducer: supplierDataReducer,
     legacyDataReducer: legacyDataReducer,
-    dealInPageReducer: dealInPageReducer
+    dealInPageReducer: dealInPageReducer,
+    worldofVishalReducer: worldofVishalReducer,
   });
   return rootReducer;
 };
