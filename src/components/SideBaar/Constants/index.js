@@ -55,7 +55,6 @@ import {
   IoInformationOutline,
   IoPeopleCircleSharp,
 } from "react-icons/io5";
-import { FcCallback } from "react-icons/fc";
 import { CgFeed } from "react-icons/cg";
 import { SiBuzzfeed, SiCraftcms, SiMicrosoftteams } from "react-icons/si";
 import { PiOfficeChairFill } from "react-icons/pi";

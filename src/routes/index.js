@@ -53,7 +53,7 @@ const AddSupplierPage = lazy(() => import("../pages/AddSupplierPage"));
 const FinancePage = lazy(() => import("../pages/FinancePage"));
 const SupplierPage = lazy(() => import("../pages/SupplierPage"));
 const AddWorldOfVishal = lazy(() => import("../pages/AddWorldOfVishal"));
-const AboutUsPage = lazy(() => import("../pages/AboutUsPage"));
+const WorldofVishal = lazy(() => import("../pages/WorldofVishal"));
 const SiteAddressPage = lazy(() => import("../pages/SiteAddressPage"));
 const SocialMediaPage = lazy(() => import("../pages/SocialMediaPage"));
 const AddDirectorPage = lazy(() => import("../pages/AddDirectorPage"));
@@ -413,10 +413,10 @@ const AppRoutes = () => {
       ),
     }, // Protected route
     {
-      path: "/about-us-list",
+      path: "/worldofvishal-list",
       element: (
         <ProtectedRoute>
-          <AboutUsPage />
+          <WorldofVishal />
         </ProtectedRoute>
       ),
     }, // Protected route
