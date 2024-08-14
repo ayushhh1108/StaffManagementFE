@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
-import { postWorldOfVishal } from "./action";
+import { postWorldOfVishal, updateWorldOfVishal } from "./action";
 
 export default function WorldOfVishalHooks() {
   const dispatch = useDispatch();
@@ -62,7 +62,7 @@ export default function WorldOfVishalHooks() {
     if (isFormValid) {
       if (isEdit) {
         payload.append("_id", isEdit);
-        // dispatch(updateTeamMember(payload, navigate));
+        dispatch(updateWorldOfVishal(payload, navigate));
       } else {
         console.log("handleSubmit", data);
         dispatch(postWorldOfVishal(payload, navigate));

@@ -76,4 +76,5 @@ export default {
   deleteDealIn: () => `lookingfor/deleteLookingFor`,
   updateDealIn: () => `lookingfor/updateLookingFor`,
   postWorldVishal: () => `worldofvishal/createWorldOfVishal`,
+  updateWorldVishal: () => `worldofvishal/updateWorldOfVishal`,
 };

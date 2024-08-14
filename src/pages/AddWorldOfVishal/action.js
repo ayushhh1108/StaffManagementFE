@@ -27,9 +27,9 @@ export const postWorldOfVishal = (payload, navigate) => async (dispatch) => {
   }
 };
 
-export const updateDealIn = (payload, navigate) => async (dispatch) => {
+export const updateWorldOfVishal = (payload, navigate) => async (dispatch) => {
   try {
-    const response = await api.post(apiEndPoints.updateDealIn(), payload, {
+    const response = await api.post(apiEndPoints.updateWorldVishal(), payload, {
       headers,
     });
     if (response?.data) {
