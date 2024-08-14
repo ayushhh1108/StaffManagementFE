@@ -14,8 +14,8 @@ export default function AddMenuPageHook() {
     meta_key: editData?.metaKeywords ?? "",
     meta_desc: editData?.metaDescription ?? "",
     editor_desc: editData?.description ?? "",
-    banner_image: editData?.blogImage?.[0]?.bannerImage?.[0]?.path,
-    image: editData?.blogImage?.[0]?.blogImage?.[0]?.path,
+    banner_image: editData?.bannerImage?.[0],
+    image: editData?.blogImage?.[0],
   });
   const [error, setError] = useState();
   const [isEdit, setIsEdit] = useState(location?.state?._id);

@@ -14,7 +14,7 @@ export default function AddSliderPageHook() {
     meta_title: editData?.metaTitle ?? "",
     meta_key: editData?.metaKeywords ?? "",
     meta_desc: editData?.metaDescription ?? "",
-    upload_image: editData?.image?.[0]?.path,
+    upload_image: editData?.image?.[0],
     descriptionPosition: editData?.descriptionPosition,
   });
   const [isEdit, setIsEdit] = useState(location?.state?._id);
