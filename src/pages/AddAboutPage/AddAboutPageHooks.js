@@ -15,7 +15,7 @@ export default function AddAboutPageHooks() {
     meta_description: editData?.metaDescription ?? "",
     editor_desc: editData?.description ?? "",
     position: editData?.imagePosition ?? "",
-    image: editData?.image?.[0]?.path,
+    image: editData?.image[0],
   });
   const [error, setError] = useState();
   const [isEdit, setIsEdit] = useState(location?.state?._id);
@@ -35,8 +35,6 @@ export default function AddAboutPageHooks() {
     setError(updatedError);
     setData({ ...data, [key]: value });
   };
-
-
 
   const handleSubmit = () => {
     console.log("handleSubmit", data);

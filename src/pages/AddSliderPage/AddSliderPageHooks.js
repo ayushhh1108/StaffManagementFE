@@ -22,7 +22,6 @@ export default function AddSliderPageHook() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  console.log("handleSubmit", editData);
 
   const handleInputChange = (event) => {
     const { id, value, checked, files } = event?.target;
