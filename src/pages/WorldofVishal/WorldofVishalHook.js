@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getWorldofVishal } from "./action";
+import { deleteWorldofVishal, getWorldofVishal } from "./action";
 
 export default function WorldofVishalHook() {
   const dispatch = useDispatch();
@@ -37,7 +37,7 @@ export default function WorldofVishalHook() {
 
   const handleConfirmDelete = () => {
     console.log("handleDeletehandleDelete", deleteId);
-    // dispatch(deleteWorldofVishal({ _id: deleteId }, navigate));
+    dispatch(deleteWorldofVishal({ _id: deleteId }, navigate));
     setOpen(false);
     // await dispatch(getDirectorsData());
   };

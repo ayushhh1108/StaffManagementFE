@@ -78,4 +78,5 @@ export default {
   postWorldVishal: () => `worldofvishal/createWorldOfVishal`,
   updateWorldVishal: () => `worldofvishal/updateWorldOfVishal`,
   getWorldVishal: () => `worldofvishal/getAllWorldOfVishal`,
+  deleteWorldVishal: () => `worldofvishal/deleteWorldOfVishal`,
 };
