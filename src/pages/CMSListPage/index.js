@@ -25,7 +25,7 @@ function CMSListPage() {
         <EnhancedTable
           cellData={HeaderData}
           isActionCol
-          rowItems={["no", "pageTitle", "pageDescription", "isDisable"]}
+          rowItems={["no", "name", "isDisable"]}
           rowData={TableData?.map((item, index) => ({
             ...item,
             no: 1 + index,
