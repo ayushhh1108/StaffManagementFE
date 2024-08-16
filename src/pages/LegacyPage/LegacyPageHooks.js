@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getLegacyData, updateLegacyData, updateSiteAddress } from "./action";
+import { getLegacyData, updateLegacyData } from "./action";
 
 export default function LegacyPageHooks() {
   const dispatch = useDispatch();
@@ -19,7 +19,7 @@ export default function LegacyPageHooks() {
     const event = isEventBased(id) ? id : null;
     const key = event ? event.target.id : id;
     let value = event ? event.target.value : val;
-    const isUpload = key === "landscapeImage" || key === "portraitImage";
+    const isUpload = key === "bgImage" || key === "portraitImage";
     value = isUpload && event ? event.target.files[0] : value;
     const updatedError = { ...error };
     delete updatedError[key];
@@ -34,7 +34,10 @@ export default function LegacyPageHooks() {
       storeData?.legacyData?.length && {
         ...storeData?.legacyData[0],
         portraitImage: storeData?.legacyData[0]?.portraitImage[0],
-        landscapeImage: storeData?.legacyData[0]?.landscapeImage[0],
+        bgImage: `https://vishal.${storeData?.legacyData[0]?.bgImage[0].replace(
+          "vishal/",
+          ""
+        )}`,
       }
     );
   }, [storeData]);
@@ -49,7 +52,7 @@ export default function LegacyPageHooks() {
     "shortDescription",
     "description",
     "portraitImage",
-    "landscapeImage",
+    "bgImage",
   ];
 
   const handleSubmit = () => {
