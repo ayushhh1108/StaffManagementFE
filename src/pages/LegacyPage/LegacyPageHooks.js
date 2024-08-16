@@ -34,7 +34,10 @@ export default function LegacyPageHooks() {
       storeData?.legacyData?.length && {
         ...storeData?.legacyData[0],
         portraitImage: storeData?.legacyData[0]?.portraitImage[0],
-        // bgImage: storeData?.legacyData[0]?.bgImage[0],
+        bgImage: `https://vishal.${storeData?.legacyData[0]?.bgImage[0].replace(
+          "vishal/",
+          ""
+        )}`,
       }
     );
   }, [storeData]);
