@@ -79,4 +79,8 @@ export default {
   updateWorldVishal: () => `worldofvishal/updateWorldOfVishal`,
   getWorldVishal: () => `worldofvishal/getAllWorldOfVishal`,
   deleteWorldVishal: () => `worldofvishal/deleteWorldOfVishal`,
+  getCMS: () => `worldofvishal/deleteWorldOfVishal`,
+  postCMS: () => `worldofvishal/deleteWorldOfVishal`,
+  editCMS: () => `worldofvishal/deleteWorldOfVishal`,
+  deleteCMS: () => `worldofvishal/deleteWorldOfVishal`,
 };
