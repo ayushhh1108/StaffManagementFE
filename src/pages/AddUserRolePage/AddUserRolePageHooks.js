@@ -48,7 +48,6 @@ export default function AddUserRoleHooks() {
       if (isEdit) {
         dispatch(postUpdateRole({ ...data, _id: isEdit }, navigate));
       } else {
-        console.log("statusstatusstatus", data);
         dispatch(postAddRole(data, navigate));
       }
     } else {
