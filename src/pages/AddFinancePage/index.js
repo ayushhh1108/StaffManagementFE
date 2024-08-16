@@ -7,7 +7,7 @@ import TextInput from "../../components/TextInput";
 
 function AddFinancePage() {
   const { handleSubmit, handleInputChange, data, error } = AddFinanceHooks();
-
+  console.log("data", data);
   return (
     <Box component="main" sx={{ flexGrow: 1, p: 3, mt: 8, maxWidth: "100%" }}>
       <div className="container add-menu-form text-left my-5">

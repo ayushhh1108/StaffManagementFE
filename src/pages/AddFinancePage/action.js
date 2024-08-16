@@ -40,7 +40,6 @@ export const postUpdateFinance = (payload, navigate) => async (dispatch) => {
     } else if (response?.response?.data?.message) {
       toast.error(response?.response?.data?.message);
     }
-    handleSuccessNavigate(navigate);
   } catch (error) {
     const { response: { data = {} } = {} } = error;
     return data;
