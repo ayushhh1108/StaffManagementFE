@@ -25,8 +25,9 @@ function DashBoardPage() {
       </Box>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 p-4 gap-4">
         <div
-          class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group "
+          class="bg-blue-500 dark:bg-gray-800 shadow-lg cursor-pointer rounded-md flex items-center justify-between p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group "
           style={{ backgroundColor: "#164e63" }}
+          onClick={() => navigate("/property-list")}
         >
           <div class="flex justify-center items-center w-14 h-14 bg-white rounded-full transition-all duration-300 transform group-hover:rotate-12">
             <svg
@@ -53,8 +54,9 @@ function DashBoardPage() {
           </div>
         </div>
         <div
-          class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group"
+          class="bg-blue-500 dark:bg-gray-800 shadow-lg cursor-pointer rounded-md flex items-center justify-between p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group "
           style={{ backgroundColor: "#164e63" }}
+          onClick={() => navigate("/bookings")}
         >
           <div class="flex justify-center items-center w-14 h-14 bg-white rounded-full transition-all duration-300 transform group-hover:rotate-12">
             <svg
@@ -81,8 +83,9 @@ function DashBoardPage() {
           </div>
         </div>
         <div
-          class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group"
+          class="bg-blue-500 dark:bg-gray-800 shadow-lg cursor-pointer rounded-md flex items-center justify-between p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group "
           style={{ backgroundColor: "#164e63" }}
+          onClick={() => navigate("/inquiries")}
         >
           <div class="flex justify-center items-center w-14 h-14 bg-white rounded-full transition-all duration-300 transform group-hover:rotate-12">
             <svg
