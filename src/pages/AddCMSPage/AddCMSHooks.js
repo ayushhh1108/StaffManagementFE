@@ -43,12 +43,12 @@ export default function AddCMSHooks() {
       }
     });
 
+    console.log("statusstatusstatus", data, error);
     if (isFormValid) {
       if (isEdit) {
-        // dispatch(postUpdateRole({ ...data, _id: isEdit }, navigate));
+        // dispatch(postUpdateCMS({ ...data, _id: isEdit }, navigate));
       } else {
-        console.log("statusstatusstatus", data);
-        // dispatch(postAddRole(data, navigate));
+        // dispatch(postAddCMS(data, navigate));
       }
     } else {
       setError(error);

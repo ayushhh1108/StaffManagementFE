@@ -8,7 +8,7 @@ import SelectInput from "../../components/SelectInput";
 function AddCMSPage() {
   const { navigate, handleSubmit, handleInputChange, data, error } =
     AddCMSHooks();
-
+  console.log("error", error);
   return (
     <Box component="main" sx={{ flexGrow: 1, p: 3, mt: 8, maxWidth: "100%" }}>
       <div className="container add-menu-form text-left my-5">
