@@ -373,7 +373,7 @@ const AppRoutes = () => {
       ),
     }, // Protected route
     {
-      path: "/add-finance",
+      path: "/finance",
       element: (
         <ProtectedRoute>
           <AddFinancePage />

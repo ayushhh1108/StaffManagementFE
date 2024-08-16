@@ -12,9 +12,6 @@ import {
   FaUserTie,
 } from "react-icons/fa6";
 import {
-  BsMenuAppFill,
-  BsMenuButtonFill,
-  BsMenuButtonWideFill,
   BsPersonBadge,
   BsPersonFillAdd,
 } from "react-icons/bs";
@@ -412,21 +409,26 @@ export const sidebaarRoutes = [
         title: "Finance",
         icon: <FaMoneyBillWheat className="side-baar-icon" />,
         pathname: "/finance",
-        isSub: false,
-        arrow: <FaAngleDown />,
-        subMenu: [
-          {
-            title: "Add Finance",
-            icon: <RiMoneyDollarBoxFill className="side-baar-icon" />,
-            pathname: "/add-finance",
-          },
-          {
-            title: "Finance List",
-            icon: <RiMoneyCnyCircleFill className="side-baar-icon" />,
-            pathname: "/finance-list",
-          },
-        ],
       },
+      // {
+      //   title: "Finance",
+      //   icon: <FaMoneyBillWheat className="side-baar-icon" />,
+      //   pathname: "/finance",
+      //   isSub: false,
+      //   arrow: <FaAngleDown />,
+      //   subMenu: [
+      //     {
+      //       title: "Add Finance",
+      //       icon: <RiMoneyDollarBoxFill className="side-baar-icon" />,
+      //       pathname: "/add-finance",
+      //     },
+      //     {
+      //       title: "Finance List",
+      //       icon: <RiMoneyCnyCircleFill className="side-baar-icon" />,
+      //       pathname: "/finance-list",
+      //     },
+      //   ],
+      // },
       {
         title: "Supplier",
         icon: <MdOutlineSupervisedUserCircle className="side-baar-icon" />,

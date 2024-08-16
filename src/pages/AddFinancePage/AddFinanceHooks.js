@@ -12,7 +12,6 @@ export default function AddFinanceHooks() {
     ...editData,
     bannerImage: editData?.media?.[0]?.bannerImage?.[0]?.path,
     bankImage: editData?.media?.[0]?.bankImage?.map((i) => i?.path),
-    editor_desc: editData?.description,
   });
   const [error, setError] = useState();
   const [isEdit, setIsEdit] = useState(location?.state?._id);
@@ -37,14 +36,19 @@ export default function AddFinanceHooks() {
   const requiredFields = [
     "bankImage",
     "bannerImage",
-    "title",
-    "editor_desc",
+    "title1",
+    "description1",
+    "title2",
+    "description2",
+    "title3",
+    "description3",
     "metaTitle",
     "metaKeywords",
     "metaDescription",
+    "tagLine",
   ];
 
-  console.log("handleSubmit", editData);
+  console.log("handleSubmit", data);
   const handleSubmit = () => {
     const payload = new FormData();
     let error = {};
@@ -59,9 +63,7 @@ export default function AddFinanceHooks() {
     });
 
     if (isFormValid) {
-      payload.delete("editor_desc");
       payload.delete("bankImage");
-      payload.append("description", data?.editor_desc);
       data?.bankImage?.map((item) => {
         payload.append("bankImage", item);
       });

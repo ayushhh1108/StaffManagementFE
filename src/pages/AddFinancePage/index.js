@@ -2,8 +2,6 @@ import React from "react";
 import "./index.scss";
 import AddFinanceHooks from "./AddFinanceHooks";
 import { Box, Typography } from "@mui/material";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import Dropzone from "../../components/DropZone";
 import TextInput from "../../components/TextInput";
 
@@ -13,16 +11,64 @@ function AddFinancePage() {
   return (
     <Box component="main" sx={{ flexGrow: 1, p: 3, mt: 8, maxWidth: "100%" }}>
       <div className="container add-menu-form text-left my-5">
-        <Typography variant="h5" className="mb-5 form-label">
+        {/* <Typography variant="h5" className="mb-5 form-label">
           Add Finance{" "}
-        </Typography>
+        </Typography> */}
+        <TextInput
+          label={"Tag"}
+          isRequire
+          id={"tagLine"}
+          handleChanges={handleInputChange}
+          value={data?.tagLine}
+          isError={error?.tagLine}
+        />
         <TextInput
           label={"Title"}
           isRequire
-          id={"title"}
+          id={"title1"}
           handleChanges={handleInputChange}
-          value={data?.title}
-          isError={error?.title}
+          value={data?.title1}
+          isError={error?.title1}
+        />
+        <TextInput
+          label={"Description"}
+          isRequire
+          id={"description1"}
+          handleChanges={handleInputChange}
+          value={data?.description1}
+          isError={error?.description1}
+        />
+        <TextInput
+          label={"Title 2"}
+          isRequire
+          id={"title2"}
+          handleChanges={handleInputChange}
+          value={data?.title2}
+          isError={error?.title2}
+        />
+        <TextInput
+          label={"Description 2"}
+          isRequire
+          id={"description2"}
+          handleChanges={handleInputChange}
+          value={data?.description2}
+          isError={error?.description2}
+        />
+        <TextInput
+          label={"Title 3"}
+          isRequire
+          id={"title3"}
+          handleChanges={handleInputChange}
+          value={data?.title3}
+          isError={error?.title3}
+        />
+        <TextInput
+          label={"Description 3"}
+          isRequire
+          id={"description3"}
+          handleChanges={handleInputChange}
+          value={data?.description3}
+          isError={error?.description3}
         />
         <TextInput
           label={"Meta Title"}
@@ -48,37 +94,6 @@ function AddFinancePage() {
           value={data?.metaDescription}
           isError={error?.metaDescription}
         />
-        <div className="add-menu-input w-1/2 mb-5">
-          <label
-            for="first_name"
-            className={
-              error?.editor_desc
-                ? "block mb-2 text-sm font-medium text-[red]"
-                : "block mb-2 text-sm font-medium text-gray-900"
-            }
-          >
-            Description
-          </label>
-          <CKEditor
-            editor={ClassicEditor}
-            data={data?.editor_desc}
-            onReady={(editor) => {
-              // You can store the "editor" and use when it is needed.
-              console.log("Editor is ready to use!", editor);
-            }}
-            onChange={(event, editor) => {
-              handleInputChange({
-                target: { value: editor?.getData(), id: "editor_desc" },
-              });
-            }}
-            onBlur={(event, editor) => {
-              console.log("Blur.", editor);
-            }}
-            onFocus={(event, editor) => {
-              console.log("Focus.", editor);
-            }}
-          />
-        </div>
         <div className="upload-file-div mb-6 flex justify-between">
           <Dropzone
             title={"Bank Image"}
