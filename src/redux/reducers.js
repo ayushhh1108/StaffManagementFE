@@ -27,6 +27,7 @@ import supplierDataReducer from "../pages/SupplierPage/reducer";
 import legacyDataReducer from "../pages/LegacyPage/reducer";
 import dealInPageReducer from "../pages/DealingPage/reducer";
 import worldofVishalReducer from "../pages/WorldofVishal/reducer";
+import propertyReducer from "../pages/PropertyListPage/reducer";
 
 const createReducer = () => {
   const rootReducer = combineReducers({
@@ -58,6 +59,7 @@ const createReducer = () => {
     legacyDataReducer: legacyDataReducer,
     dealInPageReducer: dealInPageReducer,
     worldofVishalReducer: worldofVishalReducer,
+    propertyReducer: propertyReducer,
   });
   return rootReducer;
 };
