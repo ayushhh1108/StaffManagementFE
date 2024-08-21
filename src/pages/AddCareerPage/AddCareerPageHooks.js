@@ -21,7 +21,6 @@ export default function AddCareerPageHooks() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  console.log("editData");
   const handleInputChange = (idOrEvent, val) => {
     const event = isEventBased(idOrEvent) ? idOrEvent : null;
     const key =

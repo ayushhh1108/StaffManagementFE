@@ -39,7 +39,6 @@ export default function AddDealingItemHooks() {
 
   const isEventBased = (input) => !!input?.target?.id;
 
-  console.log("handleSubmit", editData);
   const handleSubmit = () => {
     const requiredFields = [
       "title",

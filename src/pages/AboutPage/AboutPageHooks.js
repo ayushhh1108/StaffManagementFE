@@ -40,7 +40,6 @@ export default function AboutPageHooks() {
   };
 
   const handleConfirmDelete = async () => {
-    console.log("handleDeletehandleDelete", deleteId);
     await dispatch(deleteAboutpage({ _id: deleteId }, navigate));
     await setOpen(false);
     await dispatch(getAllAboutPageData());

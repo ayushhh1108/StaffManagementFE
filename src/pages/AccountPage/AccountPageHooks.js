@@ -8,7 +8,6 @@ export default function AccountPageHooks() {
   useEffect(() => {
     window.scrollTo(0, 0);
     setUser(JSON.parse(getToken()));
-    console.log(JSON.parse(getToken()), "getToken");
   }, []);
 
   return {

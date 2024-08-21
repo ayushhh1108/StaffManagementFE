@@ -11,7 +11,6 @@ export default function AddConstructionHooks() {
     ...editData,
     image: editData?.image?.[0]?.image?.[0]?.path,
   });
-  console.log("editData", editData);
   const [error, setError] = useState();
   const [isEdit, setIsEdit] = useState(location?.state?._id);
   const navigate = useNavigate();
@@ -61,7 +60,6 @@ export default function AddConstructionHooks() {
         payload.append("_id", isEdit);
         dispatch(updateConstructionProcess(payload, navigate));
       } else {
-        console.log("handleSubmit", data);
         dispatch(postConstructionProcess(payload, navigate));
       }
     } else {

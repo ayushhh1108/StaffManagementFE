@@ -43,19 +43,8 @@ function AddInvestWithUsPage() {
           <CKEditor
             editor={ClassicEditor}
             data={desc}
-            onReady={(editor) => {
-              // You can store the "editor" and use when it is needed.
-              // console.log("Editor is ready to use!", editor);
-              console.log("isAddtrue", isAddtrue);
-            }}
             onChange={(event, editor) => {
               handleChangeInput("desc", editor?.getData(), no);
-            }}
-            onBlur={(event, editor) => {
-              console.log("Blur.", editor);
-            }}
-            onFocus={(event, editor) => {
-              console.log("Focus.", editor);
             }}
           />
         </div>
@@ -142,20 +131,10 @@ function AddInvestWithUsPage() {
               <CKEditor
                 editor={ClassicEditor}
                 data={data?.editor_desc}
-                onReady={(editor) => {
-                  // You can store the "editor" and use when it is needed.
-                  // console.log("Editor is ready to use!", editor);
-                }}
                 onChange={(event, editor) => {
                   handleInputChange({
                     target: { value: editor?.getData(), id: "editor_desc" },
                   });
-                }}
-                onBlur={(event, editor) => {
-                  console.log("Blur.", editor);
-                }}
-                onFocus={(event, editor) => {
-                  console.log("Focus.", editor);
                 }}
               />
             </div>

@@ -43,7 +43,6 @@ export default function AddCMSHooks() {
       }
     });
 
-    console.log("statusstatusstatus", data, error);
     if (isFormValid) {
       if (isEdit) {
         // dispatch(postUpdateCMS({ ...data, _id: isEdit }, navigate));

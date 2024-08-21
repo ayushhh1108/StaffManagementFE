@@ -11,7 +11,6 @@ export default function AddDirectorHooks() {
     ...editData,
     image: editData?.image?.[0]?.image?.[0]?.path,
   });
-  console.log("editData", editData);
   const [error, setError] = useState();
   const [isEdit, setIsEdit] = useState(location?.state?._id);
   const navigate = useNavigate();
@@ -63,7 +62,6 @@ export default function AddDirectorHooks() {
         payload.append("_id", isEdit);
         dispatch(updateDirector(payload, navigate));
       } else {
-        console.log("handleSubmit", data);
         dispatch(postAddDirector(payload, navigate));
       }
     } else {

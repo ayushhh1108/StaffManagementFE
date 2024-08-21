@@ -40,7 +40,6 @@ export default function AddDealingHooks() {
     "metaKeywords",
     "metaDescription",
   ];
-  console.log("handleSubmit", editData);
   const handleSubmit = () => {
     let error = {};
     let isFormValid = true;
@@ -59,7 +58,6 @@ export default function AddDealingHooks() {
         payload.append("_id", isEdit);
         dispatch(updateDealIn(payload, navigate));
       } else {
-        console.log("handleSubmit", data);
         dispatch(postAddDealIn(payload, navigate));
       }
     } else {

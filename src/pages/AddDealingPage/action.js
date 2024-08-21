@@ -20,7 +20,6 @@ export const postAddDealIn = (payload, navigate) => async (dispatch) => {
     } else if (response?.response?.data?.message) {
       toast.error(response?.response?.data?.message);
     }
-    console.log("response", response);
   } catch (error) {
     const { response: { data = {} } = {} } = error;
     return data;

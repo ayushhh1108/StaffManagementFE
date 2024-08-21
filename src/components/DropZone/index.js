@@ -30,7 +30,6 @@ export default function Dropzone({
       >
         {title}*
       </label>
-      {console.log("selectedImg,isMultiple", selectedImg, isMultiple)}
       <div className="selected-image-box flex">
         {selectedImg && isMultiple ? (
           <>{viewImage(selectedImg, isMultiple)}</>

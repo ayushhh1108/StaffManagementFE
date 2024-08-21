@@ -21,7 +21,6 @@ function AddBlogPage() {
           {isEdit ? "Edit Blog" : "Add Blog"}{" "}
         </Typography>
         <div>
-          {console.log("error", error)}
           <label
             for="first_name"
             className="block mb-2 text-sm font-medium text-gray-900"
@@ -122,23 +121,16 @@ function AddBlogPage() {
             data={data?.editor_desc}
             onReady={(editor) => {
               // You can store the "editor" and use when it is needed.
-              console.log("Editor is ready to use!", editor);
             }}
             onChange={(event, editor) => {
               handleInputChange({
                 target: { value: editor?.getData(), id: "editor_desc" },
               });
             }}
-            onBlur={(event, editor) => {
-              console.log("Blur.", editor);
-            }}
-            onFocus={(event, editor) => {
-              console.log("Focus.", editor);
-            }}
             onError={error?.editor_desc}
           />
         </div>
-        <div className="upload-file-div mb-6 flex justify-between">{console.log("data",data)}
+        <div className="upload-file-div mb-6 flex justify-between">
           <Dropzone
             title={"Banner Image"}
             id="banner_image"

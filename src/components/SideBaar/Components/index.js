@@ -122,7 +122,7 @@ export default function AppBaar() {
       navigate("/login");
     }
     return () => {
-      console.log(`Clicked on ${menuItem}`);
+      // console.log(`Clicked on ${menuItem}`);
     };
   };
   const handleSideBaar = () => {

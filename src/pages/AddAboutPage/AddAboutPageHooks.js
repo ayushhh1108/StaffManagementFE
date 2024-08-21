@@ -37,7 +37,6 @@ export default function AddAboutPageHooks() {
   };
 
   const handleSubmit = () => {
-    console.log("handleSubmit", data);
     const requiredFields = [
       "title",
       "image",
