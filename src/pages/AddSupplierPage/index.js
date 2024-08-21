@@ -7,7 +7,7 @@ import TextInput from "../../components/TextInput";
 import SelectInput from "../../components/SelectInput";
 
 function AddSupplierPage() {
-  const { navigate, handleSubmit, handleInputChange, data,error } =
+  const { navigate, handleSubmit, handleInputChange, data, error } =
     AddSupplierHooks();
 
   return (

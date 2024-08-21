@@ -5,9 +5,11 @@ import { Box, Typography } from "@mui/material";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import TextInput from "../../components/TextInput";
+import Dropzone from "../../components/DropZone";
 
 function AddServicePage() {
-  const { navigate, handleSubmit, handleInputChange, data } = AddServiceHooks();
+  const { navigate, handleSubmit, handleInputChange, data, error } =
+    AddServiceHooks();
 
   return (
     <Box component="main" sx={{ flexGrow: 1, p: 3, mt: 8, maxWidth: "100%" }}>
@@ -16,51 +18,50 @@ function AddServicePage() {
           Add Service{" "}
         </Typography>
         <TextInput
-          label={"Header"}
-          isRequire
-          id={"header"}
-          handleChanges={handleInputChange}
-          value={data?.header}
-        />
-        <TextInput
           label={"Title"}
           isRequire
           id={"title"}
           handleChanges={handleInputChange}
           value={data?.title}
+          isError={error?.title}
         />
         <TextInput
-          label={"Meta Title"}
-          handleChanges={handleInputChange}
-          value={data?.meta_title}
+          label={"Sub Title"}
           isRequire
-          id={"meta_title"}
+          id={"subtitle"}
+          handleChanges={handleInputChange}
+          value={data?.subtitle}
+          isError={error?.subtitle}
         />
         <TextInput
-          label={"Meta Keywords"}
+          label={"Sub Description"}
           handleChanges={handleInputChange}
-          value={data?.meta_keywords}
+          value={data?.subDescription}
           isRequire
-          id={"meta_keywords"}
-        />
-        <TextInput
-          label={"Meta Descripion"}
-          isRequire
-          id={"meta_description"}
-          handleChanges={handleInputChange}
-          value={data?.meta_description}
+          id={"subDescription"}
+          isError={error?.subDescription}
         />
         <div className="add-menu-input w-1/2 mb-5">
+          <label
+            for="first_name"
+            className={
+              error?.description
+                ? "block mb-2 text-sm font-medium text-[red]"
+                : "block mb-2 text-sm font-medium text-gray-900"
+            }
+          >
+            Description*
+          </label>
           <CKEditor
             editor={ClassicEditor}
-            data={data?.editor_desc}
+            data={data?.description}
             onReady={(editor) => {
               // You can store the "editor" and use when it is needed.
               console.log("Editor is ready to use!", editor);
             }}
             onChange={(event, editor) => {
               handleInputChange({
-                target: { value: editor?.getData(), id: "editor_desc" },
+                target: { value: editor?.getData(), id: "description" },
               });
             }}
             onBlur={(event, editor) => {
@@ -71,7 +72,23 @@ function AddServicePage() {
             }}
           />
         </div>
-
+        <div className="upload-file-div mb-6 flex justify-between">
+          <Dropzone
+            title={"Images"}
+            id="imageGallery"
+            isError={error?.imageGallery}
+            selectedImg={data?.imageGallery}
+            onChanges={handleInputChange}
+            isMultiple={true}
+          />{" "}
+          <Dropzone
+            title={"Banner Image"}
+            id="bannerImage"
+            isError={error?.bannerImage}
+            selectedImg={data?.bannerImage}
+            onChanges={handleInputChange}
+          />
+        </div>
         <button
           type="button"
           onClick={handleSubmit}

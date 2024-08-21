@@ -388,16 +388,16 @@ export const sidebaarRoutes = [
             icon: <HiClipboardDocumentList className="side-baar-icon" />,
             pathname: "/service-list",
           },
-          {
-            title: "Add Service Item",
-            icon: <MdOutlineDesignServices className="side-baar-icon" />,
-            pathname: "/add-service-item",
-          },
-          {
-            title: "Service Item List",
-            icon: <HiOutlineClipboardDocumentList className="side-baar-icon" />,
-            pathname: "/service-item-list",
-          },
+          // {
+          //   title: "Add Service Item",
+          //   icon: <MdOutlineDesignServices className="side-baar-icon" />,
+          //   pathname: "/add-service-item",
+          // },
+          // {
+          //   title: "Service Item List",
+          //   icon: <HiOutlineClipboardDocumentList className="side-baar-icon" />,
+          //   pathname: "/service-item-list",
+          // },
           {
             title: "Service Inquiries List",
             icon: <TbGitPullRequest className="side-baar-icon" />,

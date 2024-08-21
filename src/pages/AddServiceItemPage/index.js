@@ -8,7 +8,7 @@ import Dropzone from "../../components/DropZone";
 import TextInput from "../../components/TextInput";
 
 function AddServiceItemPage() {
-  const { navigate, handleSubmit, handleInputChange, data } =
+  const { navigate, handleSubmit, handleInputChange, data, error } =
     AddServiceItemHooks();
 
   return (
