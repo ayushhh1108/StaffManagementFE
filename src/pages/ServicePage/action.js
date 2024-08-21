@@ -4,14 +4,6 @@ import { isNotthenSecondParameter } from "../../utils/helper";
 
 export const GET_SERVICE_PAGE = "GET_SERVICE_PAGE";
 
-const headers = {
-  "Content-Type": "multipart/form-data", // Modify this line
-};
-
-const handleSuccessfullNavigate = (navigate) => {
-  navigate("/supplier-list");
-};
-
 const getServicePageDataSuccess = (payload) => {
   console.log("hii", payload);
   return {
