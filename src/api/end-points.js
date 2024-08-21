@@ -84,4 +84,5 @@ export default {
   editCMS: () => `worldofvishal/deleteWorldOfVishal`,
   deleteCMS: () => `worldofvishal/deleteWorldOfVishal`,
   postService: () => `servicepage/createServicePage`,
+  updateService: (id) => `servicepage/updateServicesPage/${id}`,
 };

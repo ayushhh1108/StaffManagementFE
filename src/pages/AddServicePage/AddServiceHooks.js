@@ -1,13 +1,19 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { postAddService } from "./action";
+import { postAddService, updateService } from "./action";
 
 export default function AddServiceHooks() {
-  const [data, setData] = useState({});
-  const [error, setError] = useState({});
+  const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const editData = location?.state;
+  const [isEdit, setIsEdit] = useState(location?.state?._id);
+  const [data, setData] = useState({
+    ...editData,
+    file: editData?.file[0]?.location,
+  });
+  const [error, setError] = useState({});
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -62,7 +68,11 @@ export default function AddServiceHooks() {
       data?.imageGallery?.map((item) => {
         payload.append("imageGallery", item);
       });
-      dispatch(postAddService(payload, navigate));
+      if (isEdit) {
+        dispatch(updateService(payload, navigate, isEdit));
+      } else {
+        dispatch(postAddService(payload, navigate));
+      }
     } else {
       setError(error);
     }

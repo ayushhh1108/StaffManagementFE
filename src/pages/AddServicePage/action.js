@@ -25,3 +25,20 @@ export const postAddService = (payload, navigate) => async (dispatch) => {
     return data;
   }
 };
+
+export const updateService = (payload, navigate,id) => async (dispatch) => {
+  try {
+    const response = await api.post(apiEndPoints.updateService(id), payload, {
+      headers,
+    });
+    if (response?.data) {
+      toast.success(response?.data?.message);
+    } else if (response?.response?.data?.message) {
+      toast.error(response?.response?.data?.message);
+    }
+    handleSuccessfullNavigate(navigate);
+  } catch (error) {
+    const { response: { data = {} } = {} } = error;
+    return data;
+  }
+};
