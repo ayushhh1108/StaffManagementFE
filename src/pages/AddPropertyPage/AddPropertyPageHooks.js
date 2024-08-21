@@ -210,6 +210,11 @@ export default function AddPropertyPageHooks() {
     appendIfValue("address[zip]", allData?.Zipcode);
     appendIfValue("address[state]", allData?.state);
     appendIfValue("address[street]", allData?.street);
+    appendIfValue("address[transit]", allData?.transit);
+    appendIfValue("address[mallsCinemas]", allData?.mallsCinemas);
+    appendIfValue("address[schoolsColleges]", allData?.schoolsColleges);
+    appendIfValue("address[hospitals]", allData?.hospitals);
+    appendIfValue("address[mapLink]", allData?.mapLink);
 
     for (let index in allData?.mainImage || []) {
       if (allData?.mainImage.hasOwnProperty(index)) {
@@ -277,6 +282,6 @@ export default function AddPropertyPageHooks() {
     handleDelete,
     handleKeyDown,
     setData,
-    loader
+    loader,
   };
 }

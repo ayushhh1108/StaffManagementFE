@@ -271,6 +271,64 @@ function AddPropertyPage() {
             />
           </div>
         )}
+        <Typography variant="span" className="form-label mt-4 text-left">
+          Near Landmarks:
+        </Typography>
+        <div className="flex flex-wrap input-box">
+          <label className="filter-label">Transit</label>
+          <TextField
+            variant="outlined"
+            className="text-field"
+            id="transit"
+            value={allData["transit"]}
+            onChange={handleInputsChange}
+            placeholder="Enter nearby Transit"
+          />
+        </div>
+        <div className="flex flex-wrap input-box">
+          <label className="filter-label">Shopping Malls & Cinema</label>
+          <TextField
+            variant="outlined"
+            className="text-field"
+            id="mallsCinemas"
+            value={allData["mallsCinemas"]}
+            onChange={handleInputsChange}
+            placeholder="Enter nearby Shopping Malls & Cinemas"
+          />
+        </div>
+        <div className="flex flex-wrap input-box">
+          <label className="filter-label">Hospitals</label>
+          <TextField
+            variant="outlined"
+            className="text-field"
+            id="hospitals"
+            value={allData["hospitals"]}
+            onChange={handleInputsChange}
+            placeholder="Enter nearby Hospitals"
+          />
+        </div>
+        <div className="flex flex-wrap input-box">
+          <label className="filter-label">Schools & Colleges</label>
+          <TextField
+            variant="outlined"
+            className="text-field"
+            id="schoolsColleges"
+            value={allData["schoolsColleges"]}
+            onChange={handleInputsChange}
+            placeholder="Enter nearby Schools & Colleges"
+          />
+        </div>
+        <div className="flex flex-wrap input-box">
+          <label className="filter-label">Map Link</label>
+          <TextField
+            variant="outlined"
+            className="text-field"
+            id="mapLink"
+            value={allData["mapLink"]}
+            onChange={handleInputsChange}
+            placeholder="Enter link"
+          />
+        </div>
       </div>
     );
   };
@@ -642,7 +700,12 @@ function AddPropertyPage() {
         {isUnderConstruction ? (
           <>
             {SelectorInput("Month", "Month", months, otherSelects?.Month)}
-            {SelectorInput("Year", "Year", underConstructionYears, otherSelects?.Year)}
+            {SelectorInput(
+              "Year",
+              "Year",
+              underConstructionYears,
+              otherSelects?.Year
+            )}
           </>
         ) : (
           SelectorInput(
