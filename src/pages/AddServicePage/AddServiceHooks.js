@@ -11,7 +11,8 @@ export default function AddServiceHooks() {
   const [isEdit, setIsEdit] = useState(location?.state?._id);
   const [data, setData] = useState({
     ...editData,
-    file: editData?.file[0]?.location,
+    imageGallery: editData?.imageGallery ?? [],
+    bannerImage: editData?.bannerImage?.[0],
   });
   const [error, setError] = useState({});
 
@@ -77,7 +78,7 @@ export default function AddServiceHooks() {
       setError(error);
     }
   };
-
+  console.log("editData", editData);
   return {
     navigate,
     handleSubmit,

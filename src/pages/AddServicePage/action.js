@@ -14,7 +14,7 @@ export const postAddService = (payload, navigate) => async (dispatch) => {
       headers,
     });
     if (response?.data?.status) {
-      toast.success(response?.data?.message);
+      toast.success("Service Added Successfully");
       handleSuccessfullNavigate(navigate);
     } else if (response?.response?.data?.message) {
       toast.error(response?.response?.data?.message);
@@ -26,7 +26,7 @@ export const postAddService = (payload, navigate) => async (dispatch) => {
   }
 };
 
-export const updateService = (payload, navigate,id) => async (dispatch) => {
+export const updateService = (payload, navigate, id) => async (dispatch) => {
   try {
     const response = await api.post(apiEndPoints.updateService(id), payload, {
       headers,

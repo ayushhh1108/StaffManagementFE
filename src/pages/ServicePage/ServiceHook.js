@@ -12,7 +12,7 @@ export default function ServiceHook() {
   const [open, setOpen] = useState(false);
 
   const StoreData = useSelector((state) => state?.serviceDataReducer);
-  console.log("helooooo" , StoreData?.serviceData);
+  console.log("helooooo", StoreData?.serviceData);
   useEffect(() => {
     dispatch(getServicePageData());
     window.scrollTo(0, 0);
@@ -29,8 +29,8 @@ export default function ServiceHook() {
   console.log("hellotrrt", tableData);
 
   const handleEdit = ({ _id }) => {
-    navigate("/add-supplier", {
-      state: StoreData?.supplierData?.list?.find((item) => item?._id === _id),
+    navigate("/add-service", {
+      state: StoreData?.serviceData?.find((item) => item?._id === _id),
     });
   };
 
