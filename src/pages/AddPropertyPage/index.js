@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./index.scss";
 import AddPropertyPageHooks from "./AddPropertyPageHooks";
 import {
-  Autocomplete,
   Box,
   Checkbox,
   Chip,

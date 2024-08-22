@@ -8,6 +8,7 @@ export default function AddPropertyPageHooks() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
+  const isEditt = location?.state?._id;
   const [clientData, setClientData] = useState({ iAm: "Owner" });
   const [allData, setAllData] = useState({ for: "sale" });
   const [propertyType, setPropertyType] = useState([]);
@@ -76,6 +77,78 @@ export default function AddPropertyPageHooks() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    if (isEditt) {
+      setAllData({
+        ...location?.state,
+        Name: location?.state?.name,
+        Mobile: location?.state?.mobile,
+        Email: location?.state?.email,
+        tag: location?.state?.propertyTag,
+
+        // Map new keys to old keys
+        iAm: location?.state?.iAm,
+        for: location?.state?.["for"],
+        pType: location?.state?.pType,
+        name: location?.state?.Name,
+        mobile: location?.state?.Mobile,
+        email: location?.state?.Email,
+        city: location?.state?.pCity,
+        locality: location?.state?.locality,
+        nameOfProject: location?.state?.nameOfProject,
+        propertyTitle: location?.state?.propertyTitle,
+        propertySubTitle: location?.state?.propertySubTitle,
+        description: location?.state?.description,
+        isNegotiate: location?.state?.isNegotiate,
+        isPostPropertyAgree: location?.state?.isPostPropertyAgree,
+        isTermsAndConditionAgree: location?.state?.isTermsAndConditionAgree,
+        bookingPrice: location?.state?.bookingPrice,
+        expectedPrice: location?.state?.expectedPrice,
+        totalFlats: location?.state?.features?.totalFlats,
+        balconies: location?.state?.features?.balconies,
+        bedrooms: location?.state?.features?.bedrooms,
+        floorNo: location?.state?.features?.floorNo,
+        totalFloors: location?.state?.features?.totalFloors,
+        furnishedStatus: location?.state?.features?.furnishedStatus,
+        bathrooms: location?.state?.features?.bathrooms,
+        FloorsAllowedForConstruction:
+          location?.state?.features?.FloorsAllowedForConstruction,
+        WidthOfRoadInM: location?.state?.features?.WidthOfRoadInM,
+        WidthOfRoad: location?.state?.features?.WidthOfRoad,
+        NoOfOpenSides: location?.state?.features?.NoOfOpenSides,
+        isBoundaryWall: location?.state?.features?.isBoundaryWall,
+        plotArea: location?.state?.features?.plotArea,
+        plotLength: location?.state?.features?.plotLength,
+        isCornerPlot: location?.state?.features?.isCornerPlot,
+        plotBreadth: location?.state?.features?.plotBreadth,
+        superArea: location?.state?.features?.superArea,
+        carpetArea: location?.state?.features?.carpetArea,
+        possessionStatus: location?.state?.features?.possessionStatus,
+        availableFromMonth: location?.state?.features?.availableFromMonth,
+        availableFromYear: location?.state?.features?.availableFromYear,
+
+        address: {
+          city: location?.state?.pCity,
+          zip: location?.state?.address?.zip,
+          state: location?.state?.address?.state,
+          street: location?.state?.address?.street,
+          transit: location?.state?.address?.transit,
+          mallsCinemas: location?.state?.address?.mallsCinemas,
+          schoolsColleges: location?.state?.address?.schoolsColleges,
+          hospitals: location?.state?.address?.hospitals,
+          mapLink: location?.state?.address?.mapLink,
+        },
+
+        mainImage: location?.state?.images?.mainImage,
+        imageGallery: location?.state?.images?.imageGallery,
+        layoutPlan: location?.state?.images?.layoutPlan,
+      });
+
+      console.log("Restructured Data", location?.state);
+    }
+  }, [location, isEditt]);
 
   const handleSelectChange = (event) => {
     const { value, name } = event.target;
