@@ -7,7 +7,12 @@ export default function CMSListHook() {
     window.scrollTo(0, 0);
   }, []);
 
+  const handleSubCMS = (props) => {
+    navigate("/sub-cms", { state: { ...props } });
+  };
+
   return {
     navigate,
+    handleSubCMS,
   };
 }
