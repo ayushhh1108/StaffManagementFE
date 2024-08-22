@@ -8,6 +8,7 @@ import { useMediaQuery } from "@mui/material";
 import { ProtectedRoute } from "../utils/auth";
 import Loader from "../components/Loader";
 import SubCMSPage from "../pages/SubCMSPage";
+import AddSubCMSPage from "../pages/AddSubCMS";
 const LoginPage = lazy(() => import("../pages/LoginPage"));
 const RegistrationPage = lazy(() => import("../pages/RegistrationPage"));
 const DashBoardPage = lazy(() => import("../pages/DashBoardPage"));
@@ -530,6 +531,14 @@ const AppRoutes = () => {
       element: (
         <ProtectedRoute>
           <SubCMSPage />
+        </ProtectedRoute>
+      ),
+    }, // Protected route
+    {
+      path: "/add-subcms",
+      element: (
+        <ProtectedRoute>
+          <AddSubCMSPage />
         </ProtectedRoute>
       ),
     }, // Protected route
