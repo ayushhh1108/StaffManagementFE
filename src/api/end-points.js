@@ -87,4 +87,5 @@ export default {
   deleteServices: (id) => `servicepage/deleteServicesPage/${id}`,
   postService: () => `servicepage/createServicePage`,
   updateService: (id) => `servicepage/updateServicesPage/${id}`,
+  deleteProperty: () => `property/deleteProperty`,
 };

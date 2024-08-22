@@ -25,3 +25,24 @@ export const getAllPropertyData = (payload, navigate) => async (dispatch) => {
     return data;
   }
 };
+
+export const deleteProperty = (payload, navigate) => async (dispatch) => {
+  try {
+    const response = await api.post(apiEndPoints.deleteProperty(), payload);
+    if (response?.data) {
+      toast.success(
+        isNotthenSecondParameter(
+          response?.data?.message,
+          "Delete Data Successfull"
+        )
+      );
+      window.location.reload();
+    } else if (response?.response?.data?.message) {
+      toast.error(response?.response?.data?.message);
+    }
+    console.log("response", response);
+  } catch (error) {
+    const { response: { data = {} } = {} } = error;
+    return data;
+  }
+};

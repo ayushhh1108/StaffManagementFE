@@ -4,59 +4,90 @@ import { api, apiEndPoints } from "../../api";
 import { toast } from "react-toastify";
 import { isNotthenSecondParameter } from "../../utils/helper";
 import SelectInput from "../../components/SelectInput";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteProperty, getAllPropertyData } from "./action";
 
 export default function PropertyListHook() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [deleteId, setDeleteId] = useState();
+  const [open, setOpen] = useState(false);
+  const StoreData = useSelector(
+    (state) => state?.propertyReducer?.propertyData
+  );
   const [allProperty, setAllProperty] = useState([]);
-
-  const getAllPropertyData = async () => {
+  const getAllProperty = async () => {
     try {
-      const allPropertyData = await api.get(apiEndPoints.getAllProperty());
-      if (allPropertyData?.data) {
+      if (StoreData?.data) {
         toast.success(
           isNotthenSecondParameter(
-            allPropertyData?.data?.message,
+            StoreData?.data?.message,
             "Get Property Data Successfull"
           )
         );
-        const allProperty = allPropertyData?.data?.data?.list?.length ?
-          allPropertyData?.data?.data?.list.map(item => {
-            return {
-              ...item,
-              option: (
-                <SelectInput
-                  id={"position"}
-                  options={[
-                    { label: "Applied", value: "applied" },
-                    { label: "Selected for interview", value: "selected_f_interview" },
-                    { label: "Rejected", value: "rejected" },
-                    { label: "Selected", value: "selected" },
-                  ]}
-                />
-              ),
-              status: item?.active == "true" ? "active" : "close",
-            }
-          })
-
-          : []
+        const allProperty = StoreData?.data?.data?.list?.length
+          ? StoreData?.data?.data?.list.map((item, index) => {
+              return {
+                ...item,
+                no: 1 + index,
+                option: (
+                  <SelectInput
+                    id={"position"}
+                    options={[
+                      { label: "Applied", value: "applied" },
+                      {
+                        label: "Selected for interview",
+                        value: "selected_f_interview",
+                      },
+                      { label: "Rejected", value: "rejected" },
+                      { label: "Selected", value: "selected" },
+                    ]}
+                  />
+                ),
+                status: item?.active == "true" ? "active" : "close",
+              };
+            })
+          : [];
 
         setAllProperty(allProperty || []);
-        console.log("allPropertyData", allPropertyData);
-
-      } else if (allPropertyData?.response?.data?.message) {
-        toast.error(allPropertyData?.response?.data?.message);
+      } else if (StoreData?.response?.data?.message) {
+        toast.error(StoreData?.response?.data?.message);
       }
-    } catch (error) {
-
-    }
-  }
+    } catch (error) {}
+  };
   useEffect(() => {
     window.scrollTo(0, 0);
-    getAllPropertyData();
+    dispatch(getAllPropertyData());
   }, []);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    getAllProperty();
+  }, [StoreData]);
+
+  const handleEdit = ({ _id }) => {
+    navigate("/add-property", {
+      state: StoreData?.data?.data?.list?.find((item) => item?._id === _id),
+    });
+  };
+
+  const handleDelete = ({ _id }) => {
+    setDeleteId(_id);
+    setOpen(true);
+  };
+
+  const handleConfirmDelete = () => {
+    dispatch(deleteProperty({ _id: deleteId }, navigate));
+    setOpen(false);
+  };
 
   return {
     navigate,
     allProperty,
+    handleDelete,
+    handleEdit,
+    handleConfirmDelete,
+    setOpen,
+    open,
   };
 }

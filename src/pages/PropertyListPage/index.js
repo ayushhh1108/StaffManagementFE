@@ -3,10 +3,20 @@ import "./index.scss";
 import PropertyListHook from "./PropertyListHook";
 import { Box } from "@mui/material";
 import EnhancedTable from "../../components/Table";
-import { HeaderData, TableData } from "./constant";
+import { HeaderData } from "./constant";
+import DeleteDialog from "../../components/DeleteDialog";
+import { loaderFunc } from "../../utils/helper";
 
 function PropertyListPage() {
-  const { navigate, allProperty } = PropertyListHook();
+  const {
+    navigate,
+    allProperty,
+    handleDelete,
+    handleEdit,
+    handleConfirmDelete,
+    setOpen,
+    open,
+  } = PropertyListHook();
 
   return (
     <Box
@@ -21,24 +31,27 @@ function PropertyListPage() {
       >
         Add Property
       </button>
-      {allProperty?.length ? <EnhancedTable
-        cellData={HeaderData}
-        isActionCol
-        rowItems={[
-          "no",
-          "propertyTitle",
-          "pType",
-          "pCity",
-          "for",
-          "iAm",
-          "status",
-          "option",
-        ]}
-        rowData={allProperty?.map((item, index) => ({
-          ...item,
-          no: 1 + index,
-        }))}
-      /> : null}
+      {loaderFunc(
+        allProperty,
+        <EnhancedTable
+          cellData={HeaderData}
+          isActionCol
+          rowItems={[
+            "no",
+            "propertyTitle",
+            "pType",
+            "pCity",
+            "for",
+            "iAm",
+            "status",
+            "option",
+          ]}
+          rowData={allProperty}
+          handleEditClick={handleEdit}
+          handleDeleteClick={handleDelete}
+        />
+      )}
+      {DeleteDialog(open, setOpen, handleConfirmDelete)}
     </Box>
   );
 }
