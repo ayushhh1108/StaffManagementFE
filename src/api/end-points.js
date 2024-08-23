@@ -91,4 +91,5 @@ export default {
   deleteProperty: () => `property/deleteProperty`,
   getCMSList: () => `cms/getCmsList`,
   deleteCMS: (id) => `cms/deleteCms/${id}`,
+  postCMS: () => `cms/createCms`,
 };

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
+import { postAddCMS } from "./action";
 
 export default function AddCMSHooks() {
   const dispatch = useDispatch();
@@ -47,7 +48,7 @@ export default function AddCMSHooks() {
       if (isEdit) {
         // dispatch(postUpdateCMS({ ...data, _id: isEdit }, navigate));
       } else {
-        // dispatch(postAddCMS(data, navigate));
+        dispatch(postAddCMS(data, navigate));
       }
     } else {
       setError(error);

@@ -3,7 +3,7 @@ import { api, apiEndPoints } from "../../api";
 
 export const postAddCMS = (payload, navigate) => async (dispatch) => {
   try {
-    const response = await api.post(apiEndPoints.postAddRole(), payload);
+    const response = await api.post(apiEndPoints.postCMS(), payload);
     if (response?.data) {
       toast.success(response?.data?.message);
       navigate("/cms-list");
