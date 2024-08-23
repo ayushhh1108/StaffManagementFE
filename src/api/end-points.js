@@ -92,4 +92,5 @@ export default {
   getCMSList: () => `cms/getCmsList`,
   deleteCMS: (id) => `cms/deleteCms/${id}`,
   postCMS: () => `cms/createCms`,
+  updateCMS: (id) => `cms/updateCms/${id}`,
 };
