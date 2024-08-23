@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getCMSlist } from "./action";
+import { deleteCMS, getCMSlist } from "./action";
 
 export default function CMSListHook() {
   const dispatch = useDispatch();
@@ -34,7 +34,7 @@ export default function CMSListHook() {
   };
 
   const handleConfirmDelete = () => {
-    // dispatch(deleteTeamMember({ _id: deleteId }, navigate));
+    dispatch(deleteCMS({ _id: deleteId }));
     setOpen(false);
   };
 

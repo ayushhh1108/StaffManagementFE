@@ -31,9 +31,9 @@ export const getCMSlist = () => async (dispatch) => {
   }
 };
 
-export const deleteTeamMember = (payload, navigate) => async (dispatch) => {
+export const deleteCMS = (payload, navigate) => async (dispatch) => {
   try {
-    const response = await api.post(apiEndPoints.deleteTeamMember(), payload);
+    const response = await api.delete(apiEndPoints.deleteCMS(payload?._id));
     if (response?.data) {
       toast.success(
         isNotthenSecondParameter(
