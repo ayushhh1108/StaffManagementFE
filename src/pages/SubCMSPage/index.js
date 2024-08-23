@@ -5,9 +5,21 @@ import EnhancedTable from "../../components/Table";
 import { HeaderData, TableData } from "./constant";
 import { IoCheckmarkDoneOutline } from "react-icons/io5";
 import SubCMSHook from "./SubCMSHook";
+import { loaderFunc } from "../../utils/helper";
+import DeleteDialog from "../../components/DeleteDialog";
 
 function SubCMSPage() {
-  const { navigate, handleSubCMS, location } = SubCMSHook();
+  const {
+    navigate,
+    tableData,
+    handleEdit,
+    handleDelete,
+    open,
+    setOpen,
+    handleConfirmDelete,
+    handleSubCMS,
+    location,
+  } = SubCMSHook();
 
   return (
     <Box
@@ -27,16 +39,20 @@ function SubCMSPage() {
         >
           Add SubCMS
         </button>
-        <EnhancedTable
-          cellData={HeaderData}
-          isActionCol
-          rowItems={["no", "name", "isDisable"]}
-          rowData={TableData?.map((item, index) => ({
-            ...item,
-            no: 1 + index,
-          }))}
-        />
+        {console.log("tableData", tableData)}
+        {loaderFunc(
+          tableData,
+          <EnhancedTable
+            cellData={HeaderData}
+            isActionCol
+            rowItems={["no", "title", "status"]}
+            rowData={tableData}
+            handleEditClick={handleEdit}
+            handleDeleteClick={handleDelete}
+          />
+        )}
       </Container>
+      {DeleteDialog(open, setOpen, handleConfirmDelete)}
     </Box>
   );
 }
