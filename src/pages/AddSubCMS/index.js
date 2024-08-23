@@ -74,12 +74,12 @@ function AddSubCMSPage() {
 
         {renderTextInput("Title", "title", true)}
         {renderTextInput("Slug", "slug", true)}
-        {renderTextInput("Order Number", "orderNumber", true, true)}
+        {renderTextInput("Order Number", "orderNo", true, true)}
 
         {data?.type === "url" ? (
           <>
             {renderTextInput("URL", "url", true)}
-            {renderSelectInput("Active", "active", [
+            {renderSelectInput("Active", "isActive", [
               { label: "Active", value: "active" },
               { label: "Inactive", value: "inactive" },
             ])}
@@ -88,7 +88,7 @@ function AddSubCMSPage() {
           <>
             {renderCKEditor("Description", "description")}
             {renderTextInput("Meta Title", "metaTitle", true)}
-            {renderTextInput("Meta Keywords", "metaKeywords", true)}
+            {renderTextInput("Meta Keywords", "metaKey", true)}
             {renderTextInput("Meta Description", "metaDescription", true)}
             {renderSelectInput("Banner Type", "bannerType", [
               { label: "Image", value: "image" },
@@ -101,7 +101,7 @@ function AddSubCMSPage() {
               selectedImg={data?.bannerMedia}
               onChanges={handleInputChange}
             />
-            {renderSelectInput("Active", "active", [
+            {renderSelectInput("Active", "isActive", [
               { label: "Active", value: "active" },
               { label: "Inactive", value: "inactive" },
             ])}

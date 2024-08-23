@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
+import { postAddSubCMS } from "./action";
 
 export default function AddSubCMSHooks() {
   const dispatch = useDispatch();
   const location = useLocation();
-  const editData = location?.state;
+  const editData = location?.state?.editData;
+  const CMSData = location?.state?.CMSData;
   const [isEdit, setIsEdit] = useState(editData?._id);
   const [data, setData] = useState({
     name: editData?.name,
@@ -28,27 +30,28 @@ export default function AddSubCMSHooks() {
     setError(updatedError);
     setData({ ...data, [key]: value });
   };
-
+  console.log("CMSData", CMSData);
   const isEventBased = (input) => !!input?.target?.id;
 
   const handleSubmit = () => {
     const urlRequiredFields = [
       "type",
-      "active",
+      "isActive",
       "title",
       "slug",
-      "orderNumber",
+      "orderNo",
       "url",
     ];
+
     const pageRequiredFields = [
       "type",
-      "active",
+      "isActive",
       "title",
       "slug",
-      "orderNumber",
+      "orderNo",
       "description",
       "metaTitle",
-      "metaKeywords",
+      "metaKey",
       "metaDescription",
       "bannerType",
       "bannerMedia",
@@ -58,19 +61,25 @@ export default function AddSubCMSHooks() {
       data?.type === "url" ? urlRequiredFields : pageRequiredFields;
     let error = {};
     let isFormValid = true;
-
+    const payload = new FormData();
+    console.log("requiredFields", requiredFields);
     requiredFields.forEach((field) => {
       if (!data?.[field]) {
         error[field] = true;
         isFormValid = false;
       }
+      payload.append(
+        field,
+        field === "isActive" ? data?.[field] === "active" : data?.[field]
+      );
     });
+    payload.append("categoryId", CMSData?._id);
 
     if (isFormValid) {
       if (isEdit) {
         // dispatch(postUpdateCMS({ ...data, _id: isEdit }, navigate));
       } else {
-        // dispatch(postAddCMS(data, navigate));
+        dispatch(postAddSubCMS(payload, navigate));
       }
     } else {
       setError(error);
