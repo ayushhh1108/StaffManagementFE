@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
+import { deleteSubCMS } from "./action";
 
 export default function SubCMSHook() {
   const navigate = useNavigate();
@@ -46,8 +47,9 @@ export default function SubCMSHook() {
 
   const handleConfirmDelete = () => {
     console.log("handleDeletehandleDelete", deleteId);
-    // dispatch(deleteTeamMember({ _id: deleteId }, navigate));
+    dispatch(deleteSubCMS({ _id: deleteId }, navigate));
     setOpen(false);
+    navigate("/cms-list");
     // await dispatch(getDirectorsData());
   };
 
