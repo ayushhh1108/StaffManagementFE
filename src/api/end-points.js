@@ -89,4 +89,5 @@ export default {
   postService: () => `servicepage/createServicePage`,
   updateService: (id) => `servicepage/updateServicesPage/${id}`,
   deleteProperty: () => `property/deleteProperty`,
+  getCMSList: () => `cms/getCmsList`,
 };

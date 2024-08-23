@@ -15,7 +15,6 @@ export default function TeamsHooks() {
     dispatch(getTeamMembers());
     window.scrollTo(0, 0);
   }, []);
-  console.log("StoreData", StoreData);
   useEffect(() => {
     const td = StoreData?.teamMemberData?.list?.map(
       ({
