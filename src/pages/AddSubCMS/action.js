@@ -6,7 +6,7 @@ export const postAddSubCMS = (payload, navigate) => async (dispatch) => {
     const response = await api.post(apiEndPoints.postSubCMS(), payload);
     if (response?.data) {
       toast.success(response?.data?.message);
-      navigate("/sub-cms");
+      navigate("/cms-list");
       window.location.reload();
     } else if (response?.response?.data?.message) {
       toast.error(response?.response?.data?.message);
@@ -17,12 +17,13 @@ export const postAddSubCMS = (payload, navigate) => async (dispatch) => {
   }
 };
 
-export const postUpdateCMS = (payload, navigate) => async (dispatch) => {
+export const postUpdateSubCMS = (payload, navigate, id) => async (dispatch) => {
   try {
-    const response = await api.post(apiEndPoints.postUpdateRole(), payload);
+    const response = await api.post(apiEndPoints.updateSubCMS(id), payload);
     if (response?.data) {
       toast.success(response?.data?.message);
-      navigate("/sub-cms");
+      navigate("/cms-list");
+      window.location.reload();
     } else if (response?.response?.data?.message) {
       toast.error(response?.response?.data?.message);
     }

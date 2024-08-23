@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
-import { postAddSubCMS } from "./action";
+import { postAddSubCMS, postUpdateSubCMS } from "./action";
 
 export default function AddSubCMSHooks() {
   const dispatch = useDispatch();
@@ -10,8 +10,8 @@ export default function AddSubCMSHooks() {
   const CMSData = location?.state?.CMSData;
   const [isEdit, setIsEdit] = useState(editData?._id);
   const [data, setData] = useState({
-    name: editData?.name,
-    status: editData?.status,
+    ...editData,
+    isActive: editData?.isActive ? "active" : "inactive",
   });
   const [error, setError] = useState();
   const navigate = useNavigate();
@@ -73,12 +73,12 @@ export default function AddSubCMSHooks() {
         field === "isActive" ? data?.[field] === "active" : data?.[field]
       );
     });
-    payload.append("categoryId", CMSData?._id);
 
     if (isFormValid) {
       if (isEdit) {
-        // dispatch(postUpdateCMS({ ...data, _id: isEdit }, navigate));
+        dispatch(postUpdateSubCMS(payload, navigate, isEdit));
       } else {
+        payload.append("categoryId", CMSData?._id);
         dispatch(postAddSubCMS(payload, navigate));
       }
     } else {

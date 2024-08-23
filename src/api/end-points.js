@@ -95,4 +95,5 @@ export default {
   updateCMS: (id) => `cms/updateCms/${id}`,
   postSubCMS: () => `cmsSubCategory/createCmsSubCategory`,
   deleteSubCMS: (id) => `cmsSubCategory/deleteCmsSubCategory/${id}`,
+  updateSubCMS: (id) => `cmsSubCategory/updateCmsSubCategory/${id}`,
 };

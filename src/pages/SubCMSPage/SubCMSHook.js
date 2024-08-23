@@ -37,7 +37,12 @@ export default function SubCMSHook() {
 
   const handleEdit = ({ _id }) => {
     navigate("/add-subcms", {
-      state: location?.state?.subCategory?.find((item) => item?._id === _id),
+      state: {
+        editData: location?.state?.subCategory?.find(
+          (item) => item?._id === _id
+        ),
+        CMSData: location?.state,
+      },
     });
   };
   const handleDelete = ({ _id }) => {
