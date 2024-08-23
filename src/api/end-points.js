@@ -55,6 +55,7 @@ export default {
   updateTeamMember: () => `ourteam/updateTeamMember`,
   deleteTeamMember: () => `ourteam/deleteTeamMember`,
   postPropertyEnd: () => `property/createProperty`,
+  editPropertyEnd: () => `property/updateProperty`,
   getAllProperty: () => `property/getAllProperty`,
   getAllContactUsData: () => `contactus/getContactUsList`,
   getAllSiteVisitData: () => `sitevisit/getAllSiteVisitList`,

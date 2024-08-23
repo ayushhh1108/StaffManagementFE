@@ -39,3 +39,21 @@ export const postAddProperty = (payload, navigate) => async (dispatch) => {
     return data;
   }
 };
+
+export const postEditProperty = (payload, navigate) => async (dispatch) => {
+
+  try {
+    const response = await api.post(apiEndPoints.editPropertyEnd(), payload, {
+      headers,
+    });
+    if (response?.data?.status) {
+      toast.success(response?.data?.message);
+      handleSuccessfullNavigatetoProperty(navigate);
+    } else if (response?.response?.data?.message) {
+      toast.error(response?.response?.data?.message);
+    }
+  } catch (error) {
+    const { response: { data = {} } = {} } = error;
+    return data;
+  }
+};

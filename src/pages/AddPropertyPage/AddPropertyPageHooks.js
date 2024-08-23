@@ -2,15 +2,79 @@ import { useMediaQuery } from "@mui/material";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
-import { postAddProperty } from "./action";
+import { postAddProperty, postEditProperty } from "./action";
 
 export default function AddPropertyPageHooks() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
   const isEditt = location?.state?._id;
+  const features = {};
+  const [Features, setFeatures] = useState(
+    isEditt
+      ? location?.state?.features?.amenities?.map((i, x) => {
+          features[`Property_Feature${x}`] = i;
+          return {
+            key: x + 1,
+            value: i,
+          };
+        })
+      : [{ key: 1, value: "" }, { key: 2 }, { key: 3 }]
+  );
   const [clientData, setClientData] = useState({ iAm: "Owner" });
-  const [allData, setAllData] = useState({ for: "sale" });
+  const [allData, setAllData] = useState({
+    for: "sale",
+    ...location?.state,
+    ...features,
+    Name: location?.state?.name,
+    Mobile: location?.state?.mobile,
+    Email: location?.state?.email,
+    tag: location?.state?.propertyTag,
+    city: location?.state?.pCity,
+    Locality: location?.state?.locality,
+    propertyTitle: location?.state?.nameOfProject,
+    propertySubTitle: location?.state?.propertySubTitle,
+    editor_property_desc: location?.state?.description,
+    is_price_negotiable: location?.state?.isNegotiate,
+    post_confirmation: location?.state?.isPostPropertyAgree === "true",
+    privacy_and_condition: location?.state?.isTermsAndConditionAgree === "true",
+    token_amt: location?.state?.bookingPrice,
+    expected_price: location?.state?.expectedPrice,
+    totalFlatCount: location?.state?.totalFlats,
+    Balconies: location?.state?.features?.balconies,
+    Bedrooms: location?.state?.features?.bedrooms,
+    floor_no: location?.state?.features?.floorNo,
+    total_floors: location?.state?.features?.totalFloors,
+    furnished_status: location?.state?.features?.furnishedStatus,
+    Bathrooms: location?.state?.features?.bathrooms,
+    allowed_floor_contruction:
+      location?.state?.features?.FloorsAllowedForConstruction,
+    width_of_road_facing_plot: location?.state?.features?.WidthOfRoadInM,
+    width_of_open_side: location?.state?.features?.WidthOfRoad,
+    no_of_open_sides: location?.state?.features?.NoOfOpenSides,
+    boundary_walls: location?.state?.isBoundaryWall,
+    plot_area: location?.state?.plotArea,
+    plot_length: location?.state?.plotLength,
+    is_corner_plot: location?.state?.isCornerPlot,
+    plot_breadth: location?.state?.plotBreadth,
+    super_area: location?.state?.features?.superArea,
+    carpet_area: location?.state?.features?.carpetArea,
+    possession_status: location?.state?.possessionStatus,
+    Month: location?.state?.availableFromMonth,
+    Year: location?.state?.availableFromYear,
+    City: location?.state?.address?.city,
+    Zipcode: location?.state?.address?.zip,
+    state: location?.state?.address?.state,
+    street: location?.state?.address?.street,
+    transit: location?.state?.address?.transit,
+    mallsCinemas: location?.state?.address?.mallsCinemas,
+    schoolsColleges: location?.state?.address?.schoolsColleges,
+    hospitals: location?.state?.address?.hospitals,
+    mapLink: location?.state?.address?.mapLink,
+    mainImage: location?.state?.images?.mainImage,
+    imageGallery: location?.state?.images?.imageGallery,
+    layoutPlan: location?.state?.images?.layoutPlan,
+  });
   const [propertyType, setPropertyType] = useState([]);
   const [totalFlatCount, setTotalFlatCount] = useState([]);
   const [otherSelects, setOtherSelects] = useState({});
@@ -22,11 +86,6 @@ export default function AddPropertyPageHooks() {
   const [tags, setTags] = useState([]);
   const [loader, setLoader] = useState(false);
   const [inputValue, setInputValue] = useState("");
-  const [Features, setFeatures] = useState([
-    { key: 1, value: "" },
-    { key: 2 },
-    { key: 3 },
-  ]);
 
   const CommercialPlaces = [
     "Commercial Office Space",
@@ -81,74 +140,27 @@ export default function AddPropertyPageHooks() {
   useEffect(() => {
     window.scrollTo(0, 0);
     if (isEditt) {
-      setAllData({
-        ...location?.state,
-        Name: location?.state?.name,
-        Mobile: location?.state?.mobile,
-        Email: location?.state?.email,
-        tag: location?.state?.propertyTag,
-
-        // Map new keys to old keys
-        iAm: location?.state?.iAm,
-        for: location?.state?.["for"],
-        pType: location?.state?.pType,
-        name: location?.state?.Name,
-        mobile: location?.state?.Mobile,
-        email: location?.state?.Email,
-        city: location?.state?.pCity,
-        locality: location?.state?.locality,
-        nameOfProject: location?.state?.nameOfProject,
-        propertyTitle: location?.state?.propertyTitle,
-        propertySubTitle: location?.state?.propertySubTitle,
-        description: location?.state?.description,
-        isNegotiate: location?.state?.isNegotiate,
-        isPostPropertyAgree: location?.state?.isPostPropertyAgree,
-        isTermsAndConditionAgree: location?.state?.isTermsAndConditionAgree,
-        bookingPrice: location?.state?.bookingPrice,
-        expectedPrice: location?.state?.expectedPrice,
-        totalFlats: location?.state?.features?.totalFlats,
-        balconies: location?.state?.features?.balconies,
-        bedrooms: location?.state?.features?.bedrooms,
-        floorNo: location?.state?.features?.floorNo,
-        totalFloors: location?.state?.features?.totalFloors,
-        furnishedStatus: location?.state?.features?.furnishedStatus,
-        bathrooms: location?.state?.features?.bathrooms,
-        FloorsAllowedForConstruction:
+      setPropertyType([location?.state?.pType]);
+      setOtherSelects({
+        ...otherSelects,
+        Bedrooms: location?.state?.features?.bedrooms,
+        Balconies: location?.state?.features?.balconies,
+        floor_no: location?.state?.features?.floorNo,
+        total_floors: location?.state?.features?.totalFloors,
+        furnished_status: location?.state?.features?.furnishedStatus,
+        Bathrooms: location?.state?.features?.bathrooms,
+        allowed_floor_contruction:
           location?.state?.features?.FloorsAllowedForConstruction,
-        WidthOfRoadInM: location?.state?.features?.WidthOfRoadInM,
-        WidthOfRoad: location?.state?.features?.WidthOfRoad,
-        NoOfOpenSides: location?.state?.features?.NoOfOpenSides,
-        isBoundaryWall: location?.state?.features?.isBoundaryWall,
-        plotArea: location?.state?.features?.plotArea,
-        plotLength: location?.state?.features?.plotLength,
-        isCornerPlot: location?.state?.features?.isCornerPlot,
-        plotBreadth: location?.state?.features?.plotBreadth,
-        superArea: location?.state?.features?.superArea,
-        carpetArea: location?.state?.features?.carpetArea,
-        possessionStatus: location?.state?.features?.possessionStatus,
-        availableFromMonth: location?.state?.features?.availableFromMonth,
-        availableFromYear: location?.state?.features?.availableFromYear,
-
-        address: {
-          city: location?.state?.pCity,
-          zip: location?.state?.address?.zip,
-          state: location?.state?.address?.state,
-          street: location?.state?.address?.street,
-          transit: location?.state?.address?.transit,
-          mallsCinemas: location?.state?.address?.mallsCinemas,
-          schoolsColleges: location?.state?.address?.schoolsColleges,
-          hospitals: location?.state?.address?.hospitals,
-          mapLink: location?.state?.address?.mapLink,
-        },
-
-        mainImage: location?.state?.images?.mainImage,
-        imageGallery: location?.state?.images?.imageGallery,
-        layoutPlan: location?.state?.images?.layoutPlan,
+        no_of_open_sides: location?.state?.features?.NoOfOpenSides,
+        width_of_open_side: location?.state?.features?.WidthOfRoadInM,
+        Month: location?.state?.features?.availableFromMonth,
+        Year: location?.state?.features?.availableFromYear,
+        age_construction: location?.state?.features?.bedrooms,
+        land_zone: location?.state?.features?.bedrooms,
       });
 
-      console.log("Restructured Data", location?.state);
     }
-  }, [location, isEditt]);
+  }, [location]);
 
   const handleSelectChange = (event) => {
     const { value, name } = event.target;
@@ -159,7 +171,6 @@ export default function AddPropertyPageHooks() {
     } else {
       setOtherSelects({ ...otherSelects, [name]: [value] });
     }
-    console.log("data", event, otherSelects);
     setData(name, value);
   };
 
@@ -192,7 +203,6 @@ export default function AddPropertyPageHooks() {
         : key === "is_corner_plot"
         ? idOrEvent?.target?.checked
         : value;
-    console.log("idOrEvent", key, value);
     setData(key, value);
   };
 
@@ -215,7 +225,6 @@ export default function AddPropertyPageHooks() {
   };
 
   const handleSubmit = async () => {
-    console.log("handleSubmit", allData, tags);
     let isFormValid = true;
     const payload = new FormData();
     setLoader(true);
@@ -315,7 +324,12 @@ export default function AddPropertyPageHooks() {
     // appendIfValue("layoutPlan", allData?.layoutPlan);
 
     // if (isFormValid) {
-    await dispatch(postAddProperty(payload, navigate));
+    if (isEditt) {
+      appendIfValue(`propertyId`, isEditt);
+      await dispatch(postEditProperty(payload, navigate));
+    } else {
+      await dispatch(postAddProperty(payload, navigate));
+    }
     // } else {
     // setError(error);
     // }

@@ -57,7 +57,6 @@ function AddPropertyPage() {
     loader,
   } = AddPropertyPageHooks();
 
-  console.log("allData+++", allData);
   const SelectorInput = (label, key, allData, value) => {
     return (
       <div className="flex flex-wrap input-box">
@@ -974,6 +973,7 @@ function AddPropertyPage() {
                   <Checkbox
                     id="privacy_and_condition"
                     value={allData?.privacy_and_condition}
+                    checked={allData?.privacy_and_condition}
                     onChange={handleInputsChange}
                     color="default"
                     className="checkboxx"
@@ -998,6 +998,7 @@ function AddPropertyPage() {
                   <Checkbox
                     id="post_confirmation"
                     value={allData?.post_confirmation}
+                    checked={allData?.post_confirmation}
                     onChange={handleInputsChange}
                     color="default"
                     className="checkboxx"
