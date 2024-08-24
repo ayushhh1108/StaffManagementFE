@@ -55,7 +55,6 @@ export default function TeamsHooks() {
   };
 
   const handleConfirmDelete = () => {
-    console.log("handleDeletehandleDelete", deleteId);
     dispatch(deleteTeamMember({ _id: deleteId }, navigate));
     setOpen(false);
     // await dispatch(getDirectorsData());

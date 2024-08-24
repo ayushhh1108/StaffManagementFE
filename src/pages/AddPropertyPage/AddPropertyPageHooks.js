@@ -35,7 +35,7 @@ export default function AddPropertyPageHooks() {
     propertyTitle: location?.state?.nameOfProject,
     propertySubTitle: location?.state?.propertySubTitle,
     editor_property_desc: location?.state?.description,
-    is_price_negotiable: location?.state?.isNegotiate,
+    is_price_negotiable: location?.state?.isNegotiate === "true",
     post_confirmation: location?.state?.isPostPropertyAgree === "true",
     privacy_and_condition: location?.state?.isTermsAndConditionAgree === "true",
     token_amt: location?.state?.bookingPrice,
@@ -52,11 +52,11 @@ export default function AddPropertyPageHooks() {
     width_of_road_facing_plot: location?.state?.features?.WidthOfRoadInM,
     width_of_open_side: location?.state?.features?.WidthOfRoad,
     no_of_open_sides: location?.state?.features?.NoOfOpenSides,
-    boundary_walls: location?.state?.isBoundaryWall,
-    plot_area: location?.state?.plotArea,
-    plot_length: location?.state?.plotLength,
-    is_corner_plot: location?.state?.isCornerPlot,
-    plot_breadth: location?.state?.plotBreadth,
+    boundary_walls: location?.state?.features?.isBoundaryWall,
+    plot_area: location?.state?.features?.plotArea,
+    plot_length: location?.state?.features?.plotLength,
+    is_corner_plot: location?.state?.features?.isCornerPlot === "true",
+    plot_breadth: location?.state?.features?.plotBreadth,
     super_area: location?.state?.features?.superArea,
     carpet_area: location?.state?.features?.carpetArea,
     possession_status: location?.state?.possessionStatus,
@@ -140,6 +140,7 @@ export default function AddPropertyPageHooks() {
   useEffect(() => {
     window.scrollTo(0, 0);
     if (isEditt) {
+      setTags(location?.state?.propertyTag);
       setPropertyType([location?.state?.pType]);
       setOtherSelects({
         ...otherSelects,
@@ -158,7 +159,6 @@ export default function AddPropertyPageHooks() {
         age_construction: location?.state?.features?.bedrooms,
         land_zone: location?.state?.features?.bedrooms,
       });
-
     }
   }, [location]);
 
@@ -181,28 +181,50 @@ export default function AddPropertyPageHooks() {
   };
 
   const handleInputsChange = (idOrEvent, val) => {
-    const event = isEventBased(idOrEvent) ? idOrEvent : null;
-    let key = event?.target?.id || idOrEvent;
-    const isName = key?.target?.name;
-    key =
-      isName === "for"
-        ? "for"
-        : isName === "boundary_walls"
-        ? "boundary_walls"
-        : isName === "personal_washroom"
-        ? "personal_washroom"
-        : isName === "pantry_cafeteria"
-        ? "pantry_cafeteria"
-        : key;
-    let value = event ? event.target.value : val;
-    const isUpload =
-      key === "mainImage" || key === "imageGallery" || key === "layoutPlan";
-    value =
-      isUpload && event
-        ? event.target.files
-        : key === "is_corner_plot"
-        ? idOrEvent?.target?.checked
-        : value;
+    const isEvent = isEventBased(idOrEvent);
+    const event = isEvent ? idOrEvent : null;
+    let key = isEvent ? event.target.id : idOrEvent;
+    const name = isEvent ? event.target.name : null;
+
+    const specialKeys = [
+      "for",
+      "boundary_walls",
+      "personal_washroom",
+      "pantry_cafeteria",
+    ];
+
+    key = specialKeys.includes(name) ? name : key || name; // Handle radio buttons by name
+
+    let value = isEvent ? event.target.value : val;
+
+    if (["mainImage", "imageGallery", "layoutPlan"].includes(key) && event) {
+      value = event.target.files;
+    } else if (
+      key === "is_corner_plot" ||
+      key === "is_price_negotiable" ||
+      key === "privacy_and_condition" ||
+      key === "post_confirmation"
+    ) {
+      value = isEvent ? event.target.checked : val;
+    }
+
+    const numericKeys = [
+      "width_of_road_facing_plot",
+      "plot_area",
+      "plot_length",
+      "plot_breadth",
+      "token_amt",
+      "expected_price",
+    ];
+
+    if (numericKeys.includes(key)) {
+      value = value.replace(/\D/g, "");
+    } else if (key === "Mobile") {
+      value = value.replace(/\D/g, "").slice(0, 10);
+    } else if (key === "Zipcode") {
+      value = value.replace(/\D/g, "").slice(0, 5);
+    }
+
     setData(key, value);
   };
 
@@ -249,12 +271,9 @@ export default function AddPropertyPageHooks() {
     appendIfValue("propertyTitle", allData?.propertyTitle);
     appendIfValue("propertySubTitle", allData?.propertySubTitle);
     appendIfValue("description", allData?.editor_property_desc);
-    appendIfValue("isNegotiate", allData?.is_price_negotiable === "on");
-    appendIfValue("isPostPropertyAgree", allData?.post_confirmation === "on");
-    appendIfValue(
-      "isTermsAndConditionAgree",
-      allData?.privacy_and_condition === "on"
-    );
+    appendIfValue("isNegotiate", `${allData?.is_price_negotiable}`);
+    appendIfValue("isPostPropertyAgree", allData?.post_confirmation);
+    appendIfValue("isTermsAndConditionAgree", allData?.privacy_and_condition);
     appendIfValue("bookingPrice", allData?.token_amt);
     appendIfValue("expectedPrice", allData?.expected_price);
     appendIfValue("totalFlats", allData?.totalFlatCount);
@@ -275,7 +294,7 @@ export default function AddPropertyPageHooks() {
 
     appendIfValue("plotArea", allData?.plot_area);
     appendIfValue("plotLength", allData?.plot_length);
-    appendIfValue("isCornerPlot", allData?.is_corner_plot === "on");
+    appendIfValue("isCornerPlot", allData?.is_corner_plot);
     appendIfValue("plotBreadth", allData?.plot_breadth);
     appendIfValue("superArea", allData?.super_area);
     appendIfValue("carpetArea", allData?.carpet_area);

@@ -131,12 +131,16 @@ function AddPropertyPage() {
             <span className="mr-3">For</span>
             <FormControlLabel
               value="sale"
-              control={<Radio color="default" className="radio-button" />}
+              control={
+                <Radio color="default" id="for" className="radio-button" />
+              }
               label="Sale"
             />
             <FormControlLabel
               value="rent"
-              control={<Radio color="default" className="radio-button" />}
+              control={
+                <Radio color="default" id="for" className="radio-button" />
+              }
               label="Rent/ Lease"
             />
           </RadioGroup>
@@ -390,13 +394,13 @@ function AddPropertyPage() {
             ["1", "2", "3", "4"],
             otherSelects?.no_of_open_sides
           )}
-        {housing.includes(propertyType[0]) &&
+        {/* {housing.includes(propertyType[0]) &&
           SelectorInput(
             "Width of road facing the plot",
             "width_of_open_side",
             ["1", "2", "3", "4"],
             otherSelects?.width_of_open_side
-          )}
+          )} */}
         {housing.includes(propertyType[0]) && (
           <div className="flex flex-wrap input-box">
             <label className="filter-label">
@@ -461,12 +465,24 @@ function AddPropertyPage() {
             <span className="mr-3">Personal Washroom:</span>
             <FormControlLabel
               value="yes"
-              control={<Radio color="default" className="radio-button" />}
+              control={
+                <Radio
+                  color="default"
+                  id="personal_washroom"
+                  className="radio-button"
+                />
+              }
               label="Yes"
             />
             <FormControlLabel
-              value="rent"
-              control={<Radio color="default" className="radio-button" />}
+              value="no"
+              control={
+                <Radio
+                  color="default"
+                  id="personal_washroom"
+                  className="radio-button"
+                />
+              }
               label="No"
             />
           </RadioGroup>
@@ -477,23 +493,42 @@ function AddPropertyPage() {
             aria-labelledby="demo-row-radio-buttons-group-label"
             className="items-center"
             name="pantry_cafeteria"
+            id="pantry_cafeteria"
             value={allData?.pantry_cafeteria}
             onChange={handleInputsChange}
           >
             <span className="mr-3">Pantry/Cafeteria:</span>
             <FormControlLabel
               value="dry"
-              control={<Radio color="default" className="radio-button" />}
+              control={
+                <Radio
+                  color="default"
+                  id="pantry_cafeteria"
+                  className="radio-button"
+                />
+              }
               label="Dry"
             />
             <FormControlLabel
               value="wet"
-              control={<Radio color="default" className="radio-button" />}
+              control={
+                <Radio
+                  color="default"
+                  id="pantry_cafeteria"
+                  className="radio-button"
+                />
+              }
               label="Wet"
             />
             <FormControlLabel
               value="not_avail"
-              control={<Radio color="default" className="radio-button" />}
+              control={
+                <Radio
+                  color="default"
+                  id="pantry_cafeteria"
+                  className="radio-button"
+                />
+              }
               label="Not Available"
             />
           </RadioGroup>
@@ -551,12 +586,24 @@ function AddPropertyPage() {
             <span className="mr-3">Boundary wall made: </span>
             <FormControlLabel
               value="yes"
-              control={<Radio color="default" className="radio-button" />}
+              control={
+                <Radio
+                  color="default"
+                  id="boundary_walls"
+                  className="radio-button"
+                />
+              }
               label="Yes"
             />
             <FormControlLabel
               value="rent"
-              control={<Radio color="default" className="radio-button" />}
+              control={
+                <Radio
+                  color="default"
+                  id="boundary_walls"
+                  className="radio-button"
+                />
+              }
               label="No"
             />
           </RadioGroup>
@@ -647,7 +694,7 @@ function AddPropertyPage() {
                 <Checkbox
                   color="default"
                   id="is_corner_plot"
-                  value={allData?.is_corner_plot}
+                  checked={allData?.is_corner_plot}
                   onChange={handleInputsChange}
                   className="checkboxx"
                 />
@@ -684,13 +731,25 @@ function AddPropertyPage() {
             <FormControlLabel
               name="possession_status"
               value="under_construction"
-              control={<Radio color="default" className="radio-button" />}
+              control={
+                <Radio
+                  color="default"
+                  id="possession_status"
+                  className="radio-button"
+                />
+              }
               label="Under Construction"
             />
             <FormControlLabel
               name="possession_status"
               value="ready_to_move"
-              control={<Radio color="default" className="radio-button" />}
+              control={
+                <Radio
+                  color="default"
+                  id="possession_status"
+                  className="radio-button"
+                />
+              }
               label="Ready to Move"
             />
           </RadioGroup>
@@ -752,7 +811,7 @@ function AddPropertyPage() {
           control={
             <Checkbox
               id="is_price_negotiable"
-              value={allData?.is_price_negotiable}
+              checked={allData?.is_price_negotiable}
               onChange={handleInputsChange}
               color="default"
               className="checkboxx"
@@ -886,7 +945,7 @@ function AddPropertyPage() {
                 <TextField
                   variant="outlined"
                   className="text-field"
-                  value={allData["propertytags"]}
+                  value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
                   onKeyDown={handleKeyDown}
                   placeholder="Type and press enter..."
@@ -972,7 +1031,6 @@ function AddPropertyPage() {
                 control={
                   <Checkbox
                     id="privacy_and_condition"
-                    value={allData?.privacy_and_condition}
                     checked={allData?.privacy_and_condition}
                     onChange={handleInputsChange}
                     color="default"
@@ -997,7 +1055,6 @@ function AddPropertyPage() {
                 control={
                   <Checkbox
                     id="post_confirmation"
-                    value={allData?.post_confirmation}
                     checked={allData?.post_confirmation}
                     onChange={handleInputsChange}
                     color="default"
