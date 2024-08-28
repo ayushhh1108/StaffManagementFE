@@ -13,6 +13,7 @@ export default function AddSubCMSHooks() {
     ...editData,
     isActive: editData?.isActive ? "active" : "inactive",
   });
+  console.log("editData", editData);
   const [error, setError] = useState();
   const navigate = useNavigate();
   useEffect(() => {
@@ -24,7 +25,7 @@ export default function AddSubCMSHooks() {
     const key = event ? event.target.id : id;
     let value = event ? event.target.value : val;
     const isUpload = key === "bannerMedia";
-    value = isUpload && event ? event.target.files[0] : value;
+    value = isUpload && event ? event.target.files : value;
     const updatedError = { ...error };
     delete updatedError[key];
     setError(updatedError);
@@ -61,25 +62,26 @@ export default function AddSubCMSHooks() {
       data?.type === "url" ? urlRequiredFields : pageRequiredFields;
     let error = {};
     let isFormValid = true;
-    const payload = new FormData();
-    console.log("requiredFields", requiredFields);
+    const payloadd = new FormData();
     requiredFields.forEach((field) => {
       if (!data?.[field]) {
         error[field] = true;
         isFormValid = false;
       }
-      payload.append(
-        field,
-        field === "isActive" ? data?.[field] === "active" : data?.[field]
-      );
+      !(field === "bannerMedia") &&
+      payloadd.append(
+          field,
+          field === "isActive" ? data?.[field] === "active" : data?.[field]
+        );
     });
+    payloadd.append("bannerMedia", data?.bannerMedia?.[0]);
 
     if (isFormValid) {
       if (isEdit) {
-        dispatch(postUpdateSubCMS(payload, navigate, isEdit));
+        dispatch(postUpdateSubCMS(payloadd, navigate, isEdit));
       } else {
-        payload.append("categoryId", CMSData?._id);
-        dispatch(postAddSubCMS(payload, navigate));
+        payloadd.append("categoryId", CMSData?._id);
+        dispatch(postAddSubCMS(payloadd, navigate));
       }
     } else {
       setError(error);
@@ -92,5 +94,6 @@ export default function AddSubCMSHooks() {
     handleInputChange,
     data,
     error,
+    isEdit,
   };
 }

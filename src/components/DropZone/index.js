@@ -22,7 +22,20 @@ export default function Dropzone({
   isError,
   isMultiple,
 }) {
-  console.log("selectedImg", selectedImg);
+  console.log(
+    "title",
+    title,
+    "id",
+    id,
+    "onChanges",
+    onChanges,
+    "selectedImg",
+    selectedImg,
+    "isError",
+    isError,
+    "isMultiple",
+    isMultiple
+  );
   return (
     <div className="dropzone-box flex flex-wrap items-center justify-center w-[48%] mb-3">
       <label

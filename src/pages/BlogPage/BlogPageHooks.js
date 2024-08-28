@@ -21,7 +21,7 @@ export default function MenuPageHook() {
         title,
         description,
         metaTitle,
-        metaDesc: sortDescription,
+        sortDescription,
         _id,
       })
     );

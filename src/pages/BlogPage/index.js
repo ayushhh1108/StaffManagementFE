@@ -38,7 +38,7 @@ function BlogPage() {
           <EnhancedTable
             isActionCol
             cellData={HeaderData}
-            rowItems={["no", "title", "description", "metaTitle", "metaDesc"]}
+            rowItems={["no", "title", "sortDescription", "description", "metaTitle"]}
             rowData={tableData?.map((item, index) => ({
               ...item,
               no: 1 + index,

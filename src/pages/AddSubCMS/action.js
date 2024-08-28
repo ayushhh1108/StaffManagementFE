@@ -1,9 +1,13 @@
 import { toast } from "react-toastify";
 import { api, apiEndPoints } from "../../api";
-
+const headers = {
+  "Content-Type": "multipart/form-data", // Modify this line
+};
 export const postAddSubCMS = (payload, navigate) => async (dispatch) => {
   try {
-    const response = await api.post(apiEndPoints.postSubCMS(), payload);
+    const response = await api.post(apiEndPoints.postSubCMS(), payload, {
+      headers,
+    });
     if (response?.data) {
       toast.success(response?.data?.message);
       navigate("/cms-list");
@@ -19,7 +23,9 @@ export const postAddSubCMS = (payload, navigate) => async (dispatch) => {
 
 export const postUpdateSubCMS = (payload, navigate, id) => async (dispatch) => {
   try {
-    const response = await api.post(apiEndPoints.updateSubCMS(id), payload);
+    const response = await api.post(apiEndPoints.updateSubCMS(id), payload, {
+      headers,
+    });
     if (response?.data) {
       toast.success(response?.data?.message);
       navigate("/cms-list");

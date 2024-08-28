@@ -9,7 +9,7 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import Dropzone from "../../components/DropZone";
 
 function AddSubCMSPage() {
-  const { navigate, handleSubmit, handleInputChange, data, error } =
+  const { navigate, handleSubmit, handleInputChange, data, error, isEdit } =
     AddSubCMSHooks();
 
   const renderTextInput = (label, id, isRequire = false, isNumber = false) => (
@@ -64,7 +64,7 @@ function AddSubCMSPage() {
     <Box component="main" sx={{ flexGrow: 1, p: 3, mt: 8, maxWidth: "100%" }}>
       <div className="container add-menu-form text-left my-5">
         <Typography variant="h5" className="mb-5 form-label">
-          Add SubCMS
+          {isEdit ? "Edit" : "Add"} SubCMS
         </Typography>
 
         {renderSelectInput("Type", "type", [
@@ -98,7 +98,7 @@ function AddSubCMSPage() {
               title={"Banner media"}
               id="bannerMedia"
               isError={error?.bannerMedia}
-              selectedImg={data?.bannerMedia}
+              selectedImg={data?.bannerMedia?.[0]}
               onChanges={handleInputChange}
             />
             {renderSelectInput("Active", "isActive", [

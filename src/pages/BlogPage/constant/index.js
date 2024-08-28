@@ -10,19 +10,19 @@ export const HeaderData = [
     label: "Title",
   },
   {
+    id: "sortDescription",
+    numeric: false,
+    label: "SHORT Description",
+  },
+  {
     id: "description",
     numeric: false,
-    label: "SHORT DESCRIPTION",
+    label: "DESCRIPTION",
   },
   {
     id: "metaTitle",
     numeric: false,
     label: "Meta title",
-  },
-  {
-    id: "metaDesc",
-    numeric: false,
-    label: "Meta Description",
   },
   {
     id: "action",
