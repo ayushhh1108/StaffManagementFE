@@ -215,6 +215,8 @@ export default function AddPropertyPageHooks() {
       "plot_breadth",
       "token_amt",
       "expected_price",
+      "super_area",
+      "carpet_area",
     ];
 
     if (numericKeys.includes(key)) {
