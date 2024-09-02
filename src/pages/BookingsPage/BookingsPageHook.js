@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { getAllBookingData } from "./action";
 import { IoCheckmarkDoneOutline } from "react-icons/io5";
 
-export default function BookingsPageHook () {
+export default function BookingsPageHook() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [tableData, setTableData] = useState();
@@ -19,7 +19,7 @@ export default function BookingsPageHook () {
       ...item,
       status: item?.status ? "active" : "non-active",
       _id: item._id,
-      no: index,
+      no: index + 1,
       action: <IoCheckmarkDoneOutline className="mx-auto" />,
     }));
     setTableData(td ? td : []);

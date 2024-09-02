@@ -22,7 +22,7 @@ export default function SiteVisitPageHooks () {
       ...item,
       status: item?.status ? "active" : "non-active",
       _id: item._id,
-      no: index,
+      no: index + 1,
       action: <IoCheckmarkDoneOutline className="mx-auto" />,
     }));
     setTableData(td ? td : []);

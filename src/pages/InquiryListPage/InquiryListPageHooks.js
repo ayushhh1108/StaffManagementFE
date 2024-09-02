@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { getAllEnquiryData } from "./action";
 import { IoCheckmarkDoneOutline } from "react-icons/io5";
 
-export default function InquiryListPageHooks () {
+export default function InquiryListPageHooks() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [tableData, setTableData] = useState();
@@ -17,11 +17,11 @@ export default function InquiryListPageHooks () {
   }, []);
 
   useEffect(() => {
-    const td = StoreData?.enquiryData?.list?.map((item,index) => ({
+    const td = StoreData?.enquiryData?.list?.map((item, index) => ({
       ...item,
       status: item?.status ? "active" : "non-active",
       _id: item._id,
-      no: index,
+      no: index + 1,
       action: <IoCheckmarkDoneOutline className="mx-auto" />,
     }));
     setTableData(td ? td : []);
