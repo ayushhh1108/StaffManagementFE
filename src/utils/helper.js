@@ -39,3 +39,17 @@ export const extractKeyValue = (input, id, val) => {
   let value = isEventBased(input) ? input.target.value : val;
   return { key, value };
 };
+
+export function isValidURL(str) {
+  const pattern = new RegExp(
+    "^(https?:\\/\\/)?" + // optional protocol (http or https)
+      "((([a-zA-Z\\d]([a-zA-Z\\d-]*[a-zA-Z\\d])*)\\.)+[a-zA-Z]{2,}|" + // domain name
+      "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
+      "(\\:\\d+)?(\\/[-a-zA-Z\\d%_.~+]*)*" + // port and path
+      "(\\?[;&a-zA-Z\\d%_.~+=-]*)?" + // query string
+      "(\\#[-a-zA-Z\\d_]*)?$", // fragment locator
+    "i"
+  );
+
+  return !!pattern.test(str);
+}

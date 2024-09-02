@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import { postAddSubCMS, postUpdateSubCMS } from "./action";
+import { isValidURL } from "../../utils/helper";
+import { toast } from "react-toastify";
 
 export default function AddSubCMSHooks() {
   const dispatch = useDispatch();
@@ -26,6 +28,7 @@ export default function AddSubCMSHooks() {
     let value = event ? event.target.value : val;
     const isUpload = key === "bannerMedia";
     value = isUpload && event ? event.target.files : value;
+    key === "slug" && (value = value.replace(/\s+/g, ""));      
     const updatedError = { ...error };
     delete updatedError[key];
     setError(updatedError);
@@ -68,13 +71,25 @@ export default function AddSubCMSHooks() {
         error[field] = true;
         isFormValid = false;
       }
+      if (field === "url" && !isValidURL(data?.url)) {
+        toast.error("Enter Valid URL");
+        isFormValid = false;
+        error.url = true;
+      }
+      if (!(data?.type === "url") && field === "slug") {
+        payloadd.append(
+          field,
+          `https://vishal-construction-next.vercel.app/     ${data?.slug}`
+        );
+      }
       !(field === "bannerMedia") &&
-      payloadd.append(
+        payloadd.append(
           field,
           field === "isActive" ? data?.[field] === "active" : data?.[field]
         );
     });
-    payloadd.append("bannerMedia", data?.bannerMedia?.[0]);
+    !(data?.type === "url") &&
+      payloadd.append("bannerMedia", data?.bannerMedia?.[0]);
 
     if (isFormValid) {
       if (isEdit) {
