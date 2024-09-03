@@ -55,6 +55,7 @@ function AddPropertyPage() {
     handleKeyDown,
     setData,
     loader,
+    errors,
   } = AddPropertyPageHooks();
 
   const SelectorInput = (label, key, allData, value) => {
@@ -90,6 +91,8 @@ function AddPropertyPage() {
               value={allData[label]}
               onChange={handleInputsChange}
               placeholder={`Enter Your ${label}`}
+              helperText={errors?.[label]}
+              error={errors?.[label]}
             />
           </div>
         ))}
@@ -153,6 +156,7 @@ function AddPropertyPage() {
             name={"pType"}
             value={propertyType}
             options={propertyOptions}
+            error={errors?.pType}
           />
         </div>
         {propertyType[0] === "Flat/ Apartment" && (
@@ -1026,52 +1030,66 @@ function AddPropertyPage() {
                 : ""}
               {propertyType.length ? renderPriceSection() : ""}
               {propertyType.length ? renderImageUploadSection() : ""}
-              <FormControlLabel
-                className="flex items-center w-full text-left"
-                control={
-                  <Checkbox
-                    id="privacy_and_condition"
-                    checked={allData?.privacy_and_condition}
-                    onChange={handleInputsChange}
-                    color="default"
-                    className="checkboxx"
-                  />
-                }
-                label={
-                  <span className="checkbox-text">
-                    I agree to the{" "}
-                    <Typography variant="span" color="error">
-                      Privacy & Policy *
-                    </Typography>
-                    {"  "} and {"  "}
-                    <Typography variant="span" color="error">
-                      terms & conditions *
-                    </Typography>
-                  </span>
-                }
-              />
-              <FormControlLabel
-                className="flex items-center w-full text-left mb-3"
-                control={
-                  <Checkbox
-                    id="post_confirmation"
-                    checked={allData?.post_confirmation}
-                    onChange={handleInputsChange}
-                    color="default"
-                    className="checkboxx"
-                  />
-                }
-                label={
-                  <span className="checkbox-text">
-                    I am posting this property 'exclusively' on Vishal
-                    Construction
-                  </span>
-                }
-              />
+              <div className="w-full">
+                <FormControlLabel
+                  className="flex items-center w-full text-left"
+                  control={
+                    <Checkbox
+                      id="privacy_and_condition"
+                      checked={allData?.privacy_and_condition}
+                      onChange={handleInputsChange}
+                      color="default"
+                      className="checkboxx"
+                    />
+                  }
+                  label={
+                    <span className="checkbox-text">
+                      I agree to the{" "}
+                      <Typography variant="span" color="error">
+                        Privacy & Policy *
+                      </Typography>
+                      {"  "} and {"  "}
+                      <Typography variant="span" color="error">
+                        terms & conditions *
+                      </Typography>
+                    </span>
+                  }
+                />
+                {errors?.privacy_and_condition && (
+                  <p class="MuiFormHelperText-root Mui-error MuiFormHelperText-sizeMedium MuiFormHelperText-contained css-1wc848c-MuiFormHelperText-root">
+                    {errors?.privacy_and_condition}
+                  </p>
+                )}
+              </div>
+              <div className="w-full">
+                <FormControlLabel
+                  className="flex items-center w-full text-left"
+                  control={
+                    <Checkbox
+                      id="post_confirmation"
+                      checked={allData?.post_confirmation}
+                      onChange={handleInputsChange}
+                      color="default"
+                      className="checkboxx"
+                    />
+                  }
+                  label={
+                    <span className="checkbox-text">
+                      I am posting this property 'exclusively' on Vishal
+                      Construction
+                    </span>
+                  }
+                />
+                {errors?.post_confirmation && (
+                  <p class="MuiFormHelperText-root Mui-error MuiFormHelperText-sizeMedium MuiFormHelperText-contained css-1wc848c-MuiFormHelperText-root">
+                    {errors?.post_confirmation}
+                  </p>
+                )}
+              </div>
               <button
                 type="button"
                 onClick={handleSubmit}
-                className="text-white bg-[#1e6c89] hover:bg-[#164e63] font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2"
+                className="text-white bg-[#1e6c89] hover:bg-[#164e63] font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mt-4 mb-2"
               >
                 Save
               </button>

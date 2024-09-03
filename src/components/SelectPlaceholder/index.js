@@ -46,6 +46,7 @@ export default function SelectPlaceholder({
   handleChange,
   value,
   name,
+  error,
 }) {
   const theme = useTheme();
   const [personName, setPersonName] = React.useState([]);
@@ -92,6 +93,11 @@ export default function SelectPlaceholder({
             </MenuItem>
           ))}
         </Select>
+        {error && (
+          <p class="MuiFormHelperText-root Mui-error MuiFormHelperText-sizeMedium MuiFormHelperText-contained css-1wc848c-MuiFormHelperText-root">
+            {error}
+          </p>
+        )}
       </FormControl>
     </div>
   );

@@ -22,6 +22,7 @@ export default function AddPropertyPageHooks() {
       : [{ key: 1, value: "" }, { key: 2 }, { key: 3 }]
   );
   const [clientData, setClientData] = useState({ iAm: "Owner" });
+  const [errors, setErrors] = useState();
   const [allData, setAllData] = useState({
     for: "sale",
     ...location?.state,
@@ -248,10 +249,68 @@ export default function AddPropertyPageHooks() {
     }
   };
 
-  const handleSubmit = async () => {
+  const validateFormData = (allData) => {
     let isFormValid = true;
-    const payload = new FormData();
+    let errorMessages = {}; // Error messages as an object
+
+    // Example validators
+    const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    const isValidMobile = (mobile) => /^[0-9]{10}$/.test(mobile); // Example for 10-digit numbers
+
+    // Validate fields
+    const validateField = (key, value, errorMsg, validator) => {
+      if (!value || (validator && !validator(value))) {
+        isFormValid = false;
+        errorMessages[key] = errorMsg; // Store error message with field key
+      }
+    };
+
+    validateField("Name", allData?.Name, "Name is required.");
+    validateField(
+      "Mobile",
+      allData?.Mobile,
+      "Invalid mobile number.",
+      isValidMobile
+    );
+    validateField(
+      "Email",
+      allData?.Email,
+      "Invalid email address.",
+      isValidEmail
+    );
+    validateField(
+      "pType",
+      allData?.pType,
+      "Property type is required."
+    );
+    validateField(
+      "post_confirmation",
+      allData?.post_confirmation,
+      "Post confirmation is required."
+    );
+    validateField(
+      "privacy_and_condition",
+      allData?.privacy_and_condition,
+      "You must agree to the privacy and conditions."
+    );
+
+    // Add more validations as needed for other fields
+
+    return { isFormValid, errorMessages };
+  };
+
+  const handleSubmit = async () => {
     setLoader(true);
+
+    // Perform validation
+    const { isFormValid, errorMessages } = validateFormData(allData);
+
+    if (!isFormValid) {
+      setErrors(errorMessages);
+      setLoader(false);
+      return; // Stop submission if the form is invalid
+    }
+    const payload = new FormData();
     const appendIfValue = (key, value) => {
       if (value !== undefined && value !== null) {
         payload.append(key, value);
@@ -391,5 +450,6 @@ export default function AddPropertyPageHooks() {
     handleKeyDown,
     setData,
     loader,
+    errors
   };
 }
