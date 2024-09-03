@@ -27,7 +27,7 @@ function AddConstructionPage() {
           isError={error?.title}
         />
         <TextInput
-          label={"Meta Title "}
+          label={"Tag Line"}
           isRequire
           id={"metaTitle"}
           handleChanges={handleInputChange}
@@ -35,7 +35,7 @@ function AddConstructionPage() {
           isError={error?.metaTitle}
         />
         <TextInput
-          label={"Meta Keywords "}
+          label={"Meta Title"}
           isRequire
           id={"metaKeywords"}
           handleChanges={handleInputChange}
