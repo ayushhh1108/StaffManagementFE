@@ -11,10 +11,7 @@ import {
   FaSitemap,
   FaUserTie,
 } from "react-icons/fa6";
-import {
-  BsPersonBadge,
-  BsPersonFillAdd,
-} from "react-icons/bs";
+import { BsPersonBadge, BsPersonFillAdd } from "react-icons/bs";
 import {
   RiMoneyCnyCircleFill,
   RiMoneyDollarBoxFill,
@@ -343,32 +340,32 @@ export const sidebaarRoutes = [
         ],
       },
       {
-        title: "Dealing In",
+        title: "What We Offer",
         icon: <FaIdeal className="side-baar-icon" />,
         pathname: "/dealing-in",
         isSub: false,
         arrow: <FaAngleDown />,
         subMenu: [
           {
-            title: "Add Dealing",
+            title: "Add Looking For ",
             icon: <BiCodeAlt className="side-baar-icon" />,
             pathname: "/add-dealing",
           },
           {
-            title: "Dealing In List",
+            title: "Looking For List",
             icon: <FaList className="side-baar-icon" />,
             pathname: "/dealing-list",
           },
-          {
-            title: "Add Dealing Item",
-            icon: <BiCodeAlt className="side-baar-icon" />,
-            pathname: "/add-dealing-item",
-          },
-          {
-            title: "Dealing Item List",
-            icon: <FaList className="side-baar-icon" />,
-            pathname: "/dealing-item-list",
-          },
+          // {
+          //   title: "Add Dealing Item",
+          //   icon: <BiCodeAlt className="side-baar-icon" />,
+          //   pathname: "/add-dealing-item",
+          // },
+          // {
+          //   title: "Dealing Item List",
+          //   icon: <FaList className="side-baar-icon" />,
+          //   pathname: "/dealing-item-list",
+          // },
         ],
       },
       {
