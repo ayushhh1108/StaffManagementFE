@@ -310,11 +310,11 @@ export const sidebaarRoutes = [
           },
         ],
       },
-      {
-        title: "Review",
-        icon: <MdOutlinePreview className="side-baar-icon" />,
-        pathname: "/review",
-      },
+      // {
+      //   title: "Review",
+      //   icon: <MdOutlinePreview className="side-baar-icon" />,
+      //   pathname: "/review",
+      // },
       {
         title: "Bookings",
         icon: <TbBrandBooking className="side-baar-icon" />,
