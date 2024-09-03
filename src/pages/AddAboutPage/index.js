@@ -27,20 +27,20 @@ function AddAboutPage() {
           isError={error?.title}
         />
         <TextInput
-          label={"Meta Title"}
+          label={"Tag Line"}
           isRequire
-          id={"meta_title"}
+          id={"metaTitle"}
           handleChanges={handleInputChange}
-          value={data?.meta_title}
-          isError={error?.meta_title}
+          value={data?.metaTitle}
+          isError={error?.metaTitle}
         />
         <TextInput
-          label={"Meta Keywords"}
+          label={"Meta Title"}
           isRequire
-          id={"meta_keywords"}
+          id={"metaKeywords"}
           handleChanges={handleInputChange}
-          value={data?.meta_keywords}
-          isError={error?.meta_keywords}
+          value={data?.metaKeywords}
+          isError={error?.metaKeywords}
         />
         <TextInput
           label={"Meta Description"}
