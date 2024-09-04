@@ -9,6 +9,7 @@ import { ProtectedRoute } from "../utils/auth";
 import Loader from "../components/Loader";
 import SubCMSPage from "../pages/SubCMSPage";
 import AddSubCMSPage from "../pages/AddSubCMS";
+import AddFooterSeo from "../pages/AddFooterSeo";
 const LoginPage = lazy(() => import("../pages/LoginPage"));
 const RegistrationPage = lazy(() => import("../pages/RegistrationPage"));
 const DashBoardPage = lazy(() => import("../pages/DashBoardPage"));
@@ -536,6 +537,22 @@ const AppRoutes = () => {
     }, // Protected route
     {
       path: "/add-subcms",
+      element: (
+        <ProtectedRoute>
+          <AddSubCMSPage />
+        </ProtectedRoute>
+      ),
+    }, // Protected route
+    {
+      path: "/add-seo",
+      element: (
+        <ProtectedRoute>
+          <AddFooterSeo />
+        </ProtectedRoute>
+      ),
+    }, // Protected route
+    {
+      path: "/seo-list",
       element: (
         <ProtectedRoute>
           <AddSubCMSPage />

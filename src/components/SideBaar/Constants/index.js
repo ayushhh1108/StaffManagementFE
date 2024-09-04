@@ -538,6 +538,25 @@ export const sidebaarRoutes = [
       //   ],
       // },
       {
+        title: "Footer SEO",
+        icon: <GiPayMoney className="side-baar-icon" />,
+        // pathname: "/invest",
+        isSub: false,
+        arrow: <FaAngleDown />,
+        subMenu: [
+          {
+            title: "Add SEO",
+            icon: <GiTakeMyMoney className="side-baar-icon" />,
+            pathname: "/add-seo",
+          },
+          {
+            title: "SEO List",
+            icon: <GiMoneyStack className="side-baar-icon" />,
+            pathname: "/seo-list",
+          },
+        ],
+      },
+      {
         title: "CMS",
         icon: <SiCraftcms className="side-baar-icon" />,
         pathname: "/cms",
