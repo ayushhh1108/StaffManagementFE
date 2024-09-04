@@ -518,25 +518,25 @@ export const sidebaarRoutes = [
           },
         ],
       },
-      {
-        title: "Invest with Us",
-        icon: <GiPayMoney className="side-baar-icon" />,
-        pathname: "/invest",
-        isSub: false,
-        arrow: <FaAngleDown />,
-        subMenu: [
-          {
-            title: "Add Invest with Us",
-            icon: <GiTakeMyMoney className="side-baar-icon" />,
-            pathname: "/add-invest",
-          },
-          {
-            title: "Invest with Us List",
-            icon: <GiMoneyStack className="side-baar-icon" />,
-            pathname: "/invest-list",
-          },
-        ],
-      },
+      // {
+      //   title: "Invest with Us",
+      //   icon: <GiPayMoney className="side-baar-icon" />,
+      //   pathname: "/invest",
+      //   isSub: false,
+      //   arrow: <FaAngleDown />,
+      //   subMenu: [
+      //     {
+      //       title: "Add Invest with Us",
+      //       icon: <GiTakeMyMoney className="side-baar-icon" />,
+      //       pathname: "/add-invest",
+      //     },
+      //     {
+      //       title: "Invest with Us List",
+      //       icon: <GiMoneyStack className="side-baar-icon" />,
+      //       pathname: "/invest-list",
+      //     },
+      //   ],
+      // },
       {
         title: "CMS",
         icon: <SiCraftcms className="side-baar-icon" />,
