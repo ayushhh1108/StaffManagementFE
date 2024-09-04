@@ -1,13 +1,77 @@
 import React from "react";
 import "./index.scss";
 import JobApplicationlistHook from "./JobApplicationlistHook";
-import { Box, Typography } from "@mui/material";
+import {
+  AppBar,
+  Box,
+  Button,
+  Dialog,
+  Divider,
+  IconButton,
+  List,
+  ListItemButton,
+  ListItemText,
+  Toolbar,
+  Typography,
+} from "@mui/material";
 import EnhancedTable from "../../components/Table";
 import { HeaderData } from "./constant";
+import CloseIcon from "@mui/icons-material/Close";
 import { loaderFunc } from "../../utils/helper";
 
 function JobApplicationlistPage() {
-  const { tableData } = JobApplicationlistHook();
+  const { tableData, view, setView } = JobApplicationlistHook();
+  console.log("view", view);
+  const DetailedDialog = () => {
+    return (
+      <Dialog
+        fullScreen
+        open={view}
+        onClose={() => {
+          setView(null);
+        }}
+      >
+        <AppBar sx={{ position: "relative" }}>
+          <Toolbar>
+            <IconButton
+              edge="start"
+              color="inherit"
+              onClick={() => {
+                setView(null);
+              }}
+              aria-label="close"
+            >
+              <CloseIcon />
+            </IconButton>
+            <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
+              Job Applications
+            </Typography>
+            <Button
+              autoFocus
+              color="inherit"
+              onClick={() => {
+                setView(null);
+              }}
+            >
+              Close
+            </Button>
+          </Toolbar>
+        </AppBar>
+        <List>
+          <ListItemButton>
+            <ListItemText primary="Phone ringtone" secondary="Titania" />
+          </ListItemButton>
+          <Divider />
+          <ListItemButton>
+            <ListItemText
+              primary="Default notification ringtone"
+              secondary="Tethys"
+            />
+          </ListItemButton>
+        </List>
+      </Dialog>
+    );
+  };
 
   return (
     <Box
@@ -42,6 +106,7 @@ function JobApplicationlistPage() {
           }))}
         />
       )}
+      <DetailedDialog />
     </Box>
   );
 }

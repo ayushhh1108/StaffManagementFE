@@ -17,7 +17,6 @@ export default function AddFinanceHooks() {
   }, []);
 
   useEffect(() => {
-    console.log("handleSubmit", storeData);
     setData({
       ...storeData?.[0],
       bannerImage: storeData?.[0]?.bannerImage?.[0],
