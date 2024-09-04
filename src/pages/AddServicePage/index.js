@@ -90,7 +90,7 @@ function AddServicePage() {
           type="button"
           className="text-white bg-[#b3b4b7] hover:bg-[#818183] font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
         >
-          Cencel
+          Cancel
         </button>
       </div>
     </Box>
