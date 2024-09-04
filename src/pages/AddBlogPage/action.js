@@ -14,6 +14,7 @@ export const postAddBlog = (payload, navigate) => async (dispatch) => {
     if (response?.data) {
       toast.success(response?.data?.message);
       navigate("/blog-list");
+      window.location.reload();
     } else if (response?.response?.data?.message) {
       toast.error(response?.response?.data?.message);
     }

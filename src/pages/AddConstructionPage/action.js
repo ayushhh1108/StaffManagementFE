@@ -6,6 +6,7 @@ const headers = {
 
 const handleSuccessfullNavigate = (navigate) => {
   navigate("/construction-process-list");
+  window.location.reload();
 };
 
 export const postConstructionProcess =

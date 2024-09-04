@@ -16,6 +16,7 @@ export const postAddAboutPage = (payload, navigate) => async (dispatch) => {
     if (response?.data?.status) {
       toast.success(response?.data?.message);
       handleSuccessfullNavigate(navigate);
+      window.location.reload();
     } else if (response?.response?.data?.message) {
       toast.error(response?.response?.data?.message);
     }
@@ -36,6 +37,7 @@ export const postUpdateAboutPage = (payload, navigate) => async (dispatch) => {
     );
     if (response?.data) {
       toast.success(response?.data?.message);
+      window.location.reload();
     } else if (response?.response?.data?.message) {
       toast.error(response?.response?.data?.message);
     }

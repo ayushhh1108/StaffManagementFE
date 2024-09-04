@@ -16,12 +16,13 @@ export const postAddCMS = (payload, navigate) => async (dispatch) => {
   }
 };
 
-export const postUpdateCMS = (payload, navigate,id) => async (dispatch) => {
+export const postUpdateCMS = (payload, navigate, id) => async (dispatch) => {
   try {
     const response = await api.post(apiEndPoints.updateCMS(id), payload);
     if (response?.data) {
       toast.success(response?.data?.message);
       navigate("/cms-list");
+      window.location.reload();
     } else if (response?.response?.data?.message) {
       toast.error(response?.response?.data?.message);
     }

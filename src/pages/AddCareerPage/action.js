@@ -7,6 +7,7 @@ export const postAddCareer = (payload, navigate) => async (dispatch) => {
     if (response?.data) {
       toast.success(response?.data?.message);
       navigate("/career-list");
+      window.location.reload();
     } else if (response?.response?.data?.message) {
       toast.error(response?.response?.data?.message);
     }
