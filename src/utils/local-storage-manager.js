@@ -6,9 +6,9 @@ const LocalStorageManager = {
   getLocalStorage: (name) => {
     const data = localStorage.getItem(name);
     if (data) {
-      return data;
+      return JSON.parse(data); // Parse the data before returning it
     }
-    return data;
+    return null; // Return null if no data is found
   },
 
   removeLocalStorage: (name) => {
@@ -17,6 +17,15 @@ const LocalStorageManager = {
 
   clearLocalStorage: () => {
     return localStorage.clear();
+  },
+
+  isUserAvailable: () => {
+    const user = LocalStorageManager.getLocalStorage("user");
+    return !!user?.tk;
+  },
+  getToken: () => {
+    const user = LocalStorageManager.getLocalStorage("user");
+    return user?.tk;
   },
 };
 
