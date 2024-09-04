@@ -96,4 +96,6 @@ export default {
   postSubCMS: () => `cmsSubCategory/createCmsSubCategory`,
   deleteSubCMS: (id) => `cmsSubCategory/deleteCmsSubCategory/${id}`,
   updateSubCMS: (id) => `cmsSubCategory/updateCmsSubCategory/${id}`,
+  postSEO: () => `footerseo/createFooterSEOModule`,
+  updateSEO: (id) => `footerseo/updateFooterSEOModule/${id}`,
 };
