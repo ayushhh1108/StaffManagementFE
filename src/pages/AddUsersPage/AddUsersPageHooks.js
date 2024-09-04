@@ -1,11 +1,18 @@
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import { postAddUser, updateUser } from "./action";
+import { getAllUserRole } from "../UserRolePage/action";
 
 export default function AddUsersPageHooks() {
   const dispatch = useDispatch();
   const location = useLocation();
+  const userRole = useSelector((store) =>
+    store?.userRoleReducer?.userRoleData?.map((i) => ({
+      label: i?.name,
+      value: i?._id,
+    }))
+  );
   const editData = location?.state;
   const [data, setData] = useState({
     first_name: editData?.firstName ?? "",
@@ -20,6 +27,7 @@ export default function AddUsersPageHooks() {
   const [isEdit, setIsEdit] = useState(location?.state?._id);
   const navigate = useNavigate();
   useEffect(() => {
+    dispatch(getAllUserRole());
     window.scrollTo(0, 0);
   }, []);
 
@@ -36,7 +44,7 @@ export default function AddUsersPageHooks() {
   };
 
   const isEventBased = (input) => !!input?.target?.id;
-
+  console.log("data?.role", data);
   const handleSubmit = () => {
     const requiredFields = [
       "first_name",
@@ -45,6 +53,7 @@ export default function AddUsersPageHooks() {
       "mobile",
       "role",
       "image",
+      "password",
     ];
     let error = {};
     let isFormValid = true;
@@ -64,6 +73,7 @@ export default function AddUsersPageHooks() {
       payload.append("mobile", data?.mobile);
       payload.append("userRole", data?.role);
       payload.append("image", data?.image);
+      payload.append("password", data?.password);
       if (isEdit) {
         payload.append("_id", isEdit);
         dispatch(updateUser(payload, navigate));
@@ -83,5 +93,6 @@ export default function AddUsersPageHooks() {
     handleInputChange,
     data,
     error,
+    userRole,
   };
 }

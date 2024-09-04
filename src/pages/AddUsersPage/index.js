@@ -7,7 +7,7 @@ import TextInput from "../../components/TextInput";
 import SelectInput from "../../components/SelectInput";
 
 function AddUserPage() {
-  const { navigate, handleSubmit, handleInputChange, data, error } =
+  const { navigate, handleSubmit, handleInputChange, data, error, userRole } =
     AddUsersPageHooks();
 
   return (
@@ -47,6 +47,15 @@ function AddUserPage() {
           handleChanges={handleInputChange}
           value={data?.mobile}
           isError={error?.mobile}
+          isNumber={true}
+        />
+        <TextInput
+          label={"Password"}
+          isRequire
+          id={"password"}
+          handleChanges={handleInputChange}
+          value={data?.password}
+          isError={error?.password}
         />
         <SelectInput
           label={"Role"}
@@ -55,10 +64,7 @@ function AddUserPage() {
           handleChange={handleInputChange}
           value={data?.role}
           isError={error?.role}
-          options={[
-            { label: "Employee", value: "employee" },
-            { label: "Client", value: "client" },
-          ]}
+          options={userRole}
         />
 
         <div className="upload-file-div mb-6 flex justify-between">
