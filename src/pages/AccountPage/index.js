@@ -10,7 +10,12 @@ import { FaXTwitter } from "react-icons/fa6";
 
 function AccountPage() {
   const { user } = AccountPageHooks();
-
+  console.log(
+    "user",
+    user,
+    !!user?.image?.length && user?.image?.[0],
+    (!!user?.image?.length && user?.image?.[0]) ?? acImage
+  );
   return (
     <Box
       className="menu-list-page"
@@ -21,7 +26,11 @@ function AccountPage() {
         <Box className="feedback-card">
           <Box className="feedback-header">
             <Box className="client-box w-[75%]">
-              <img src={acImage} alt="home" className="profile-image" />
+              <img
+                src={(user?.image?.length && user?.image?.[0]) ?? acImage}
+                alt="home"
+                className="profile-image"
+              />
               <Box className="feedback-description">
                 <Typography variant="h6" className="name">
                   {`${user?.firstName} ${user?.lastName}`}
@@ -45,17 +54,19 @@ function AccountPage() {
               </Box>
               <Box className="d-flex icons-box">
                 <IoCallSharp color="#687693" className="me-1" size={19} />
-                <span className="feature-number">{user?.mobile}</span>
+                <span className="feature-number">
+                  {user?.countryCode} {user?.mobile}
+                </span>
               </Box>
-              <Box className="d-flex icons-box">
+              {/* <Box className="d-flex icons-box">
                 <FaLocationArrow color="#687693" className="me-1" size={19} />
                 <span className="feature-number">
                   Jaipur, Rajsthan, India - 302017
                 </span>
-              </Box>
+              </Box> */}
             </Box>
             <Box className="w-[25%] account-details-box md:w-[50%] md:w-[35%] xl:w-[25%] flex flex-wrap flex-col">
-              <Box className="d-flex icons-box">
+              {/* <Box className="d-flex icons-box">
                 <FaFacebookF color="#687693" className="me-1" size={19} />
                 <span className="feature-number">@vishalSharma</span>
               </Box>
@@ -66,7 +77,7 @@ function AccountPage() {
               <Box className="d-flex icons-box">
                 <FaInstagram color="#687693" className="me-1" size={19} />
                 <span className="feature-number">@vishalSharma</span>
-              </Box>
+              </Box> */}
             </Box>
           </Box>
         </Box>
