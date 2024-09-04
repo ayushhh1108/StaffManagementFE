@@ -21,7 +21,7 @@ export default function AboutPageHooks() {
     const td = StoreData?.contactUsData?.list?.map((item, index) => ({
       ...item,
       status: item?.isResolved ? "not-active" : "active",
-      Phone: item?.mobile,
+      phone: item?.mobile,
       _id: item._id,
       no: index + 1,
       action: <IoCheckmarkDoneOutline className="mx-auto" />,
