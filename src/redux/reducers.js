@@ -30,6 +30,7 @@ import worldofVishalReducer from "../pages/WorldofVishal/reducer";
 import propertyReducer from "../pages/PropertyListPage/reducer";
 import serviceDataReducer from "../pages/ServicePage/reducer";
 import CMSReducer from "../pages/CMSListPage/reducer";
+import SEOReducer from "../pages/FooterSeoList/reducer";
 
 const createReducer = () => {
   const rootReducer = combineReducers({
@@ -64,6 +65,7 @@ const createReducer = () => {
     propertyReducer: propertyReducer,
     serviceDataReducer: serviceDataReducer,
     CMSReducer: CMSReducer,
+    SEOReducer: SEOReducer,
   });
   return rootReducer;
 };

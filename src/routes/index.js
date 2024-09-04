@@ -7,9 +7,10 @@ import AppBaar from "../components/SideBaar/Components/index";
 import { useMediaQuery } from "@mui/material";
 import { ProtectedRoute } from "../utils/auth";
 import Loader from "../components/Loader";
-import SubCMSPage from "../pages/SubCMSPage";
-import AddSubCMSPage from "../pages/AddSubCMS";
-import AddFooterSeo from "../pages/AddFooterSeo";
+const SEOListPage = lazy(() => import("../pages/FooterSeoList"));
+const AddFooterSeo = lazy(() => import("../pages/AddFooterSeo"));
+const SubCMSPage = lazy(() => import("../pages/SubCMSPage"));
+const AddSubCMSPage = lazy(() => import("../pages/AddSubCMS"));
 const LoginPage = lazy(() => import("../pages/LoginPage"));
 const RegistrationPage = lazy(() => import("../pages/RegistrationPage"));
 const DashBoardPage = lazy(() => import("../pages/DashBoardPage"));
@@ -555,7 +556,7 @@ const AppRoutes = () => {
       path: "/seo-list",
       element: (
         <ProtectedRoute>
-          <AddSubCMSPage />
+          <SEOListPage />
         </ProtectedRoute>
       ),
     }, // Protected route
