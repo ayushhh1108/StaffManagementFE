@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { isAuthenticated } from "../../utils/auth";
 import { toast } from "react-toastify";
+import LocalStorageManager from "../../utils/local-storage-manager";
 
 export default function RegistrationPageHook() {
   const [creds, setCreds] = useState();
@@ -11,8 +11,8 @@ export default function RegistrationPageHook() {
     { pagename: "Registration", url: "sign-up" },
   ]);
   useEffect(() => {
-    console.log(isAuthenticated(),"isAuthenticated()isAuthenticated()")
-    if (isAuthenticated()) {
+    console.log(LocalStorageManager?.isUserAvailable(),"LocalStorageManager?.isUserAvailable()")
+    if (LocalStorageManager?.isUserAvailable()) {
       toast.info("Already logged in.");
       navigate("/");
     }

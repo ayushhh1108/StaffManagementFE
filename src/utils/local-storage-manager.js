@@ -21,11 +21,11 @@ const LocalStorageManager = {
 
   isUserAvailable: () => {
     const user = LocalStorageManager.getLocalStorage("user");
-    return !!user?.tk;
+    return !!user?.token;
   },
   getToken: () => {
     const user = LocalStorageManager.getLocalStorage("user");
-    return user?.tk;
+    return user?.token;
   },
 };
 

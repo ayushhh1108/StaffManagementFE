@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { loginSubmit } from "./action";
-import { isAuthenticated } from "../../utils/auth";
 import { toast } from "react-toastify";
+import LocalStorageManager from "../../utils/local-storage-manager";
 
 export default function LoginPageHook() {
   const dispatch = useDispatch();
@@ -11,7 +11,7 @@ export default function LoginPageHook() {
   const [isForget, setIsForget] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
-    if (isAuthenticated()) {
+    if (LocalStorageManager?.isUserAvailable()) {
       toast.info("Already logged in.");
       navigate("/");
     }
