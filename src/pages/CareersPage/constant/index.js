@@ -36,11 +36,11 @@ export const HeaderData = [
     numeric: false,
     label: "Vacancy",
   },
-  {
-    id: "active",
-    numeric: false,
-    label: "Active",
-  },
+  // {
+  //   id: "active",
+  //   numeric: false,
+  //   label: "Active",
+  // },
   {
     id: "action",
     numeric: true,

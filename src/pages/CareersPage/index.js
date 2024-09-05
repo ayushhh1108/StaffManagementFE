@@ -46,7 +46,7 @@ function CareersPage() {
               "experience",
               "location",
               "vacancy",
-              "active",
+              // "active",
             ]}
             rowData={tableData?.map((item, index) => ({
               ...item,
