@@ -187,7 +187,7 @@ export default function EnhancedTable({
                         key={item} // Add a key for each TableCell
                         className="tc-text"
                         sx={{
-                          maxWidth: "150px", // Adjust max width to your needs
+                          maxWidth: "300px", // Adjust max width to your needs
                           whiteSpace: "nowrap",
                           overflow: "hidden",
                           textOverflow: "ellipsis",
