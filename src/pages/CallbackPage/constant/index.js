@@ -22,20 +22,20 @@ export const HeaderData = [
     label: "Phone",
   },
   {
-    id: "place",
+    id: "message",
     numeric: false,
-    label: "Place",
+    label: "Message",
   },
-  {
-    id: "status",
-    numeric: false,
-    label: "Status",
-  },
-  {
-    id: "action",
-    numeric: false,
-    label: "Action",
-  },
+  // {
+  //   id: "status",
+  //   numeric: false,
+  //   label: "Status",
+  // },
+  // {
+  //   id: "action",
+  //   numeric: false,
+  //   label: "Action",
+  // },
 ];
 
 export const TableData = [

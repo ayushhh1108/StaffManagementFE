@@ -26,9 +26,7 @@ function CallbackListPage() {
             "name",
             "email",
             "phone",
-            "place",
-            "status",
-            "action",
+            "message",
           ]}
           rowData={tableData}
         />)}
