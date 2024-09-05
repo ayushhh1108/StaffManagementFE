@@ -37,7 +37,7 @@ function FeedbackListPage() {
           <EnhancedTable
             isActionCol
             cellData={HeaderData}
-            rowItems={["no", "name", "rating", "message", "status"]}
+            rowItems={["no", "name", "rating", "message"]}
             rowData={tableData?.map((item, index) => ({
               ...item,
               no: 1 + index,

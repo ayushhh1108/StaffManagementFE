@@ -17,10 +17,9 @@ export default function FeedbackListPageHooks() {
   }, []);
 
   useEffect(() => {
-    const td = StoreData?.feedbackData?.map(
+    const td = StoreData?.feedbackData?.list?.map(
       ({ name, message, _id, status, rating }) => ({
         name,
-        status,
         rating,
         message,
         _id,
@@ -31,7 +30,7 @@ export default function FeedbackListPageHooks() {
 
   const handleEdit = ({ _id }) => {
     navigate("/add-feedback", {
-      state: StoreData?.feedbackData?.find((item) => item?._id === _id),
+      state: StoreData?.feedbackData?.list?.find((item) => item?._id === _id),
     });
   };
 

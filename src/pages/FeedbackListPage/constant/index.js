@@ -20,11 +20,6 @@ export const HeaderData = [
     label: "Message",
   },
   {
-    id: "status",
-    numeric: false,
-    label: "Status",
-  },
-  {
     id: "action",
     numeric: true,
     label: "ACTION",
