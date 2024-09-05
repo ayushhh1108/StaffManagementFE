@@ -102,4 +102,5 @@ export default {
   deleteSEO: (id) => `footerseo/deleteFooterSEOModule/${id}`,
   deleteLater: () => `newsletter/deleteNewsLetter`,
   deleteInquery: () => `enquiry/deleteEnquiry`,
+  deleteSiteVisit: () => `sitevisit/deleteSiteVisit`,
 };
