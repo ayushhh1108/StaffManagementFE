@@ -103,4 +103,5 @@ export default {
   deleteLater: () => `newsletter/deleteNewsLetter`,
   deleteInquery: () => `enquiry/deleteEnquiry`,
   deleteSiteVisit: () => `sitevisit/deleteSiteVisit`,
+  deleteContactUs: () => `contactus/deleteContactUs`,
 };

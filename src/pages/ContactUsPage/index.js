@@ -5,9 +5,17 @@ import { Box, Container } from "@mui/material";
 import EnhancedTable from "../../components/Table";
 import { HeaderData } from "./constant";
 import { loaderFunc } from "../../utils/helper";
+import DeleteDialog from "../../components/DeleteDialog";
 
 function ContactUsPage() {
-  const { navigate, tableData } = ContactUsPageHooks();
+  const {
+    navigate,
+    tableData,
+    handleDelete,
+    open,
+    setOpen,
+    handleConfirmDelete,
+  } = ContactUsPageHooks();
   console.log("hello", tableData);
   return (
     <Box
@@ -35,6 +43,7 @@ function ContactUsPage() {
           />
         )}
       </Container>
+      {DeleteDialog(open, setOpen, handleConfirmDelete)}
     </Box>
   );
 }

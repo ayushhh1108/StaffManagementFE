@@ -10,7 +10,6 @@ export default function InquiryListPageHooks() {
   const [deleteId, setDeleteId] = useState();
   const [open, setOpen] = useState(false);
   const [tableData, setTableData] = useState();
-
   const StoreData = useSelector((state) => state?.enquiryDataReducer);
 
   useEffect(() => {
