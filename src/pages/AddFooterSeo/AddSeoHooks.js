@@ -45,9 +45,9 @@ export default function AddSeoHooks() {
 
     if (isFormValid) {
       if (isEdit) {
-        dispatch(postUpdateSEO({ ...data, other: "" }, navigate, isEdit));
+        dispatch(postUpdateSEO({ ...data, other: "A" }, navigate, isEdit));
       } else {
-        dispatch(postAddSEO({ ...data, other: "" }, navigate));
+        dispatch(postAddSEO({ ...data, other: "A" }, navigate));
       }
     } else {
       setError(error);
@@ -60,6 +60,6 @@ export default function AddSeoHooks() {
     handleInputChange,
     data,
     error,
-    isEdit
+    isEdit,
   };
 }

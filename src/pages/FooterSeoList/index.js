@@ -38,7 +38,7 @@ function SEOListPage() {
           <EnhancedTable
             cellData={HeaderData}
             isActionCol
-            rowItems={["no", "title", "url", "description"]}
+            rowItems={["no", "title", "description"]}
             rowData={tableData?.map((item, index) => ({
               ...item,
               no: 1 + index,

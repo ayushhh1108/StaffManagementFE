@@ -7,14 +7,14 @@ export const HeaderData = [
     label: "SR NO",
   },
   {
-    id: "Name",
+    id: "title",
     numeric: false,
-    label: "NAME",
+    label: "Title",
   },
   {
-    id: "isDisable",
+    id: "description",
     numeric: true,
-    label: "STATUS",
+    label: "Description",
   },
   {
     id: "action",
