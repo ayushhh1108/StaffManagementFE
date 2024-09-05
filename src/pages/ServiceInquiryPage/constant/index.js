@@ -31,16 +31,16 @@ export const HeaderData = [
     numeric: false,
     label: "Message",
   },
-  {
-    id: "status",
-    numeric: false,
-    label: "Status",
-  },
-  {
-    id: "photo",
-    numeric: false,
-    label: "File",
-  },
+  // {
+  //   id: "status",
+  //   numeric: false,
+  //   label: "Status",
+  // },
+  // {
+  //   id: "photo",
+  //   numeric: false,
+  //   label: "File",
+  // },
   {
     id: "action",
     numeric: false,

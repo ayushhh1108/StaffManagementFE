@@ -33,8 +33,6 @@ function ServiceInquiryPage() {
               "phone",
               "budget",
               "message",
-              "photo",
-              "status",
               "action",
             ]}
             rowData={tableData?.map((item, index) => ({
