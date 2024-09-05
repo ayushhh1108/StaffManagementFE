@@ -100,4 +100,5 @@ export default {
   updateSEO: (id) => `footerseo/updateFooterSEOModule/${id}`,
   getSEO: () => `footerseo/getFooterSEOListModule`,
   deleteSEO: (id) => `footerseo/deleteFooterSEOModule/${id}`,
+  deleteLater: () => `newsletter/deleteNewsLetter`,
 };

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getAllNewsLaters } from "./action";
+import { deleteNewsLater, getAllNewsLaters } from "./action";
 import { IoCheckmarkDoneOutline } from "react-icons/io5";
 
 export default function NewsLatterHook() {
@@ -20,19 +20,26 @@ export default function NewsLatterHook() {
       status: status ? "active" : "not-active",
       email,
       _id,
-      action: <IoCheckmarkDoneOutline className="mx-auto" />,
+      action: (
+        <p
+          id={_id}
+          onClick={handleDelete}
+          style={{ color: "red", cursor: "pointer" }}
+        >
+          Delete
+        </p>
+      ),
     }));
     setTableData(td ? td : []);
   }, [StoreData]);
 
-  const handleDelete = ({ _id }) => {
-    setDeleteId(_id);
+  const handleDelete = (e) => {
+    setDeleteId(e.target.id);
     setOpen(true);
   };
 
-  console.log("handleDeletehandleDelete", tableData);
   const handleConfirmDelete = async () => {
-    // await dispatch(deleteNewsLater({ _id: deleteId }, navigate));
+    await dispatch(deleteNewsLater({ _id: deleteId }, navigate));
     await setOpen(false);
   };
 
