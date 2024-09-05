@@ -16,12 +16,41 @@ function AddFooterSeo() {
         <Typography variant="h5" className="mb-5 form-label">
           {isEdit ? "Edit " : "Add"} SEO{" "}
         </Typography>
-        <TextInput
+        {/* <TextInput
           label={"Page Name"}
           isRequire
           id={"title"}
           handleChanges={handleInputChange}
           value={data?.title}
+          isError={error?.title}
+        /> */}
+        <SelectInput
+          label={"Page Name"}
+          isRequire
+          id={"title"}
+          handleChange={handleInputChange}
+          value={data?.title}
+          options={[
+            { label: "Landing Page", value: "LandingPage" },
+            { label: "About Company", value: "AboutCompany" },
+            { label: "About Directors", value: "AboutDirectors" },
+            { label: "Construction Process", value: "ConstructionProcess" },
+            { label: "Properties Page", value: "PropertiesPage" },
+            { label: "Property Detail Page", value: "PropertyDetailPage" },
+            { label: "Service Page", value: "ServicePage" },
+            { label: "Career Page", value: "CareerPage" },
+            { label: "ContactUs Page", value: "ContactUsPage" },
+            { label: "Finance Page", value: "FinancePage" },
+            { label: "Blog Page", value: "BlogPage" },
+            { label: "Blog Detail Page", value: "BlogDetailPage" },
+            { label: "Post Property Page", value: "PostPropertyPage" },
+            { label: "CMS Page", value: "CMSPage" },
+            { label: "Login Page", value: "LoginPage" },
+            { label: "Register Page", value: "RegisterPage" },
+            { label: "Online Booking Page", value: "OnlineBookingPage" },
+            { label: "Service Detail Page", value: "ServiceDetailsPage" },
+            { label: "Supplier Form", value: "SupplierForm" },
+          ]}
           isError={error?.title}
         />
         <TextInput
