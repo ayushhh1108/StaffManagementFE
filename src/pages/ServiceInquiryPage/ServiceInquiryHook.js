@@ -20,7 +20,7 @@ export default function ServiceInquiryHook() {
 
   useEffect(() => {
     const td = StoreData?.ServiceRequestData?.map(
-      ({ firstName, mobile, budget, _id, message, active }) => ({
+      ({ firstName, mobile, budget, _id, message, active, email }) => ({
         name: firstName,
         phone: mobile,
         budget,
@@ -29,8 +29,9 @@ export default function ServiceInquiryHook() {
         property_name: mobile,
         status: active ? "Active" : "Close",
         _id,
+        email,
         action: (
-          <div className="flex justify-evenly" id={_id} >
+          <div className="flex justify-evenly" id={_id}>
             <BinIcon id={_id} onClick={handleDelete} />{" "}
           </div>
         ),
