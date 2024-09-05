@@ -45,6 +45,11 @@ export default function AddSeoHooks() {
 
     if (isFormValid) {
       if (isEdit) {
+        delete data?.active;
+        delete data?._id;
+        delete data?.__v;
+        delete data?.updatedAt;
+        delete data?.createdAt;
         dispatch(postUpdateSEO({ ...data, other: "A" }, navigate, isEdit));
       } else {
         dispatch(postAddSEO({ ...data, other: "A" }, navigate));
