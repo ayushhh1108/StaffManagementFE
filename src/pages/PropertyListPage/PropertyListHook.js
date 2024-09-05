@@ -30,20 +30,6 @@ export default function PropertyListHook() {
               return {
                 ...item,
                 no: 1 + index,
-                option: (
-                  <SelectInput
-                    id={"position"}
-                    options={[
-                      { label: "Applied", value: "applied" },
-                      {
-                        label: "Selected for interview",
-                        value: "selected_f_interview",
-                      },
-                      { label: "Rejected", value: "rejected" },
-                      { label: "Selected", value: "selected" },
-                    ]}
-                  />
-                ),
                 status: item?.active == "true" ? "active" : "close",
               };
             })

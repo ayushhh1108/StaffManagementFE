@@ -38,11 +38,6 @@ export const HeaderData = [
     label: "Status",
   },
   {
-    id: "option",
-    numeric: false,
-    label: "Options",
-  },
-  {
     id: "action",
     numeric: false,
     label: "Action",

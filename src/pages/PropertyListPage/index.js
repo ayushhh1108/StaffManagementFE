@@ -44,7 +44,6 @@ function PropertyListPage() {
             "for",
             "iAm",
             "status",
-            "option",
           ]}
           rowData={allProperty}
           handleEditClick={handleEdit}
