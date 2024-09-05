@@ -64,7 +64,7 @@ function EnhancedTableHead(props) {
             >
               {headCell.label}
               {orderBy === headCell.id ? (
-                <Box component="span" sx={visuallyHidden}>
+                <Box component="span" sx={{ visuallyHidden: "true" }}>
                   {order === "desc" ? "sorted descending" : "sorted ascending"}
                 </Box>
               ) : null}
@@ -183,7 +183,18 @@ export default function EnhancedTable({
                     className="tr-texts"
                   >
                     {rowItems?.map((item) => (
-                      <TableCell className="tc-text">{row[item]}</TableCell>
+                      <TableCell
+                        key={item} // Add a key for each TableCell
+                        className="tc-text"
+                        sx={{
+                          maxWidth: "150px", // Adjust max width to your needs
+                          whiteSpace: "nowrap",
+                          overflow: "hidden",
+                          textOverflow: "ellipsis",
+                        }}
+                      >
+                        {row[item]}
+                      </TableCell>
                     ))}
                     {isActionCol && (
                       <TableCell className="tc-text">
