@@ -107,7 +107,7 @@ function AddSupplierPage() {
         />
         <div className="upload-file-div mb-6 flex justify-between">
           <Dropzone
-            title={"Banner"}
+            title={"Price list/ Quotation"}
             id="file"
             isError={error?.file}
             selectedImg={data?.file}
