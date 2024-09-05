@@ -30,8 +30,7 @@ export default function ServiceInquiryHook() {
         status: active ? "Active" : "Close",
         _id,
         action: (
-          <div className="flex justify-evenly">
-            <IoCheckmarkDoneOutline />{" "}
+          <div className="flex justify-evenly" id={_id} >
             <BinIcon id={_id} onClick={handleDelete} />{" "}
           </div>
         ),
