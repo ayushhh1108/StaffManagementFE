@@ -19,6 +19,7 @@ export default function AboutPageHooks() {
     dispatch(getAllContactUsData());
     window.scrollTo(0, 0);
   }, []);
+  
   useEffect(() => {
     const td = StoreData?.contactUsData?.list?.map((item, index) => ({
       ...item,

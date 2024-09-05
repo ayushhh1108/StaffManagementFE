@@ -9,9 +9,7 @@ import DeleteDialog from "../../components/DeleteDialog";
 
 function ContactUsPage() {
   const {
-    navigate,
     tableData,
-    handleDelete,
     open,
     setOpen,
     handleConfirmDelete,
