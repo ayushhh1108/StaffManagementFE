@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import { postAddProperty, postEditProperty } from "./action";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 export default function AddPropertyPageHooks() {
   const navigate = useNavigate();
@@ -23,6 +25,7 @@ export default function AddPropertyPageHooks() {
   );
   const [clientData, setClientData] = useState({ iAm: "Owner" });
   const [errors, setErrors] = useState();
+  const [latLng, setLatLng] = useState({ lat: "", lng: "" });
   const [allData, setAllData] = useState({
     for: "sale",
     ...location?.state,
@@ -226,6 +229,8 @@ export default function AddPropertyPageHooks() {
       value = value.replace(/\D/g, "").slice(0, 10);
     } else if (key === "Zipcode") {
       value = value.replace(/\D/g, "").slice(0, 5);
+    } else if (key === "mapLink") {
+      extractCoordinates(value);
     }
 
     setData(key, value);
@@ -278,11 +283,7 @@ export default function AddPropertyPageHooks() {
       "Invalid email address.",
       isValidEmail
     );
-    validateField(
-      "pType",
-      allData?.pType,
-      "Property type is required."
-    );
+    validateField("pType", allData?.pType, "Property type is required.");
     validateField(
       "post_confirmation",
       allData?.post_confirmation,
@@ -300,6 +301,7 @@ export default function AddPropertyPageHooks() {
   };
 
   const handleSubmit = async () => {
+    extractCoordinates();
     setLoader(true);
 
     // Perform validation
@@ -376,7 +378,7 @@ export default function AddPropertyPageHooks() {
     appendIfValue("address[mallsCinemas]", allData?.mallsCinemas);
     appendIfValue("address[schoolsColleges]", allData?.schoolsColleges);
     appendIfValue("address[hospitals]", allData?.hospitals);
-    appendIfValue("address[mapLink]", allData?.mapLink);
+    appendIfValue("address[mapLink]", `${latLng?.lat}/${latLng?.lng}`);
 
     for (let index in allData?.mainImage || []) {
       if (allData?.mainImage.hasOwnProperty(index)) {
@@ -417,6 +419,25 @@ export default function AddPropertyPageHooks() {
     setLoader(false);
   };
 
+  const extractCoordinates = (locationLink) => {
+    try {
+      const urlPattern = /@(-?\d+\.\d+),(-?\d+\.\d+)/;
+      const match = locationLink.match(urlPattern);
+
+      if (match) {
+        const lat = match[1];
+        const lng = match[2];
+        setLatLng({ lat, lng });
+        toast.success("Successfully find coordinates in the URL.");
+        return { lat, lng };
+      } else {
+        toast.error("Could not find coordinates in the URL.");
+      }
+    } catch (error) {
+      toast.error("Error extracting coordinates from URL:", error);
+    }
+  };
+
   return {
     navigate,
     onTypeChange,
@@ -450,6 +471,6 @@ export default function AddPropertyPageHooks() {
     handleKeyDown,
     setData,
     loader,
-    errors
+    errors,
   };
 }
