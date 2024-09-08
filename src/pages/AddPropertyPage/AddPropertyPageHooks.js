@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import { postAddProperty, postEditProperty } from "./action";
+import { toast } from "react-toastify";
 
 export default function AddPropertyPageHooks() {
   const navigate = useNavigate();
@@ -129,6 +130,26 @@ export default function AddPropertyPageHooks() {
   const oneToTen = Array.from({ length: 10 }, (_, index) => String(index + 1));
   const twoHundredArray = Array.from({ length: 200 }, (_, index) => index + 1);
 
+  const [latLng, setLatLng] = useState({ lat: "", lng: "" });
+
+  const extractCoordinates = (locationLink) => {
+    try {
+      const urlPattern = /@(-?\d+\.\d+),(-?\d+\.\d+)/;
+      const match = locationLink.match(urlPattern);
+
+      if (match) {
+        const lat = match[1];
+        const lng = match[2];
+        setLatLng({ lat, lng });
+        toast.success("Successfully find coordinates in the URL.");
+      } else {
+        toast.error("Could not find coordinates in the URL.");
+      }
+    } catch (error) {
+      toast.error("Error extracting coordinates from URL:", error);
+    }
+  };
+
   const onTypeChange = (props) => {
     setClientData({ ...clientData, iAm: props.target.id });
     setData("iAm", props?.target?.id);
@@ -226,6 +247,8 @@ export default function AddPropertyPageHooks() {
       value = value.replace(/\D/g, "").slice(0, 10);
     } else if (key === "Zipcode") {
       value = value.replace(/\D/g, "").slice(0, 5);
+    } else if (key === "mapLink") {
+      extractCoordinates(value);
     }
 
     setData(key, value);
@@ -278,11 +301,7 @@ export default function AddPropertyPageHooks() {
       "Invalid email address.",
       isValidEmail
     );
-    validateField(
-      "pType",
-      allData?.pType,
-      "Property type is required."
-    );
+    validateField("pType", allData?.pType, "Property type is required.");
     validateField(
       "post_confirmation",
       allData?.post_confirmation,
@@ -376,7 +395,7 @@ export default function AddPropertyPageHooks() {
     appendIfValue("address[mallsCinemas]", allData?.mallsCinemas);
     appendIfValue("address[schoolsColleges]", allData?.schoolsColleges);
     appendIfValue("address[hospitals]", allData?.hospitals);
-    appendIfValue("address[mapLink]", allData?.mapLink);
+    appendIfValue("address[mapLink]", `${latLng?.lat}/${latLng?.lng}`);
 
     for (let index in allData?.mainImage || []) {
       if (allData?.mainImage.hasOwnProperty(index)) {
@@ -450,6 +469,6 @@ export default function AddPropertyPageHooks() {
     handleKeyDown,
     setData,
     loader,
-    errors
+    errors,
   };
 }
