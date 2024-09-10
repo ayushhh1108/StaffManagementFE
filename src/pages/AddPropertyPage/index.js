@@ -10,13 +10,14 @@ import {
   Radio,
   RadioGroup,
   TextField,
+  Tooltip,
   Typography,
 } from "@mui/material";
 import Dropzone from "../../components/DropZone";
 import SelectPlaceholder from "../../components/SelectPlaceholder";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import { FaPlus } from "react-icons/fa";
+import { FaInfoCircle, FaPlus } from "react-icons/fa";
 import { FaMinus } from "react-icons/fa";
 import Loader from "../../components/Loader";
 import { months, underConstructionYears } from "./constant";
@@ -325,7 +326,16 @@ function AddPropertyPage() {
           />
         </div>
         <div className="flex flex-wrap input-box">
-          <label className="filter-label">Map Link</label>
+          <label className="filter-label mr-1">Map Link</label>
+          <Tooltip
+            className="flex items-center"
+            title="Please open Google Maps in your browser, drop a pin on the desired location, copy the link, and paste it here."
+          >
+            <div>
+              <FaInfoCircle />
+            </div>
+          </Tooltip>
+
           <TextField
             variant="outlined"
             className="text-field"

@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import { postAddProperty, postEditProperty } from "./action";
-import axios from "axios";
 import { toast } from "react-toastify";
 
 export default function AddPropertyPageHooks() {
@@ -25,7 +24,6 @@ export default function AddPropertyPageHooks() {
   );
   const [clientData, setClientData] = useState({ iAm: "Owner" });
   const [errors, setErrors] = useState();
-  const [latLng, setLatLng] = useState({ lat: "", lng: "" });
   const [allData, setAllData] = useState({
     for: "sale",
     ...location?.state,
@@ -131,6 +129,26 @@ export default function AddPropertyPageHooks() {
   const housing = ["Residential House", "Farm House", "Villa"];
   const oneToTen = Array.from({ length: 10 }, (_, index) => String(index + 1));
   const twoHundredArray = Array.from({ length: 200 }, (_, index) => index + 1);
+
+  const [latLng, setLatLng] = useState({ lat: "", lng: "" });
+
+  const extractCoordinates = (locationLink) => {
+    try {
+      const urlPattern = /@(-?\d+\.\d+),(-?\d+\.\d+)/;
+      const match = locationLink.match(urlPattern);
+
+      if (match) {
+        const lat = match[1];
+        const lng = match[2];
+        setLatLng({ lat, lng });
+        toast.success("Successfully find coordinates in the URL.");
+      } else {
+        toast.error("Could not find coordinates in the URL.");
+      }
+    } catch (error) {
+      toast.error("Error extracting coordinates from URL:", error);
+    }
+  };
 
   const onTypeChange = (props) => {
     setClientData({ ...clientData, iAm: props.target.id });
@@ -417,25 +435,6 @@ export default function AddPropertyPageHooks() {
     // }
     // dispatch(loginSubmit(creds,navigate))
     setLoader(false);
-  };
-
-  const extractCoordinates = (locationLink) => {
-    try {
-      const urlPattern = /@(-?\d+\.\d+),(-?\d+\.\d+)/;
-      const match = locationLink.match(urlPattern);
-
-      if (match) {
-        const lat = match[1];
-        const lng = match[2];
-        setLatLng({ lat, lng });
-        toast.success("Successfully find coordinates in the URL.");
-        return { lat, lng };
-      } else {
-        toast.error("Could not find coordinates in the URL.");
-      }
-    } catch (error) {
-      toast.error("Error extracting coordinates from URL:", error);
-    }
   };
 
   return {
