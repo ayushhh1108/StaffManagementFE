@@ -25,6 +25,10 @@ export default function SiteAddressHooks() {
     let value = event ? event.target.value : val;
     const isUpload = key === "upload_image";
     value = isUpload && event ? event.target.files[0] : value;
+    if (key === "mobile") {
+      const val = `${value}`;
+      value = val?.slice(0, 10);
+    }
     setData({ ...data, [key]: value });
   };
 

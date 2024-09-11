@@ -54,6 +54,7 @@ function SiteAddressPage() {
           handleChanges={handleInputChange}
           value={data?.mobile}
           isError={error?.mobile}
+          isNumber={true}
         />
         <TextInput
           label={"Email"}
