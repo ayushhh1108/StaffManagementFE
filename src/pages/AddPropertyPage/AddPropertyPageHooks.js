@@ -246,7 +246,7 @@ export default function AddPropertyPageHooks() {
     } else if (key === "Mobile") {
       value = value.replace(/\D/g, "").slice(0, 10);
     } else if (key === "Zipcode") {
-      value = value.replace(/\D/g, "").slice(0, 5);
+      value = value.replace(/\D/g, "").slice(0, 6);
     } else if (key === "mapLink") {
       extractCoordinates(value);
     }
