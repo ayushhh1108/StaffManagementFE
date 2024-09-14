@@ -78,10 +78,10 @@ export default function AddAboutPageHooks() {
   };
 
   return {
-    navigate,
     handleSubmit,
     handleInputChange,
     data,
     error,
+    isEdit,
   };
 }

@@ -9,14 +9,14 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import SelectInput from "../../components/SelectInput";
 
 function AddAboutPage() {
-  const { navigate, handleSubmit, handleInputChange, data, error } =
+  const { handleSubmit, handleInputChange, data, error, isEdit } =
     AddAboutPageHooks();
 
   return (
     <Box component="main" sx={{ flexGrow: 1, p: 3, mt: 8, maxWidth: "100%" }}>
       <div className="container add-menu-form text-left my-5">
         <Typography variant="h5" className="mb-5 form-label">
-          Add About Page{" "}
+          {isEdit ? "Edit" : "Add"} About Page{" "}
         </Typography>
         <TextInput
           label={"Title"}
