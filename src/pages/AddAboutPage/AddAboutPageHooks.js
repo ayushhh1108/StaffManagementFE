@@ -10,8 +10,8 @@ export default function AddAboutPageHooks() {
   const editData = location?.state;
   const [data, setData] = useState({
     title: editData?.title ?? "",
-    meta_title: editData?.metaTitle ?? "",
-    meta_keywords: editData?.metaKeywords ?? "",
+    metaTitle: editData?.metaTitle ?? "",
+    metaKeywords: editData?.metaKeywords ?? "",
     meta_description: editData?.metaDescription ?? "",
     editor_desc: editData?.description ?? "",
     position: editData?.imagePosition ?? "",
@@ -42,8 +42,8 @@ export default function AddAboutPageHooks() {
       "image",
       "position",
       "editor_desc",
-      "meta_title",
-      "meta_keywords",
+      "metaTitle",
+      "metaKeywords",
       "meta_description",
     ];
     let error = {};
@@ -56,13 +56,15 @@ export default function AddAboutPageHooks() {
       }
     });
 
+    console.log("metaTitle", data, error, isFormValid);
+
     if (isFormValid) {
       const payload = new FormData();
       payload.append("title", data?.title);
       payload.append("image", data?.image);
       payload.append("description", data?.editor_desc);
-      payload.append("metaTitle", data?.meta_title);
-      payload.append("metaKeywords", data?.meta_keywords);
+      payload.append("metaTitle", data?.metaTitle);
+      payload.append("metaKeywords", data?.metaKeywords);
       payload.append("metaDescription", data?.meta_description);
       payload.append("imagePosition", data?.position);
       if (isEdit) {

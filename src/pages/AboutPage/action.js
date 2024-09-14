@@ -1,8 +1,5 @@
 import { toast } from "react-toastify";
-import {
-  api,
-  apiEndPoints,
-} from "../../api";
+import { api, apiEndPoints } from "../../api";
 import { isNotthenSecondParameter } from "../../utils/helper";
 
 export const GET_ABOUT_DATA = `GET_ABOUT_DATA`;
@@ -44,6 +41,7 @@ export const deleteAboutpage = (payload, navigate) => async (dispatch) => {
           "Delete Data Successfull"
         )
       );
+      window.location.reload();
     } else if (response?.response?.data?.message) {
       toast.error(response?.response?.data?.message);
     }
