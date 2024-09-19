@@ -11,6 +11,11 @@ const worldofVishalReducer = (state = initialState, action) => {
         ...state,
         data: isNotthenSecondParameter(action.payload?.data?.data, []),
       };
+    case "CLEAR_WORLD_OF_VISHAL_DATA":
+      return {
+        ...state,
+        data: isNotthenSecondParameter(action.payload?.data?.data, []),
+      };
     default:
       return state;
   }

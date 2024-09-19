@@ -1,5 +1,6 @@
 import { toast } from "react-toastify";
 import { api, apiEndPoints } from "../../api";
+import { emptyStoreDataOfTable } from "../WorldofVishal/action";
 
 const headers = {
   "Content-Type": "multipart/form-data", // Modify this line
@@ -15,6 +16,7 @@ export const postWorldOfVishal = (payload, navigate) => async (dispatch) => {
       headers,
     });
     if (response?.data?.status) {
+      dispatch(emptyStoreDataOfTable());
       toast.success(response?.data?.message);
       handleSuccessfullNavigate(navigate);
     } else if (response?.response?.data?.message) {
@@ -33,6 +35,7 @@ export const updateWorldOfVishal = (payload, navigate) => async (dispatch) => {
       headers,
     });
     if (response?.data) {
+      dispatch(emptyStoreDataOfTable());
       toast.success(response?.data?.message);
     } else if (response?.response?.data?.message) {
       toast.error(response?.response?.data?.message);

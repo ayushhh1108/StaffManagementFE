@@ -3,11 +3,19 @@ import { api, apiEndPoints } from "../../api";
 import { isNotthenSecondParameter } from "../../utils/helper";
 
 export const GET_WORLD_OF_VISHAL_DATA = `GET_WORLD_OF_VISHAL_DATA`;
+export const CLEAR_WORLD_OF_VISHAL_DATA = `CLEAR_WORLD_OF_VISHAL_DATA`;
 
 const getWorldofVishalSuccess = (payload) => {
   return {
     type: GET_WORLD_OF_VISHAL_DATA,
     payload: payload,
+  };
+};
+
+export const emptyStoreDataOfTable = () => {
+  return {
+    type: CLEAR_WORLD_OF_VISHAL_DATA,
+    payload: "",
   };
 };
 
