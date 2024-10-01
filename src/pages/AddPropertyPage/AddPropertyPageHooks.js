@@ -1,27 +1,18 @@
 import { useMediaQuery } from "@mui/material";
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import { postAddProperty, postEditProperty } from "./action";
 import { toast } from "react-toastify";
+import { getAllAmenities } from "../PropertyListPage/action";
 
 export default function AddPropertyPageHooks() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const storeData = useSelector((store) => store?.propertyReducer?.amenities);
   const location = useLocation();
   const isEditt = location?.state?._id;
   const features = {};
-  const [Features, setFeatures] = useState(
-    isEditt
-      ? location?.state?.features?.amenities?.map((i, x) => {
-          features[`Property_Feature${x}`] = i;
-          return {
-            key: x + 1,
-            value: i,
-          };
-        })
-      : [{ key: 1, value: "" }, { key: 2 }, { key: 3 }]
-  );
   const [clientData, setClientData] = useState({ iAm: "Owner" });
   const [errors, setErrors] = useState();
   const [allData, setAllData] = useState({
@@ -84,10 +75,14 @@ export default function AddPropertyPageHooks() {
   const [radioButtonData, setRadioButtonData] = useState({
     possession_status: "under_construction",
   });
-  const classes = {};
   const [tags, setTags] = useState([]);
   const [loader, setLoader] = useState(false);
   const [inputValue, setInputValue] = useState("");
+  const [personName, setPersonName] = useState(
+    isEditt && location?.state?.features?.amenities
+      ? location?.state?.features?.amenities
+      : []
+  );
 
   const CommercialPlaces = [
     "Commercial Office Space",
@@ -157,6 +152,7 @@ export default function AddPropertyPageHooks() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    dispatch(getAllAmenities());
   }, []);
 
   useEffect(() => {
@@ -383,9 +379,8 @@ export default function AddPropertyPageHooks() {
     appendIfValue("possessionStatus", allData?.possession_status);
     appendIfValue("availableFromMonth", allData?.Month);
     appendIfValue("availableFromYear", allData?.Year);
-
-    Features?.map((item, index) => {
-      appendIfValue(`amenities[${index}]`, allData[`Property_Feature${index}`]);
+    personName?.map((item, index) => {
+      appendIfValue(`amenities[${index}]`, item);
     });
 
     appendIfValue("address[city]", allData?.City);
@@ -438,7 +433,6 @@ export default function AddPropertyPageHooks() {
   };
 
   return {
-    navigate,
     onTypeChange,
     clientData,
     handleSelectChange,
@@ -459,17 +453,16 @@ export default function AddPropertyPageHooks() {
     allData,
     handleInputsChange,
     handleSubmit,
-    Features,
-    setFeatures,
     tags,
-    setTags,
     inputValue,
     setInputValue,
-    classes,
     handleDelete,
     handleKeyDown,
     setData,
     loader,
     errors,
+    storeData,
+    personName,
+    setPersonName,
   };
 }

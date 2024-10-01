@@ -1,5 +1,6 @@
 const initialState = {
   propertyData: null,
+  amenities: null,
 };
 
 const propertyReducer = (state = initialState, action) => {
@@ -8,6 +9,11 @@ const propertyReducer = (state = initialState, action) => {
       return {
         ...state,
         propertyData: action.payload,
+      };
+    case "GET_ALL_AMENITIES":
+      return {
+        ...state,
+        amenities: action.payload?.data?.data?.list,
       };
     default:
       return state;

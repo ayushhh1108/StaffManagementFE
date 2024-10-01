@@ -7,8 +7,11 @@ import {
   Chip,
   FormControl,
   FormControlLabel,
+  MenuItem,
+  OutlinedInput,
   Radio,
   RadioGroup,
+  Select,
   TextField,
   Tooltip,
   Typography,
@@ -18,13 +21,22 @@ import SelectPlaceholder from "../../components/SelectPlaceholder";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { FaInfoCircle, FaPlus } from "react-icons/fa";
-import { FaMinus } from "react-icons/fa";
 import Loader from "../../components/Loader";
 import { months, underConstructionYears } from "./constant";
 
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 250,
+    },
+  },
+};
+
 function AddPropertyPage() {
   const {
-    navigate,
     onTypeChange,
     clientData,
     handleSelectChange,
@@ -45,19 +57,25 @@ function AddPropertyPage() {
     allData,
     handleInputsChange,
     handleSubmit,
-    Features,
-    setFeatures,
     tags,
-    setTags,
     inputValue,
     setInputValue,
-    classes,
     handleDelete,
     handleKeyDown,
     setData,
     loader,
     errors,
+    storeData,
+    personName,
+    setPersonName,
   } = AddPropertyPageHooks();
+
+  const handleChange = (event) => {
+    const {
+      target: { value },
+    } = event;
+    setPersonName(value);
+  };
 
   const SelectorInput = (label, key, allData, value) => {
     return (
@@ -999,7 +1017,7 @@ function AddPropertyPage() {
                   <label className="filter-label block w-full">
                     {"Property Feature"}
                   </label>
-                  {Features?.map((item, index) => (
+                  {/* {Features?.map((item, index) => (
                     <div className="flex items-center w-auto">
                       <TextField
                         variant="outlined"
@@ -1030,7 +1048,71 @@ function AddPropertyPage() {
                         </div>
                       )}
                     </div>
-                  ))}
+                  ))} */}
+
+                  <FormControl sx={{ m: 1, width: 300 }}>
+                    <Select
+                      labelId="demo-multiple-name-label"
+                      id="demo-multiple-name"
+                      multiple
+                      value={personName}
+                      onChange={handleChange}
+                      input={<OutlinedInput label="Name" />}
+                      MenuProps={MenuProps}
+                      renderValue={(selected) => (
+                        <Box
+                          sx={{
+                            display: "block",
+                            overflow: "hidden",
+                          }}
+                        >
+                          <Box
+                            sx={{
+                              display: "flex",
+                              flexWrap: "no-wrap",
+                              overflow: "hidden",
+                              gap: 0.3,
+                              width: "max-content",
+                            }}
+                          >
+                            {storeData
+                              ?.filter((item) => selected.includes(item?.label))
+                              ?.map((i) => (
+                                <MenuItem
+                                  key={i?.label}
+                                  value={i?.label}
+                                  style={{
+                                    paddingLeft: "0px",
+                                    paddingRight: "5px",
+                                  }}
+                                >
+                                  <img
+                                    src={i?.icon?.[0]}
+                                    alt=""
+                                    style={{
+                                      height: "25px",
+                                      marginRight: "5px",
+                                    }}
+                                  />
+                                  <span>{i?.label}</span>
+                                </MenuItem>
+                              ))}
+                          </Box>
+                        </Box>
+                      )}
+                    >
+                      {storeData?.map((name) => (
+                        <MenuItem key={name.label} value={name.label}>
+                          <img
+                            src={name?.icon?.[0]}
+                            alt=""
+                            style={{ height: "25px", marginRight: "5px" }}
+                          />
+                          <span>{name?.label}</span>
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
                 </div>
               </div>
               {propertyType.length ? renderAreaSection() : ""}

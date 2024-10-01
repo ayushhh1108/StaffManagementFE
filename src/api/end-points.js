@@ -105,4 +105,5 @@ export default {
   deleteSiteVisit: () => `sitevisit/deleteSiteVisit`,
   deleteContactUs: () => `contactus/deleteContactUs`,
   deleteBooking: () => `booking/deleteBooking`,
+  getAmenities: () => `propertyAmenities/getPropertyAmenitiesList`,
 };
