@@ -16,7 +16,7 @@ const createAPI = () => {
   api.interceptors.request.use(async (config) => {
     const data = await getToken();
     if (data && !config.skipAuth) {
-      config.headers[`authorization`] = data;
+      config.headers[`authorization`] = `Bearer ${data}`;
     }
     return config;
   });

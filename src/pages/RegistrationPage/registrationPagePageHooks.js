@@ -2,16 +2,24 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import LocalStorageManager from "../../utils/local-storage-manager";
+import { fields } from "./constant";
+import { registrationSubmit } from "./action";
+import { useDispatch } from "react-redux";
 
 export default function RegistrationPageHook() {
   const [creds, setCreds] = useState();
+  const [formname, setFormName] = useState("Company Account");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [breadData, setBreadData] = useState([
     { pagename: "Home", url: "/" },
     { pagename: "Registration", url: "sign-up" },
   ]);
   useEffect(() => {
-    console.log(LocalStorageManager?.isUserAvailable(),"LocalStorageManager?.isUserAvailable()")
+    console.log(
+      LocalStorageManager?.isUserAvailable(),
+      "LocalStorageManager?.isUserAvailable()"
+    );
     if (LocalStorageManager?.isUserAvailable()) {
       toast.info("Already logged in.");
       navigate("/");
@@ -27,8 +35,41 @@ export default function RegistrationPageHook() {
   };
 
   const handleSubmit = () => {
-    console.log("handleSubmit", creds);
+    const newFields = ["website", "companyName"];
+    const requiredFields =
+      formname === "Company Account"
+        ? fields?.map((i) => i.id)
+        : fields?.filter((i) => !newFields.includes(i.id))?.map((i) => i.id);
+    let error = {};
+    let isFormValid = true;
+
+    requiredFields.forEach((field) => {
+      if (!creds?.[field]) {
+        error[field] = true;
+        isFormValid = false;
+      }
+    });
+    console.log("newFields", error, isFormValid, creds, requiredFields);
+
+    if (isFormValid) {
+      dispatch(
+        registrationSubmit(
+          creds,
+          !(formname === "Company Account")
+            ? "auth/signup-agent"
+            : "auth/signup-company-agent"
+        )
+      );
+    }
   };
 
-  return { breadData, navigate, handleInputChange, creds, handleSubmit };
+  return {
+    breadData,
+    navigate,
+    handleInputChange,
+    creds,
+    handleSubmit,
+    formname,
+    setFormName,
+  };
 }

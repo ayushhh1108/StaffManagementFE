@@ -79,7 +79,7 @@ export const sidebaarRoutes = [
       {
         title: "Dashboard",
         icon: <FaChartBar className="side-baar-icon" />,
-        pathname: "/",
+        pathname: "/dashboard",
       },
       // {
       //   title: "Menu",
@@ -101,347 +101,21 @@ export const sidebaarRoutes = [
       //   ],
       // },
       {
-        title: "Blog",
+        title: "Staff",
         icon: <FaBlog className="side-baar-icon" />,
-        pathname: "/blog",
+        pathname: "/staff",
         isSub: false,
         arrow: <FaAngleDown />,
         subMenu: [
           {
-            title: "Add Blog",
+            title: "Add Staff",
             icon: <FaBlogger className="side-baar-icon" />,
-            pathname: "/add-blog",
+            pathname: "/add-staff",
           },
           {
-            title: "Blog List",
+            title: "Staff List",
             icon: <FaBloggerB className="side-baar-icon" />,
-            pathname: "/blog-list",
-          },
-        ],
-      },
-      {
-        title: "Slider",
-        icon: <PiSlidersHorizontalBold className="side-baar-icon" />,
-        pathname: "/slider",
-        isSub: false,
-        arrow: <FaAngleDown />,
-        subMenu: [
-          {
-            title: "Add Slider",
-            icon: <AiFillSliders className="side-baar-icon" />,
-            pathname: "/add-slider",
-          },
-          {
-            title: "Slider List",
-            icon: <AiOutlineSliders className="side-baar-icon" />,
-            pathname: "/slider-list",
-          },
-        ],
-      },
-      {
-        title: "About page",
-        icon: <HiInformationCircle className="side-baar-icon" />,
-        pathname: "/about-page",
-        isSub: false,
-        arrow: <FaAngleDown />,
-        subMenu: [
-          {
-            title: "Add About page",
-            icon: <IoInformationOutline className="side-baar-icon" />,
-            pathname: "/add-about-page",
-          },
-          {
-            title: "About page List",
-            icon: <HiOutlineInformationCircle className="side-baar-icon" />,
-            pathname: "/about-page-list",
-          },
-        ],
-      },
-      {
-        title: "Legacy",
-        icon: <FaRegAddressCard className="side-baar-icon" />,
-        pathname: "/Legacy",
-      },
-      {
-        title: "World Of Vishal",
-        icon: <IoIosPeople className="side-baar-icon" />,
-        pathname: "/vishal",
-        isSub: false,
-        arrow: <FaAngleDown />,
-        subMenu: [
-          {
-            title: "Add World Of Vishal",
-            icon: <IoPeopleCircleSharp className="side-baar-icon" />,
-            pathname: "/add-worldofvishal",
-          },
-          {
-            title: "World Of Vishal List",
-            icon: <PiUserListFill className="side-baar-icon" />,
-            pathname: "/worldofvishal-list",
-          },
-        ],
-      },
-    ],
-  },
-  // User Management
-  {
-    title: "User Management",
-    menus: [
-      {
-        title: "User",
-        icon: <FaUserTie className="side-baar-icon" />,
-        pathname: "/user",
-        isSub: false,
-        arrow: <FaAngleDown />,
-        subMenu: [
-          {
-            title: "Add User",
-            icon: <RiUserAddFill className="side-baar-icon" />,
-            pathname: "/add-user",
-          },
-          {
-            title: "User List",
-            icon: <BiSolidUserDetail className="side-baar-icon" />,
-            pathname: "/user-list",
-          },
-        ],
-      },
-      {
-        title: "User Role",
-        icon: <FaChalkboardUser className="side-baar-icon" />,
-        pathname: "/user-role",
-        isSub: false,
-        arrow: <FaAngleDown />,
-        subMenu: [
-          {
-            title: "Add Role",
-            icon: <TbUserCog className="side-baar-icon" />,
-            pathname: "/add-role",
-          },
-          {
-            title: "Role List",
-            icon: <PiUserListFill className="side-baar-icon" />,
-            pathname: "/roles-list",
-          },
-        ],
-      },
-      {
-        title: "Account",
-        icon: <MdOutlineSupervisorAccount className="side-baar-icon" />,
-        pathname: "/account",
-      },
-    ],
-  },
-  // Contact & Communication
-  {
-    title: "Contact & Communication",
-    menus: [
-      {
-        title: "Contact us",
-        icon: <MdConnectWithoutContact className="side-baar-icon" />,
-        pathname: "/contact-us",
-      },
-      {
-        title: "Site visit",
-        icon: <FaSitemap className="side-baar-icon" />,
-        pathname: "/site-visit",
-      },
-      {
-        title: "Inquiries",
-        icon: <HiOutlineInformationCircle className="side-baar-icon" />,
-        pathname: "/inquiries",
-      },
-      {
-        title: "Callback",
-        icon: <MdPhoneCallback className="side-baar-icon" />,
-        pathname: "/callback",
-      },
-      {
-        title: "Feedback",
-        icon: <MdFeedback className="side-baar-icon" />,
-        pathname: "/feedback",
-        isSub: false,
-        arrow: <FaAngleDown />,
-        subMenu: [
-          {
-            title: "Add Feedback",
-            icon: <SiBuzzfeed className="side-baar-icon" />,
-            pathname: "/add-feedback",
-          },
-          {
-            title: "Feedback List",
-            icon: <CgFeed className="side-baar-icon" />,
-            pathname: "/feedback-list",
-          },
-        ],
-      },
-      {
-        title: "Newsletters",
-        icon: <MdNewspaper className="side-baar-icon" />,
-        pathname: "/newsletters",
-      },
-    ],
-  },
-  // Business Operations
-  {
-    title: "Business Operations",
-    menus: [
-      {
-        title: "Career",
-        icon: <PiOfficeChairFill className="side-baar-icon" />,
-        pathname: "/career",
-        isSub: false,
-        arrow: <FaAngleDown />,
-        subMenu: [
-          {
-            title: "Add Career",
-            icon: <PiOfficeChairDuotone className="side-baar-icon" />,
-            pathname: "/add-career",
-          },
-          {
-            title: "Career List",
-            icon: <PiUserListFill className="side-baar-icon" />,
-            pathname: "/career-list",
-          },
-          {
-            title: "Job Application List",
-            icon: <FaRectangleList className="side-baar-icon" />,
-            pathname: "/job-app",
-          },
-        ],
-      },
-      // {
-      //   title: "Review",
-      //   icon: <MdOutlinePreview className="side-baar-icon" />,
-      //   pathname: "/review",
-      // },
-      {
-        title: "Bookings",
-        icon: <TbBrandBooking className="side-baar-icon" />,
-        pathname: "/bookings",
-      },
-      {
-        title: "Property",
-        icon: <AiFillPropertySafety className="side-baar-icon" />,
-        pathname: "/property",
-        isSub: false,
-        arrow: <FaAngleDown />,
-        subMenu: [
-          {
-            title: "Add Property",
-            icon: <VscSymbolProperty className="side-baar-icon" />,
-            pathname: "/add-property",
-          },
-          {
-            title: "Property List",
-            icon: <AiTwotonePropertySafety className="side-baar-icon" />,
-            pathname: "/property-list",
-          },
-        ],
-      },
-      {
-        title: "What We Offer",
-        icon: <FaIdeal className="side-baar-icon" />,
-        pathname: "/dealing-in",
-        isSub: false,
-        arrow: <FaAngleDown />,
-        subMenu: [
-          {
-            title: "Add Looking For ",
-            icon: <BiCodeAlt className="side-baar-icon" />,
-            pathname: "/add-dealing",
-          },
-          {
-            title: "Looking For List",
-            icon: <FaList className="side-baar-icon" />,
-            pathname: "/dealing-list",
-          },
-          // {
-          //   title: "Add Dealing Item",
-          //   icon: <BiCodeAlt className="side-baar-icon" />,
-          //   pathname: "/add-dealing-item",
-          // },
-          // {
-          //   title: "Dealing Item List",
-          //   icon: <FaList className="side-baar-icon" />,
-          //   pathname: "/dealing-item-list",
-          // },
-        ],
-      },
-      {
-        title: "Service",
-        icon: <MdMiscellaneousServices className="side-baar-icon" />,
-        pathname: "/service",
-        isSub: false,
-        arrow: <FaAngleDown />,
-        subMenu: [
-          {
-            title: "Add Service",
-            icon: <GrServices className="side-baar-icon" />,
-            pathname: "/add-service",
-          },
-          {
-            title: "Service List",
-            icon: <HiClipboardDocumentList className="side-baar-icon" />,
-            pathname: "/service-list",
-          },
-          // {
-          //   title: "Add Service Item",
-          //   icon: <MdOutlineDesignServices className="side-baar-icon" />,
-          //   pathname: "/add-service-item",
-          // },
-          // {
-          //   title: "Service Item List",
-          //   icon: <HiOutlineClipboardDocumentList className="side-baar-icon" />,
-          //   pathname: "/service-item-list",
-          // },
-          {
-            title: "Service Inquiries List",
-            icon: <TbGitPullRequest className="side-baar-icon" />,
-            pathname: "/service-inquiries-list",
-          },
-        ],
-      },
-      {
-        title: "Finance",
-        icon: <FaMoneyBillWheat className="side-baar-icon" />,
-        pathname: "/finance",
-      },
-      // {
-      //   title: "Finance",
-      //   icon: <FaMoneyBillWheat className="side-baar-icon" />,
-      //   pathname: "/finance",
-      //   isSub: false,
-      //   arrow: <FaAngleDown />,
-      //   subMenu: [
-      //     {
-      //       title: "Add Finance",
-      //       icon: <RiMoneyDollarBoxFill className="side-baar-icon" />,
-      //       pathname: "/add-finance",
-      //     },
-      //     {
-      //       title: "Finance List",
-      //       icon: <RiMoneyCnyCircleFill className="side-baar-icon" />,
-      //       pathname: "/finance-list",
-      //     },
-      //   ],
-      // },
-      {
-        title: "Supplier",
-        icon: <MdOutlineSupervisedUserCircle className="side-baar-icon" />,
-        pathname: "/supplier",
-        isSub: false,
-        arrow: <FaAngleDown />,
-        subMenu: [
-          {
-            title: "Add Supplier",
-            icon: <TbUserCog className="side-baar-icon" />,
-            pathname: "/add-supplier",
-          },
-          {
-            title: "Supplier List",
-            icon: <PiUserListFill className="side-baar-icon" />,
-            pathname: "/supplier-list",
+            pathname: "/staff-list",
           },
         ],
       },
@@ -480,25 +154,7 @@ export const sidebaarRoutes = [
           },
         ],
       },
-      {
-        title: "Construction Process",
-        icon: <LuConstruction className="side-baar-icon" />,
-        pathname: "/construction-process",
-        isSub: false,
-        arrow: <FaAngleDown />,
-        subMenu: [
-          {
-            title: "Add Construction Process",
-            icon: <IoMdConstruct className="side-baar-icon" />,
-            pathname: "/add-construction-process",
-          },
-          {
-            title: "Construction Process List",
-            icon: <IoConstructOutline className="side-baar-icon" />,
-            pathname: "/construction-process-list",
-          },
-        ],
-      },
+
       {
         title: "Team",
         icon: <GiTeamIdea className="side-baar-icon" />,
@@ -537,44 +193,6 @@ export const sidebaarRoutes = [
       //     },
       //   ],
       // },
-      {
-        title: "Footer SEO",
-        icon: <GiPayMoney className="side-baar-icon" />,
-        // pathname: "/invest",
-        isSub: false,
-        arrow: <FaAngleDown />,
-        subMenu: [
-          {
-            title: "Add SEO",
-            icon: <GiTakeMyMoney className="side-baar-icon" />,
-            pathname: "/add-seo",
-          },
-          {
-            title: "SEO List",
-            icon: <GiMoneyStack className="side-baar-icon" />,
-            pathname: "/seo-list",
-          },
-        ],
-      },
-      {
-        title: "CMS",
-        icon: <SiCraftcms className="side-baar-icon" />,
-        pathname: "/cms",
-        isSub: false,
-        arrow: <FaAngleDown />,
-        subMenu: [
-          {
-            title: "Add CMS",
-            icon: <MdContentPasteGo className="side-baar-icon" />,
-            pathname: "/add-cms",
-          },
-          {
-            title: "CMS List",
-            icon: <BiSolidBookContent className="side-baar-icon" />,
-            pathname: "/cms-list",
-          },
-        ],
-      },
     ],
   },
 ];

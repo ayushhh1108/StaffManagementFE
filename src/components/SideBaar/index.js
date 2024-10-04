@@ -116,8 +116,8 @@ export default function SideBaar({ handleCloseDrawer }) {
     <Drawer variant="permanent" className="drawer-box" open={true}>
       <Box className="px-3 py-5 mt-4">
         <h2 className="w-full font-bold text-xl flex items-center justify-between">
-          Vishal Construction
-         {isMobileScreen&& <RxCross2 onClick={handleCloseDrawer} />}{" "}
+          STAFF MANAGEMENT
+          {isMobileScreen && <RxCross2 onClick={handleCloseDrawer} />}{" "}
         </h2>
       </Box>
       <List>

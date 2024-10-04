@@ -37,7 +37,7 @@ function LoginPage() {
             </div>
             <h1 className="text-5xl text-gray-800 font-bold">Admin Area</h1>
             <p className="w-5/12 mx-auto md:mx-0 text-gray-500">
-              Unlock Your Real Estate World: Admin Access Await
+              Unlock Your World: Admin Access Await
             </p>
           </div>
           <div className="w-full md:w-full lg:w-9/12 mx-auto md:mx-0 login-right">
@@ -121,7 +121,7 @@ function LoginPage() {
                   </button>
                 </div>
                 <Grid container className="flex text-left mt-5">
-                  {isForget ? (
+                  {/* {isForget ? (
                     <span
                       variant="body2"
                       className="d-block font-medium text-gray-500 text-left cursor-pointer input-labels "
@@ -133,26 +133,19 @@ function LoginPage() {
                     <span
                       variant="body2"
                       className="d-block font-medium text-gray-500 text-left cursor-pointer input-labels "
-                      onClick={() => setIsForget(true)}
                     >
                       Forgot password?
                     </span>
-                  )}
+                  )} */}
                   {!isForget && (
                     <Grid
                       item
+                      onClick={() => {
+                        navigate("/sign-up");
+                      }}
                       className="w-full font-medium text-gray-500 text-left mt-3 pt-3 input-labels"
                     >
-                      Don't have an account?
-                      <span
-                        onClick={() => {
-                          navigate("/sign-up");
-                        }}
-                        variant="body2"
-                        className="links cursor-pointer"
-                      >
-                        {" Sign Up"}
-                      </span>
+                      Get new company Account ?
                     </Grid>
                   )}
                 </Grid>
