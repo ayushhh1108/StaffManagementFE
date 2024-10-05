@@ -56,7 +56,8 @@ export default function RegistrationPageHook() {
           creds,
           !(formname === "Company Account")
             ? "auth/signup-agent"
-            : "auth/signup-company-agent"
+            : "auth/signup-company-agent",
+          navigate
         )
       );
     }
