@@ -7,7 +7,6 @@ const initialState = {
 const staffDataReducer = (state = initialState, action) => {
   switch (action.type) {
     case "GET_STAFF_PAGE": 
-    console.log("hjm", action.payload)
       return {
         ...state,
         staffData: isNotthenSecondParameter(action.payload?.data, []),

@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { IoCheckmarkDoneOutline } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { deleteStaff, getStaffData } from "./action";

@@ -3,7 +3,7 @@ import "./index.scss";
 import StaffListHook from "./StaffListPageHook";
 import { Box, Container } from "@mui/material";
 import EnhancedTable from "../../components/Table";
-import { HeaderData, TableData } from "./constant";
+import { HeaderData } from "./constant";
 import { loaderFunc } from "../../utils/helper";
 import DeleteDialog from "../../components/DeleteDialog";
 
