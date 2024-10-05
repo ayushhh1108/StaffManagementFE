@@ -27,7 +27,7 @@ export default function StaffListHook() {
   }, [StoreData]);
 
   useEffect(() => {
-    dispatch(getSearchedStaffData(searchQuery));
+    searchQuery && dispatch(getSearchedStaffData(searchQuery));
     setTableData([]);
   }, [searchQuery]);
 
