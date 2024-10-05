@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { deleteStaff, getStaffData } from "./action";
+import { deleteStaff, getSearchedStaffData, getStaffData } from "./action";
 
 export default function StaffListHook() {
   const navigate = useNavigate();
@@ -9,13 +9,15 @@ export default function StaffListHook() {
   const [tableData, setTableData] = useState();
   const [deleteId, setDeleteId] = useState();
   const [open, setOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const StoreData = useSelector((state) => state?.staffDataReducer);
-  console.log("helooooo", StoreData?.staffData);
+
   useEffect(() => {
     dispatch(getStaffData());
     window.scrollTo(0, 0);
   }, []);
+
   useEffect(() => {
     const td = StoreData?.staffData?.map((item, index) => ({
       ...item,
@@ -23,6 +25,11 @@ export default function StaffListHook() {
     }));
     setTableData(td ? td : []);
   }, [StoreData]);
+
+  useEffect(() => {
+    dispatch(getSearchedStaffData(searchQuery));
+    setTableData([]);
+  }, [searchQuery]);
 
   const handleEdit = ({ _id }) => {
     navigate("/add-staff", {
@@ -49,5 +56,7 @@ export default function StaffListHook() {
     setOpen,
     handleConfirmDelete,
     handleEdit,
+    searchQuery,
+    setSearchQuery,
   };
 }

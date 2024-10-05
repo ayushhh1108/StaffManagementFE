@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import "./index.scss";
 import StaffListHook from "./StaffListPageHook";
-import { Box, Container } from "@mui/material";
+import { Box, Container, TextField } from "@mui/material";
 import EnhancedTable from "../../components/Table";
 import { HeaderData } from "./constant";
 import { loaderFunc } from "../../utils/helper";
 import DeleteDialog from "../../components/DeleteDialog";
+import TextInput from "../../components/TextInput";
 
 function StaffListPage() {
   const {
@@ -16,6 +17,8 @@ function StaffListPage() {
     setOpen,
     handleConfirmDelete,
     handleEdit,
+    searchQuery,
+    setSearchQuery,
   } = StaffListHook();
 
   return (
@@ -32,6 +35,12 @@ function StaffListPage() {
         >
           Add Staff
         </button>
+        <TextInput
+          label={"Search Staff"}
+          id={"SearchStaff"}
+          handleChanges={(e, val) => setSearchQuery(val)}
+          value={searchQuery}
+        />
         {loaderFunc(
           tableData,
           <EnhancedTable

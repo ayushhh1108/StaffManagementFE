@@ -28,6 +28,25 @@ export const getStaffData = () => async (dispatch) => {
   }
 };
 
+export const getSearchedStaffData = (searchString) => async (dispatch) => {
+  try {
+    const response = await api.get(
+      `staff/search?query=${encodeURIComponent(searchString)}`
+    );
+
+    if (response?.data) {
+      toast.success(response?.data?.message);
+      console.log(response);
+      dispatch(getStaffDataSuccess(response));
+    } else if (response?.response?.data?.message) {
+      toast.error(response?.response?.data?.message);
+    }
+  } catch (error) {
+    const { response: { data = {} } = {} } = error;
+    return data;
+  }
+};
+
 export const deleteStaff = (payload, navigate) => async (dispatch) => {
   try {
     console.log("ssss", payload._id);

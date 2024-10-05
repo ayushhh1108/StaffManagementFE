@@ -49,9 +49,9 @@ function EnhancedTableHead(props) {
   return (
     <TableHead className="text-xs text-gray-700 uppercase border-b bg-[#e2e8f0] table-header">
       <TableRow>
-        {cellData?.map((headCell) => (
+        {cellData?.map((headCell, index) => (
           <TableCell
-            key={headCell.id}
+            key={index}
             padding="normal"
             className="table-header-text"
             sortDirection={orderBy === headCell.id ? order : false}
@@ -177,14 +177,14 @@ export default function EnhancedTable({
                     role="checkbox"
                     aria-checked={isItemSelected}
                     tabIndex={-1}
-                    key={row?._id}
+                    key={index}
                     selected={isItemSelected}
                     sx={{ cursor: "pointer" }}
                     className="tr-texts"
                   >
-                    {rowItems?.map((item) => (
+                    {rowItems?.map((item, index) => (
                       <TableCell
-                        key={item} // Add a key for each TableCell
+                        key={index} // Add a key for each TableCell
                         className="tc-text"
                         sx={{
                           maxWidth: "300px", // Adjust max width to your needs
