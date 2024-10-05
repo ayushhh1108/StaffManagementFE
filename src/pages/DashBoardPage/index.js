@@ -1,23 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import "./index.scss";
-
 import DashBoardPageHook from "./DashBoardPagePageHooks";
-import { Box, Grid, Typography } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Box, Typography } from "@mui/material";
 import { getLocalStorageData } from "../../utils/auth";
 
 function DashBoardPage() {
   const { navigate, storeData } = DashBoardPageHook();
-  const { firstName, lastName } = getLocalStorageData();
-  console.log(
-    "getLocalStorageData",
-    storeData?.bookingDataReducer?.bookingData
-  );
+  const { user } = getLocalStorageData();
+  console.log("getLocalStorageData", user);
   return (
     <Box component="main" sx={{ flexGrow: 1, p: 3, mt: 10 }}>
       <Box color="default" className=" w-full p-4 text-left">
         <Typography style={{ fontSize: "20px", fontWeight: 600 }}>
-          Welcome back!!
+          Welcome back, {user?.name}
         </Typography>
         <Typography style={{ color: "grey", fontSize: "15px" }}>
           Track your activities here.
@@ -27,7 +22,7 @@ function DashBoardPage() {
         <div
           class="bg-blue-500 dark:bg-gray-800 shadow-lg cursor-pointer rounded-md flex items-center justify-between p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group "
           style={{ backgroundColor: "#164e63" }}
-          onClick={() => navigate("/property-list")}
+          onClick={() => navigate("/")}
         >
           <div class="flex justify-center items-center w-14 h-14 bg-white rounded-full transition-all duration-300 transform group-hover:rotate-12">
             <svg
@@ -56,7 +51,7 @@ function DashBoardPage() {
         <div
           class="bg-blue-500 dark:bg-gray-800 shadow-lg cursor-pointer rounded-md flex items-center justify-between p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group "
           style={{ backgroundColor: "#164e63" }}
-          onClick={() => navigate("/inquiries")}
+          onClick={() => navigate("/")}
         >
           <div class="flex justify-center items-center w-14 h-14 bg-white rounded-full transition-all duration-300 transform group-hover:rotate-12">
             <svg

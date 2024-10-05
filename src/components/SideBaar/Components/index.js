@@ -19,6 +19,7 @@ import { useLocation, useNavigate } from "react-router-dom/dist";
 import { useState } from "react";
 import { Drawer, useMediaQuery } from "@mui/material";
 import SideBaar from "..";
+import { getLocalStorageData } from "../../../utils/auth";
 
 const drawerWidth = 240;
 
@@ -146,6 +147,8 @@ export default function AppBaar() {
     });
     setPageName(title);
   }, [location.pathname]);
+  
+  const { user } = getLocalStorageData();
 
   return (
     <>
@@ -193,7 +196,7 @@ export default function AppBaar() {
                 }}
               ></div>
               <div className="account-desc">
-                <span className="account-heading w-full">Vishal</span>
+                <span className="account-heading w-full">{user?.name}</span>
                 <span className="account-sub w-full">Co-founder</span>
               </div>
             </MenuButton>
