@@ -1,5 +1,4 @@
 import axios from "axios";
-import { apiEndPoints } from "../../api";
 import { toast } from "react-toastify";
 
 export const registrationSubmit = (payload, endpoint) => async (dispatch) => {
