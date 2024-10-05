@@ -46,7 +46,7 @@ function LoginPage() {
                       for="username"
                       className="text-gray-500 mb-2 input-labels"
                     >
-                      {"Username"}
+                      {"Email"}
                     </label>
                     <input
                       type="text"
