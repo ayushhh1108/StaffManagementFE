@@ -13,7 +13,6 @@ export default function AddStaffHooks() {
     ...editData,
   });
   const [error, setError] = useState({});
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -65,6 +64,7 @@ export default function AddStaffHooks() {
 
     if (isFormValid) {
       if (isEdit) {
+        console.log("isEdit", isEdit, editData);
         dispatch(updateStaff(data, navigate, isEdit));
       } else {
         dispatch(postAddStaff(data, navigate));

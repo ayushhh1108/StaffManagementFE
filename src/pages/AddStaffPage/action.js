@@ -24,13 +24,13 @@ export const postAddStaff = (payload, navigate) => async (dispatch) => {
 
 export const updateStaff = (payload, navigate, id) => async (dispatch) => {
   try {
-    const response = await api.post(apiEndPoints.updateService(id), payload);
+    const response = await api.put(apiEndPoints.postUpdateStaff(id), payload);
     if (response?.data) {
       toast.success("Staff Updated Successfully");
     } else if (response?.response?.data?.message) {
       toast.error(response?.response?.data?.message);
     }
-    handleSuccessfullNavigate(navigate);
+    // handleSuccessfullNavigate(navigate);
   } catch (error) {
     const { response: { data = {} } = {} } = error;
     return data;
