@@ -29,6 +29,10 @@ export default function StaffListHook() {
   useEffect(() => {
     searchQuery && dispatch(getSearchedStaffData(searchQuery));
     searchQuery && setTableData([]);
+    if (!searchQuery) {
+      setTableData([]);
+      dispatch(getStaffData());
+    }
   }, [searchQuery]);
 
   const handleEdit = ({ _id }) => {
