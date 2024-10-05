@@ -5,14 +5,8 @@ import LoginPageHook from "./loginPageHooks";
 import { Grid } from "@mui/material";
 
 function LoginPage() {
-  const {
-    navigate,
-    handleSubmit,
-    handleInputChange,
-    creds,
-    isForget,
-    setIsForget,
-  } = LoginPageHook();
+  const { navigate, handleSubmit, handleInputChange, creds } =
+    LoginPageHook();
 
   return (
     <div className="Login-page">
@@ -42,27 +36,17 @@ function LoginPage() {
           </div>
           <div className="w-full md:w-full lg:w-9/12 mx-auto md:mx-0 login-right">
             <div className="bg-white p-10 flex flex-col w-full shadow-xl rounded-xl">
-              {!isForget ? (
-                <h2 className="text-2xl font-bold text-gray-800 text-left mb-5">
-                  Log In
-                </h2>
-              ) : (
-                <label
-                  for="username"
-                  className="text-gray-500 mb-2 input-labels"
-                >
-                  Can't remember your password? Kindly type in your email
-                  address. An email with a password creation link will be sent
-                  to you.
-                </label>
-              )}
+              <h2 className="text-2xl font-bold text-gray-800 text-left mb-5">
+                Log In
+              </h2>
+
               <form action="" className="w-full">
                 <div id="input" className="flex flex-col w-full my-5">
                   <label
                     for="username"
                     className="text-gray-500 mb-2 input-labels"
                   >
-                    {isForget ? "Email" : "Username"}
+                    {"Username"}
                   </label>
                   <input
                     type="text"
@@ -73,24 +57,22 @@ function LoginPage() {
                     className="appearance-none border-2 border-gray-100 rounded-lg px-4 py-3 placeholder-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-600 focus:shadow-lg"
                   />
                 </div>
-                {!isForget && (
-                  <div id="input" className="flex flex-col w-full my-5">
-                    <label
-                      for="password"
-                      className="text-gray-500 mb-2 input-labels"
-                    >
-                      Password
-                    </label>
-                    <input
-                      type="password"
-                      id="password"
-                      value={creds?.password}
-                      onChange={handleInputChange}
-                      placeholder="Please insert your password"
-                      className="appearance-none border-2 border-gray-100 rounded-lg px-4 py-3 placeholder-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-600 focus:shadow-lg"
-                    />
-                  </div>
-                )}
+                <div id="input" className="flex flex-col w-full my-5">
+                  <label
+                    for="password"
+                    className="text-gray-500 mb-2 input-labels"
+                  >
+                    Password
+                  </label>
+                  <input
+                    type="password"
+                    id="password"
+                    value={creds?.password}
+                    onChange={handleInputChange}
+                    placeholder="Please insert your password"
+                    className="appearance-none border-2 border-gray-100 rounded-lg px-4 py-3 placeholder-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-600 focus:shadow-lg"
+                  />
+                </div>
                 <div id="button" className="flex flex-col w-full my-5">
                   <button
                     type="button"
@@ -114,40 +96,20 @@ function LoginPage() {
                           ></path>
                         </svg>
                       </div>
-                      <div className="font-bold">
-                        {isForget ? "Get New Password" : "Log In"}
-                      </div>
+                      <div className="font-bold">{"Log In"}</div>
                     </div>
                   </button>
                 </div>
                 <Grid container className="flex text-left mt-5">
-                  {/* {isForget ? (
-                    <span
-                      variant="body2"
-                      className="d-block font-medium text-gray-500 text-left cursor-pointer input-labels "
-                      onClick={() => setIsForget(false)}
-                    >
-                      Back to login
-                    </span>
-                  ) : (
-                    <span
-                      variant="body2"
-                      className="d-block font-medium text-gray-500 text-left cursor-pointer input-labels "
-                    >
-                      Forgot password?
-                    </span>
-                  )} */}
-                  {!isForget && (
-                    <Grid
-                      item
-                      onClick={() => {
-                        navigate("/sign-up");
-                      }}
-                      className="w-full font-medium text-gray-500 text-left mt-3 pt-3 input-labels"
-                    >
-                      Get new company Account ?
-                    </Grid>
-                  )}
+                  <Grid
+                    item
+                    onClick={() => {
+                      navigate("/sign-up");
+                    }}
+                    className="w-full font-medium text-gray-500 text-left mt-3 pt-3 input-labels"
+                  >
+                    Get new company Account ?
+                  </Grid>
                 </Grid>
               </form>
             </div>

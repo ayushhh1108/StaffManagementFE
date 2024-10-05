@@ -8,7 +8,6 @@ import LocalStorageManager from "../../utils/local-storage-manager";
 export default function LoginPageHook() {
   const dispatch = useDispatch();
   const [creds, setCreds] = useState();
-  const [isForget, setIsForget] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
     if (LocalStorageManager?.isUserAvailable()) {
@@ -31,7 +30,5 @@ export default function LoginPageHook() {
     handleSubmit,
     handleInputChange,
     creds,
-    isForget,
-    setIsForget,
   };
 }
