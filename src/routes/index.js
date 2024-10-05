@@ -8,6 +8,7 @@ import { useMediaQuery } from "@mui/material";
 import { ProtectedRoute } from "../utils/auth";
 import Loader from "../components/Loader";
 import AddStaffPage from "../pages/AddStaffPage";
+import StaffListPage from "../pages/StaffListPage";
 const LoginPage = lazy(() => import("../pages/LoginPage"));
 const RegistrationPage = lazy(() => import("../pages/RegistrationPage"));
 const DashBoardPage = lazy(() => import("../pages/DashBoardPage"));
@@ -27,7 +28,7 @@ const AppRoutes = () => {
     { path: "/login", element: <LoginPage /> },
     { path: "/sign-up", element: <RegistrationPage /> },
     { path: "/add-staff", element: <AddStaffPage /> },
-    { path: "/staff-list", element: <RegistrationPage /> },
+    { path: "/staff-list", element: <StaffListPage /> },
   ]);
 
   const isLoginSignup =

@@ -1,20 +1,20 @@
 import { isNotthenSecondParameter } from "../../utils/helper";
 
 const initialState = {
-    serviceData: null,
+    staffData: null,
 };
  
-const serviceDataReducer = (state = initialState, action) => {
+const staffDataReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "GET_SERVICE_PAGE": 
-    console.log("hjm", action.payload?.data?.data)
+    case "GET_STAFF_PAGE": 
+    console.log("hjm", action.payload)
       return {
         ...state,
-        serviceData: isNotthenSecondParameter(action.payload?.data?.data, []),
+        staffData: isNotthenSecondParameter(action.payload?.data, []),
       };
     default:
       return state;
   }
 };
 
-export default serviceDataReducer;
+export default staffDataReducer;

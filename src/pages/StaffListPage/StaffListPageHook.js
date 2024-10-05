@@ -2,35 +2,32 @@ import { useState, useEffect } from "react";
 import { IoCheckmarkDoneOutline } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { deleteServices, getServicePageData } from "./action";
+import { deleteStaff, getStaffData } from "./action";
 
-export default function ServiceHook() {
+export default function StaffListHook() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [tableData, setTableData] = useState();
   const [deleteId, setDeleteId] = useState();
   const [open, setOpen] = useState(false);
 
-  const StoreData = useSelector((state) => state?.serviceDataReducer);
-  console.log("helooooo", StoreData?.serviceData);
+  const StoreData = useSelector((state) => state?.staffDataReducer);
+  console.log("helooooo", StoreData?.staffData);
   useEffect(() => {
-    dispatch(getServicePageData());
+    dispatch(getStaffData());
     window.scrollTo(0, 0);
   }, []);
   useEffect(() => {
-    const td = StoreData?.serviceData?.map((item, index) => ({
+    const td = StoreData?.staffData?.map((item, index) => ({
       ...item,
-      status: !item?.isDisable ? "active" : "non-active",
       no: index + 1,
-      description: item.subDescription,
     }));
     setTableData(td ? td : []);
   }, [StoreData]);
-  console.log("hellotrrt", tableData);
 
   const handleEdit = ({ _id }) => {
-    navigate("/add-service", {
-      state: StoreData?.serviceData?.find((item) => item?._id === _id),
+    navigate("/add-staff", {
+      state: StoreData?.staffData?.find((item) => item?._id === _id),
     });
   };
 
@@ -41,9 +38,9 @@ export default function ServiceHook() {
   };
   const handleConfirmDelete = async () => {
     console.log("handleDeletehandleDelete", deleteId);
-    dispatch(deleteServices({ _id: deleteId }, navigate));
+    dispatch(deleteStaff({ _id: deleteId }, navigate));
     setOpen(false);
-    await dispatch(getServicePageData());
+    await dispatch(getStaffData());
   };
   return {
     navigate,

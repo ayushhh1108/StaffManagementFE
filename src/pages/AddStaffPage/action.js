@@ -3,6 +3,7 @@ import { api, apiEndPoints } from "../../api";
 
 const handleSuccessfullNavigate = (navigate) => {
   navigate("/staff-list");
+  window.location.reload();
 };
 
 export const postAddStaff = (payload, navigate) => async (dispatch) => {
