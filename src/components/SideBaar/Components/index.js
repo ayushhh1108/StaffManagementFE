@@ -147,8 +147,8 @@ export default function AppBaar() {
     });
     setPageName(title);
   }, [location.pathname]);
-  
-  const { user } = getLocalStorageData();
+
+  const user = getLocalStorageData();
 
   return (
     <>
@@ -196,7 +196,9 @@ export default function AppBaar() {
                 }}
               ></div>
               <div className="account-desc">
-                <span className="account-heading w-full">{user?.name}</span>
+                <span className="account-heading w-full">
+                  {user?.user?.name}
+                </span>
                 <span className="account-sub w-full">Co-founder</span>
               </div>
             </MenuButton>

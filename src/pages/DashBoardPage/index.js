@@ -6,13 +6,12 @@ import { getLocalStorageData } from "../../utils/auth";
 
 function DashBoardPage() {
   const { navigate, storeData } = DashBoardPageHook();
-  const { user } = getLocalStorageData();
-  console.log("getLocalStorageData", user);
+  const user = getLocalStorageData();
   return (
     <Box component="main" sx={{ flexGrow: 1, p: 3, mt: 10 }}>
       <Box color="default" className=" w-full p-4 text-left">
         <Typography style={{ fontSize: "20px", fontWeight: 600 }}>
-          Welcome back, {user?.name}
+          Welcome back, {user?.user?.name}
         </Typography>
         <Typography style={{ color: "grey", fontSize: "15px" }}>
           Track your activities here.

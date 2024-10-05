@@ -5,8 +5,7 @@ import LoginPageHook from "./loginPageHooks";
 import { Grid } from "@mui/material";
 
 function LoginPage() {
-  const { navigate, handleSubmit, handleInputChange, creds } =
-    LoginPageHook();
+  const { navigate, handleSubmit, handleInputChange, creds } = LoginPageHook();
 
   return (
     <div className="Login-page">
@@ -103,12 +102,27 @@ function LoginPage() {
                 <Grid container className="flex text-left mt-5">
                   <Grid
                     item
+                    className="w-full font-medium text-gray-500 text-left mt-3 pt-1 input-labels "
+                  >
+                    Forget password ?
+                  </Grid>
+                  <Grid
+                    item
                     onClick={() => {
-                      navigate("/sign-up");
+                      navigate("/sign-up", { state: "Company Account" });
                     }}
-                    className="w-full font-medium text-gray-500 text-left mt-3 pt-3 input-labels"
+                    className="w-full font-medium text-gray-500 text-left pt-1 input-labels cursor-pointer"
                   >
                     Get new company Account ?
+                  </Grid>
+                  <Grid
+                    item
+                    onClick={() => {
+                      navigate("/sign-up", { state: "Agent Account" });
+                    }}
+                    className="w-full font-medium text-gray-500 text-left pt-1 input-labels cursor-pointer"
+                  >
+                    Get new Agent Account ?
                   </Grid>
                 </Grid>
               </form>

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import LocalStorageManager from "../../utils/local-storage-manager";
 import { fields } from "./constant";
@@ -7,8 +7,11 @@ import { registrationSubmit } from "./action";
 import { useDispatch } from "react-redux";
 
 export default function RegistrationPageHook() {
+  const locationData = useLocation();
   const [creds, setCreds] = useState();
-  const [formname, setFormName] = useState("Company Account");
+  const [formname, setFormName] = useState(
+    locationData?.state ?? "Company Account"
+  );
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [breadData, setBreadData] = useState([
@@ -16,10 +19,6 @@ export default function RegistrationPageHook() {
     { pagename: "Registration", url: "sign-up" },
   ]);
   useEffect(() => {
-    console.log(
-      LocalStorageManager?.isUserAvailable(),
-      "LocalStorageManager?.isUserAvailable()"
-    );
     if (LocalStorageManager?.isUserAvailable()) {
       toast.info("Already logged in.");
       navigate("/");

@@ -25,10 +25,32 @@ const AppRoutes = () => {
         </ProtectedRoute>
       ),
     }, // Protected route
+    {
+      path: "/",
+      element: (
+        <ProtectedRoute>
+          <DashBoardPage />
+        </ProtectedRoute>
+      ),
+    },
+    {
+      path: "/add-staff",
+      element: (
+        <ProtectedRoute>
+          <AddStaffPage />
+        </ProtectedRoute>
+      ),
+    },
+    {
+      path: "/staff-list",
+      element: (
+        <ProtectedRoute>
+          <StaffListPage />
+        </ProtectedRoute>
+      ),
+    },
     { path: "/login", element: <LoginPage /> },
     { path: "/sign-up", element: <RegistrationPage /> },
-    { path: "/add-staff", element: <AddStaffPage /> },
-    { path: "/staff-list", element: <StaffListPage /> },
   ]);
 
   const isLoginSignup =
