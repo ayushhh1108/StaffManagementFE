@@ -4,7 +4,6 @@ import RegistrationPageHook from "./registrationPagePageHooks";
 import { Grid } from "@mui/material";
 import { fields } from "./constant";
 
-
 function RegistrationPage() {
   const {
     navigate,
@@ -19,26 +18,28 @@ function RegistrationPage() {
     <div className="Registration-page">
       <div className="container px-6 min-h-screen mx-auto">
         <div className="flex flex-col text-center md:text-left md:flex-row min-h-screen justify-evenly md:items-center login-main-container">
-          <div className="flex flex-col w-full login-left">
-            <Logo />
-            <h1 className="text-5xl text-gray-800 font-bold">Admin Area</h1>
-            <p className="w-5/12 mx-auto md:mx-0 text-gray-500">
-              Unlock Your business: Admin Access Await
-            </p>
-          </div>
-          <div className="w-full md:w-full lg:w-full mx-auto md:mx-0 login-right">
-            <div className="bg-white p-10 flex flex-col w-full shadow-xl rounded-xl">
-              <h2 className="text-2xl font-bold text-gray-800 text-left mb-5">
-                {formname}
-              </h2>
-              <RegistrationForm
-                creds={creds}
-                handleInputChange={handleInputChange}
-                handleSubmit={handleSubmit}
-                navigate={navigate}
-                formname={formname}
-                setFormName={setFormName}
-              />
+          <div className="Registration-box">
+            <div className="flex flex-col w-full login-left">
+              <Logo />
+              <h1 className="text-5xl text-white font-bold">Admin Area</h1>
+              <p className="w-5/12 mx-auto md:mx-0 text-gray-300">
+                Unlock Your business: Admin Access Await
+              </p>
+            </div>
+            <div className="w-full md:w-full lg:w-full mx-auto md:mx-0 login-right">
+              <div className="bg-white p-10 flex flex-col w-full shadow-xl rounded-xl">
+                <h2 className="text-2xl font-bold text-gray-800 text-left mb-5">
+                  {formname}
+                </h2>
+                <RegistrationForm
+                  creds={creds}
+                  handleInputChange={handleInputChange}
+                  handleSubmit={handleSubmit}
+                  navigate={navigate}
+                  formname={formname}
+                  setFormName={setFormName}
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -50,7 +51,7 @@ function RegistrationPage() {
 const Logo = () => (
   <div>
     <svg
-      className="w-20 h-20 mx-auto md:float-left fill-stroke text-gray-800"
+      className="w-20 h-20 mx-auto md:float-left fill-stroke text-white"
       fill="none"
       stroke="currentColor"
       viewBox="0 0 24 24"

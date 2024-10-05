@@ -4,6 +4,15 @@
   .input-labels {
     text-align: left;
   }
+  .Registration-box {
+    align-items: center;
+    display: flex;
+    background-color: #4b5563;
+    border-radius: 0.75rem;
+    .login-left {
+      padding-left: 30px;
+    }
+  }
 }
 
 .Registration-page {
