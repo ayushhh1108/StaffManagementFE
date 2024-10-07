@@ -11,6 +11,13 @@
 .add-menu-input .ck-content {
   border-radius: 5px !important;
 }
+.add-menu-input .MuiSelect-select{
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+}
+.add-menu-input .MuiSelect-select:focus-visible {
+  outline: none !important;
+}
 @media (max-width: 1080px) {
   .upload-file-div {
     display: flex;

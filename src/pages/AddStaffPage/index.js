@@ -1,7 +1,14 @@
 import React from "react";
 import "./index.scss";
 import AddStaffHooks from "./AddStaffHooks";
-import { Box, Typography } from "@mui/material";
+import {
+  Box,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  Typography,
+} from "@mui/material";
 import TextInput from "../../components/TextInput";
 
 function AddStaffPage() {
@@ -73,14 +80,35 @@ function AddStaffPage() {
             disabled={true}
           />
         )}
-        <TextInput
-          label={"Gender"}
-          isRequire
-          id={"gender"}
-          handleChanges={handleInputChange}
-          value={data?.gender}
-          isError={error?.gender}
-        />
+        <div>
+          <label
+            htmlFor="gender"
+            className="block mb-2 text-sm font-medium text-gray-900"
+          >
+            Gender *
+          </label>
+          <FormControl fullWidth>
+            <Select
+              id="gender"
+              value={data?.gender || ""}
+              onChange={(e) => handleInputChange("gender", e.target.value)}
+              displayEmpty
+              className={`${
+                error?.gender
+                  ? "bg-red-50 border border-red-300 text-red-900 text-sm rounded-lg block w-1/2 mb-4 add-menu-input"
+                  : "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-1/2 mb-4 add-menu-input"
+              }`}
+              name="gender"
+              required
+            >
+              <MenuItem value="">
+                <em>Select Gender</em>
+              </MenuItem>
+              <MenuItem value={"Male"}>Male</MenuItem>
+              <MenuItem value={"Female"}>Female</MenuItem>
+            </Select>
+          </FormControl>
+        </div>
         <button
           type="button"
           onClick={handleSubmit}
