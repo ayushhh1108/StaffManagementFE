@@ -199,7 +199,7 @@ export default function AppBaar() {
                 <span className="account-heading w-full">
                   {user?.user?.name}
                 </span>
-                <span className="account-sub w-full">Co-founder</span>
+                <span className="account-sub w-full">{user?.user?.type}</span>
               </div>
             </MenuButton>
             <Menu slots={{ listbox: Listbox }}>
