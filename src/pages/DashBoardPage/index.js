@@ -1,12 +1,28 @@
 import React from "react";
 import "./index.scss";
 import DashBoardPageHook from "./DashBoardPagePageHooks";
-import { Box, Typography } from "@mui/material";
+import {
+  Badge,
+  Box,
+  Button,
+  List,
+  ListItem,
+  ListItemText,
+  Typography,
+} from "@mui/material";
 import { getLocalStorageData } from "../../utils/auth";
 
 function DashBoardPage() {
   const { navigate, storeData } = DashBoardPageHook();
   const user = getLocalStorageData();
+  const documentItems = [
+    { name: "Tenancies", count: 46 },
+    { name: "Properties", count: 4 },
+    { name: "Purchase Orders", count: 18 },
+    { name: "Invoices & Bills", count: 35 },
+    { name: "Tickets", count: 20 },
+  ];
+
   return (
     <Box component="main" sx={{ flexGrow: 1, p: 3, mt: 10 }}>
       <Box color="default" className=" w-full p-4 text-left">
@@ -17,8 +33,14 @@ function DashBoardPage() {
           Track your activities here.
         </Typography>
       </Box>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 p-4 gap-4">
-        <div
+      <div
+        class="p-4 d-flex "
+        style={{
+          width: "60%",
+          textAlign: "left",
+        }}
+      >
+        {/* <div
           class="bg-blue-500 dark:bg-gray-800 shadow-lg cursor-pointer rounded-md flex items-center justify-between p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group "
           style={{ backgroundColor: "#164e63" }}
           onClick={() => navigate("/")}
@@ -75,7 +97,60 @@ function DashBoardPage() {
             </p>
             <p>Inquieries</p>
           </div>
-        </div>
+        </div> */}
+        <Typography variant="h4" component="h2" gutterBottom>
+          Documents
+        </Typography>
+        <Typography sx={{ color: "red", mb: 3 }}>
+          To update your company and staff details, click on the "Edit Full
+          Organisation" button.
+        </Typography>
+
+        {/* Document List */}
+        <List
+          sx={{
+            width: "100%",
+            bgcolor: "background.paper",
+            borderRadius: "8px",
+            boxShadow: 3,
+          }}
+        >
+          {documentItems.map((item, index) => (
+            <ListItem
+              key={index}
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                borderBottom: "1px solid #e0e0e0",
+                py: 1,
+              }}
+            >
+              <ListItemText sx={{ width: "auto" }} primary={item.name} />
+              <Badge
+                badgeContent={item.count}
+                color="primary"
+                sx={{
+                  "& .MuiBadge-badge": { fontSize: "1rem", padding: "0 5px" },
+                  marginRight: "10px",
+                }}
+              />
+            </ListItem>
+          ))}
+        </List>
+
+        {/* Support Ticket Button */}
+        <Box sx={{ mt: 3, textAlign: "right" }}>
+          <Button
+            variant="contained"
+            sx={{
+              backgroundColor: "#1e6c89",
+              "&:hover": { backgroundColor: "#164e63" },
+              textTransform: "none",
+            }}
+          >
+            New Portal Support Ticket
+          </Button>
+        </Box>
       </div>
     </Box>
   );
