@@ -39,12 +39,12 @@ function AddStaffPage() {
           isError={error?.lastName}
         />
         <TextInput
-          label={"Username"}
+          label={"Email"}
           isRequire
-          id={"userName"}
+          id={"email"}
           handleChanges={handleInputChange}
-          value={data?.userName}
-          isError={error?.userName}
+          value={data?.email}
+          isError={error?.email}
         />
         <TextInput
           label={"Password"}
@@ -55,14 +55,6 @@ function AddStaffPage() {
           isError={error?.password}
         />
         <TextInput
-          label={"Email"}
-          isRequire
-          id={"email"}
-          handleChanges={handleInputChange}
-          value={data?.email}
-          isError={error?.email}
-        />
-        <TextInput
           label={"Phone Number"}
           isRequire
           id={"phoneNumber"}
@@ -70,14 +62,17 @@ function AddStaffPage() {
           value={data?.phoneNumber}
           isError={error?.phoneNumber}
         />
-        <TextInput
-          label={"Company Email"}
-          isRequire
-          id={"companyEmail"}
-          handleChanges={handleInputChange}
-          value={data?.companyEmail}
-          isError={error?.companyEmail}
-        />
+        {data?.companyName && (
+          <TextInput
+            label={"Company Name"}
+            isRequire
+            id={"companyName"}
+            handleChanges={handleInputChange}
+            value={data?.companyName}
+            isError={error?.companyName}
+            disabled={true}
+          />
+        )}
         <TextInput
           label={"Gender"}
           isRequire

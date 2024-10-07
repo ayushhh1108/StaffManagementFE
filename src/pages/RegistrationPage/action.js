@@ -7,6 +7,7 @@ export const registrationSubmit =
       const response = await axios
         .post(`${process.env.REACT_APP_API_BASE_URL}/${endpoint}`, payload)
         .then((i) => {
+          toast?.success("Register Successfully");
           navigate("/login");
         })
         .catch((err) => {

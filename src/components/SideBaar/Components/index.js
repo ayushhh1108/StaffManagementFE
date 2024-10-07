@@ -149,6 +149,7 @@ export default function AppBaar() {
   }, [location.pathname]);
 
   const user = getLocalStorageData();
+  console.log("user?.user", user?.user?.isStaff);
 
   return (
     <>
@@ -197,9 +198,15 @@ export default function AppBaar() {
               ></div>
               <div className="account-desc">
                 <span className="account-heading w-full">
-                  {user?.user?.name}
+                  {user?.user?.isStaff
+                    ? user?.user?.parentAgent?.name
+                    : user?.user?.name}
                 </span>
-                <span className="account-sub w-full">{user?.user?.type}</span>
+                <span className="account-sub w-full">
+                  {user?.user?.isStaff
+                    ? user?.user?.parentAgent?.type
+                    : user?.user?.type}
+                </span>
               </div>
             </MenuButton>
             <Menu slots={{ listbox: Listbox }}>

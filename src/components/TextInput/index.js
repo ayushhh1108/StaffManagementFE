@@ -11,6 +11,7 @@ export default function TextInput({
   isError,
   isNumber,
   placeholder,
+  disabled,
 }) {
   const [val, setVal] = useState("");
   const handleChange = (event) => {
@@ -45,6 +46,7 @@ export default function TextInput({
         placeholder={label}
         name={label}
         required
+        disabled={disabled}
         value={value ? value : val}
       />
     </div>

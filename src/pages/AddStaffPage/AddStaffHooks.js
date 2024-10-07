@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { postAddStaff, updateStaff } from "./action";
+import { Password } from "@mui/icons-material";
+import { getLocalStorageData } from "../../utils/auth";
 
 export default function AddStaffHooks() {
   const location = useLocation();
@@ -9,8 +11,12 @@ export default function AddStaffHooks() {
   const dispatch = useDispatch();
   const editData = location?.state;
   const [isEdit, setIsEdit] = useState(location?.state?._id);
+  const localStorageData = getLocalStorageData();
+  console.log("localStorageData", localStorageData?.user?.companyName);
   const [data, setData] = useState({
     ...editData,
+    password: "",
+    companyName: localStorageData?.user?.companyName,
   });
   const [error, setError] = useState({});
   useEffect(() => {
@@ -43,11 +49,10 @@ export default function AddStaffHooks() {
     "jobTitle",
     "firstName",
     "lastName",
-    "userName",
     "password",
     "email",
     "phoneNumber",
-    "companyEmail",
+    "companyName",
     "gender",
   ];
 

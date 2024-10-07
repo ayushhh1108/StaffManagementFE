@@ -101,24 +101,44 @@ export const sidebaarRoutes = [
       //   ],
       // },
       {
-        title: "Staff",
-        icon: <FaBlog className="side-baar-icon" />,
-        pathname: "/staff",
-        isSub: false,
-        arrow: <FaAngleDown />,
-        subMenu: [
-          {
-            title: "Add Staff",
-            icon: <FaBlogger className="side-baar-icon" />,
-            pathname: "/add-staff",
-          },
-          {
-            title: "Staff List",
-            icon: <FaBloggerB className="side-baar-icon" />,
-            pathname: "/staff-list",
-          },
-        ],
+        title: "Property",
+        icon: <BsPersonFillAdd className="side-baar-icon" />,
+        pathname: "/Property",
       },
+      {
+        title: "Tenant",
+        icon: <PiUserListFill className="side-baar-icon" />,
+        pathname: "/Tenant",
+      },
+      // {
+      //   title: "Add Staff",
+      //   icon: <FaBlogger className="side-baar-icon" />,
+      //   pathname: "/add-staff",
+      // },
+      {
+        title: "Staff List",
+        icon: <FaBloggerB className="side-baar-icon" />,
+        pathname: "/staff-list",
+      },
+      // {
+      //   title: "Staff",
+      //   icon: <FaBlog className="side-baar-icon" />,
+      //   pathname: "/staff",
+      //   isSub: false,
+      //   arrow: <FaAngleDown />,
+      //   subMenu: [
+      //     {
+      //       title: "Add Staff",
+      //       icon: <FaBlogger className="side-baar-icon" />,
+      //       pathname: "/add-staff",
+      //     },
+      //     {
+      //       title: "Staff List",
+      //       icon: <FaBloggerB className="side-baar-icon" />,
+      //       pathname: "/staff-list",
+      //     },
+      //   ],
+      // },
     ],
   },
   // Company Information
