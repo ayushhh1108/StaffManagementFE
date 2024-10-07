@@ -51,11 +51,10 @@ function StaffListPage() {
               "jobTitle",
               "firstName",
               "lastName",
-              "userName",
               "email",
               "gender",
               "phoneNumber",
-              "companyEmail",
+              "companyName",
             ]}
             rowData={tableData}
             handleEditClick={handleEdit}

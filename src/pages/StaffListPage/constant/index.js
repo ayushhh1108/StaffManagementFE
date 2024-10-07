@@ -20,11 +20,6 @@ export const HeaderData = [
     label: "LAST NAME",
   },
   {
-    id: "userName",
-    numeric: true,
-    label: "USERNAME",
-  },
-  {
     id: "email",
     numeric: true,
     label: "EMAIL",
@@ -40,9 +35,9 @@ export const HeaderData = [
     label: "PHONE",
   },
   {
-    id: "companyEmail",
+    id: "companyName",
     numeric: true,
-    label: "COMPANY EMAIL",
+    label: "COMPANY NAME",
   },
   {
     id: "action",
