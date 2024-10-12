@@ -36,7 +36,7 @@ function PropertyListPage() {
           Add PROPERTY
         </button>
         <TextInput
-          label={"Search Staff"}
+          label={"Search Property"}
           id={"SearchProperty"}
           handleChanges={(e, val) => setSearchQuery(val)}
           value={searchQuery}
@@ -48,13 +48,43 @@ function PropertyListPage() {
             isActionCol
             rowItems={[
               "no",
-              "jobTitle",
-              "firstName",
-              "lastName",
-              "email",
-              "gender",
-              "phoneNumber",
-              "companyName",
+              "responsibleForPayingCouncilTax",
+              "rsl",
+              "address",
+              "noOfBedrooms",
+              "area",
+              "city",
+              "postcode",
+              "basicRent",
+              "totalServiceCharge",
+              "totalEligebleRent",
+              "weeklyIneligibleCharge",
+              "sharedWithOther",
+              "bedsit",
+              "selfContainedFlat",
+              "quantityOfFloors",
+              "unfurnished",
+              "partFurnished",
+              "fullyFurnished",
+              "centralHeating",
+              "garden",
+              "parkingSpace",
+              "accommodationLocation",
+              "accommodationFloor",
+              "totalLivingRooms",
+              "communalLiving",
+              "totalBedsitRooms",
+              "communalBedsit",
+              "totalBedRooms",
+              "communalBedRooms",
+              "totalBathRooms",
+              "communalBathRooms",
+              "totalToilets",
+              "communalToilets",
+              "totalKitchens",
+              "communalKitchens",
+              "totalOtherRooms",
+              "communalOtherRooms",
             ]}
             rowData={tableData}
             handleEditClick={handleEdit}

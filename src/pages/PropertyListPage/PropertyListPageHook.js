@@ -1,7 +1,11 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { deleteStaff, getSearchedStaffData, getStaffData } from "./action";
+import {
+  deleteProperty,
+  getPropertyData,
+  getSearchedPropertyData,
+} from "./action";
 
 export default function PropertyListHook() {
   const navigate = useNavigate();
@@ -11,15 +15,15 @@ export default function PropertyListHook() {
   const [open, setOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
-  const StoreData = useSelector((state) => state?.staffDataReducer);
+  const StoreData = useSelector((state) => state?.propertyDataReducer);
 
   useEffect(() => {
-    dispatch(getStaffData());
+    dispatch(getPropertyData());
     window.scrollTo(0, 0);
   }, []);
 
   useEffect(() => {
-    const td = StoreData?.staffData?.map((item, index) => ({
+    const td = StoreData?.propertyData?.map((item, index) => ({
       ...item,
       no: index + 1,
     }));
@@ -27,17 +31,17 @@ export default function PropertyListHook() {
   }, [StoreData]);
 
   useEffect(() => {
-    searchQuery && dispatch(getSearchedStaffData(searchQuery));
+    searchQuery && dispatch(getSearchedPropertyData(searchQuery));
     searchQuery && setTableData([]);
     if (!searchQuery) {
       setTableData([]);
-      dispatch(getStaffData());
+      dispatch(getPropertyData());
     }
   }, [searchQuery]);
 
   const handleEdit = ({ _id }) => {
-    navigate("/add-staff", {
-      state: StoreData?.staffData?.find((item) => item?._id === _id),
+    navigate("/add-property", {
+      state: StoreData?.propertyData?.find((item) => item?._id === _id),
     });
   };
 
@@ -46,11 +50,11 @@ export default function PropertyListHook() {
     setOpen(true);
     console.log("dellllll", _id);
   };
+  console.log("tableDatatableDatatableDatatableDatatableData", tableData);
   const handleConfirmDelete = async () => {
-    console.log("handleDeletehandleDelete", deleteId);
-    dispatch(deleteStaff({ _id: deleteId }, navigate));
+    dispatch(deleteProperty({ _id: deleteId }, navigate));
     setOpen(false);
-    await dispatch(getStaffData());
+    await dispatch(getPropertyData());
   };
   return {
     navigate,

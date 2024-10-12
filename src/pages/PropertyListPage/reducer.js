@@ -1,20 +1,20 @@
 import { isNotthenSecondParameter } from "../../utils/helper";
 
 const initialState = {
-  staffData: null,
+  propertyData: null,
 };
 
-const staffDataReducer = (state = initialState, action) => {
+const propertyDataReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "GET_STAFF_PAGE":
-      console.log("action", action.payload);
+    case "GET_PROPERTY_PAGE":
+      console.log("action", action.payload?.data);
       return {
         ...state,
-        staffData: isNotthenSecondParameter(action.payload?.data, []),
+        propertyData: isNotthenSecondParameter(action.payload?.data, []),
       };
     default:
       return state;
   }
 };
 
-export default staffDataReducer;
+export default propertyDataReducer;

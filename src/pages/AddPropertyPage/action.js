@@ -2,15 +2,15 @@ import { toast } from "react-toastify";
 import { api, apiEndPoints } from "../../api";
 
 const handleSuccessfullNavigate = (navigate) => {
-  navigate("/staff-list");
+  navigate("/property-list");
   // window.location.reload();
 };
 
 export const postAddStaff = (payload, navigate) => async (dispatch) => {
   try {
-    const response = await api.post(apiEndPoints.postStaff(), payload);
+    const response = await api.post(apiEndPoints.postProperty(), payload);
     if (response?.data) {
-      toast.success("Staff Added Successfully");
+      toast.success("Property Added Successfully");
       handleSuccessfullNavigate(navigate);
     } else if (response?.response?.data?.message) {
       toast.error(response?.response?.data?.message);
@@ -24,9 +24,9 @@ export const postAddStaff = (payload, navigate) => async (dispatch) => {
 
 export const updateStaff = (payload, navigate, id) => async (dispatch) => {
   try {
-    const response = await api.put(apiEndPoints.postUpdateStaff(id), payload);
+    const response = await api.put(apiEndPoints.postUpdateProperty(id), payload);
     if (response?.data) {
-      toast.success("Staff Updated Successfully");
+      toast.success("Property Updated Successfully");
       handleSuccessfullNavigate(navigate);
     } else if (response?.response?.data?.message) {
       toast.error(response?.response?.data?.message);

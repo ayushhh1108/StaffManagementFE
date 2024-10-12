@@ -52,7 +52,6 @@ export default function AddStaffHooks() {
     "password",
     "email",
     "phoneNumber",
-    "companyName",
     "gender",
   ];
 
