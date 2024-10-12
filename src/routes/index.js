@@ -9,6 +9,8 @@ import { ProtectedRoute } from "../utils/auth";
 import Loader from "../components/Loader";
 import AddStaffPage from "../pages/AddStaffPage";
 import StaffListPage from "../pages/StaffListPage";
+import PropertyListPage from "../pages/PropertyListPage";
+import AddPropertyPage from "../pages/AddPropertyPage";
 const LoginPage = lazy(() => import("../pages/LoginPage"));
 const RegistrationPage = lazy(() => import("../pages/RegistrationPage"));
 const DashBoardPage = lazy(() => import("../pages/DashBoardPage"));
@@ -46,6 +48,22 @@ const AppRoutes = () => {
       element: (
         <ProtectedRoute>
           <StaffListPage />
+        </ProtectedRoute>
+      ),
+    },
+    {
+      path: "/property-list",
+      element: (
+        <ProtectedRoute>
+          <PropertyListPage />
+        </ProtectedRoute>
+      ),
+    },
+    {
+      path: "/add-property",
+      element: (
+        <ProtectedRoute>
+          <AddPropertyPage />
         </ProtectedRoute>
       ),
     },

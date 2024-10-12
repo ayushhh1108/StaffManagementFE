@@ -103,7 +103,7 @@ export const sidebaarRoutes = [
       {
         title: "Property",
         icon: <BsPersonFillAdd className="side-baar-icon" />,
-        pathname: "/Property",
+        pathname: "/property",
       },
       {
         title: "Tenant",
@@ -120,6 +120,11 @@ export const sidebaarRoutes = [
         icon: <FaBloggerB className="side-baar-icon" />,
         pathname: "/staff-list",
       },
+      // {
+      //   title: "Properties",
+      //   icon: <FaBlog className="side-baar-icon" />,
+      //   pathname: "/property",
+      // },
       // {
       //   title: "Staff",
       //   icon: <FaBlog className="side-baar-icon" />,

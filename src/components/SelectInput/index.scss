@@ -1,0 +1,13 @@
+.add-menu-input:focus-visible {
+  outline: none !important;
+}
+@media (max-width: 780px) {
+  .add-menu-input {
+    width: 70% !important;
+  }
+}
+@media (max-width: 600px) {
+  .add-menu-input {
+    width: 100% !important;
+  }
+}
