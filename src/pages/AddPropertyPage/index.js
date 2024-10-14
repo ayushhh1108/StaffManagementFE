@@ -32,8 +32,8 @@ function AddPropertyPage() {
           value={data?.responsibleForPayingCouncilTax}
           isError={error?.responsibleForPayingCouncilTax}
           options={[
-            { label: "Active", value: "active" },
-            { label: "Inactive", value: "inactive" },
+            { label: "House Owner", value: "HouseOwner" },
+            { label: "Tenent", value: "Tenent" },
           ]}
         />
         <SelectInput
@@ -44,8 +44,10 @@ function AddPropertyPage() {
           value={data?.rsl}
           isError={error?.rsl}
           options={[
-            { label: "Active", value: "active" },
-            { label: "Inactive", value: "inactive" },
+            { label: "TCS", value: "TCS" },
+            { label: "MNC", value: "MNC" },
+            { label: "NVIDIA", value: "NVIDIA" },
+            { label: "TSMC", value: "TSMC" },
           ]}
         />
         <TextInput
