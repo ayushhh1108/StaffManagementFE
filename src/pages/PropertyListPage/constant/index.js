@@ -200,7 +200,7 @@ export const HeaderData = [
     label: "TYPE OF OWNER",
   },
   {
-    id: "createdDate",
+    id: "createdAt",
     numeric: true,
     label: "CREATED DATE",
   },

@@ -33,8 +33,7 @@ export default function PropertyListHook() {
         : user?.user?.name,
       type: user?.user?.isStaff
         ? user?.user?.parentAgent?.type
-        : user?.user?.type,
-      createdDate: "",
+        : user?.user?.type
     }));
     setTableData(td ? td : []);
   }, [StoreData]);

@@ -87,7 +87,7 @@ function PropertyListPage() {
               "communalOtherRooms",
               "addedBy",
               "type",
-              "createdDate",
+              "createdAt",
             ]}
             rowData={tableData}
             handleEditClick={handleEdit}
