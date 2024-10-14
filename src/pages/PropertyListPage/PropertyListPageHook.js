@@ -6,6 +6,7 @@ import {
   getPropertyData,
   getSearchedPropertyData,
 } from "./action";
+import { getLocalStorageData } from "../../utils/auth";
 
 export default function PropertyListHook() {
   const navigate = useNavigate();
@@ -14,6 +15,7 @@ export default function PropertyListHook() {
   const [deleteId, setDeleteId] = useState();
   const [open, setOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const user = getLocalStorageData();
 
   const StoreData = useSelector((state) => state?.propertyDataReducer);
 
@@ -26,6 +28,13 @@ export default function PropertyListHook() {
     const td = StoreData?.propertyData?.map((item, index) => ({
       ...item,
       no: index + 1,
+      addedBy: user?.user?.isStaff
+        ? user?.user?.parentAgent?.name
+        : user?.user?.name,
+      type: user?.user?.isStaff
+        ? user?.user?.parentAgent?.type
+        : user?.user?.type,
+      createdDate: "",
     }));
     setTableData(td ? td : []);
   }, [StoreData]);

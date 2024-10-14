@@ -190,6 +190,21 @@ export const HeaderData = [
     label: "COMMUNAL OTHER ROOMS",
   },
   {
+    id: "addedBy",
+    numeric: true,
+    label: "OWNER",
+  },
+  {
+    id: "type",
+    numeric: true,
+    label: "TYPE OF OWNER",
+  },
+  {
+    id: "createdDate",
+    numeric: true,
+    label: "CREATED DATE",
+  },
+  {
     id: "action",
     numeric: true,
     label: "ACTION",
