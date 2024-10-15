@@ -6,8 +6,25 @@ import {
   getPropertyData,
   getSearchedPropertyData,
 } from "./action";
-import { getLocalStorageData } from "../../utils/auth";
-import { formatDateToYYYYMMDD } from "../../utils/helper";
+export function formatDateToYYYYMMDD(isoString) {
+  const date = new Date(isoString);
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-indexed
+  const day = String(date.getDate()).padStart(2, '0');
+  
+  let hours = date.getHours();
+  const minutes = String(date.getMinutes()).padStart(2, '0');
+  
+  // Determine AM or PM
+  const ampm = hours >= 12 ? 'PM' : 'AM';
+  
+  // Convert to 12-hour format
+  hours = hours % 12;
+  hours = hours ? hours : 12; // If hour is 0, make it 12
+
+  return `${year}-${month}-${day} ${hours}:${minutes} ${ampm}`;
+}
+
 
 export default function PropertyListHook() {
   const navigate = useNavigate();
@@ -16,7 +33,6 @@ export default function PropertyListHook() {
   const [deleteId, setDeleteId] = useState();
   const [open, setOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const user = getLocalStorageData();
 
   const StoreData = useSelector((state) => state?.propertyDataReducer);
 
@@ -25,18 +41,25 @@ export default function PropertyListHook() {
     window.scrollTo(0, 0);
   }, []);
 
+  // useEffect(() => {
+  //   const td = StoreData?.propertyData?.map((item, index) => ({
+  //     ...item,
+  //     no: index + 1,
+  //   }));
+  //   setTableData(td ? td : []);
+  // }, [StoreData]);
+
   useEffect(() => {
-    const td = StoreData?.propertyData?.map((item, index) => ({
-      ...item,
-      no: index + 1,
-      addedBy: user?.user?.isStaff
-        ? user?.user?.parentAgent?.name
-        : user?.user?.name,
-      type: user?.user?.isStaff
-        ? user?.user?.parentAgent?.type
-        : user?.user?.type,
-      createdAt: formatDateToYYYYMMDD(item?.createdAt ?? new Date()),
-    }));
+    const td = StoreData?.propertyData?.map((item, index) => {
+      let obj ={
+        ...item,
+        no: index + 1,
+        createdAt: formatDateToYYYYMMDD(item?.createdAt ?? new Date()),
+      }
+    delete obj.addedBy;
+    delete obj.type;
+    return obj
+    });
     setTableData(td ? td : []);
   }, [StoreData]);
 

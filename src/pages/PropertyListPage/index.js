@@ -85,8 +85,8 @@ function PropertyListPage() {
               "communalKitchens",
               "totalOtherRooms",
               "communalOtherRooms",
-              "addedBy",
-              "type",
+              // "addedBy",
+              // "type",
               "createdAt",
             ]}
             rowData={tableData}
