@@ -7,6 +7,7 @@ import {
   getSearchedPropertyData,
 } from "./action";
 import { getLocalStorageData } from "../../utils/auth";
+import { formatDateToYYYYMMDD } from "../../utils/helper";
 
 export default function PropertyListHook() {
   const navigate = useNavigate();
@@ -33,7 +34,8 @@ export default function PropertyListHook() {
         : user?.user?.name,
       type: user?.user?.isStaff
         ? user?.user?.parentAgent?.type
-        : user?.user?.type
+        : user?.user?.type,
+      createdAt: formatDateToYYYYMMDD(item?.createdAt ?? new Date()),
     }));
     setTableData(td ? td : []);
   }, [StoreData]);

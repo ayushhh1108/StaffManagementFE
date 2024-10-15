@@ -40,16 +40,12 @@ export const extractKeyValue = (input, id, val) => {
   return { key, value };
 };
 
-export function isValidURL(str) {
-  const pattern = new RegExp(
-    "^(https?:\\/\\/)?" + // optional protocol (http or https)
-      "((([a-zA-Z\\d]([a-zA-Z\\d-]*[a-zA-Z\\d])*)\\.)+[a-zA-Z]{2,}|" + // domain name
-      "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
-      "(\\:\\d+)?(\\/[-a-zA-Z\\d%_.~+]*)*" + // port and path
-      "(\\?[;&a-zA-Z\\d%_.~+=-]*)?" + // query string
-      "(\\#[-a-zA-Z\\d_]*)?$", // fragment locator
-    "i"
-  );
 
-  return !!pattern.test(str);
+export function formatDateToYYYYMMDD(isoString) {
+  const date = new Date(isoString);
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-indexed
+  const day = String(date.getDate()).padStart(2, '0');
+
+  return `${year}-${month}-${day}`;
 }
